@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="action_bar_bg">#ffffff</color>
+    <color name="action_bar_text_color">#f66168</color>
+    <color name="blueColor">#2952cc</color>
+    <color name="greenColor">#3eb585</color>
+    <color name="tab_checked">#f66168</color>
+    <color name="tab_unchecked">#757575</color>
+<color name="app_background">#f2f2f2</color>
+    <color name="color_gray">#999999</color>
+    <color name="maskPressed">#33888888</color>
+    <color name="maskPressed2">#22808080</color>
+
+    <color name="colorDark">#D02090</color>
+</resources>

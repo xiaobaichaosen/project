@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="@dimen/base_dimen_170">
+
+
+
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_16"
+        style="@style/layout_mw">
+
+
+        <TextView
+            android:id="@+id/tv_address"
+            style="@style/layout_ww"
+            android:text="[昌平]"
+            android:textColor="@color/blueColor"
+            android:textSize="@dimen/base_dimen_28" />
+        <TextView
+            android:layout_toRightOf="@+id/tv_address"
+            android:id="@+id/kndergarten_name"
+            android:layout_marginLeft="@dimen/base_dimen_14"
+            style="@style/layout_ww"
+            android:text="北京大风车双语幼儿园"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:id="@+id/tv_Principal"
+            android:layout_toRightOf="@+id/kndergarten_name"
+            android:layout_marginLeft="@dimen/base_dimen_14"
+            style="@style/layout_ww"
+            android:textColor="#4d4d4d"
+            android:text="[赵瑞]"
+            android:textSize="@dimen/base_dimen_28" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_16"
+        style="@style/layout_mw">
+        <TextView
+            android:id="@+id/tv_name"
+            android:drawableLeft="@mipmap/phone"
+            style="@style/layout_ww"
+            android:drawablePadding="@dimen/base_dimen_20"
+            android:text="王老师"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_24" />
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_toRightOf="@+id/tv_name"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            style="@style/layout_ww"
+
+            android:text="15865824596"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_24" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:id="@+id/kndergarten_status"
+            style="@style/layout_ww"
+
+            android:text="2017/11/11"
+            android:textColor="#999999"
+            android:textSize="@dimen/base_dimen_24" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_16"
+        style="@style/layout_mw">
+        <TextView
+            android:id="@+id/kndergarten_integrity"
+            android:drawableLeft="@mipmap/integrity"
+            android:drawablePadding="@dimen/base_dimen_20"
+            style="@style/layout_ww"
+            android:text="注册完整度"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_24" />
+        <TextView
+            android:id="@+id/tv_training_data"
+            android:layout_toRightOf="@+id/kndergarten_integrity"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            style="@style/layout_ww"
+
+            android:text="80%"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_24" />
+
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            style="@style/layout_ww"
+
+            android:text="开发"
+            android:textColor="#999999"
+            android:textSize="@dimen/base_dimen_24" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

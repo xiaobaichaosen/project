@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_round_white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="点击可填写退回原因"
+        android:lineSpacingExtra="3dp"
+        android:textColor="#a1a1a1"
+        android:textSize="12sp" />
+
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="点击可填写退回原因"
+        android:lineSpacingExtra="3dp"
+        android:textColor="#a1a1a1"
+        android:textSize="12sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+       android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="@dimen/base_dimen_20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_60"
+            android:background="@drawable/bg_alibuybutton"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/base_dimen_20"
+            android:text="取消"
+            android:textSize="12sp"
+           />
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="@dimen/base_dimen_20"
+            android:elevation="@dimen/base_dimen_14"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_60"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:layout_weight="1.0"
+            android:text="确定"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

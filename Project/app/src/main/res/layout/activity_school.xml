@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+>
+    <include
+        android:id="@+id/app_title"
+        layout="@layout/app_title"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/action_bar_bg"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_80">
+
+        <TextView
+          android:id="@+id/tv_develop"
+            android:layout_width="wrap_content"
+          android:gravity="center_vertical"
+            android:textSize="@dimen/base_dimen_28"
+            android:textColor="#4d4d4d"
+            android:layout_alignParentRight="true"
+            android:text="开发"
+            android:drawableRight="@mipmap/arrow_down"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textSize="@dimen/base_dimen_28"
+            android:textColor="#4d4d4d"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_give"
+            android:layout_width="wrap_content"
+           android:layout_toLeftOf="@+id/tv_develop"
+            android:text="授权转移"
+            android:drawableRight="@mipmap/arrow_down"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"/>
+
+</LinearLayout>

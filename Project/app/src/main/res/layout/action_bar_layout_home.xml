@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_96"
+    android:background="@color/action_bar_bg"
+    >
+
+    <CheckBox
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/CustomCheckBoxTheme"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/base_dimen_30"
+
+        android:textSize="@dimen/base_dimen_28" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        android:text="@string/fragment_student_title"
+        android:textColor="@color/action_bar_text_color"
+        android:textSize="@dimen/base_dimen_28" />
+
+    <ImageView
+        android:id="@+id/action_item"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:src="@mipmap/search"
+        android:textSize="@dimen/base_dimen_26" />
+
+</RelativeLayout>

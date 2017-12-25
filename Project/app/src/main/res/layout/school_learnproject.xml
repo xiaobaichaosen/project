@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/base_dimen_10"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:paddingLeft="@dimen/base_dimen_10"
+    android:layout_marginLeft="@dimen/base_dimen_10"
+    android:layout_marginRight="@dimen/base_dimen_10"
+    android:paddingRight="@dimen/base_dimen_10"
+    app:cardCornerRadius="@dimen/base_dimen_8"
+    app:cardElevation="@dimen/base_dimen_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/base_dimen_20"
+        android:layout_marginLeft="@dimen/base_dimen_20"
+        android:layout_marginRight="@dimen/base_dimen_20"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_66"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/base_dimen_20"
+
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/base_dimen_18"
+                android:text="实习项目"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:text="更多"
+                android:textColor="#f08786"
+                android:textSize="@dimen/base_dimen_24" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/base_dimen_18"
+            android:text="正在实习"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/base_dimen_30"
+            android:layout_marginTop="@dimen/base_dimen_30"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginRight="@dimen/base_dimen_20"
+
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/base_dimen_18"
+                    android:text="山东地州交通学院"
+                    android:textColor="#808080"
+                    android:textSize="@dimen/base_dimen_28" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="2017/9/25"
+                    android:textColor="#808080"
+                    android:textSize="@dimen/base_dimen_24" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/base_dimen_30"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:layout_marginTop="@dimen/base_dimen_20"
+
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/base_dimen_18"
+                    android:text="实习人数"
+                    android:textColor="#808080"
+                    android:textSize="@dimen/base_dimen_28" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:text="25"
+                    android:textColor="#808080"
+                    android:textSize="@dimen/base_dimen_24" />
+
+            </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_4"
+    android:background="#f2f2f2"
+    android:layout_marginLeft="@dimen/base_dimen_30"
+    />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_66"
+
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/base_dimen_20"
+
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/base_dimen_18"
+                    android:text="结束实习"
+                    android:textColor="#808080"
+                    android:textSize="@dimen/base_dimen_28" />
+
+
+                <CheckBox
+                    android:id="@+id/overCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"
+                    android:button="@null"
+                    android:gravity="center_vertical"
+                    android:text="更多"
+                    android:textColor="#f08786"
+                    android:textSize="@dimen/base_dimen_24" />
+
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/base_dimen_30"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="@dimen/base_dimen_20"
+
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/base_dimen_18"
+                        android:text="张楠"
+                        android:textColor="#808080"
+                        android:textSize="@dimen/base_dimen_28" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="2017/9/25"
+                        android:textColor="#808080"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/base_dimen_10"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/base_dimen_18"
+                    android:text="英才流行园"
+                    android:textColor="#808080"
+                    android:textSize="@dimen/base_dimen_28" />
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_88"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+
+    android:paddingLeft="@dimen/base_dimen_30">
+
+
+    <TextView
+        android:id="@+id/tv_address"
+        style="@style/layout_ww"
+        android:text="[昌平]"
+        android:textColor="@color/blueColor"
+        android:textSize="@dimen/base_dimen_28" />
+
+    <TextView
+        android:id="@+id/kndergarten_name"
+        style="@style/layout_ww"
+        android:layout_marginLeft="@dimen/base_dimen_14"
+        android:layout_toRightOf="@+id/tv_address"
+        android:text="北京大风车双语幼儿园"
+        android:textColor="#4d4d4d"
+        android:textSize="@dimen/base_dimen_28" />
+
+    <TextView
+        android:id="@+id/tv_Principal"
+        android:layout_width="@dimen/base_dimen_80"
+        android:layout_height="@dimen/base_dimen_36"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/base_dimen_30"
+        android:background="@color/greenColor"
+        android:gravity="center"
+        android:text="推荐"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_26" />
+
+
+</RelativeLayout>
