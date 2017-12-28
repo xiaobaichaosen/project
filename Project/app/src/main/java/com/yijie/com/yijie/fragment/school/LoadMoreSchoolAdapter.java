@@ -1,5 +1,6 @@
 package com.yijie.com.yijie.fragment.school;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.view.CommomDialog;
 
 import java.util.List;
 
@@ -85,7 +87,17 @@ public class LoadMoreSchoolAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tv_phone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    call("15865125759");
+                    new CommomDialog(mContext, R.style.dialog, "您确定拨打电话么？", new CommomDialog.OnCloseListener() {
+                        @Override
+                        public void onClick(Dialog dialog, boolean confirm) {
+                            if(confirm){
+                                call("15865125759");
+                                dialog.dismiss();
+                            }
+
+                        }
+                    })
+                            .setTitle("提示").show();
                 }
             });
         }
@@ -95,8 +107,7 @@ public class LoadMoreSchoolAdapter extends RecyclerView.Adapter<RecyclerView.Vie
      * @param phone 电话号码
      */
     private void call(String phone) {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phone));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+phone));
         mContext.startActivity(intent);
     }
 }

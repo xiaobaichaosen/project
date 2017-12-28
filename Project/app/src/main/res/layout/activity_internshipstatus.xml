@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_96"
+            android:background="@color/action_bar_bg">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:padding="@dimen/base_dimen_10"
+                android:src="@mipmap/arrow_back"
+                android:textColor="@color/action_bar_text_color"
+                android:textSize="@dimen/base_dimen_32" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:background="@color/app_background">
+
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/base_dimen_8"
+                    android:src="@mipmap/search_student" />
+
+                <EditText
+                    android:id="@+id/clearEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/iv"
+                    android:background="@null"
+                    android:hint="搜索"
+                    android:paddingLeft="@dimen/base_dimen_8"
+
+
+                    android:textSize="14sp" />
+
+
+                <ImageView
+                    android:id="@+id/iv_delect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_30"
+                    android:paddingLeft="@dimen/base_dimen_8"
+                    android:src="@mipmap/delete"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+        <com.yijie.com.yijie.view.StickyHeaderLayout
+            android:id="@+id/sticky_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.yijie.com.yijie.view.StickyHeaderLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

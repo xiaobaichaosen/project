@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.activity.kendergard.InternshipStatusActivity;
 import com.yijie.com.yijie.activity.kendergard.Item;
 import com.yijie.com.yijie.activity.kendergard.MoreShareActivity;
 
@@ -297,7 +298,15 @@ public class KendergardAdapterRecyclerView extends RecyclerView.Adapter<Recycler
         private TextView tvName;
         public KDutyStudentHolder(View itemView) {
             super(itemView);
-
+            TextView tv_more = (TextView) itemView.findViewById(R.id.checkBox);
+            tv_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent();
+                    intent.setClass(mContext, InternshipStatusActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
 //
 
         }

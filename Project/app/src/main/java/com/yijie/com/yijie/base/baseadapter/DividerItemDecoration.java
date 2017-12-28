@@ -53,8 +53,8 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         //先调用getItemOffsets获取条目之间的间隙
         //获得条目的偏移量(所有的条目都回调用一次该方法)
-        if (orientation == LinearLayoutManager.VERTICAL) {//垂直的画水平线
-            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+        if (orientation == LinearLayoutManager.VERTICAL) {//垂直的画水平线 /2自己添加
+            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight()/2);
         } else {
             //水平的画垂直线
             outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);

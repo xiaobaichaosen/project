@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="@dimen/base_dimen_24"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_ripple_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rl_loading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_130"
+        android:orientation="vertical"
+        >
+<RelativeLayout
+
+android:layout_gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:paddingTop="@dimen/base_dimen_28"
+        android:id="@+id/tv_adress"
+        android:gravity="center"
+        android:text="河北石家庄"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#4d4d4d"
+        android:textSize="@dimen/base_dimen_28" />
+
+    <TextView
+        android:paddingTop="@dimen/base_dimen_28"
+        android:id="@+id/tv_child"
+        android:layout_width="wrap_content"
+        android:text="4人"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/base_dimen_24"
+        android:layout_height="wrap_content"
+        android:textColor="#4d4d4d"
+        android:textSize="@dimen/base_dimen_24" />
+</RelativeLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/base_dimen_10"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:text="2016届"
+            android:textSize="@dimen/base_dimen_24" />
+
+        <TextView
+            android:id="@+id/tv_education"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:text="中专"
+            android:textSize="@dimen/base_dimen_24"  />
+
+        <TextView
+            android:id="@+id/tv_stutas"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:text="定岗实习"
+            android:textSize="@dimen/base_dimen_24"  />
+
+        <TextView
+            android:id="@+id/tv_data"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:text="8月"
+            android:textSize="@dimen/base_dimen_24" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_status"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90">
+        <TextView
+            android:id="@+id/tv_adress_over"
+            android:gravity="center"
+            android:text="河北石家庄"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:id="@+id/tv_lastdate"
+            android:layout_width="wrap_content"
+            android:text="4人"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_24"
+            android:layout_height="wrap_content"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_24" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

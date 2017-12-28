@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/base_dimen_500"
     android:layout_height="match_parent"
     android:background="@drawable/bg_round_white"
     android:orientation="vertical" >
@@ -48,10 +48,13 @@
             android:layout_marginRight="@dimen/base_dimen_20"
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_60"
-            android:background="@drawable/bg_alibuybutton"
+            android:elevation="@dimen/base_dimen_4"
+
+            android:background="@drawable/bg_canclebutton"
             android:layout_weight="1.0"
             android:gravity="center"
             android:layout_marginBottom="@dimen/base_dimen_20"
+            android:textColor="#838383"
             android:text="取消"
             android:textSize="12sp"
            />
@@ -61,11 +64,11 @@
             android:id="@+id/submit"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="@dimen/base_dimen_20"
-            android:elevation="@dimen/base_dimen_14"
+            android:elevation="@dimen/base_dimen_4"
             android:layout_marginLeft="@dimen/base_dimen_20"
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_60"
-            android:background="@color/colorAccent"
+            android:background="@drawable/bg_okbutton"
             android:gravity="center"
             android:layout_weight="1.0"
             android:text="确定"

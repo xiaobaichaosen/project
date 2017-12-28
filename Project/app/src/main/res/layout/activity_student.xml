@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <LinearLayout
+    <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -15,6 +15,8 @@
             layout="@layout/app_title" />
 
         <ScrollView
+            android:layout_below="@+id/app_title"
+            android:layout_marginBottom="@dimen/base_dimen_85"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none">
@@ -729,41 +731,44 @@
 
 
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/ll_commit"
-            android:layout_width="match_parent"
-            android:background="@color/colorPrimary"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="@dimen/base_dimen_26"
-            android:layout_height="@dimen/base_dimen_80"
-            android:orientation="horizontal">
 
-            <TextView
-                android:text="退回 "
-                android:textColor="#5a5a5a"
-                android:padding="@dimen/base_dimen_9"
-                android:layout_width="0dp"     android:textSize="@dimen/base_dimen_40"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_height="@dimen/base_dimen_80"
-                android:src="@mipmap/shool_pictor" />
-
-            <TextView
-                android:text="通过"
-                android:background="#fcb519"
-                android:textSize="@dimen/base_dimen_40"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="@color/colorPrimary"
-                android:padding="@dimen/base_dimen_9"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="@dimen/base_dimen_80"
-                android:src="@mipmap/shool_pictor" />
-
-
-        </LinearLayout>
             </LinearLayout>
         </ScrollView>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/ll_commit"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/base_dimen_26"
+        android:layout_height="@dimen/base_dimen_80"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="退回 "
+            android:textColor="#5a5a5a"
+            android:padding="@dimen/base_dimen_9"
+            android:layout_width="0dp"     android:textSize="@dimen/base_dimen_40"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_height="@dimen/base_dimen_80"
+            android:src="@mipmap/shool_pictor" />
+
+        <TextView
+            android:text="通过"
+            android:background="#fcb519"
+            android:textSize="@dimen/base_dimen_40"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:padding="@dimen/base_dimen_9"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/base_dimen_80"
+            android:src="@mipmap/shool_pictor" />
+
+
     </LinearLayout>
+    </RelativeLayout>

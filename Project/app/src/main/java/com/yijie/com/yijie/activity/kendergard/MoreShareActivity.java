@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
@@ -29,7 +30,7 @@ public class MoreShareActivity extends BaseActivity {
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.action_item)
-    TextView actionItem;
+    ImageView actionItem;
     @BindView(R.id.tv_recommend)
     TextView tvRecommend;
     @BindView(R.id.recyclerView)
