@@ -22,11 +22,13 @@ import java.util.List;
 
 public class LoadMoreSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
+    private final int res;
     private List<Item> dataList;
     private Context mContext;
 
-    public LoadMoreSchoolAdapter(List<Item> dataList) {
+    public LoadMoreSchoolAdapter(List<Item> dataList,int res) {
         this.dataList = dataList;
+        this.res=res;
     }
     private OnItemClickListener mOnItemClickListener = null;
 
@@ -49,7 +51,7 @@ public class LoadMoreSchoolAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.mContext=parent.getContext();
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.school_adapter_item, parent, false);
+                .inflate(res, parent, false);
         view.setOnClickListener(this);
         return new RecyclerViewHolder(view);
     }
@@ -57,7 +59,7 @@ public class LoadMoreSchoolAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
-        recyclerViewHolder.tvItem.setText(dataList.get(position).getName());
+//        recyclerViewHolder.tvItem.setText(dataList.get(position).getName());
         //将position保存在itemView的Tag中，以便点击时进行获取
         recyclerViewHolder.itemView.setTag(position);
     }

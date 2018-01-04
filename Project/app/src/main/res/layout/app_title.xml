@@ -2,15 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/base_dimen_96"
-    android:background="@color/action_bar_bg"
+    android:background="@color/colorTheme"
     >
 
     <TextView
         android:id="@+id/back"
         android:layout_width="wrap_content"
-        android:textColor="@color/action_bar_text_color"
+        android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/base_dimen_26"
+
         android:layout_centerVertical="true"
         android:drawableLeft="@mipmap/arrow_back"
         android:text="返回"
@@ -24,8 +25,8 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="2dp"
         android:text="河北技工学校"
-        android:textColor="@color/action_bar_text_color"
-        android:textSize="@dimen/base_dimen_32" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_38" />
 
 
 
@@ -51,11 +52,11 @@
         android:id="@+id/tv_recommend"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:textColor="@color/action_bar_text_color"
+        android:textColor="@color/colorPrimary"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:paddingRight="@dimen/base_dimen_30"
-        android:textSize="@dimen/base_dimen_26" />
+        android:textSize="@dimen/base_dimen_32" />
 
 </RelativeLayout>

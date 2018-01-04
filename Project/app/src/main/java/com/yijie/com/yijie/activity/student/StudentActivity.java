@@ -67,8 +67,8 @@ public class StudentActivity extends BaseActivity {
 
     @Override
     public void init() {
-        setColor(StudentActivity.this, Color.WHITE); // 改变状态栏的颜色
-        setTranslucent(StudentActivity.this); // 改变状态栏变成透明
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
         title.setText("简历审核");
         actionItem.setVisibility(View.INVISIBLE);
 /**

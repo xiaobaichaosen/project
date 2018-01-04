@@ -3,6 +3,8 @@
     package="com.yijie.com.yijie">
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -52,6 +54,17 @@
         <activity android:name=".activity.kendergard.InternshipDatailActivity"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
             />
+
+        <activity android:name=".activity.kendergard.EveryStudentDetialAcivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+
+            />
+        <activity android:name=".activity.newschool.NewInternshipDetailActivity"
+            />
+
+        <activity android:name=".activity.newschool.NewSchoolActivity"/>
+        <activity android:name=".activity.newschool.NewContactActivity"/>
+
     </application>
 
 </manifest>

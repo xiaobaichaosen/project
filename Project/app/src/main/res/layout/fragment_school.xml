@@ -9,15 +9,94 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <include
-        android:id="@+id/app_title"
-        layout="@layout/action_bar_layout_home"/>
+
+        <RelativeLayout
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_96"
+            android:background="@color/appBarColor"
+            >
+
+
+            <TextView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:textColor="@color/action_bar_text_color"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@mipmap/new_school"
+
+                android:textSize="@dimen/base_dimen_32" />
+
+
+            <RelativeLayout
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:background="#F1817F"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                >
+
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/base_dimen_8"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/title_search"
+                    />
+                <EditText
+                    android:layout_toRightOf="@+id/iv"
+                    android:id="@+id/clearEditText"
+                    android:background="@null"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/base_dimen_8"
+                    android:textColorHint="@color/colorPrimary"
+                    android:hint="搜索"
+                    android:layout_width="match_parent"
+
+
+
+                    android:textSize="14sp"/>
+
+
+                <ImageView
+                    android:id="@+id/iv_delect"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/base_dimen_8"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/delete"
+                    android:layout_marginRight="@dimen/base_dimen_30"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:id="@+id/action_item"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/base_dimen_30"
+                android:padding="@dimen/base_dimen_8"
+                android:src="@mipmap/student_grounp_more"
+               />
+
+
+        </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@+id/app_title"
+        android:background="@color/colorPrimary"
         android:id="@+id/swipe_refresh_layout"
         style="@style/layout_mm"
-        android:layout_margin="10dp">
+     >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

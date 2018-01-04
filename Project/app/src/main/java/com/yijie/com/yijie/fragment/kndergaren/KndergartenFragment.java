@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.kendergard.KndergardAcitivity;
@@ -27,7 +29,6 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.Unbinder;
 
 /**
@@ -40,16 +41,38 @@ public class KndergartenFragment extends BaseFragment {
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
     LoadMoreWrapper loadMoreWrapper;
-    @BindView(R.id.back)
-    CheckBox back;
+    //    @BindView(R.id.back)
+//    CheckBox back;
     Unbinder unbinder;
     @BindView(R.id.loading)
     LoadingLayout loading;
+    @BindView(R.id.iv)
+    ImageView iv;
+    @BindView(R.id.clearEditText)
+    EditText clearEditText;
+    @BindView(R.id.iv_delect)
+    ImageView ivDelect;
+    @BindView(R.id.action_item)
+    ImageView actionItem;
+    @BindView(R.id.app_title)
+    RelativeLayout appTitle;
     private List<Item> dataList = new ArrayList<>();
-
+    private OnButtonClick onButtonClick;//2、定义接口成员变量
+    //定义接口变量的get方法
+    public OnButtonClick getOnButtonClick() {
+        return onButtonClick;
+    }
+    //定义接口变量的set方法
+    public void setOnButtonClick(OnButtonClick onButtonClick) {
+        this.onButtonClick = onButtonClick;
+    }
+    //1、定义接口
+    public interface OnButtonClick{
+        public void onClick(View view);
+    }
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_school;
+        return R.layout.fragment_kendergard;
     }
 
     @Override
@@ -67,7 +90,18 @@ public class KndergartenFragment extends BaseFragment {
 
         // 模拟获取数据
         getData();
-        LoadMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreKndergrtenAdapter(dataList,mActivity);
+
+        actionItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                getFragmentManager().beginTransaction().replace()
+//4、如果接口成员变量不为空null，则调用接口变量的方法。
+                if (onButtonClick != null) {
+                    onButtonClick.onClick(view);
+                }
+            }
+        });
+        LoadMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreKndergrtenAdapter(dataList, mActivity,R.layout.kndergarten_adapter_item);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
         recyclerView.setAdapter(loadMoreWrapper);
@@ -135,36 +169,7 @@ public class KndergartenFragment extends BaseFragment {
 
     }
 
-    //根据勾选状态设置不同适配器
-    @OnCheckedChanged(R.id.back)
-    void checkBoxCheckedChanged() {
-        if (back.isChecked()) {
-            LoadMoreMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreMoreKndergrtenAdapter(dataList);
-            loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
-            recyclerView.setAdapter(loadMoreWrapper);
-            loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreMoreKndergrtenAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Intent intent = new Intent();
-                    intent.setClass(mActivity, KndergardAcitivity.class);
-                    startActivity(intent);
-                }
-            });
 
-        } else {
-            LoadMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreKndergrtenAdapter(dataList,mActivity);
-            loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
-            recyclerView.setAdapter(loadMoreWrapper);
-            loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreKndergrtenAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Intent intent = new Intent();
-                    intent.setClass(mActivity, KndergardAcitivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
-    }
 
     private void getData() {
         //String.valueOf(letter)

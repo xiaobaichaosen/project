@@ -68,8 +68,8 @@ public class SchoolActivity extends BaseActivity implements CallbackItemTouch {
 
     @Override
     public void init() {
-        setColor(SchoolActivity.this, Color.WHITE); // 改变状态栏的颜色
-        setTranslucent(SchoolActivity.this); // 改变状态栏变成透明
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
         initList(); //call method
         actionItem.setBackgroundResource(R.mipmap.setting);
 

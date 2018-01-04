@@ -10,18 +10,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.melnykov.fab.FloatingActionButton;
+import com.melnykov.fab.ScrollDirectionListener;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.kendergard.kndergardadapter.BaseViewHolder;
 import com.yijie.com.yijie.activity.kendergard.kndergardadapter.GroupedListAdapter;
 import com.yijie.com.yijie.activity.kendergard.kndergardadapter.GroupedRecyclerViewAdapter;
-import com.yijie.com.yijie.activity.kendergard.kndergardadapter.NoFooterAdapter;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
-import com.yijie.com.yijie.utils.AnimationUtil;
 import com.yijie.com.yijie.utils.LightStatusBarUtils;
+import com.yijie.com.yijie.utils.UIUtils;
 import com.yijie.com.yijie.view.StickyHeaderLayout;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
 
 /**
  * Created by 奕杰平台 on 2017/12/26.
- * 园所 在岗实习
+ * 园所 在岗实习和结束实习页
  */
 
 public class InternshipStatusActivity extends BaseActivity {
@@ -53,23 +54,28 @@ public class InternshipStatusActivity extends BaseActivity {
     @BindView(R.id.loading)
     LinearLayout loading;
     GroupedListAdapter mAdapter;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+    @BindView(R.id.activity_floating_recycler_view)
+    RelativeLayout activityFloatingRecyclerView;
+    LinearLayoutManager linearLayoutManager;
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_internshipstatus);
     }
 
 
-    public  ArrayList<GroupEntity> getGroups(int groupCount, int childrenCount) {
+    public ArrayList<GroupEntity> getGroups(int groupCount, int childrenCount) {
         ArrayList<GroupEntity> groups = new ArrayList<>();
         for (int i = 0; i < groupCount; i++) {
             ArrayList<ChildEntity> children = new ArrayList<>();
             for (int j = 0; j < childrenCount; j++) {
                 children.add(new ChildEntity("第" + (i + 1) + "组第" + (j + 1) + "项"));
             }
-            if (i==0){
+            if (i == 0) {
                 groups.add(new GroupEntity("在岗学生"
                         , children));
-            }else{
+            } else {
                 groups.add(new GroupEntity("结束学习"
                         , children));
             }
@@ -77,14 +83,66 @@ public class InternshipStatusActivity extends BaseActivity {
         }
         return groups;
     }
+
     @Override
     public void init() {
 
-        final  ArrayList<GroupEntity> groups = getGroups(2, 5);
-        LightStatusBarUtils.setLightStatusBar(this,true);
-        rvList.setLayoutManager(new LinearLayoutManager(this));
+        linearLayoutManager = new LinearLayoutManager(this);
+        final ArrayList<GroupEntity> groups = getGroups(2, 5);
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
+        rvList.setLayoutManager(linearLayoutManager);
         rvList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         mAdapter = new GroupedListAdapter(this, groups);
+
+        fab.hide(false);
+
+        //;或布局中：fab:fab_type="mini"
+       fab.setType(FloatingActionButton.TYPE_MINI);
+        fab.attachToRecyclerView(rvList, new ScrollDirectionListener() {
+            @Override
+            public void onScrollDown() {
+                fab.hide();
+            }
+
+            @Override
+            public void onScrollUp() {
+                fab.show();
+            }
+        }, new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                RecyclerView.LayoutManager layoutManager = rvList.getLayoutManager();
+                if (layoutManager instanceof LinearLayoutManager) {
+                    LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                    int firstVisibleItemPosition = linearManager.findFirstVisibleItemPosition();
+                    if (firstVisibleItemPosition > 1) {
+                        fab.show();
+                    } else {
+                        fab.hide();
+                    }
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UIUtils.MoveToPosition(linearLayoutManager,0);
+//                UIUtils.MoveToPosition(new LinearLayoutManager(mContext), recyclerview, 0);
+
+                fab.hide();
+
+            }
+        });
+
+
 
         mAdapter.setOnHeaderClickListener(new GroupedRecyclerViewAdapter.OnHeaderClickListener() {
             @Override
@@ -104,13 +162,8 @@ public class InternshipStatusActivity extends BaseActivity {
                 groupEntity.setChildren(allChildren);
 
 
-
-
-
                 adapter.notifyDataSetChanged();
-                Toast.makeText(InternshipStatusActivity.this, "组头：groupPosition = " + groupPosition,
-                        Toast.LENGTH_LONG).show();
-                Log.e("eee", adapter.toString() + "  " + holder.toString());
+
             }
         });
 
@@ -123,9 +176,6 @@ public class InternshipStatusActivity extends BaseActivity {
                 intent.setClass(InternshipStatusActivity.this, InternshipDatailActivity.class);
                 startActivity(intent);
 
-                Toast.makeText(InternshipStatusActivity.this, "子项：groupPosition = " + groupPosition
-                                + ", childPosition = " + childPosition,
-                        Toast.LENGTH_LONG).show();
             }
         });
         rvList.setAdapter(mAdapter);
@@ -133,7 +183,6 @@ public class InternshipStatusActivity extends BaseActivity {
         //设置是否吸顶。
         stickyLayout.setSticky(true);
     }
-
 
 
     @OnClick({R.id.back})
@@ -148,4 +197,10 @@ public class InternshipStatusActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

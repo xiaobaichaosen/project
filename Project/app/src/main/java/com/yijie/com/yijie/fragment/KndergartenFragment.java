@@ -46,7 +46,7 @@ public class KndergartenFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         // 模拟获取数据
         getData();
-        LoadMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreKndergrtenAdapter(dataList,mActivity);
+        LoadMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreKndergrtenAdapter(dataList,mActivity,R.layout.kndergarten_adaptermore_item);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
         recyclerView.setAdapter(loadMoreWrapper);

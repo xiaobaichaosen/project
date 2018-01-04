@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:paddingLeft="@dimen/base_dimen_24"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_height="wrap_content"
-    android:background="@drawable/white_ripple_bg"
     android:orientation="vertical">
 
     <LinearLayout

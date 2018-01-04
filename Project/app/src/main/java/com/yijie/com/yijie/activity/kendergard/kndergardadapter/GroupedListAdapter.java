@@ -76,7 +76,7 @@ public class GroupedListAdapter extends GroupedRecyclerViewAdapter {
 
         }else{
             holder.setText(R.id.tv_header,"结束实习");
-            holder.setBackgroundColor(R.id.tv_header, Color.parseColor("#4F4F4F"));
+            holder.setBackgroundColor(R.id.tv_header, Color.parseColor("#999999"));
             holder.setBackgroundRes(R.id.tv_sudent_title,R.mipmap.student_gray_title);
             holder.setTextColor(R.id.iv_stutus, Color.parseColor("#4d4d4d"));
         }

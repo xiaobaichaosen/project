@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="#4d4d4d"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_height="wrap_content"
+            android:text="学校名称 *"
+            />
+
+        <EditText
+            android:id="@+id/tv_newEducation"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:hint="请输入学校名称"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#4d4d4d"
+            android:text="学校地址 *" />
+
+        <TextView
+            android:id="@+id/tv_newSchoolAdress"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newSchoolAdress"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:id="@+id/to_newSchoolAdress"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+    <EditText
+        android:id="@+id/et_detalAdress"
+        android:background="@null"
+        android:hint="请输入详细地址"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/base_dimen_86"
+        android:layout_centerVertical="true"
+        android:textColor="#999999"
+        android:textSize="@dimen/base_dimen_28" />
+        <TextView
+            android:id="@+id/to_"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+    <View
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="@dimen/base_dimen_4"
+
+        android:background="@color/app_background"
+        />
+
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_centerVertical="true"
+            android:textColor="#4d4d4d"
+            android:text="联系人 *" />
+
+        <TextView
+            android:id="@+id/tv_newType"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newContact"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <ImageView
+            android:id="@+id/to_newContact"
+            android:src="@mipmap/goright"
+            android:padding="@dimen/base_dimen_8"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_18"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+
+    </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:id="@+id/line_or_v"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#4d4d4d"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp"
+            android:text="学校简介" />
+
+        <TextView
+            android:id="@+id/tv_line"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_newSchoolSample"
+            android:textSize="@dimen/base_dimen_28"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:id="@+id/tv_newSchoolSample"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_centerVertical="true"
+            android:textColor="#4d4d4d"
+            android:text="学校图片" />
+
+        <TextView
+            android:id="@+id/tv_mode"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newSchoolPicture"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:id="@+id/to_newSchoolPicture"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#4d4d4d"
+            android:layout_centerVertical="true"
+            android:text="实习详情" />
+
+        <TextView
+            android:id="@+id/tv_newAppointmenttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newAppointmenttime"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:id="@+id/to_newAppointmenttime"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#4d4d4d"
+            android:layout_centerVertical="true"
+            android:text="备忘录" />
+
+        <TextView
+            android:id="@+id/tv_newNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newNodetal"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:id="@+id/to_newNodetal"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

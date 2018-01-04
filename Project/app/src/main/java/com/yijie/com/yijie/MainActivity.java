@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -19,7 +20,9 @@ import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.BaseFragment2;
 import com.yijie.com.yijie.base.PermissionsActivity;
 import com.yijie.com.yijie.base.PermissionsChecker;
+import com.yijie.com.yijie.fragment.kndergaren.KndergartenBaseFragment;
 import com.yijie.com.yijie.fragment.kndergaren.KndergartenFragment;
+import com.yijie.com.yijie.fragment.school.SchoolBaseFragment;
 import com.yijie.com.yijie.fragment.school.SchoolFragment;
 import com.yijie.com.yijie.fragment.student.StudentFragment;
 import com.yijie.com.yijie.home.BottomNavigationViewHelper;
@@ -41,6 +44,8 @@ public class MainActivity extends BaseActivity {
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.CALL_PHONE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     //记录用户首次点击返回键的时间
     private long firstTime=0;
@@ -48,13 +53,16 @@ public class MainActivity extends BaseActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        adapter.addFragment(new SchoolFragment());
-        adapter.addFragment(new KndergartenFragment());
+        adapter.addFragment(new SchoolBaseFragment());
+        adapter.addFragment(new KndergartenBaseFragment());
         adapter.addFragment(BaseFragment2.newInstance("YIJIE"));
         adapter.addFragment(new StudentFragment());
         adapter.addFragment(BaseFragment2.newInstance("发现"));
+        viewPager.setOffscreenPageLimit(14);
         viewPager.setAdapter(adapter);
+
+
+
     }
 
 
@@ -78,9 +86,9 @@ public class MainActivity extends BaseActivity {
     public void init() {
 
 
-//        setColor(MainActivity.this, Color.WHITE); // 改变状态栏的颜色
-//        setTranslucent(MainActivity.this); // 改变状态栏变成透明
-        LightStatusBarUtils.setLightStatusBar(this,true);
+        setColor(MainActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(MainActivity.this); // 改变状态栏变成透明
+//        LightStatusBarUtils.setLightStatusBar(this,true);
         //默认 >3 的选中效果会影响ViewPager的滑动切换时的效果，故利用反射去掉
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
@@ -170,6 +178,8 @@ public class MainActivity extends BaseActivity {
         // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
         if (requestCode == REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
             finish();
+        }else{
+
         }
     }
 }

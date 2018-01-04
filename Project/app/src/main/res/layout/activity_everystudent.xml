@@ -1,0 +1,1573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/app_title"
+        layout="@layout/app_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="@dimen/base_dimen_104"
+                android:layout_height="@dimen/base_dimen_8"
+                android:layout_marginLeft="@dimen/base_dimen_24"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:background="@mipmap/student_title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="@dimen/base_dimen_24">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_100"
+                    android:layout_height="@dimen/base_dimen_60"
+                    android:background="#ea7e7c"
+                    android:gravity="center"
+                    android:text="分享"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/base_dimen_32" />
+
+                <ImageView
+                    android:id="@+id/iv_stutus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_28"
+                    android:src="@mipmap/goright"
+
+                    />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+      ></android.support.v7.widget.RecyclerView>
+
+
+            <TextView
+                android:layout_width="@dimen/base_dimen_166"
+                android:layout_height="@dimen/base_dimen_8"
+                android:layout_marginLeft="@dimen/base_dimen_24"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:background="@mipmap/student_title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="@dimen/base_dimen_24">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_160"
+
+                    android:layout_height="@dimen/base_dimen_60"
+                    android:background="#ea7e7c"
+                    android:gravity="center"
+                    android:text="问题提交"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/base_dimen_32" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/base_dimen_26"
+                android:paddingTop="@dimen/base_dimen_34">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/base_dimen_76"
+                    android:text="小白老师，我们的工资什么时候发给我们，园里当时说的是月底发工资"
+                    android:textColor="#4d4d4d"
+                    android:textSize="@dimen/base_dimen_28" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/base_dimen_40"
+                    android:layout_marginTop="@dimen/base_dimen_50">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2017.10.15  13：37"
+                        android:textColor="#808080"
+                        android:textSize="@dimen/base_dimen_24" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/base_dimen_26"
+                        android:text="处理中"
+                        android:textColor="#808080"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/base_dimen_26"
+                android:paddingTop="@dimen/base_dimen_34">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/base_dimen_76"
+                    android:text="小白老师，我们的工资什么时候发给我们，园里当时说的是月底发工资"
+                    android:textColor="#4d4d4d"
+                    android:textSize="@dimen/base_dimen_28" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/base_dimen_40"
+                    android:layout_marginTop="@dimen/base_dimen_50">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/base_dimen_26"
+                        android:text="处理中"
+                        android:textColor="#808080"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2017.10.15  13：37"
+                    android:textColor="#808080"
+                    android:textSize="@dimen/base_dimen_24" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="@dimen/base_dimen_104"
+                android:layout_height="@dimen/base_dimen_8"
+                android:layout_marginLeft="@dimen/base_dimen_24"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:background="@mipmap/student_title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+
+                android:paddingLeft="@dimen/base_dimen_24">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_100"
+                    android:layout_height="@dimen/base_dimen_60"
+                    android:background="#ea7e7c"
+                    android:gravity="center"
+                    android:text="评价"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/base_dimen_32" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/base_dimen_24"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+
+                        android:text="对园所的评价"
+                        android:textSize="@dimen/base_dimen_28" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/base_dimen_20"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+
+                        android:text="整体评价"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:padding="@dimen/base_dimen_8"
+                        android:progressTint="#f06764"
+                        android:rating="2" />
+
+
+                </LinearLayout>
+
+                   
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginBottom="@dimen/base_dimen_30"
+                    android:background="@drawable/bg_dotted_line"
+
+                    android:layerType="software" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="园所情况"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/base_dimen_24" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_16"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text="园所规模"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_40"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:padding="@dimen/base_dimen_8"
+                        android:progressTint="#F7B507"
+                        android:rating="5" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_8"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text="地理位置"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_40"
+                        android:isIndicator="true"
+                        android:numStars="5"
+
+                        android:padding="@dimen/base_dimen_8"
+                        android:progressTint="#F7B507"
+                        android:rating="4" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_8"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text="硬件设置"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_40"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:padding="@dimen/base_dimen_8"
+                        android:progressTint="#F7B507"
+                        android:rating="3" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/base_dimen_50"
+                    android:layout_marginTop="@dimen/base_dimen_8"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text="交通便利程度"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_24" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        style="@style/Widget.MaterialRatingBar.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_40"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:padding="@dimen/base_dimen_8"
+                        android:progressTint="#F7B507"
+                        android:rating="3.5" />
+
+
+                </LinearLayout>
+                   
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_2"
+
+                    android:background="#e6e6e6" />
+
+
+
+                    <TextView
+                        android:layout_marginTop="@dimen/base_dimen_50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="@dimen/base_dimen_56"
+                        android:text="对学生的评价"
+                        android:textSize="@dimen/base_dimen_28" />
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/iv_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:text="王老师" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/base_dimen_46"
+                        android:layout_toRightOf="@+id/iv_head"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="张欢"
+                            android:textColor="#313131"
+                            android:textSize="@dimen/base_dimen_32" />
+
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_30"
+                            android:layout_marginTop="@dimen/base_dimen_30"
+                            android:text="刚开始有些不适应"
+                            android:textColor="#a3a5a8"
+                            android:textSize="@dimen/base_dimen_24" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_2"
+                    android:layout_alignParentBottom="true"
+                    android:background="#e6e6e6" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_30">
+
+
+                    <TextView
+                        android:id="@+id/iv_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:text="王老师" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/base_dimen_46"
+                        android:layout_toRightOf="@+id/iv_head"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="张欢"
+                            android:textColor="#313131"
+                            android:textSize="@dimen/base_dimen_32" />
+
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_30"
+                            android:layout_marginTop="@dimen/base_dimen_30"
+                            android:text="刚开始有些不适应"
+                            android:textColor="#a3a5a8"
+                            android:textSize="@dimen/base_dimen_24" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="@dimen/base_dimen_166"
+                android:layout_height="@dimen/base_dimen_8"
+                android:layout_marginLeft="@dimen/base_dimen_24"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:background="@mipmap/student_title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/base_dimen_24">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_160"
+
+                    android:layout_height="@dimen/base_dimen_60"
+                    android:background="#ea7e7c"
+                    android:gravity="center"
+                    android:text="安置信息"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/base_dimen_32" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_40"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_dimen_34"
+                        android:orientation="vertical"
+
+
+                        >
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="预计到京时间:"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="交通工具:"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="入园时间:"
+                            android:textColor="#808080" />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_76"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_dimen_34"
+                        android:orientation="vertical"
+
+
+                        >
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="王老师"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="18548965745"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="18474589652"
+                            android:textColor="#808080" />
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="@dimen/base_dimen_166"
+                android:layout_height="@dimen/base_dimen_8"
+                android:layout_marginLeft="@dimen/base_dimen_24"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:background="@mipmap/student_title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/base_dimen_24">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_160"
+
+                    android:layout_height="@dimen/base_dimen_60"
+                    android:background="#ea7e7c"
+                    android:gravity="center"
+                    android:text="匹配详情"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/base_dimen_32" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_40"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_dimen_34"
+                        android:orientation="vertical"
+
+
+                        >
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="同伴:"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="交通工具:"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="入园时间:"
+                            android:textColor="#808080" />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_76"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_dimen_34"
+                        android:orientation="vertical"
+
+
+                        >
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="博爱双语幼儿园"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="18548965745"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="18474589652"
+                            android:textColor="#808080" />
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="@dimen/base_dimen_166"
+                android:layout_height="@dimen/base_dimen_8"
+                android:layout_marginLeft="@dimen/base_dimen_24"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:background="@mipmap/student_title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/base_dimen_24">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_160"
+
+                    android:layout_height="@dimen/base_dimen_60"
+                    android:background="#ea7e7c"
+                    android:gravity="center"
+                    android:text="已投递"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/base_dimen_32" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_40"
+                    android:orientation="horizontal"
+
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_dimen_34"
+                        android:orientation="vertical"
+
+
+                        >
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="投递园所:"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="投递时间:"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="同伴:"
+                            android:textColor="#808080" />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_76"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/base_dimen_34"
+                        android:orientation="vertical"
+
+
+                        >
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="博爱双语幼儿园"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="2017年12月18日   13:35"
+                            android:textColor="#808080" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_20"
+                            android:text="无"
+                            android:textColor="#808080" />
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/app_background"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_166"
+                    android:layout_height="@dimen/base_dimen_8"
+                    android:layout_marginLeft="@dimen/base_dimen_24"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:background="@mipmap/student_title"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="@dimen/base_dimen_160"
+                            android:layout_height="@dimen/base_dimen_56"
+                            android:layout_marginLeft="@dimen/base_dimen_24"
+                            android:background="#ea7e7c"
+                            android:gravity="center"
+                            android:text="简历信息"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/base_dimen_32" />
+
+
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_36"
+                        android:paddingLeft="@dimen/base_dimen_28" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_40"
+                        android:orientation="horizontal"
+
+
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_34"
+                            android:layout_marginLeft="@dimen/base_dimen_24"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="姓名:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="性别:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="身高:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="体重:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="民族:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="籍贯:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="出生日期:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="户口所在地:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_34"
+                            android:layout_marginLeft="@dimen/base_dimen_88"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="贺巧"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="女"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="165cm"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="50kg"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="汉"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="河北"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="1996-6-2"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="河北省邯郸市"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_1"
+                    android:layout_marginLeft="@dimen/base_dimen_24"
+
+                    android:background="@color/app_background"
+                  />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="@dimen/base_dimen_160"
+                        android:layout_height="@dimen/base_dimen_56"
+                        android:layout_marginTop="@dimen/base_dimen_30"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:gravity="center"
+                        android:text="联系方式"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_40"
+                        android:orientation="horizontal"
+
+
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_34"
+                            android:layout_marginLeft="@dimen/base_dimen_24"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="手机号码:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="微信号码:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="QQ号码:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="邮箱地址:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_34"
+                            android:layout_marginLeft="@dimen/base_dimen_114"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="13854629845"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="13854629878"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="158462"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="158462@qq.com"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_1"
+                    android:layout_marginLeft="@dimen/base_dimen_24"
+
+                    android:background="@color/app_background"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="@dimen/base_dimen_160"
+                        android:layout_height="@dimen/base_dimen_56"
+                        android:layout_marginTop="@dimen/base_dimen_30"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:gravity="center"
+                        android:text="教育背景"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_40"
+                        android:orientation="horizontal"
+
+
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginLeft="@dimen/base_dimen_24"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="公司名称:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="时间:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="职务:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_34"
+                            android:layout_marginLeft="@dimen/base_dimen_114"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="国际幼儿园"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="2011/6-2013/9"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="三班教师"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="fill_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:text="工作描述:"
+                        android:textColor="#999999"
+                        android:textSize="@dimen/base_dimen_28" />
+
+                    <TextView   android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:layout_marginBottom="@dimen/base_dimen_34"
+                        android:layout_width="fill_parent"
+                        android:layout_marginTop="@dimen/base_dimen_18"
+                        android:layout_height="wrap_content"
+                        android:text="我曾在广州天河庄幼儿园担任教师一职,和小朋友和教师有良好的沟通。"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_28" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_1"
+                    android:layout_marginLeft="@dimen/base_dimen_24"
+
+                    android:background="@color/app_background"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="@dimen/base_dimen_160"
+                        android:layout_height="@dimen/base_dimen_56"
+                        android:layout_marginTop="@dimen/base_dimen_30"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:gravity="center"
+                        android:text="相关意向"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_40"
+                        android:orientation="horizontal"
+
+
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_34"
+                            android:layout_marginLeft="@dimen/base_dimen_24"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="期望工作地点:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="期望同伴:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_34"
+                            android:layout_marginLeft="@dimen/base_dimen_114"
+                            android:orientation="vertical"
+
+
+                            >
+
+
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="河北冶金技术学院"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:id="@+id/tv_companionName"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="王颖"
+                                android:textColor="@color/blueColor"
+                                android:textSize="@dimen/base_dimen_28" />
+
+
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_1"
+                    android:layout_marginLeft="@dimen/base_dimen_24"
+
+                    android:background="@color/app_background"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="@dimen/base_dimen_160"
+                        android:layout_height="@dimen/base_dimen_56"
+                        android:layout_marginTop="@dimen/base_dimen_30"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:gravity="center"
+                        android:text="自我评价"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+
+
+
+
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_18"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:text="本人有爱心,有耐心,具有良好的思想品质,善于与人沟通。"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_28" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_1"
+                    android:layout_marginLeft="@dimen/base_dimen_24"
+
+                    android:background="@color/app_background"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/base_dimen_34"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="@dimen/base_dimen_160"
+                        android:layout_height="@dimen/base_dimen_56"
+                        android:layout_marginTop="@dimen/base_dimen_30"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:gravity="center"
+                        android:text="荣誉证书"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/base_dimen_18"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:padding="@dimen/base_dimen_9"
+                            android:layout_width="@dimen/base_dimen_154"
+                            android:layout_height="@dimen/base_dimen_154"
+                            android:src="@mipmap/shool_pictor" />
+
+                        <ImageView
+                            android:padding="@dimen/base_dimen_9"
+                            android:layout_width="@dimen/base_dimen_154"
+                            android:layout_height="@dimen/base_dimen_154"
+                            android:src="@mipmap/shool_pictor" />
+
+                        <ImageView
+                            android:padding="@dimen/base_dimen_9"
+                            android:layout_width="@dimen/base_dimen_154"
+                            android:layout_height="@dimen/base_dimen_154"
+                            android:src="@mipmap/shool_pictor" />
+
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

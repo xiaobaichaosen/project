@@ -97,8 +97,8 @@ public class KndergardAcitivity extends BaseActivity implements CallbackItemTouc
     public void init() {
 
 
-        setColor(KndergardAcitivity.this, Color.WHITE); // 改变状态栏的颜色
-        setTranslucent(KndergardAcitivity.this); // 改变状态栏变成透明
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
         //true是从推荐跳转过来的
         boolean isShowMove = getIntent().getBooleanExtra("isShowMove", false);
         if (isShowMove) {

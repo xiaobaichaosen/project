@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijie.com.yijie.MainActivity;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.kendergard.kndergardadapter.NineGridAdapter;
 import com.yijie.com.yijie.base.BaseActivity;
@@ -60,8 +61,8 @@ public class MoreShareActivity extends BaseActivity {
 
     @Override
     public void init() {
-        setColor(MoreShareActivity.this, Color.WHITE); // 改变状态栏的颜色
-        setTranslucent(MoreShareActivity.this); // 改变状态栏变成透明
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
         title.setText("学生分享");
         actionItem.setVisibility(View.GONE);
         initListData();

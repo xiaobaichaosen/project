@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffffff</color>
+    <color name="colorTheme">#F16765</color>
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#FF4081</color>
     <color name="action_bar_bg">#ffffff</color>
@@ -14,5 +15,17 @@
     <color name="maskPressed">#33888888</color>
     <color name="maskPressed2">#22808080</color>
 
+    <color name="appBarColor">#F16765</color>
+
     <color name="colorDark">#D02090</color>
+
+    <color name="pickerview_timebtn_nor">#585AAC</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="pickerview_bg_topbar">#f5f5f5</color>
+    <color name="pickerview_topbar_title">#000000</color>
+    <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+    <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
 </resources>

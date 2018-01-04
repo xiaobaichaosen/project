@@ -15,8 +15,14 @@
     <string name="cancel">取消</string>
     <string name="camera">相机</string>
 
+    <string name="pickerview_cancel">取消</string>
+    <string name="pickerview_submit">确定</string>
+
 
     <item name="type_header" type="integer"/>
     <item name="type_footer" type="integer"/>
     <item name="type_child" type="integer"/>
+
+
+
 </resources>

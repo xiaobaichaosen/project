@@ -36,6 +36,7 @@ import butterknife.OnClick;
 public class LoadMoreKndergrtenAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
 
+    private final int res;
     private List<Item> dataList;
     private Context mContext;
     // 所需的全部权限
@@ -43,9 +44,9 @@ public class LoadMoreKndergrtenAdapter extends RecyclerView.Adapter<RecyclerView
             Manifest.permission.CALL_PHONE,
     };
 
-    public LoadMoreKndergrtenAdapter(List<Item> dataList ,Context context) {
+    public LoadMoreKndergrtenAdapter(List<Item> dataList ,Context context,int res) {
         this.dataList = dataList;
-
+this.res=res;
 
 
     }
@@ -81,7 +82,7 @@ public class LoadMoreKndergrtenAdapter extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.mContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.kndergarten_adapter_item, parent, false);
+                .inflate(res, parent, false);
         view.setOnClickListener(this);
         return new RecyclerViewHolder(view);
     }

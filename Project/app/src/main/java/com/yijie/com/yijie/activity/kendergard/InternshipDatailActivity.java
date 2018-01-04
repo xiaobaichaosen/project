@@ -31,6 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
+ * 园所在岗学校的学生页
  * Created by 奕杰平台 on 2017/12/26.
  */
 
@@ -57,7 +58,8 @@ public class InternshipDatailActivity extends BaseActivity {
 
     @Override
     public void init() {
-        LightStatusBarUtils.setLightStatusBar(this, true);
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
 actionItem.setVisibility(View.VISIBLE);
 actionItem.setBackgroundResource(R.mipmap.search);
 
@@ -77,9 +79,9 @@ actionItem.setBackgroundResource(R.mipmap.search);
                                                       ) {
                                                           @Override
                                                           public void onItemClick(View view, int position) {
-//                                                              Intent intent = new Intent();
-//                                                              intent.setClass(, KndergardAcitivity.class);
-//                                                              startActivity(intent);
+                                                              Intent intent = new Intent();
+                                                              intent.setClass(InternshipDatailActivity.this, EveryStudentDetialAcivity.class);
+                                                              startActivity(intent);
 
                                                           }
                                                       }

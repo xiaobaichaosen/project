@@ -105,8 +105,8 @@ public class StundentGrounpActivity extends BaseActivity {
     @Override
     public void init() {
 
-        setColor(StundentGrounpActivity.this, Color.WHITE); // 改变状态栏的颜色
-        setTranslucent(StundentGrounpActivity.this); // 改变状态栏变成透明
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
         // 设置刷新控件颜色
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
         recyclerView.setLayoutManager(new LinearLayoutManager(StundentGrounpActivity.this));

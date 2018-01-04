@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:text="学历"
+            />
+
+        <TextView
+            android:id="@+id/tv_newEducation"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newEducation"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/to_newEducation"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/base_dimen_32"
+            android:text="实习月份" />
+
+        <TextView
+            android:id="@+id/tv_newMonth"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newMonth"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_32"/>
+
+        <TextView
+            android:id="@+id/to_newMonth"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_centerVertical="true"
+            android:text="实习类型" />
+
+        <TextView
+            android:id="@+id/tv_newType"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newType"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_32"/>
+
+        <TextView
+            android:id="@+id/to_newType"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp"
+            android:text="实习期限" />
+
+        <TextView
+            android:id="@+id/tv_line"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_line"
+            android:textColor="#808080"
+           />
+
+        <TextView
+            android:id="@+id/to_line"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_centerVertical="true"
+            android:text="管理模式" />
+
+        <TextView
+            android:id="@+id/tv_mode"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_mode"
+            android:textColor="#808080"
+/>
+
+        <TextView
+            android:id="@+id/to_mode"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_centerVertical="true"
+            android:text="预约时间" />
+
+        <TextView
+            android:id="@+id/tv_newAppointmenttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newAppointmenttime"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:id="@+id/to_newAppointmenttime"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_48"
+            android:layout_height="@dimen/base_dimen_48"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
