@@ -16,7 +16,7 @@
             android:id="@+id/app_title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_96"
-            android:background="@color/action_bar_bg">
+            android:background="@color/colorTheme">
 
             <ImageView
                 android:id="@+id/back"

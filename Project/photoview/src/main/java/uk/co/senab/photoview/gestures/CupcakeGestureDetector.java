@@ -20,7 +20,8 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 
-import uk.co.senab.photoview.log.LogManager;
+import java.util.logging.LogManager;
+
 
 public class CupcakeGestureDetector implements GestureDetector {
 
@@ -72,7 +73,7 @@ public class CupcakeGestureDetector implements GestureDetector {
                 if (null != mVelocityTracker) {
                     mVelocityTracker.addMovement(ev);
                 } else {
-                    LogManager.getLogger().i(LOG_TAG, "Velocity tracker is null");
+
                 }
 
                 mLastTouchX = getActiveX(ev);

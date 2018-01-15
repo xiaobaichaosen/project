@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"    android:background="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_126"
+    android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="true"
 
-    android:layout_height="@dimen/base_dimen_126">
+    android:focusable="true">
 
 
     <ImageView
         android:id="@+id/iv_head"
-        android:layout_centerVertical="true"
         android:layout_width="@dimen/base_dimen_96"
         android:layout_height="@dimen/base_dimen_96"
-        android:scaleType="centerInside"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/base_dimen_30"
-        android:src="@mipmap/head"/>
+        android:scaleType="centerInside"
+        android:src="@mipmap/head" />
     />
+
     <LinearLayout
         style="@style/layout_mm"
-        android:gravity="center_vertical"
-        android:layout_toRightOf="@+id/iv_head"
-        android:orientation="vertical"
         android:layout_marginLeft="@dimen/base_dimen_15"
-        >
+        android:layout_toRightOf="@+id/iv_head"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
         <RelativeLayout
 
             style="@style/layout_mw">
+
             <TextView
                 android:id="@+id/tv_name"
                 style="@style/layout_ww"
@@ -33,40 +36,41 @@
                 android:text="张欢"
                 android:textColor="#313131"
                 android:textSize="@dimen/base_dimen_32" />
+
             <TextView
-             android:layout_toRightOf="@+id/tv_name"
-                android:layout_marginRight="@dimen/base_dimen_30"
                 android:id="@+id/tv_phone"
-                android:gravity="center_vertical"
                 style="@style/layout_ww"
+                android:layout_marginRight="@dimen/base_dimen_30"
+                android:layout_toRightOf="@+id/tv_name"
+                android:gravity="center_vertical"
                 android:text="15845967852"
                 android:textColor="#999999"
                 android:textSize="@dimen/base_dimen_28"
 
-         />
+                />
 
             <TextView
                 android:id="@+id/tv_isAllow"
+                style="@style/layout_ww"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/base_dimen_30"
-                style="@style/layout_ww"
-                android:visibility="gone"
                 android:text="通过"
-
                 android:textColor="#999999"
-                android:textSize="@dimen/base_dimen_28" />
+
+                android:textSize="@dimen/base_dimen_28"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
         <RelativeLayout
 
-
+    android:layout_marginTop="@dimen/base_dimen_18"
             style="@style/layout_mw">
 
             <TextView
                 android:id="@+id/tv_time"
                 style="@style/layout_ww"
-android:layout_marginTop="@dimen/base_dimen_18"
+                android:layout_centerVertical="true"
                 android:text="河北冶金技术学院"
                 android:textColor="#a3a5a8"
                 android:textSize="@dimen/base_dimen_24" />
@@ -76,7 +80,7 @@ android:layout_marginTop="@dimen/base_dimen_18"
                 style="@style/layout_ww"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/base_dimen_30"
-
+                android:layout_centerVertical="true"
                 android:text="10:30"
                 android:textColor="#999999"
                 android:textSize="@dimen/base_dimen_24" />
@@ -84,10 +88,11 @@ android:layout_marginTop="@dimen/base_dimen_18"
         </RelativeLayout>
 
     </LinearLayout>
+
     <ImageView
         android:id="@+id/iv_stutus"
-        android:layout_alignParentRight="true"
         style="@style/layout_ww"
+        android:layout_alignParentRight="true"
 
         android:textSize="@dimen/base_dimen_24" />
 </RelativeLayout>

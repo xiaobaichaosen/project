@@ -40,7 +40,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+            android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -81,7 +81,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+            android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -122,7 +122,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+            android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -165,7 +165,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+            android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -204,7 +204,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+            android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />

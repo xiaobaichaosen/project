@@ -36,13 +36,13 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_96"
+              android:layout_height="@dimen/base_dimen_96"
             />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+           android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -79,13 +79,13 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_96"
+              android:layout_height="@dimen/base_dimen_96"
             />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+           android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -123,13 +123,13 @@
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
             android:textSize="@dimen/base_dimen_32"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_96"
+              android:layout_height="@dimen/base_dimen_96"
             />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+           android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -168,13 +168,13 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_96"
+              android:layout_height="@dimen/base_dimen_96"
             />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+           android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -211,13 +211,13 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_96"
+              android:layout_height="@dimen/base_dimen_96"
             />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+           android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />
@@ -254,13 +254,13 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_96"
+              android:layout_height="@dimen/base_dimen_96"
             />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+           android:layout_height="@dimen/base_dimen_2"
 
             android:background="@color/app_background"
             />

@@ -56,8 +56,7 @@ public class NewSchoolActivity extends BaseActivity {
     TextView toNewSchoolAdress;
     @BindView(R.id.et_detalAdress)
     EditText etDetalAdress;
-    @BindView(R.id.to_)
-    TextView to;
+
     @BindView(R.id.tv_newType)
     TextView tvNewType;
     @BindView(R.id.to_newContact)

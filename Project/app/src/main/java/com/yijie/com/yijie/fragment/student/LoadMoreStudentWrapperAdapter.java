@@ -164,7 +164,7 @@ public class LoadMoreStudentWrapperAdapter extends RecyclerView.Adapter<Recycler
     }
 
     /**
-     * 一组学生holder
+     * 组学生holder
      */
     public class StudentGrounpRecyclerViewHolder extends RecyclerView.ViewHolder {
 

@@ -9,7 +9,7 @@
     <color name="blueColor">#2952cc</color>
     <color name="greenColor">#3eb585</color>
     <color name="tab_checked">#f66168</color>
-    <color name="tab_unchecked">#757575</color>
+    <color name="tab_unchecked">#8F8F8F</color>
 <color name="app_background">#f2f2f2</color>
     <color name="color_gray">#999999</color>
     <color name="maskPressed">#33888888</color>
@@ -28,4 +28,9 @@
     <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
     <!--覆盖颜色-->
     <color name="bgColor_overlay">#60000000</color>
+
+    <color name="underline_default_color">#CCCCCC</color>
+    <color name="underline_selected_color">#000</color>
+    <color name="hintColor">#CCCCCC</color>
+    <color name="textColor">#000</color>
 </resources>

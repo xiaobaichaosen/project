@@ -8,9 +8,7 @@ import android.view.WindowManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/**
- * Created by Loyea.com on 7月20日.
- */
+
 public class LightStatusBarUtils {
 
     public static void setLightStatusBar(Activity activity, boolean dark) {

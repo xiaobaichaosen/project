@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/base_dimen_26"
+        android:paddingLeft="@dimen/base_dimen_26"
 
         android:layout_centerVertical="true"
         android:drawableLeft="@mipmap/arrow_back"

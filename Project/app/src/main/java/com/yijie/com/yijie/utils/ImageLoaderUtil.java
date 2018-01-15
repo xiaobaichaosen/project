@@ -10,9 +10,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yijie.com.yijie.R;
 
 
-/**
- * Created by HMY
- */
+
 public class ImageLoaderUtil {
 
     public static ImageLoader getImageLoader(Context context) {

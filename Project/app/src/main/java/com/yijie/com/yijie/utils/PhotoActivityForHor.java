@@ -31,6 +31,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Created by 奕杰平台 on 2017/12/18.
+ * 横向的RecycleView
  */
 
 public class PhotoActivityForHor extends FragmentActivity  {	private SmoothImageView ivPhoto;

@@ -42,8 +42,19 @@
     <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_style</item>
     </style>
-
-
+<!--tab-->
+    <style name="main_tab">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@drawable/tab_textcolor</item>
+    </style>
     <declare-styleable name="RatioImageView">
         <attr name="ratio" format="float"/>
     </declare-styleable>
@@ -101,5 +112,15 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/Animation</item>
         <item name="styleLoadingLayout">@style/LoadingLayoutStyle</item>
+    </style>
+<!--EeditText下滑线颜色-->
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#F6A4A2</item>
+        <item name="colorControlActivated">@color/color_gray</item>
+    </style>
+
+
+    <style name="pdStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/pd_checkbox_style</item>
     </style>
 </resources>

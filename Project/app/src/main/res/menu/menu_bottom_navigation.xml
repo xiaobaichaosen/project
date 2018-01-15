@@ -11,7 +11,7 @@
 
     <item
         android:id="@+id/item_find"
-        android:icon="@mipmap/yijie"
+        android:icon="@mipmap/logo"
         android:title="YIJIE" />
 
     <item

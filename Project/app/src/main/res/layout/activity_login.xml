@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTheme"
+ >
+<LinearLayout
+    android:id="@+id/ll_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/base_dimen_70"
+    android:paddingRight="@dimen/base_dimen_70"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="@dimen/base_dimen_70"
+        android:layout_marginTop="@dimen/base_dimen_70"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/iv_yijie_reject" />
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/base_dimen_2"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账号登陆"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/base_dimen_28" />
+
+            <View
+                android:layout_width="@dimen/base_dimen_2"
+                android:layout_height="@dimen/base_dimen_28"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:background="@color/app_background" />
+
+            <TextView
+                android:paddingTop="@dimen/base_dimen_14"
+                android:paddingBottom="@dimen/base_dimen_14"
+                android:id="@+id/tv_registered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新用户注册"
+                android:textColor="#80ffffff"
+                android:textSize="@dimen/base_dimen_28" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/base_dimen_210"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号码"
+
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/base_dimen_28" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/base_dimen_30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:text="+86"
+                android:textSize="@dimen/base_dimen_32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+         />
+            <View
+                android:layout_width="@dimen/base_dimen_2"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:background="#80ffffff" />
+        <EditText
+            android:id="@+id/et_name"
+            android:textSize="@dimen/base_dimen_32"
+            android:background="@null"
+            android:textColorHint="#80ffffff"
+            android:textColor="#ffffff"
+            android:hint="请输入手机号码"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/base_dimen_30"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_2"
+            android:background="#F6A4A2"/>
+        <TextView
+            android:layout_marginTop="@dimen/base_dimen_34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密码"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+        android:layout_marginTop="@dimen/base_dimen_30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+        <EditText
+
+            android:background="@null"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColorHint="#80ffffff"
+            android:textColor="#ffffff"
+            android:password="true"
+            android:layout_weight="1"
+            android:hint="请输入密码"
+            android:id="@+id/et_passWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/cb_isVisiable"
+                style="@style/pdStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+               />
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="@dimen/base_dimen_30"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_2"
+            android:background="#F6A4A2"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_marginTop="@dimen/base_dimen_32"
+        android:background="@drawable/bg_round_ligtred"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登陆" />
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/ll_bottom"
+        android:layout_marginBottom="@dimen/base_dimen_37"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_fogetPassWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/base_dimen_26"
+            android:text="忘记密码"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/base_dimen_28" />
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_qq_login"
+
+            android:layout_marginRight="@dimen/base_dimen_6"
+            android:padding="@dimen/base_dimen_18"
+            android:src="@mipmap/iv_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv_wx_login"
+            android:padding="@dimen/base_dimen_18"
+            android:layout_marginLeft="@dimen/base_dimen_6"
+            android:src="@mipmap/iv_wx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
+
+</RelativeLayout>

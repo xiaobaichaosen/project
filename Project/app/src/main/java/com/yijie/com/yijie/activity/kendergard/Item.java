@@ -1,8 +1,6 @@
 package com.yijie.com.yijie.activity.kendergard;
 
-/**
- * Created by Alessandro on 12/01/2016.
- */
+
 public class Item {
     private int idImage;
     private String name,description;

@@ -18,7 +18,6 @@ import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
-import com.yijie.com.yijie.fragment.KndergartenFragment;
 
 import java.util.ArrayList;
 import java.util.List;

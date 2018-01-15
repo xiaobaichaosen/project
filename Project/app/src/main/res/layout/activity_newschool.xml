@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/tv_newSchoolAdress"
-
+            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -71,10 +71,11 @@
             android:id="@+id/to_newSchoolAdress"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
+
+            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_60"
+            android:layout_height="match_parent"
             />
         <View
             android:layout_width="match_parent"
@@ -101,17 +102,8 @@
         android:layout_centerVertical="true"
         android:textColor="#999999"
         android:textSize="@dimen/base_dimen_28" />
-        <TextView
-            android:id="@+id/to_"
-            android:drawableRight="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
-            android:visibility="invisible"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
-            />
-    <View
+
+        <View
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="@dimen/base_dimen_4"
@@ -125,44 +117,43 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:paddingLeft="@dimen/base_dimen_22"
 
-        android:layout_height="@dimen/base_dimen_86">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_86"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_32"
-            android:layout_centerVertical="true"
-            android:textColor="#4d4d4d"
-            android:text="联系人 *" />
+            android:paddingLeft="@dimen/base_dimen_22">
 
-        <TextView
-            android:id="@+id/tv_newType"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="联系人 *"
+                android:textColor="#4d4d4d"
+                android:textSize="@dimen/base_dimen_32" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newContact"
-            android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_28" />
+            <TextView
+                android:id="@+id/tv_newType"
 
-        <ImageView
-            android:id="@+id/to_newContact"
-            android:src="@mipmap/goright"
-            android:padding="@dimen/base_dimen_8"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_18"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/to_newContact"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+
+            <ImageView
+                android:id="@+id/to_newContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+
+                android:src="@mipmap/goright" />
 
 
-
-    </RelativeLayout>
+        </RelativeLayout>
         <android.support.v7.widget.RecyclerView
             android:visibility="gone"
 
@@ -209,10 +200,10 @@
             android:id="@+id/tv_newSchoolSample"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
+            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_60"
+            android:layout_height="match_parent"
             />
         <View
             android:layout_width="match_parent"
@@ -252,10 +243,10 @@
             android:id="@+id/to_newSchoolPicture"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
+            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_60"
+            android:layout_height="match_parent"
             />
         <View
             android:layout_width="match_parent"
@@ -295,10 +286,10 @@
             android:id="@+id/to_newAppointmenttime"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
+            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_60"
+            android:layout_height="match_parent"
             />
         <View
             android:layout_width="match_parent"
@@ -337,10 +328,10 @@
             android:id="@+id/to_newNodetal"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
+            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_48"
-            android:layout_height="@dimen/base_dimen_48"
+            android:layout_width="@dimen/base_dimen_60"
+            android:layout_height="match_parent"
             />
         <View
             android:layout_width="match_parent"
