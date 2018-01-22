@@ -40,6 +40,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemViewType(int position) {
         // 最后一个item设置为FooterView
         if (position + 1 == getItemCount()) {
+
             return TYPE_FOOTER;
         } else {
             return adapter.getItemViewType(position);
@@ -52,6 +53,12 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (viewType == TYPE_FOOTER) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_refresh_footer, parent, false);
+            //如果list.size==0的话，隐藏向上加载
+//            if (adapter.getItemCount()==0){
+//                view.setVisibility(View.GONE);
+//            }else{
+//                view.setVisibility(View.VISIBLE);
+//            }
             return new FootViewHolder(view);
         } else {
             return adapter.onCreateViewHolder(parent, viewType);

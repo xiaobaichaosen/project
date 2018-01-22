@@ -14,6 +14,72 @@ public class ContactBean implements Serializable{
     private String wxNubmer;
     private String qqNubmer;
 
+    private String schoolSample;
+    private String schoolEduction;
+    private String schoolMonth;
+    private String schoolType;
+    private String schoolLine;
+    private String schoolMode;
+    private String schoolTime;
+    public String getSchoolSample() {
+        return schoolSample;
+    }
+
+    public void setSchoolSample(String schoolSample) {
+        this.schoolSample = schoolSample;
+    }
+
+    public String getSchoolEduction() {
+        return schoolEduction;
+    }
+
+    public void setSchoolEduction(String schoolEduction) {
+        this.schoolEduction = schoolEduction;
+    }
+
+    public String getSchoolMonth() {
+        return schoolMonth;
+    }
+
+    public void setSchoolMonth(String schoolMonth) {
+        this.schoolMonth = schoolMonth;
+    }
+
+    public String getSchoolType() {
+        return schoolType;
+    }
+
+    public void setSchoolType(String schoolType) {
+        this.schoolType = schoolType;
+    }
+
+    public String getSchoolLine() {
+        return schoolLine;
+    }
+
+    public void setSchoolLine(String schoolLine) {
+        this.schoolLine = schoolLine;
+    }
+
+    public String getSchoolMode() {
+        return schoolMode;
+    }
+
+    public void setSchoolMode(String schoolMode) {
+        this.schoolMode = schoolMode;
+    }
+
+    public String getSchoolTime() {
+        return schoolTime;
+    }
+
+    public void setSchoolTime(String schoolTime) {
+        this.schoolTime = schoolTime;
+    }
+
+
+
+
     public String getZjNubmer() {
         return zjNubmer;
     }

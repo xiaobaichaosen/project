@@ -5,6 +5,6 @@ package com.yijie.com.yijie.activity.login.modle;
  */
 
 public interface LoginCallBack {
-   void onLoginSuccess();
-   void onLoginFail();
+   void onLoginSuccess(String s);
+   void onLoginFail(String s);
 }

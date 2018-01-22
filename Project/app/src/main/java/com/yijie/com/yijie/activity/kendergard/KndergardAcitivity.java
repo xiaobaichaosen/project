@@ -60,7 +60,7 @@ public class KndergardAcitivity extends BaseActivity implements CallbackItemTouc
     private boolean isPopWindowShowing = false;
     int fromYDelta;
     private KendergardAdapterRecyclerView myAdapterRecyclerView; //The Adapter for RecyclerVIew
-    private List<Item> mList; // My List the object 'Item'.
+    private List<Item> mList; // My List the object 'StudentBean'.
 
     // Array images
     private int images[] = new int[]{
@@ -171,7 +171,7 @@ public class KndergardAcitivity extends BaseActivity implements CallbackItemTouc
      * Add data to the List
      */
     private void initList() {
-        // Adds data to List of Objects Item
+        // Adds data to List of Objects StudentBean
         mList = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
 

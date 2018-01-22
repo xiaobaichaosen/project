@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.kendergard.KndergardAcitivity;
 import com.yijie.com.yijie.activity.recommend.recommendadapter.LoadMoreRecommendWrapperAdapter;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
@@ -46,7 +46,7 @@ public class RecommendActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
-    private List<Item> dataList = new ArrayList<>();
+    private List<StudentBean> dataList = new ArrayList<>();
     private LoadMoreWrapper loadMoreWrapper;
 
     @Override
@@ -143,7 +143,7 @@ public void goBack(){
         char letter = 'A';
         for (int i = 0; i < 26; i++) {
 
-                dataList.add(new Item(1, String.valueOf(letter)));
+                dataList.add(new StudentBean(1, String.valueOf(letter)));
 
 
             letter++;

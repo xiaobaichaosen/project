@@ -113,7 +113,7 @@ public class VerificationCodeActivity extends BaseActivity  implements CodeInput
         }
     }
 
-    @OnClick({R.id.tv_recode, R.id.tv_reVoiceCode})
+    @OnClick({R.id.tv_recode, R.id.tv_reVoiceCode,R.id.iv_back})
     public void Click(View view) {
 
         switch (view.getId()) {

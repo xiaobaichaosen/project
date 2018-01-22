@@ -1,6 +1,5 @@
 package com.yijie.com.yijie.activity.school;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,7 +32,7 @@ public class SchoolActivity extends BaseActivity implements CallbackItemTouch {
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     private SchoolAdapterRecyclerView myAdapterRecyclerView; //The Adapter for RecyclerVIew
-    private List<Item> mList; // My List the object 'Item'.
+    private List<StudentBean> mList; // My List the object 'StudentBean'.
 
     // Array images
     private int images[] = new int[]{
@@ -83,21 +82,21 @@ public class SchoolActivity extends BaseActivity implements CallbackItemTouch {
      * Add data to the List
      */
     private void initList() {
-        // Adds data to List of Objects Item
+        // Adds data to List of Objects StudentBean
         mList = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
 
 
             if (i == 0) {
-                mList.add(new Item(images[i], names[i], textDescription, 1));
+                mList.add(new StudentBean(images[i], names[i], textDescription, 1));
             } else if (i == 1) {
-                mList.add(new Item(images[i], names[i], textDescription, 2));
+                mList.add(new StudentBean(images[i], names[i], textDescription, 2));
             } else if (i == 2) {
-                mList.add(new Item(images[i], names[i], textDescription, 3));
+                mList.add(new StudentBean(images[i], names[i], textDescription, 3));
             } else if (i == 3) {
-                mList.add(new Item(images[i], names[i], textDescription, 4));
+                mList.add(new StudentBean(images[i], names[i], textDescription, 4));
             } else {
-                mList.add(new Item(images[i], names[i], textDescription, 5));
+                mList.add(new StudentBean(images[i], names[i], textDescription, 5));
             }
 
         }

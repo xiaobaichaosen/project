@@ -7,9 +7,9 @@
     <include layout="@layout/app_title"/>
 
     <RelativeLayout
+        android:id="@+id/to_newEducation"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
         android:layout_height="@dimen/base_dimen_86">
         <TextView
             android:layout_centerVertical="true"
@@ -21,24 +21,17 @@
             />
 
         <TextView
-            android:id="@+id/tv_newEducation"
 
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:id="@+id/tv_newEducation"
+            android:drawableRight="@mipmap/goright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newEducation"
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_32" />
 
-        <TextView
-            android:id="@+id/to_newEducation"
-            android:drawableRight="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_96"
-              android:layout_height="@dimen/base_dimen_96"
-            />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -52,7 +45,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:id="@+id/to_newMonth"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -65,23 +58,16 @@
 
         <TextView
             android:id="@+id/tv_newMonth"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newMonth"
-            android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_32"/>
-
-        <TextView
-            android:id="@+id/to_newMonth"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_96"
-              android:layout_height="@dimen/base_dimen_96"
-            />
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_32"/>
+
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -95,7 +81,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:id="@+id/to_newType"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -108,24 +94,17 @@
 
         <TextView
             android:id="@+id/tv_newType"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newType"
-            android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_32"/>
-
-        <TextView
-            android:id="@+id/to_newType"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/base_dimen_32"
-            android:layout_width="@dimen/base_dimen_96"
-              android:layout_height="@dimen/base_dimen_96"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_32"/>
+
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -139,7 +118,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:id="@+id/to_line"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -154,23 +133,17 @@
 
         <TextView
             android:id="@+id/tv_line"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
             android:textSize="@dimen/base_dimen_32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_line"
             android:textColor="#808080"
            />
 
-        <TextView
-            android:id="@+id/to_line"
-            android:drawableRight="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_96"
-              android:layout_height="@dimen/base_dimen_96"
-            />
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -184,7 +157,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:id="@+id/to_mode"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -197,23 +170,17 @@
 
         <TextView
             android:id="@+id/tv_mode"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
             android:textSize="@dimen/base_dimen_32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_mode"
             android:textColor="#808080"
 />
 
-        <TextView
-            android:id="@+id/to_mode"
-            android:drawableRight="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_96"
-              android:layout_height="@dimen/base_dimen_96"
-            />
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -227,7 +194,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:id="@+id/to_newAppointmenttime"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -240,23 +207,18 @@
 
         <TextView
             android:id="@+id/tv_newAppointmenttime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_32"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newAppointmenttime"
-            android:textColor="#808080"
-            />
-
-        <TextView
-            android:id="@+id/to_newAppointmenttime"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_96"
-              android:layout_height="@dimen/base_dimen_96"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+
+            android:textColor="#808080"
             />
+
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"

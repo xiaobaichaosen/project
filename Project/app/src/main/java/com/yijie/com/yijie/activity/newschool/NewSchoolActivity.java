@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -15,9 +16,8 @@ import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.db.ContactBean;
 import com.yijie.com.yijie.db.DatabaseAdapter;
-import com.yijie.com.yijie.view.DataModel;
+import com.yijie.com.yijie.utils.SharedPreferencesUtils;
 import com.yijie.com.yijie.view.OptionsPickerView;
-import com.yijie.com.yijie.view.ProvinceBean;
 
 import org.json.JSONArray;
 
@@ -53,7 +53,7 @@ public class NewSchoolActivity extends BaseActivity {
     @BindView(R.id.tv_newSchoolAdress)
     TextView tvNewSchoolAdress;
     @BindView(R.id.to_newSchoolAdress)
-    TextView toNewSchoolAdress;
+    RelativeLayout toNewSchoolAdress;
     @BindView(R.id.et_detalAdress)
     EditText etDetalAdress;
 
@@ -61,8 +61,7 @@ public class NewSchoolActivity extends BaseActivity {
     TextView tvNewType;
     @BindView(R.id.to_newContact)
     ImageView toNewContact;
-    @BindView(R.id.tv_line)
-    TextView tvLine;
+
     @BindView(R.id.tv_newSchoolSample)
     TextView tvNewSchoolSample;
     @BindView(R.id.tv_mode)
@@ -72,7 +71,7 @@ public class NewSchoolActivity extends BaseActivity {
     @BindView(R.id.tv_newAppointmenttime)
     TextView tvNewAppointmenttime;
     @BindView(R.id.to_newAppointmenttime)
-    TextView toNewAppointmenttime;
+    RelativeLayout toNewAppointmenttime;
     @BindView(R.id.tv_newNote)
     TextView tvNewNote;
     @BindView(R.id.to_newNodetal)
@@ -81,6 +80,8 @@ public class NewSchoolActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.line_or_v)
     View lineOrV;
+    @BindView(R.id.to_newSchoolSample)
+    RelativeLayout toNewSchoolSample;
     private OptionsPickerView pvOptions;
     private ArrayList<JsonBean> options1Items = new ArrayList<JsonBean>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<ArrayList<String>>();
@@ -104,12 +105,12 @@ public class NewSchoolActivity extends BaseActivity {
 
         //清空数据库
         DatabaseAdapter.getIntance(this).deleteAll();
-
+        SharedPreferencesUtils.setParam(this, "textContent", "");
 
     }
 
 
-    @OnClick({R.id.back, R.id.to_newSchoolAdress, R.id.to_newAppointmenttime, R.id.to_newContact})
+    @OnClick({R.id.back, R.id.to_newSchoolAdress, R.id.to_newAppointmenttime, R.id.to_newContact,R.id.to_newSchoolSample})
     public void Click(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -124,15 +125,52 @@ public class NewSchoolActivity extends BaseActivity {
             case R.id.to_newAppointmenttime:
 
                 intent.setClass(this, NewInternshipDetailActivity.class);
+                if (tvNewAppointmenttime.getText().equals("已填写"))
+                {
+                    List<ContactBean> list = DatabaseAdapter.getIntance(this).queryAll();
+                    for (int i = 0; i < list.size(); i++) {
+                      ContactBean  contactBean = list.get(i);
+                        if (null==contactBean.getPhoneNumber()){
+                            Bundle mBundle = new Bundle();
+                            mBundle.putSerializable("internshipModify", contactBean);
+                            intent.putExtras(mBundle);
+                            break;
+                        }
+                    }
+
+                }
                 startActivity(intent);
-            break;
+
+
+
+                break;
             case R.id.to_newContact:
 
                 intent.setClass(this, NewContactActivity.class);
                 startActivity(intent);
 
                 break;
+            case R.id.to_newSchoolSample:
 
+                intent.setClass(this, NewSchoolIntroduction.class);
+                if (tvNewSchoolSample.getText().equals("已填写"))
+                {
+                    List<ContactBean> list = DatabaseAdapter.getIntance(this).queryAll();
+                    for (int i = 0; i < list.size(); i++) {
+                        ContactBean  contactBean = list.get(i);
+                        if (null==contactBean.getPhoneNumber()){
+                            Bundle mBundle = new Bundle();
+                            mBundle.putSerializable("sampleModify", contactBean);
+                            intent.putExtras(mBundle);
+                            break;
+                        }
+                    }
+
+                }
+
+                startActivity(intent);
+
+                break;
 
         }
 
@@ -140,35 +178,43 @@ public class NewSchoolActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void helloEventBus(String message) {
-        final List<ContactBean> list = DatabaseAdapter.getIntance(NewSchoolActivity.this).queryAll();
-        recyclerView.setVisibility(View.VISIBLE);
-        if (list.size() > 0) {
-            toNewContact.setImageResource(R.mipmap.add_contact);
-            lineOrV.setVisibility(View.INVISIBLE);
-        } else {
-            lineOrV.setVisibility(View.VISIBLE);
-            toNewContact.setImageResource(R.mipmap.goright);
-        }
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ContactAdapter contactAdapter = null;
-        if (contactAdapter == null) {
-            contactAdapter = new ContactAdapter(this, list);
-            recyclerView.setAdapter(contactAdapter);
-        } else {
-            contactAdapter.notifyDataSetChanged();
-        }
-        contactAdapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent();
-                intent.setClass(NewSchoolActivity.this, NewContactActivity.class);
-                Bundle mBundle = new Bundle();
-                mBundle.putSerializable("contactModify", list.get(position));
-                intent.putExtras(mBundle);
-                startActivity(intent);
-            }
-        });
+       if (message.equals("schoolContact")){
+           final List<ContactBean> list = DatabaseAdapter.getIntance(NewSchoolActivity.this).queryAll();
+           recyclerView.setVisibility(View.VISIBLE);
+           if (list.size() > 0) {
+               toNewContact.setImageResource(R.mipmap.add_contact);
+               lineOrV.setVisibility(View.INVISIBLE);
+           } else {
+               lineOrV.setVisibility(View.VISIBLE);
+               toNewContact.setImageResource(R.mipmap.goright);
+           }
+           recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+           recyclerView.setLayoutManager(new LinearLayoutManager(this));
+           ContactAdapter contactAdapter = null;
+           if (contactAdapter == null) {
+               contactAdapter = new ContactAdapter(this, list);
+               recyclerView.setAdapter(contactAdapter);
+           } else {
+               contactAdapter.notifyDataSetChanged();
+           }
+           contactAdapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
+               @Override
+               public void onClick(View v, int position) {
+                   Intent intent = new Intent();
+                   intent.setClass(NewSchoolActivity.this, NewContactActivity.class);
+                   Bundle mBundle = new Bundle();
+                   mBundle.putSerializable("contactModify", list.get(position));
+                   intent.putExtras(mBundle);
+                   startActivity(intent);
+               }
+           });
+       }else if (message.equals("schoolIntroduction")){
+           tvNewSchoolSample.setText("已填写");
+       }else if (message.equals("schoolInternshipDetail")){
+           tvNewAppointmenttime.setText("已填写");
+       }
+
+
 
 
     }

@@ -57,7 +57,13 @@ public class DatabaseAdapter<B> {
 			values.put("wxNumber",contactBean.getWxNubmer());
 			values.put("qqNumber",contactBean.getQqNubmer());
 
-
+			values.put("schoolSample", contactBean.getSchoolSample());
+			values.put("schoolEduction",contactBean.getSchoolEduction());
+			values.put("schoolMonth",contactBean.getSchoolMonth());
+			values.put("schoolType",contactBean.getSchoolType());
+			values.put("schoolLine",contactBean.getSchoolLine());
+			values.put("schoolMode",contactBean.getSchoolMode());
+			values.put("schoolTime",contactBean.getSchoolTime());
 
            database.insert(DatabaseHelper.TABLE_NAME, null, values);
 
@@ -101,6 +107,17 @@ public class DatabaseAdapter<B> {
                 contactBean.setZjNubmer(cursor.getString(cursor.getColumnIndex("zjNumber")));
                 contactBean.setWxNubmer(cursor.getString(cursor.getColumnIndex("wxNumber")));
                 contactBean.setQqNubmer(cursor.getString(cursor.getColumnIndex("qqNumber")));
+
+				contactBean.setSchoolSample(cursor.getString(cursor.getColumnIndex("schoolSample")));
+				contactBean.setSchoolEduction(cursor.getString(cursor.getColumnIndex("schoolEduction")));
+				contactBean.setSchoolMonth(cursor.getString(cursor.getColumnIndex("schoolMonth")));
+				contactBean.setSchoolType(cursor.getString(cursor.getColumnIndex("schoolType")));
+				contactBean.setSchoolLine(cursor.getString(cursor.getColumnIndex("schoolLine")));
+				contactBean.setSchoolMode(cursor.getString(cursor.getColumnIndex("schoolMode")));
+				contactBean.setSchoolTime(cursor.getString(cursor.getColumnIndex("schoolTime")));
+
+
+
 				resultArray.add(contactBean);
 
 			}
@@ -168,7 +185,17 @@ public class DatabaseAdapter<B> {
             values.put("wxNumber",bean.getWxNubmer());
             values.put("qqNumber",bean.getQqNubmer());
 
-            database.update(DatabaseHelper.TABLE_NAME, values, "id=?", new String[]{bean.getId()});
+			values.put("schoolSample", bean.getSchoolSample());
+			values.put("schoolEduction",bean.getSchoolEduction());
+			values.put("schoolMonth",bean.getSchoolMonth());
+			values.put("schoolType",bean.getSchoolType());
+			values.put("schoolLine",bean.getSchoolLine());
+			values.put("schoolMode",bean.getSchoolMode());
+			values.put("schoolTime",bean.getSchoolTime());
+
+
+
+			database.update(DatabaseHelper.TABLE_NAME, values, "id=?", new String[]{bean.getId()});
 
 
         } catch (Exception e) {

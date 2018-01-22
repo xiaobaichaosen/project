@@ -61,8 +61,10 @@ public class PassWordActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.tv_toHome:
+
                 intent.setClass(PassWordActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.btn_next:

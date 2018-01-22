@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 
 import java.util.List;
 
@@ -23,9 +23,9 @@ public class LoadMoreStudentWrapperAdapter extends RecyclerView.Adapter<Recycler
 
 
 
-    private List<Item> dataList;
+    private List<StudentBean> dataList;
 
-    public LoadMoreStudentWrapperAdapter(List<Item> dataList) {
+    public LoadMoreStudentWrapperAdapter(List<StudentBean> dataList) {
         this.dataList = dataList;
     }
 

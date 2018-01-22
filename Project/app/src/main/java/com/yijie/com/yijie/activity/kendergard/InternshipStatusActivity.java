@@ -171,9 +171,13 @@ public class InternshipStatusActivity extends BaseActivity {
             @Override
             public void onChildClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder,
                                      int groupPosition, int childPosition) {
-
                 Intent intent = new Intent();
-                intent.setClass(InternshipStatusActivity.this, InternshipDatailActivity.class);
+                if (groupPosition==0){
+                    intent.setClass(InternshipStatusActivity.this, InternshipDatailActivity.class);
+
+                }else{
+                    intent.setClass(InternshipStatusActivity.this, FinishInternshipActivity.class);
+                }
                 startActivity(intent);
 
             }

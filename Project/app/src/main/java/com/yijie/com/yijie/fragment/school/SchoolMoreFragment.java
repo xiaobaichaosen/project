@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.activity.school.SchoolActivity;
 import com.yijie.com.yijie.base.BaseFragment;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
@@ -48,7 +47,7 @@ public class SchoolMoreFragment extends BaseFragment {
     @BindView(R.id.back)
     ImageView back;
 
-    private List<Item> dataList = new ArrayList<>();
+    private List<StudentBean> dataList = new ArrayList<>();
     private SchoolFragment.OnButtonClick onButtonClick;//2、定义接口成员变量
 
     //定义接口变量的get方法
@@ -168,7 +167,7 @@ public class SchoolMoreFragment extends BaseFragment {
         char letter = 'A';
         for (int i = 0; i < 26; i++) {
 
-            dataList.add(new Item(1, String.valueOf(letter)));
+            dataList.add(new StudentBean(1, String.valueOf(letter)));
 
             letter++;
         }

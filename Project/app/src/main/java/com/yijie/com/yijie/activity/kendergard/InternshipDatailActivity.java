@@ -12,14 +12,11 @@ import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.kendergard.kndergardadapter.LoadMoreInternshipDatailAdapter;
-import com.yijie.com.yijie.activity.school.*;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
-import com.yijie.com.yijie.utils.AnimationUtil;
-import com.yijie.com.yijie.utils.LightStatusBarUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +45,7 @@ public class InternshipDatailActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
-    private List<Item> dataList = new ArrayList<>();
+    private List<StudentBean> dataList = new ArrayList<>();
     private LoadMoreWrapper loadMoreWrapper;
 
     @Override
@@ -140,7 +137,7 @@ actionItem.setBackgroundResource(R.mipmap.search);
         char letter = 'A';
         for (int i = 0; i < 26; i++) {
 
-            dataList.add(new com.yijie.com.yijie.activity.school.Item(1, String.valueOf(letter)));
+            dataList.add(new StudentBean(1, String.valueOf(letter)));
 
             letter++;
         }

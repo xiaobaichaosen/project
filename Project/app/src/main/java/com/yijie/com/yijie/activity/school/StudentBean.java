@@ -3,17 +3,17 @@ package com.yijie.com.yijie.activity.school;
 /**
  * Created by Alessandro on 12/01/2016.
  */
-public class Item {
+public class StudentBean {
     private int idImage;
     private String name,description;
 
-    public Item(int idImage, String name, String description,int type) {
+    public StudentBean(int idImage, String name, String description, int type) {
         this.idImage = idImage;
         this.name = name;
         this.description = description;
         this.type=type;
     }
-    public Item( int type,String name) {
+    public StudentBean(int type, String name) {
 
         this.name = name;
 

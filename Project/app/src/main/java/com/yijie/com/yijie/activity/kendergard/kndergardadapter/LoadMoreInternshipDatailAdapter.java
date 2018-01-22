@@ -1,23 +1,17 @@
 package com.yijie.com.yijie.activity.kendergard.kndergardadapter;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
-import com.yijie.com.yijie.view.CommomDialog;
+import com.yijie.com.yijie.activity.school.StudentBean;
 
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -28,14 +22,14 @@ import butterknife.ButterKnife;
 public class LoadMoreInternshipDatailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
 
-    private List<Item> dataList;
+    private List<StudentBean> dataList;
     private Context mContext;
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.CALL_PHONE,
     };
 
-    public LoadMoreInternshipDatailAdapter(List<Item> dataList , Context context) {
+    public LoadMoreInternshipDatailAdapter(List<StudentBean> dataList , Context context) {
         this.dataList = dataList;
 
 

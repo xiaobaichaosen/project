@@ -8,7 +8,7 @@
         android:id="@+id/app_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_dimen_96"
-        android:background="@color/action_bar_bg"
+        android:background="@color/colorTheme"
         >
 
         <ImageView
@@ -26,7 +26,7 @@
         <RelativeLayout
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
-            android:background="@color/app_background"
+            android:background="@color/searchEditColor"
             android:layout_centerVertical="true"
             android:layout_width="match_parent"
             android:layout_height="36dp"
@@ -77,7 +77,7 @@
             android:gravity="center_vertical"
             android:paddingRight="@dimen/base_dimen_30"
             android:padding="@dimen/base_dimen_8"
-            android:src="@mipmap/student_more"
+            android:src="@mipmap/student_grounp_more"
             android:textSize="@dimen/base_dimen_26" />
 
 
@@ -96,5 +96,7 @@
             style="@style/layout_mm" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </RelativeLayout>

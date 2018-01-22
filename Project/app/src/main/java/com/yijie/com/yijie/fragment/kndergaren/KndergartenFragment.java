@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.kendergard.KndergardAcitivity;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.base.BaseFragment;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
@@ -56,7 +56,7 @@ public class KndergartenFragment extends BaseFragment {
     ImageView actionItem;
     @BindView(R.id.app_title)
     RelativeLayout appTitle;
-    private List<Item> dataList = new ArrayList<>();
+    private List<StudentBean> dataList = new ArrayList<>();
     private OnButtonClick onButtonClick;//2、定义接口成员变量
     //定义接口变量的get方法
     public OnButtonClick getOnButtonClick() {
@@ -176,7 +176,7 @@ public class KndergartenFragment extends BaseFragment {
         char letter = 'A';
         for (int i = 0; i < 26; i++) {
 
-            dataList.add(new Item(1, String.valueOf(letter)));
+            dataList.add(new StudentBean(1, String.valueOf(letter)));
 
             letter++;
         }

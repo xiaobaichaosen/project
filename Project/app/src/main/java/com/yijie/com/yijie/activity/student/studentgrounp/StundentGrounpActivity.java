@@ -11,17 +11,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.activity.student.StudentActivity;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
 import com.yijie.com.yijie.fragment.student.LoadMoreStudentGrounpWrapperAdapter;
-import com.yijie.com.yijie.fragment.student.LoadMoreStudentWrapperAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +54,7 @@ public class StundentGrounpActivity extends BaseActivity {
     @BindView(R.id.iv_delect)
     ImageView ivDelect;
     int type;
-    private List<Item> dataList = new ArrayList<>();
+    private List<StudentBean> dataList = new ArrayList<>();
 
 
     @Override
@@ -189,18 +187,18 @@ public class StundentGrounpActivity extends BaseActivity {
         for (int i = 0; i < 26; i++) {
             if (type==2){
 
-                    dataList.add(new Item(2, "王颖"));
+                    dataList.add(new StudentBean(2, "王颖"));
 
             }else if(type==5){
 
-                    dataList.add(new Item(5, "王颖"));
+                    dataList.add(new StudentBean(5, "王颖"));
 
             }else if (type==6){
-                dataList.add(new Item(6, "王颖"));
+                dataList.add(new StudentBean(6, "王颖"));
             }
 //            if (i < 8) {
 //            } else {
-//                dataList.add(new Item(2, String.valueOf(letter)));
+//                dataList.add(new StudentBean(2, String.valueOf(letter)));
 //            }
 
             letter++;

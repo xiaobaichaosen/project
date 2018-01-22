@@ -72,12 +72,17 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         int right = parent.getWidth() - parent.getPaddingRight(); //减去内边距
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
-            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-            int top = child.getBottom() + params.bottomMargin + (int) ViewCompat.getTranslationY(child);//可能有外边距 或 者有偏移的动画
-            int bottom = top + mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
+            //如果list.size==0的话不画线
+
+            if (childCount!=1){
+                View child = parent.getChildAt(i);
+                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+                int top = child.getBottom() + params.bottomMargin + (int) ViewCompat.getTranslationY(child);//可能有外边距 或 者有偏移的动画
+                int bottom = top + mDivider.getIntrinsicHeight();
+                mDivider.setBounds(left, top, right, bottom);
+                mDivider.draw(c);
+            }
+
         }
     }
 
@@ -93,12 +98,15 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         int bottom = parent.getHeight() - parent.getPaddingBottom(); //减去内边距
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
+
+
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             int left = child.getRight() + params.rightMargin + (int) ViewCompat.getTranslationX(child);//可能有外边距 或 者有偏移的动画
             int right = left + mDivider.getIntrinsicWidth();
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
+
         }
     }
 }

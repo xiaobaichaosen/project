@@ -47,7 +47,7 @@
         android:screenOrientation="portrait"
         android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-    /*  腾讯*/
+        <!--qq精简版-->
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
@@ -57,8 +57,8 @@
 
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="tencent100424468"/>
+                <!--这里的scheme是qq分享要用的，100424468为自己申请的appid，真实项目中需要替换-->
+       <!--         <data android:scheme="tencent100424468"/>-->
             </intent-filter>
         </activity>
         <activity
@@ -67,9 +67,9 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
-        <activity android:name=".activity.login.LoginActivity"
+        <activity android:name=".MainActivity"
             android:theme="@style/Main"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
 
 
             >
@@ -80,7 +80,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<activity android:name=".MainActivity"/>
+<activity android:name=".activity.login.LoginActivity"
+    android:windowSoftInputMode="adjustPan|stateHidden"
+
+    />
         <activity android:name=".activity.kendergard.KndergardAcitivity"/>
         <activity android:name=".activity.kendergard.MoreShareActivity"/>
         <activity android:name=".activity.kendergard.PhotoActivity"
@@ -121,6 +124,9 @@
 
         <activity android:name=".activity.registerd.VerificationCodeActivity"/>
     <activity android:name=".activity.registerd.PassWordActivity"/>
+        <activity android:name=".base.search.AppSearchActivity"/>
+        <activity android:name=".activity.newschool.NewSchoolIntroduction"/>
+        <activity android:name=".activity.kendergard.FinishInternshipActivity"/>
     </application>
 
 </manifest>

@@ -46,7 +46,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:id="@+id/to_newSchoolAdress"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -59,24 +59,18 @@
 
         <TextView
             android:id="@+id/tv_newSchoolAdress"
-            
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newSchoolAdress"
-            android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_28" />
 
-        <TextView
-            android:id="@+id/to_newSchoolAdress"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
 
             android:paddingRight="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_60"
-            android:layout_height="match_parent"
-            />
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -170,9 +164,9 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/to_newSchoolSample"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -185,26 +179,16 @@
             android:layout_marginBottom="11dp"
             android:text="学校简介" />
 
-        <TextView
-            android:id="@+id/tv_line"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/tv_newSchoolSample"
-            android:textSize="@dimen/base_dimen_28"
-            android:textColor="#808080"
-            />
 
         <TextView
             android:id="@+id/tv_newSchoolSample"
-            android:drawableRight="@mipmap/goright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
             android:layout_alignParentRight="true"
-            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_60"
-            android:layout_height="match_parent"
-            />
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -241,13 +225,12 @@
 
         <TextView
             android:id="@+id/to_newSchoolPicture"
-            android:drawableRight="@mipmap/goright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_60"
-            android:layout_height="match_parent"
-            />
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -261,7 +244,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:id="@+id/to_newAppointmenttime"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -273,24 +256,18 @@
             android:text="实习详情" />
 
         <TextView
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/base_dimen_22"
             android:id="@+id/tv_newAppointmenttime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_28"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newAppointmenttime"
             android:textColor="#808080"
             />
 
-        <TextView
-            android:id="@+id/to_newAppointmenttime"
-            android:drawableRight="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            android:paddingRight="@dimen/base_dimen_22"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_60"
-            android:layout_height="match_parent"
-            />
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -326,13 +303,12 @@
 
         <TextView
             android:id="@+id/to_newNodetal"
-            android:drawableRight="@mipmap/goright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/base_dimen_60"
-            android:layout_height="match_parent"
-            />
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"

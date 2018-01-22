@@ -121,7 +121,7 @@ public class KendergardAdapterRecyclerView extends RecyclerView.Adapter<Recycler
         if (holder instanceof ThreeHolder) {
             ThreeHolder threeHolder = (ThreeHolder) holder;
             if (mList != null) {
-                Item item = mList.get(position); // Object Item
+                Item item = mList.get(position); // Object StudentBean
 
                 threeHolder.setName(item.getName()); // Name
 //                holder.setDescription(item.getDescription()); // Description
@@ -130,36 +130,36 @@ public class KendergardAdapterRecyclerView extends RecyclerView.Adapter<Recycler
         }else if (holder instanceof KindergardNeddHolder){
             KindergardNeddHolder twoHolder = (KindergardNeddHolder) holder;
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                Item item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }else if (holder instanceof  KDutyStudentHolder){
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                Item item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }
         else if (holder instanceof  KInformationHolder){
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                Item item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }
         else if (holder instanceof  KDutyStudentHolder){
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                Item item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }
         else if (holder instanceof  KDutyStudentHolder){
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                Item item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }
         else if (holder instanceof  KShareHolder){
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                Item item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }

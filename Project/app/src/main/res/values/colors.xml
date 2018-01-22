@@ -14,7 +14,7 @@
     <color name="color_gray">#999999</color>
     <color name="maskPressed">#33888888</color>
     <color name="maskPressed2">#22808080</color>
-
+   <color name="searchEditColor">#F1817F</color>
     <color name="appBarColor">#F16765</color>
 
     <color name="colorDark">#D02090</color>

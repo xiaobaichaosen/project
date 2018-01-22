@@ -1,33 +1,14 @@
 package com.yijie.com.yijie.fragment.school;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
-import com.yijie.com.yijie.activity.school.SchoolActivity;
 import com.yijie.com.yijie.base.BaseFragment;
-import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
-import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
-import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
-import com.yijie.com.yijie.view.LoadingLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

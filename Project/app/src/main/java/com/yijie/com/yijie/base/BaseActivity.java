@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 
+import com.yijie.com.yijie.activity.login.LoginActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -53,8 +54,9 @@ public abstract  class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         bind.unbind();
-        AppManager.getAppManager().finishActivity();
+//        AppManager.getAppManager().finishActivity();
 
+        AppManager.getAppManager().finishActivity(this);
 
     }
 //    /**

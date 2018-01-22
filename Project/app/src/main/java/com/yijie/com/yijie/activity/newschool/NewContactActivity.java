@@ -55,8 +55,8 @@ public class NewContactActivity extends BaseActivity {
     @Override
     public void init() {
 
-        setColor(NewContactActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
-        setTranslucent(NewContactActivity.this); // 改变状态栏变成透明
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
 
         title.setText("联系人");
         tvRecommend.setVisibility(View.VISIBLE);
@@ -102,7 +102,7 @@ public class NewContactActivity extends BaseActivity {
                 }
                 else{
                     finish();
-                    EventBus.getDefault().post("YUDONG");
+                    EventBus.getDefault().post("schoolContact");
                 }
 
 

@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
+import com.yijie.com.yijie.base.AppManager;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.BaseFragment;
 import com.yijie.com.yijie.base.BaseFragment2;
@@ -85,8 +86,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void init() {
 
 
-        setColor(MainActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
-        setTranslucent(MainActivity.this); // 改变状态栏变成透明
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
         InitViewPager();
         mainTabRadioGroup.setOnCheckedChangeListener(this);
         mainTabRadioGroup.check(R.id.radio_logo);
@@ -101,7 +102,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ShowToastUtils.showToastMsg(MainActivity.this, "再按一次退出程序");
                 firstTime = System.currentTimeMillis();
             } else {
-                finish();
+                //退出app
+                AppManager.getAppManager().AppExit(this);
                 System.exit(0);
             }
             return true;

@@ -64,7 +64,7 @@
 
         <RelativeLayout
 
-    android:layout_marginTop="@dimen/base_dimen_18"
+            android:layout_marginTop="@dimen/base_dimen_18"
             style="@style/layout_mw">
 
             <TextView

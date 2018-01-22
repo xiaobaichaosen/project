@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 
 import java.util.List;
 
@@ -24,9 +24,9 @@ import java.util.List;
 public class SchoolAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private  Context mContext;
-    private List<Item> mList;
+    private List<StudentBean> mList;
 
-    public SchoolAdapterRecyclerView(Context mContext,List<Item> mList) {
+    public SchoolAdapterRecyclerView(Context mContext,List<StudentBean> mList) {
         this.mList = mList;
         this.mContext = mContext;
 
@@ -86,7 +86,7 @@ public class SchoolAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView
         if (holder instanceof SchoolInformation) {
             SchoolInformation threeHolder = (SchoolInformation) holder;
             if (mList != null) {
-                Item item = mList.get(position); // Object Item
+                StudentBean item = mList.get(position); // Object StudentBean
 
                 threeHolder.setName(item.getName()); // Name
 //                holder.setDescription(item.getDescription()); // Description
@@ -95,25 +95,25 @@ public class SchoolAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView
         }else if (holder instanceof SchoolContactHolder){
             SchoolContactHolder twoHolder = (SchoolContactHolder) holder;
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                StudentBean item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }else if (holder instanceof  SchoolMemeryHolder){
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                StudentBean item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }
         else if (holder instanceof  SchoolLearnDetailHolder){
             if (mList!=null){
-                Item item = mList.get(position); // Object Item
+                StudentBean item = mList.get(position); // Object StudentBean
 //                twoHolder.setImage(item.getIdImage()); // Image
             }
         }
         else{
             SchoolLearnProjectHolder myViewHolder = (SchoolLearnProjectHolder) holder;
             if (mList!=null){
-//                Item item = mList.get(position); // Object Item
+//                StudentBean item = mList.get(position); // Object StudentBean
 //                myViewHolder.setName(item.getName()); // Name
 //                myViewHolder.setDescription(item.getDescription()); // Description
 //                myViewHolder.setImage(item.getIdImage()); // Image

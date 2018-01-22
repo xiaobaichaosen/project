@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 
 import java.util.List;
 
@@ -25,11 +25,11 @@ import butterknife.ButterKnife;
 public class LoadMoreMoreKndergrtenAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
 
-    private List<Item> dataList;
+    private List<StudentBean> dataList;
     private Context mContext;
 
 
-    public LoadMoreMoreKndergrtenAdapter(List<Item> dataList) {
+    public LoadMoreMoreKndergrtenAdapter(List<StudentBean> dataList) {
         this.dataList = dataList;
 
     }

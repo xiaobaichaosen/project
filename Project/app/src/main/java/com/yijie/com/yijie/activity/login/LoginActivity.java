@@ -2,6 +2,8 @@ package com.yijie.com.yijie.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +53,6 @@ public class LoginActivity extends BaseActivity {
 //    LoadingLayout loading;
 
 
-    @BindView(R.id.cb_isVisiable)
-    CheckBox cbIsVisiable;
-    @BindView(R.id.et_passWord)
-    EditText etPassWord;
     @BindView(R.id.loading)
     RelativeLayout loading;
     @BindView(R.id.iv_qq_login)
@@ -71,9 +69,20 @@ public class LoginActivity extends BaseActivity {
     LinearLayout llContent;
     @BindView(R.id.ll_bottom)
     RelativeLayout llBottom;
+    @BindView(R.id.et_passWord)
+    EditText etPassWord;
+    @BindView(R.id.cb_isVisiable)
+    CheckBox cbIsVisiable;
     private KeyBoardHelper boardHelper;
     private int bottomHeight;
+    Handler hander = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
 
+
+        }
+    };
 
     @Override
     public void setContentView() {
@@ -84,14 +93,13 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void init() {
 
+
         loginModel = new LoginModel();
         setColor(LoginActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(LoginActivity.this); // 改变状态栏变成透明
 //        loading.showContent();
 
-        boardHelper = new KeyBoardHelper(this);
-        boardHelper.onCreate();
-        boardHelper.setOnKeyBoardStatusChangeListener(onKeyBoardStatusChangeListener);
+
         llBottom.post(new Runnable() {
             @Override
             public void run() {
@@ -140,11 +148,13 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        boardHelper.onDestory();
+        if (boardHelper!=null) {
+            boardHelper.onDestory();
+        }
         super.onDestroy();
     }
 
-    @OnClick({R.id.btnSubmit, R.id.iv_qq_login, R.id.iv_wx_login, R.id.tv_registered})
+    @OnClick({R.id.btnSubmit, R.id.iv_qq_login, R.id.iv_wx_login, R.id.tv_registered, R.id.et_passWord, R.id.et_name})
     public void Click(View view) {
 
         switch (view.getId()) {
@@ -152,17 +162,19 @@ public class LoginActivity extends BaseActivity {
 //                loading.showLoading();
                 loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
                     @Override
-                    public void onLoginSuccess() {
+                    public void onLoginSuccess(String success) {
+                        ShowToastUtils.showToastMsg(LoginActivity.this, success);
                         Intent intent = new Intent();
                         intent.setClass(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
+
 //
                     }
 
                     @Override
-                    public void onLoginFail() {
-                        ShowToastUtils.showToastMsg(LoginActivity.this, "账号或密码不正确");
+                    public void onLoginFail(String error) {
+                        ShowToastUtils.showToastMsg(LoginActivity.this, error);
 
                     }
                 });
@@ -199,6 +211,21 @@ public class LoginActivity extends BaseActivity {
                 //忘记密码
                 break;
 
+            case R.id.et_name:
+                boardHelper = new KeyBoardHelper(LoginActivity.this);
+                boardHelper.onCreate();
+
+                boardHelper.setOnKeyBoardStatusChangeListener(onKeyBoardStatusChangeListener);
+
+
+                break;
+
+            case R.id.et_passWord:
+                boardHelper = new KeyBoardHelper(LoginActivity.this);
+                boardHelper.onCreate();
+                boardHelper.setOnKeyBoardStatusChangeListener(onKeyBoardStatusChangeListener);
+                break;
+
 
         }
     }
@@ -212,32 +239,18 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
-                String name = null;
-                String gender = null;
-                for (Map.Entry<String, String> entry : map.entrySet()) {
-
-                    if (entry.getKey().equals("screen_name")) {
-
-                        name = entry.getValue();
-                    }
-                    if (entry.getKey().equals("gender")) {
-
-                        gender = entry.getValue();
-                    }
-
-
-                }
-                Toast.makeText(getApplicationContext(), "name=" + name + ",gender=" + gender, Toast.LENGTH_SHORT).show();
                 //sdk是6.4.4的,但是获取值的时候用的是6.2以前的(access_token)才能获取到值,未知原因
-//                String uid = map.get("uid");
-//                String openid = map.get("openid");//微博没有
-//                String unionid = map.get("unionid");//微博没有
-//                String access_token = map.get("access_token");
-//                String refresh_token = map.get("refresh_token");//微信,qq,微博都没有获取到
-//                String expires_in = map.get("expires_in");
-//                String name = map.get("name");
-//                String gender = map.get("gender");
-//                String iconurl = map.get("iconurl");
+                String uid = map.get("uid");
+                String openid = map.get("openid");//微博没有
+                String unionid = map.get("unionid");//微博没有
+                String access_token = map.get("access_token");
+                String refresh_token = map.get("refresh_token");//微信,qq,微博都没有获取到
+                String expires_in = map.get("expires_in");
+                String name = map.get("name");
+                String gender = map.get("gender");
+                String iconurl = map.get("iconurl");
+                Toast.makeText(getApplicationContext(), "name=" + name + ",gender=" + gender, Toast.LENGTH_SHORT).show();
+
 
                 //拿到信息去请求登录接口。。。
             }

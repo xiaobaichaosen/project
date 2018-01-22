@@ -504,7 +504,7 @@ public class MyViewPager extends ViewGroup {
      * layout with its current adapter there will be a smooth animated transition between
      * the current item and the specified item.
      *
-     * @param item Item index to select
+     * @param item StudentBean index to select
      */
     public void setCurrentItem(int item) {
         mPopulatePending = false;
@@ -514,7 +514,7 @@ public class MyViewPager extends ViewGroup {
     /**
      * Set the currently selected page.
      *
-     * @param item Item index to select
+     * @param item StudentBean index to select
      * @param smoothScroll True to smoothly scroll to the new item, false to transition immediately
      */
     public void setCurrentItem(int item, boolean smoothScroll) {

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.view.CommomDialog;
 
 import java.util.List;
@@ -23,10 +23,10 @@ import java.util.List;
 public class LoadMoreSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     private final int res;
-    private List<Item> dataList;
+    private List<StudentBean> dataList;
     private Context mContext;
 
-    public LoadMoreSchoolAdapter(List<Item> dataList,int res) {
+    public LoadMoreSchoolAdapter(List<StudentBean> dataList, int res) {
         this.dataList = dataList;
         this.res=res;
     }

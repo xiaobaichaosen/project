@@ -64,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private void createAutoTable(SQLiteDatabase db) {
 		db.execSQL("create table  if not exists "
 				+ TABLE_NAME
-				+ "(id  INTEGER PRIMARY KEY AUTOINCREMENT,name varchar(255),phoneNumber varchar(255),zjNumber varchar(255),wxNumber varchar(255),qqNumber varchar(255))");
+				+ "(id  INTEGER PRIMARY KEY AUTOINCREMENT,name varchar(255),phoneNumber varchar(255),zjNumber varchar(255),wxNumber varchar(255),qqNumber varchar(255),schoolSample varchar(2500),schoolEduction varchar(255),schoolMonth varchar(255),schoolType varchar(255),schoolLine varchar(255),schoolMode varchar(255),schoolTime varchar(255))");
 	}
 
 }

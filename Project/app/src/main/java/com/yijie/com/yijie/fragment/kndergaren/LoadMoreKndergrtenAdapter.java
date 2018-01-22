@@ -1,7 +1,6 @@
 package com.yijie.com.yijie.fragment.kndergaren;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,23 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
-import com.yijie.com.yijie.base.PermissionsActivity;
-import com.yijie.com.yijie.base.PermissionsChecker;
-import com.yijie.com.yijie.utils.ShowToastUtils;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.view.CommomDialog;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by 奕杰平台 on 2017/12/11.
@@ -37,14 +29,14 @@ public class LoadMoreKndergrtenAdapter extends RecyclerView.Adapter<RecyclerView
 
 
     private final int res;
-    private List<Item> dataList;
+    private List<StudentBean> dataList;
     private Context mContext;
     // 所需的全部权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.CALL_PHONE,
     };
 
-    public LoadMoreKndergrtenAdapter(List<Item> dataList ,Context context,int res) {
+    public LoadMoreKndergrtenAdapter(List<StudentBean> dataList , Context context, int res) {
         this.dataList = dataList;
 this.res=res;
 

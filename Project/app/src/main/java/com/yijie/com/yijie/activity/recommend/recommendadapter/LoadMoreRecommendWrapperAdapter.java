@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.school.Item;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.utils.ShowToastUtils;
 import com.yijie.com.yijie.view.CommomDialog;
 
@@ -17,7 +17,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by 奕杰平台 on 2017/12/21.
@@ -27,11 +26,11 @@ public class LoadMoreRecommendWrapperAdapter extends RecyclerView.Adapter<Recycl
 
 
 
-    private List<Item> dataList;
+    private List<StudentBean> dataList;
     private Context mContext;
 
 
-    public LoadMoreRecommendWrapperAdapter(List<Item> dataList) {
+    public LoadMoreRecommendWrapperAdapter(List<StudentBean> dataList) {
         this.dataList = dataList;
 
     }

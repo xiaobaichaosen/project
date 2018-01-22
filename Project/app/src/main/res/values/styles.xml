@@ -38,10 +38,7 @@
         <item name="android:taskToBackEnterAnimation">@null</item>
         <item name="android:taskToBackExitAnimation">@null</item>
     </style>
-    <!-- checkbox 样式-->
-    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/checkbox_style</item>
-    </style>
+
 <!--tab-->
     <style name="main_tab">
         <item name="android:layout_width">match_parent</item>

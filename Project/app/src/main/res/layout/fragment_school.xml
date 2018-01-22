@@ -33,7 +33,7 @@
             <RelativeLayout
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
-                android:background="#F1817F"
+                android:background="@color/searchEditColor"
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
