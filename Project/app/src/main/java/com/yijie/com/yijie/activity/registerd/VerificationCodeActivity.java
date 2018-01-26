@@ -44,7 +44,9 @@ public class VerificationCodeActivity extends BaseActivity  implements CodeInput
     @BindView(R.id.codeInput)
     CodeInput codeInput;
     private MyCountDownTimer myCountDownTimer;
-
+    String registCode;
+    private boolean isGetCode;
+    String phoneNumber;
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_verificationcode);
@@ -55,20 +57,27 @@ public class VerificationCodeActivity extends BaseActivity  implements CodeInput
     @Override
     public void init() {
 
-        String phoneNumber = getIntent().getStringExtra("phoneNumber");
+
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
+
+        registCode = getIntent().getStringExtra("registCode");
+
+        ShowToastUtils.showToastMsg(this,registCode);
         tvShowPhoneNumber.setText(" +86 " + phoneNumber.substring(0, 3) + "  " + phoneNumber.substring(3, 7) + "  " + phoneNumber.substring(7, 11));
         //new倒计时对象,总共的时间,每隔多少秒更新一次时间
         codeInput.setCodeInputListener(this);
-        myCountDownTimer = new MyCountDownTimer(60000, 1000);
+        myCountDownTimer = new MyCountDownTimer(15000, 1000);
         myCountDownTimer.start();
 
     }
 
     @Override
     public void onInputFinish(CodeInput ci, String inputResult) {
-        if (inputResult.equals("123456")){
+        if (inputResult.equals(registCode)&&!isGetCode){
+
             Intent intent=new Intent();
             intent.setClass(VerificationCodeActivity.this,PassWordActivity.class);
+            intent.putExtra("phoneNumber", phoneNumber);
             startActivity(intent);
         }else{
             ShowToastUtils.showToastMsg(VerificationCodeActivity.this,"验证码输入不正确!");
@@ -104,6 +113,7 @@ public class VerificationCodeActivity extends BaseActivity  implements CodeInput
         //计时完毕的方法
         @Override
         public void onFinish() {
+            isGetCode=true;
             tvRecode.setClickable(true);
             tvReVoiceCode.setClickable(true);
             tvOr.setTextColor(Color.parseColor("#ffffff"));

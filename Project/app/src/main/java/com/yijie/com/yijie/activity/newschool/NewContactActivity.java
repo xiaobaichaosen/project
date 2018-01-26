@@ -87,12 +87,7 @@ public class NewContactActivity extends BaseActivity {
                 contactBean.setZjNubmer(etTelephone.getText().toString().trim());
                 contactBean.setWxNubmer(etWx.getText().toString().trim());
                 contactBean.setQqNubmer(etQq.getText().toString().trim());
-                if (modiftyContactBean!=null){
-                    contactBean.setId(modiftyContactBean.getId());
-                    DatabaseAdapter.getIntance(NewContactActivity.this).update(contactBean);
-                }else {
-                    DatabaseAdapter.getIntance(NewContactActivity.this).inserInfo(contactBean);
-                }
+
                 if (name.equals("")){
                     ShowToastUtils.showToastMsg(this,"姓名不能为空");
                 }else if (phone.equals("")){
@@ -101,6 +96,12 @@ public class NewContactActivity extends BaseActivity {
                     ShowToastUtils.showToastMsg(this,"手机号不合法");
                 }
                 else{
+                    if (modiftyContactBean!=null){
+                        contactBean.setId(modiftyContactBean.getId());
+                        DatabaseAdapter.getIntance(NewContactActivity.this).update(contactBean);
+                    }else {
+                        DatabaseAdapter.getIntance(NewContactActivity.this).inserInfo(contactBean);
+                    }
                     finish();
                     EventBus.getDefault().post("schoolContact");
                 }

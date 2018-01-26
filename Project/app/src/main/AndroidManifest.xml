@@ -127,6 +127,7 @@
         <activity android:name=".base.search.AppSearchActivity"/>
         <activity android:name=".activity.newschool.NewSchoolIntroduction"/>
         <activity android:name=".activity.kendergard.FinishInternshipActivity"/>
+        <activity android:name=".activity.ConversionActivity"/>
     </application>
 
 </manifest>

@@ -2,13 +2,17 @@
 <RelativeLayout
     android:background="@color/colorPrimary"
     android:gravity="center_vertical"
-    android:paddingLeft="@dimen/base_dimen_22"
+    android:paddingLeft="@dimen/base_dimen_6"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="@dimen/base_dimen_86">
 
     <ImageView
         android:id="@+id/iv_delet"
         android:layout_width="wrap_content"
+        android:paddingTop="@dimen/base_dimen_16"
+        android:paddingLeft="@dimen/base_dimen_16"
+        android:paddingRight="@dimen/base_dimen_16"
+        android:paddingBottom="@dimen/base_dimen_4"
         android:layout_height="wrap_content"
         android:src="@mipmap/delete_contact"
         />
@@ -16,6 +20,7 @@
     <TextView
         android:layout_toRightOf="@id/iv_delet"
         android:id="@+id/tv_name"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/base_dimen_18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,6 +30,7 @@
     <TextView
         android:layout_toRightOf="@+id/tv_name"
         android:id="@id/tv_phone"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/base_dimen_18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,6 +40,7 @@
         android:id="@+id/tv_modify"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/base_dimen_22"
+        android:layout_centerVertical="true"
         android:layout_width="@dimen/base_dimen_48"
         android:layout_height="@dimen/base_dimen_48"
         android:drawableRight="@mipmap/goright"

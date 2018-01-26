@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-      ></android.support.v7.widget.RecyclerView>
+                ></android.support.v7.widget.RecyclerView>
 
 
             <TextView
@@ -179,6 +179,127 @@
                     android:textColor="#808080"
                     android:textSize="@dimen/base_dimen_24" />
             </LinearLayout>
+
+
+            <TextView
+                android:layout_width="@dimen/base_dimen_166"
+                android:layout_height="@dimen/base_dimen_8"
+                android:layout_marginLeft="@dimen/base_dimen_24"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:background="@mipmap/student_title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="@dimen/base_dimen_24">
+
+                <TextView
+                    android:layout_width="@dimen/base_dimen_160"
+
+                    android:layout_height="@dimen/base_dimen_60"
+                    android:background="#ea7e7c"
+                    android:gravity="center"
+                    android:text="考勤管理"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/base_dimen_32" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_28"
+                    android:src="@mipmap/goright"
+
+                    />
+            </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="@dimen/base_dimen_26"
+    android:paddingRight="@dimen/base_dimen_26"
+    >
+    <ImageView
+        android:id="@+id/iv_student_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/head"
+        />
+    <LinearLayout
+        android:layout_toRightOf="@+id/iv_student_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="王颖"
+            />
+        <TextView
+            android:layout_marginTop="@dimen/base_dimen_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="考勤组:B组考勤"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_arrow_down"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow_down"
+        />
+    <TextView
+        android:gravity="right"
+        android:layout_toLeftOf="@+id/iv_arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2017年"
+        />
+</RelativeLayout>
+
+            <RelativeLayout
+                android:paddingTop="@dimen/base_dimen_16"
+                android:paddingLeft="@dimen/base_dimen_26"
+                android:paddingRight="@dimen/base_dimen_26"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="考勤月度汇总"
+                    />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="打卡日历"
+                    />
+
+
+            </RelativeLayout>
+            <com.yijie.com.yijie.view.MyExpandableListView
+                android:id="@+id/expendlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:background="@color/colorPrimary"
+                >
+            </com.yijie.com.yijie.view.MyExpandableListView>
+
+
 
             <TextView
                 android:layout_width="@dimen/base_dimen_104"
@@ -416,14 +537,14 @@
 
 
 
-                    <TextView
-                        android:layout_marginTop="@dimen/base_dimen_50"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="@dimen/base_dimen_56"
-                        android:text="对学生的评价"
-                        android:textSize="@dimen/base_dimen_28" />
+                <TextView
+                    android:layout_marginTop="@dimen/base_dimen_50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/base_dimen_56"
+                    android:text="对学生的评价"
+                    android:textSize="@dimen/base_dimen_28" />
 
 
 
@@ -895,15 +1016,17 @@
                     android:background="@color/colorPrimary"
                     android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="@dimen/base_dimen_160"
-                            android:layout_height="@dimen/base_dimen_56"
-                            android:layout_marginLeft="@dimen/base_dimen_24"
-                            android:background="#ea7e7c"
-                            android:gravity="center"
-                            android:text="简历信息"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/base_dimen_32" />
+                    <TextView
+                        android:layout_width="@dimen/base_dimen_160"
+                        android:layout_height="@dimen/base_dimen_56"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:background="#ea7e7c"
+                        android:gravity="center"
+                        android:text="简历信息"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/base_dimen_32" />
+
+
 
 
                     <android.support.v7.widget.RecyclerView
@@ -1089,7 +1212,7 @@
                     android:layout_marginLeft="@dimen/base_dimen_24"
 
                     android:background="@color/app_background"
-                  />
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"

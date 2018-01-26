@@ -11,7 +11,7 @@ public class SDBHelper {
 	public static final String DB_DIR = Environment
 			.getExternalStorageDirectory().getPath()
 			+ File.separator
-			+ "zhDbData"
+			+ "yjDbData"
 			+ File.separator
 			+ SDBHelper.class.getPackage().getName();
 	static {

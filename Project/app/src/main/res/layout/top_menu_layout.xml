@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+    android:gravity="right"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="@dimen/base_dimen_240"
+        android:orientation="vertical"
+
+        android:background="@mipmap/menu_background"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/text1"
+            android:background="@color/colorPrimary"
+            android:drawableLeft="@mipmap/conversion_internship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="调换园所"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_2"
+            android:background="@color/app_background"/>
+        <TextView
+            android:background="@color/colorPrimary"
+            android:drawableLeft="@mipmap/look_internship"
+            android:layout_marginTop="@dimen/base_dimen_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="留园观察"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_2"
+            android:background="@color/app_background"/>
+        <TextView
+            android:layout_marginTop="@dimen/base_dimen_1"
+            android:drawableLeft="@mipmap/stop_internship"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="终止实习"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_2"
+            android:background="@color/app_background"/>
+        <TextView
+            android:drawableLeft="@mipmap/finish_internship"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_1"
+            android:padding="10dp"
+            android:text="结束实习"/>
+
+    </LinearLayout>
+</LinearLayout>

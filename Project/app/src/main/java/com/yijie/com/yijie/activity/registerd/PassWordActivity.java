@@ -1,5 +1,6 @@
 package com.yijie.com.yijie.activity.registerd;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,17 +12,31 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.tu.loadingdialog.LoadingDailog;
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.MainActivity;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.base.BaseActivity;
+import com.yijie.com.yijie.utils.BaseCallback;
+import com.yijie.com.yijie.utils.HttpUtils;
 import com.yijie.com.yijie.utils.ShowToastUtils;
 import com.yijie.com.yijie.utils.TelephoneRejestUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+
+import okhttp3.Call;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/1/15.
@@ -42,6 +57,8 @@ public class PassWordActivity extends BaseActivity {
     TextView tvToHome;
     @BindView(R.id.btn_next)
     Button btnNext;
+    private String phoneNumber;
+
 
     @Override
     public void setContentView() {
@@ -53,18 +70,19 @@ public class PassWordActivity extends BaseActivity {
     public void init() {
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
+
     }
 
     @OnClick({R.id.tv_toHome,R.id.btn_next})
     public void Click(View view) {
 
-        Intent intent = new Intent();
+
         switch (view.getId()) {
             case R.id.tv_toHome:
-
-                intent.setClass(PassWordActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+//              dialog.show();
+                regist(phoneNumber,null);
+//                dialog.dismiss();
                 break;
 
             case R.id.btn_next:
@@ -75,9 +93,9 @@ public class PassWordActivity extends BaseActivity {
                 }else if (passWord.length()<6||passWord.length()>20){
                     ShowToastUtils.showToastMsg(PassWordActivity.this,"密码长度需6-20个字符!");
                 }else{
-                    intent.setClass(PassWordActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+//                    dialog.show();
+                    regist(phoneNumber,passWord);
+//                    dialog.dismiss();
                 }
 
                 break;
@@ -85,6 +103,55 @@ public class PassWordActivity extends BaseActivity {
 
 
         }
+
+    }
+    //保存注册信息到数据库
+    public void regist(String phone,String password){
+        //请求网络
+
+        HttpUtils instance = HttpUtils.getinstance();
+        Map map=new HashMap();
+        map.put("phone",phone);
+        map.put("password",password);
+        instance.post(Constant.registUrl, map, new BaseCallback<String>() {
+            @Override
+            public void onRequestBefore() {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Request request, Exception e) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onSuccess(Response response, String s) {
+                dialog.dismiss();
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    if (jsonObject.getString("status").equals("ok")){
+                        dialog.dismiss();
+                        ShowToastUtils.showToastMsg(PassWordActivity.this,jsonObject.getString("message"));
+                        Intent intent = new Intent();
+                        intent.setClass(PassWordActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Response response, int errorCode, Exception e) {
+                dialog.dismiss();
+            }
+        });
+
+
+
 
     }
     @OnCheckedChanged({R.id.cb_isVisiable})

@@ -1,9 +1,12 @@
 package com.yijie.com.yijie.activity.login;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
+import android.os.SystemClock;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.tu.loadingdialog.LoadingDailog;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -27,7 +31,11 @@ import com.yijie.com.yijie.activity.registerd.RegisteredActivity;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.utils.AppInstallUtils;
 import com.yijie.com.yijie.utils.KeyBoardHelper;
+import com.yijie.com.yijie.utils.LogUtil;
 import com.yijie.com.yijie.utils.ShowToastUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -75,6 +83,7 @@ public class LoginActivity extends BaseActivity {
     CheckBox cbIsVisiable;
     private KeyBoardHelper boardHelper;
     private int bottomHeight;
+
     Handler hander = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -98,6 +107,7 @@ public class LoginActivity extends BaseActivity {
         setColor(LoginActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(LoginActivity.this); // 改变状态栏变成透明
 //        loading.showContent();
+
 
 
         llBottom.post(new Runnable() {
@@ -160,24 +170,42 @@ public class LoginActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btnSubmit:
 //                loading.showLoading();
+
                 loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
                     @Override
-                    public void onLoginSuccess(String success) {
-                        ShowToastUtils.showToastMsg(LoginActivity.this, success);
-                        Intent intent = new Intent();
-                        intent.setClass(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-
-//
+                    public void beforLogin() {
+                        dialog.show();
                     }
 
                     @Override
-                    public void onLoginFail(String error) {
-                        ShowToastUtils.showToastMsg(LoginActivity.this, error);
+                    public void onLoginSuccess(String success) {
+                        LogUtil.e(success);
+                        try {
+                            JSONObject jsonObject=new JSONObject(success);
+                            String status = jsonObject.getString("status");
+                            if (status.equals("ok")){
+
+                                ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
+                                Intent intent = new Intent();
+                                intent.setClass(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else {
+                                ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
+                            }
+                            dialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onLoginFail(Exception error) {
+                        dialog.dismiss();
 
                     }
+
                 });
+//
                 break;
             //qq登陆
             case R.id.iv_qq_login:

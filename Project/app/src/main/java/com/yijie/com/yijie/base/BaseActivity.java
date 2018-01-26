@@ -1,6 +1,7 @@
 package com.yijie.com.yijie.base;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 
+import com.android.tu.loadingdialog.LoadingDailog;
 import com.yijie.com.yijie.activity.login.LoginActivity;
 
 import butterknife.ButterKnife;
@@ -23,6 +25,7 @@ import butterknife.Unbinder;
 
 public abstract  class BaseActivity extends AppCompatActivity {
     Unbinder bind;
+    public Dialog dialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,14 @@ public abstract  class BaseActivity extends AppCompatActivity {
         AppManager.getAppManager().addActivity(this);
         setContentView();
         ButterKnife.bind(this);
+
+
+        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(this)
+                .setMessage("加载中...")
+                .setCancelable(true)
+                .setCancelOutside(true);
+
+        dialog = loadBuilder.create();
         bind = ButterKnife.bind(this);
 
 

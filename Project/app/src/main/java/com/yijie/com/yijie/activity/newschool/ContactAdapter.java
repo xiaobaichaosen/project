@@ -86,7 +86,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
             @Override
             public void onClick(View view) {
                 DatabaseAdapter.getIntance(mContext).deleteContactById(mList.get(position).getId());
-                EventBus.getDefault().post("YUDONG");
+                EventBus.getDefault().post("schoolContact");
             }
         });
     }

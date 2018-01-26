@@ -16,7 +16,6 @@
 
         <ScrollView
             android:layout_below="@+id/app_title"
-            android:layout_marginBottom="@dimen/base_dimen_85"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none">

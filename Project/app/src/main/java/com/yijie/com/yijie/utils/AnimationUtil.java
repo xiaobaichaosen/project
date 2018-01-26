@@ -5,6 +5,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 
 
@@ -21,10 +22,19 @@ public class AnimationUtil {
         TranslateAnimation animation=new TranslateAnimation(0,0,fromYDelta,0);
         animation.setDuration(ANIMATION_IN_TIME);
         set.addAnimation(animation);
-
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                1.0f, 1.0f, 0.5f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        );
+        scaleAnimation.setDuration(ANIMATION_IN_TIME);
+        set.addAnimation(scaleAnimation);
         AlphaAnimation alphaAnimation=new AlphaAnimation(0,1);
         alphaAnimation.setDuration(ANIMATION_IN_TIME);
         set.addAnimation(alphaAnimation);
+
+//        ScaleAnimation scaleAnimation=new ScaleAnimation();
+
+
         return set;
     }
 
@@ -35,7 +45,12 @@ public class AnimationUtil {
         TranslateAnimation animation=new TranslateAnimation(0,0,0,toYDelta);
         animation.setDuration(ANIMATION_OUT_TIME);
         set.addAnimation(animation);
-
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                1.0f, 1.0f, 1.0f, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        );
+        scaleAnimation.setDuration(ANIMATION_IN_TIME);
+        set.addAnimation(scaleAnimation);
         AlphaAnimation alphaAnimation=new AlphaAnimation(1,0);
         alphaAnimation.setDuration(ANIMATION_OUT_TIME);
         set.addAnimation(alphaAnimation);

@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.activity.ConversionActivity;
 import com.yijie.com.yijie.activity.kendergard.KndergardAcitivity;
 import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.activity.student.StudentActivity;
@@ -81,11 +82,12 @@ public class AppSearchActivity extends BaseActivity {
                                                               Intent intent = new Intent();
                                                               intent.putExtra("type", type);
                                                               if (type == 5) {
-                                                                  intent.setClass(AppSearchActivity.this, StudentActivity.class);
+                                                                  intent.setClass(AppSearchActivity.this, ConversionActivity.class);
 
                                                               } else {
                                                                   intent.setClass(AppSearchActivity.this, StudentActivity.class);
                                                               }
+                                                              startActivity(intent);
 
                                                           }
                                                       }

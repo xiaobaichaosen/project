@@ -123,7 +123,7 @@ public class NewSchoolActivity extends BaseActivity {
                 showOptions();
                 break;
             case R.id.to_newAppointmenttime:
-
+                //实训详情
                 intent.setClass(this, NewInternshipDetailActivity.class);
                 if (tvNewAppointmenttime.getText().equals("已填写"))
                 {
@@ -180,8 +180,15 @@ public class NewSchoolActivity extends BaseActivity {
     public void helloEventBus(String message) {
        if (message.equals("schoolContact")){
            final List<ContactBean> list = DatabaseAdapter.getIntance(NewSchoolActivity.this).queryAll();
+           final List<ContactBean> listContact=new ArrayList<ContactBean>();
+           for (int i = 0; i <list.size() ; i++) {
+               ContactBean contactBean = list.get(i);
+               if (null != contactBean.getPhoneNumber()) {
+                   listContact.add(contactBean);
+               }
+           }
            recyclerView.setVisibility(View.VISIBLE);
-           if (list.size() > 0) {
+           if (listContact.size() > 0) {
                toNewContact.setImageResource(R.mipmap.add_contact);
                lineOrV.setVisibility(View.INVISIBLE);
            } else {
@@ -192,7 +199,7 @@ public class NewSchoolActivity extends BaseActivity {
            recyclerView.setLayoutManager(new LinearLayoutManager(this));
            ContactAdapter contactAdapter = null;
            if (contactAdapter == null) {
-               contactAdapter = new ContactAdapter(this, list);
+               contactAdapter = new ContactAdapter(this, listContact);
                recyclerView.setAdapter(contactAdapter);
            } else {
                contactAdapter.notifyDataSetChanged();
@@ -203,7 +210,7 @@ public class NewSchoolActivity extends BaseActivity {
                    Intent intent = new Intent();
                    intent.setClass(NewSchoolActivity.this, NewContactActivity.class);
                    Bundle mBundle = new Bundle();
-                   mBundle.putSerializable("contactModify", list.get(position));
+                   mBundle.putSerializable("contactModify", listContact.get(position));
                    intent.putExtras(mBundle);
                    startActivity(intent);
                }
