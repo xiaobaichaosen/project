@@ -1,0 +1,146 @@
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:paddingLeft="@dimen/base_dimen_10"
+        android:paddingRight="@dimen/base_dimen_10"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/base_dimen_10"
+        android:layout_marginRight="@dimen/base_dimen_10"
+        app:cardCornerRadius="@dimen/base_dimen_8"
+        app:cardElevation="@dimen/base_dimen_2">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:paddingLeft="@dimen/base_dimen_16"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:layout_marginRight="@dimen/base_dimen_20"
+            android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_86"
+
+      >
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="国际幼儿园"
+
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:layout_toRightOf="@id/tvName"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="ID 00001"
+            android:textSize="@dimen/base_dimen_32" />
+
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:textSize="@dimen/base_dimen_28"
+            android:text="更多"
+            android:textColor="#f08786"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/base_dimen_5" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/base_dimen_50"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="联系人:张涛 186547855203"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:text="地址:河北省 保定市 红星北街柳成路9号"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+        <!--HorizontalScrollView 以后替换LinearLayout-->
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="#1a1a1a"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:text="河北新华冶金技术学院"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:textColor="#1a1a1a"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_height="wrap_content"
+            android:text="学校的前身是创办于1903年的北洋工艺学堂，是我国最早培养工业人才的高等学校，1995年更名为河北工业大学。114年来，学校始终秉承“勤慎公忠”的校训精神，坚持“工学并举”的办学特色，形成了“勤奋、严谨、求实、进取”的优良校风，现已发展成为一所以工为主、多学科协调发展的国家“211工程”重点建设高校，是河北省人民政府、天津市人民政府和教育部共建高校，并入选河北省“国家一流大学建设”一层次学校。
+
+学校建有天津校区和廊坊分校。拥有70个本科专业；9个博士后科研流动站、7个一级博士学位授权点和22个一级硕士学位授权点。工程学、材料科学2个学科领域进入ESI全球前1%。拥有国家“千人计划”入选者、“长江学者”、“国家杰出青年基金”获得者、国家“万人计划”科技创新领军人才7人。与60余所国外高校签订了合作办学协议，合作培养覆盖本科到博士各层次。
+
+当前，学校正以“双一流”建设和省市部共建意见签署为契机，不断深化学校综合改革，大力加强高层次人才队伍建设，着力提升服务区域经济社会发展的能力和水平，扎实推进高水平大学建设步伐。"
+            />
+    </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+

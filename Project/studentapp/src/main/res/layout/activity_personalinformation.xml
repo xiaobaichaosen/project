@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_title"/>
+
+    <RelativeLayout
+        android:id="@+id/ll_name"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:layout_height="@dimen/base_dimen_86">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="姓名:"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <EditText
+            android:id="@+id/tv_newEducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:background="@null"
+            android:hint="请输入名称"
+
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/ll_gender"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="性别："
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_newSchoolAdress"
+
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+
+            android:paddingRight="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_height"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_86"
+
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="身高:"
+                android:textColor="#4d4d4d"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_newType"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/to_newContact"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+
+            <ImageView
+                android:id="@+id/to_newContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+
+                android:src="@mipmap/goright" />
+
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:id="@+id/line_or_v"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_weight"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="11dp"
+            android:text="体重:"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+
+        <TextView
+            android:id="@+id/tv_newSchoolSample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tv_national"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="民族:"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_mode"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newSchoolPicture"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:id="@+id/to_newSchoolPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/rl_nativePlace"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="籍贯:"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/base_dimen_22"
+            android:id="@+id/tv_newAppointmenttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/rl_dataofbirth"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="出生日期:"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_newNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newNodetal"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/rl_registeredPermanent"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="户口所在地:"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newNodetal"
+            android:textColor="#808080"
+            />
+
+        <TextView
+            android:id="@+id/to_newNodetal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

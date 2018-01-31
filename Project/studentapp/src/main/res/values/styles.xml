@@ -1,0 +1,133 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorTheme</item>
+        <item name="colorPrimaryDark">@color/colorTheme</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/Animation</item>
+
+    </style>
+    <style name="layout_mm" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style> >
+    <style name="layout_mw" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style> >
+    <style name="layout_wm" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style> >  <style name="layout_ww" >
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+</style> >
+    <style name="Animation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/on_activity_open</item>
+        <item name="android:activityOpenExitAnimation">@anim/on_activity_puse</item>
+        <item name="android:activityCloseEnterAnimation">@anim/on_activity_reopen</item>
+        <item name="android:activityCloseExitAnimation">@anim/on_activity_close</item>
+        <item name="android:taskOpenEnterAnimation">@anim/on_activity_open</item>
+        <item name="android:taskOpenExitAnimation">@anim/on_activity_puse</item>
+        <item name="android:taskCloseEnterAnimation">@anim/on_activity_reopen</item>
+        <item name="android:taskCloseExitAnimation">@anim/on_activity_close</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+<!--tab-->
+    <style name="main_tab">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@drawable/tab_textcolor</item>
+    </style>
+
+
+    <style name="login_tab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@drawable/login_tab_textcolor</item>
+    </style>
+    <declare-styleable name="RatioImageView">
+        <attr name="ratio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="NineGridLayout">
+        <attr name="sapcing" format="dimension"/>
+    </declare-styleable>
+
+    <style name="Widget.MaterialRatingBar.RatingBar" parent="android:Widget.RatingBar">
+
+        <item name="android:indeterminateDrawable">@null</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="android:maxHeight">30dp</item>
+    </style>
+<!--提示框样式-->
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--模糊-->
+
+    </style>
+<!--输入框-->
+    <declare-styleable name="ClearEditText">
+        <attr name="clearIcon" format="reference"/>
+        <attr name="scaleSize" format="float"/>
+        <attr name="drawableWidth" format="dimension"/>
+    </declare-styleable>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.NoActionBar.Permissions">
+        <item name="android:windowBackground">@color/colorDark</item>
+    </style>
+
+
+    <style name="Main" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/Animation</item>
+
+    </style>
+<!--EeditText下滑线颜色-->
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#F6A4A2</item>
+        <item name="colorControlActivated">@color/color_gray</item>
+    </style>
+
+
+    <style name="pdStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/pd_checkbox_style</item>
+    </style>
+</resources>

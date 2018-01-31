@@ -25,6 +25,7 @@ import com.yijie.com.yijie.fragment.school.SchoolBaseFragment;
 import com.yijie.com.yijie.fragment.student.StudentFragment;
 import com.yijie.com.yijie.home.ViewPagerAdapter;
 import com.yijie.com.yijie.utils.ShowToastUtils;
+import com.yijie.com.yijie.utils.StutasToolUtils;
 
 import java.util.ArrayList;
 

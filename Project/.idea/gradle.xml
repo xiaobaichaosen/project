@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/photoview" />
             <option value="$PROJECT_DIR$/pickerview" />
+            <option value="$PROJECT_DIR$/studentapp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/base_dimen_10"
+    android:layout_marginRight="@dimen/base_dimen_10"
+    android:layout_marginTop="@dimen/base_dimen_10"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:paddingLeft="@dimen/base_dimen_10"
+    android:paddingRight="@dimen/base_dimen_10"
+    app:cardCornerRadius="@dimen/base_dimen_8"
+    app:cardElevation="@dimen/base_dimen_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginLeft="@dimen/base_dimen_20"
+        android:layout_marginRight="@dimen/base_dimen_20"
+
+
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/base_dimen_34"
+
+
+            >
+
+            <TextView
+                android:id="@+id/ivUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="园所信息"
+                android:textSize="@dimen/base_dimen_32" />
+
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:text="编辑"
+                android:textColor="#f08786"
+                android:textSize="@dimen/base_dimen_28" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_40"
+            android:orientation="horizontal"
+
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+
+
+                >
+
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="占地面积"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="园所类型"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="幼儿园人数"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="班级数量"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="班级配置"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="特色教程"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="住宿安排"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="三餐安排"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="工服押金"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="首年体检费"
+                    android:textColor="#808080" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="@dimen/base_dimen_80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+
+
+                >
+
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="100/平方米"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="一级一类"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="200人"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="20/班"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="两教一保"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="舞蹈、美术、英语"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="院内"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="院内三餐"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="300元"
+                    android:textColor="#808080" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="自理"
+                    android:textColor="#808080" />
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:text="荣誉证书"
+            android:textColor="#808080" />
+        <LinearLayout
+            android:layout_width="match_parent"
+android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/dotted_line"
+            android:layout_width="match_parent"
+            android:layerType="software"
+            android:layout_height="5dp"
+
+            android:background="@drawable/bg_dotted_line"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:text="营业执照"
+            android:textColor="#808080" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layerType="software"
+            android:layout_marginBottom="@dimen/base_dimen_30"
+            android:layout_height="5dp"
+
+            android:background="@drawable/bg_dotted_line"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:text="宿舍环境"
+            android:textColor="#808080" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/base_dimen_30"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+            <ImageView
+                android:padding="@dimen/base_dimen_9"
+                android:layout_width="@dimen/base_dimen_154"
+                android:layout_height="@dimen/base_dimen_154"
+                android:src="@mipmap/shool_pictor" />
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

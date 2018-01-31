@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        style="@style/layout_mw">
+
+        <TextView
+            android:id="@+id/tv_year"
+            style="@style/layout_ww"
+            android:drawablePadding="@dimen/base_dimen_20"
+            android:text="2017届"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:id="@+id/tv_education"
+            style="@style/layout_ww"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_toRightOf="@+id/tv_year"
+            android:text="中专"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:id="@+id/tv_internship"
+            style="@style/layout_ww"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_toRightOf="@+id/tv_education"
+            android:text="定岗实习"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:id="@+id/tv_month"
+            style="@style/layout_ww"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_toRightOf="@+id/tv_internship"
+            android:text="6月"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            style="@style/layout_ww"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:text="2017//5"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:orientation="horizontal"
+        style="@style/layout_mw">
+        <TextView
+            android:id="@+id/tv_training_time"
+            android:drawablePadding="@dimen/base_dimen_20"
+            style="@style/layout_ww"
+            android:text="实习人数"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+        <TextView
+            android:id="@+id/tv_training_data"
+            android:layout_toRightOf="@+id/tv_training_time"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            style="@style/layout_ww"
+            android:text="38人"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
