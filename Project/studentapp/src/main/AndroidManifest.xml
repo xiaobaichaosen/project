@@ -21,11 +21,22 @@
 
     <application
         android:allowBackup="true"
+        android:name="com.yijie.com.studentapp.base.APPApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="yijie.fileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity android:name=".activity.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -72,6 +83,16 @@
        <activity android:name=".headportrait.ClipImageActivity"/>
         <activity android:name=".activity.kndergard.KndergardAcitivity"/>
         <activity android:name=".activity.PersonalInformationActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.ResumepreviewActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.ContactWayActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.PhotoActivityForHor"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
+        <activity android:name="com.yijie.com.studentapp.activity.EducationBackgroundActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.RelateIntentinActivty"/>
+        <activity android:name="com.yijie.com.studentapp.activity.SelfAssessmentActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.HonoraryCcertificateActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.WorkExperienceActivity"/>
     </application>
 
 </manifest>

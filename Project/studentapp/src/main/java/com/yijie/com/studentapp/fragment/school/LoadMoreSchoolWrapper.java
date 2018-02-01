@@ -1,4 +1,4 @@
-package com.yijie.com.studentapp.base.baseadapter;
+package com.yijie.com.studentapp.fragment.school;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,14 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yijie.com.studentapp.R;
-import com.yijie.com.studentapp.fragment.school.LoadMoreSchoolAdapter;
 
 
 /**
  * Created by 奕杰平台 on 2017/12/11.
  */
 
-public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener  {
+public class LoadMoreSchoolWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     private RecyclerView.Adapter adapter;
 
@@ -33,26 +32,8 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public final int LOADING_COMPLETE = 2;
     // 加载到底
     public final int LOADING_END = 3;
-    // 加载箭头
-    public final int LOADING_ARROW = 4;
-    private OnClickListener mOnClickListener = null;
 
-    public void setOnClickListener(OnClickListener listener) {
-        this.mOnClickListener = listener;
-    }
-    @Override
-    public void onClick(View view) {
-        if (mOnClickListener != null) {
-            //注意这里使用getTag方法获取position
-            mOnClickListener.onClick(view);
-        }
-    }
-
-    //define interface
-    public static interface OnClickListener {
-        void onClick(View view);
-    }
-    public LoadMoreWrapper(RecyclerView.Adapter adapter) {
+    public LoadMoreSchoolWrapper(RecyclerView.Adapter adapter) {
         this.adapter = adapter;
     }
 
@@ -73,7 +54,6 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (viewType == TYPE_FOOTER) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_refresh_footer, parent, false);
-            view.setOnClickListener(this);
             //如果list.size==0的话，隐藏向上加载
 //            if (adapter.getItemCount()==0){
 //                view.setVisibility(View.GONE);
@@ -95,28 +75,19 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 case LOADING: // 正在加载
                     footViewHolder.pbLoading.setVisibility(View.VISIBLE);
                     footViewHolder.tvLoading.setVisibility(View.VISIBLE);
-                    footViewHolder.llEnd.setVisibility(View.GONE);   footViewHolder.tv_arrow.setVisibility(View.GONE);
-
+                    footViewHolder.llEnd.setVisibility(View.GONE);
                     break;
 
                 case LOADING_COMPLETE: // 加载完成
                     footViewHolder.pbLoading.setVisibility(View.INVISIBLE);
                     footViewHolder.tvLoading.setVisibility(View.INVISIBLE);
                     footViewHolder.llEnd.setVisibility(View.GONE);
-                    footViewHolder.tv_arrow.setVisibility(View.GONE);
                     break;
 
                 case LOADING_END: // 加载到底
                     footViewHolder.pbLoading.setVisibility(View.GONE);
                     footViewHolder.tvLoading.setVisibility(View.GONE);
                     footViewHolder.llEnd.setVisibility(View.VISIBLE);
-                    footViewHolder.tv_arrow.setVisibility(View.GONE);
-                    break;
-                case LOADING_ARROW: // 加载到底
-                    footViewHolder.pbLoading.setVisibility(View.GONE);
-                    footViewHolder.tvLoading.setVisibility(View.GONE);
-                    footViewHolder.llEnd.setVisibility(View.GONE);
-                    footViewHolder.tv_arrow.setVisibility(View.VISIBLE);
                     break;
 
                 default:
@@ -152,14 +123,12 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         ProgressBar pbLoading;
         TextView tvLoading;
-       TextView tv_arrow;
         LinearLayout llEnd;
 
         FootViewHolder(View itemView) {
             super(itemView);
             pbLoading = (ProgressBar) itemView.findViewById(R.id.pb_loading);
             tvLoading = (TextView) itemView.findViewById(R.id.tv_loading);
-            tv_arrow= (TextView) itemView.findViewById(R.id.tv_arrow);
             llEnd = (LinearLayout) itemView.findViewById(R.id.ll_end);
         }
     }

@@ -93,6 +93,7 @@
         <activity android:name=".activity.school.SchoolActivity"/>
         <activity android:name=".activity.student.StudentActivity"/>
         <activity android:name=".utils.PhotoActivityForHor"
+
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
         <activity android:name=".activity.student.studentgrounp.StundentGrounpActivity"

@@ -1,10 +1,9 @@
 package com.yijie.com.studentapp.fragment.student;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,10 +12,9 @@ import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -31,17 +29,30 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yijie.com.studentapp.GalleryAdapter;
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.activity.ContactWayActivity;
+import com.yijie.com.studentapp.activity.EducationBackgroundActivity;
+import com.yijie.com.studentapp.activity.HonoraryCcertificateActivity;
 import com.yijie.com.studentapp.activity.MeActivity;
 import com.yijie.com.studentapp.activity.PersonalInformationActivity;
+import com.yijie.com.studentapp.activity.PhotoActivityForHor;
+import com.yijie.com.studentapp.activity.RelateIntentinActivty;
+import com.yijie.com.studentapp.activity.ResumepreviewActivity;
+import com.yijie.com.studentapp.activity.SelfAssessmentActivity;
 import com.yijie.com.studentapp.activity.SettingActivity;
+import com.yijie.com.studentapp.activity.WorkExperienceActivity;
 import com.yijie.com.studentapp.base.BaseFragment;
 import com.yijie.com.studentapp.headportrait.ClipImageActivity;
 import com.yijie.com.studentapp.headportrait.util.FileUtil;
 import com.yijie.com.studentapp.niorgai.StatusBarCompat;
+import com.yijie.com.studentapp.utils.LogUtil;
+import com.yijie.com.studentapp.view.AppBarStateChangeListener;
 import com.yijie.com.studentapp.view.CircleImageView;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -119,12 +130,29 @@ public class StudentMoreFragment extends BaseFragment {
     TextView llSelfAssessment;
     @BindView(R.id.ll_honoraryCcertificate)
     LinearLayout llHonoraryCcertificate;
+    @BindView(R.id.rv_resume)
+    TextView rvResume;
+    @BindView(R.id.rl_root)
+    RelativeLayout rlRoot;
+    @BindView(R.id.tv_goRight)
+    TextView tvGoRight;
+    private List<String> mDatas;
+    private String[] mUrls = new String[]{
+
+            "http://d.hiphotos.baidu.com/image/h%3D200/sign=201258cbcd80653864eaa313a7dca115/ca1349540923dd54e54f7aedd609b3de9c824873.jpg",
+            "http://img5.imgtn.bdimg.com/it/u=2437456944,1135705439&fm=21&gp=0.jpg",
+            "http://img2.imgtn.bdimg.com/it/u=3251359643,4211266111&fm=21&gp=0.jpg",
+            "http://img4.duitang.com/uploads/item/201506/11/20150611000809_yFe5Z.jpeg",
+            "http://img5.imgtn.bdimg.com/it/u=1717647885,4193212272&fm=21&gp=0.jpg",
+    };
+    private GalleryAdapter mAdapter;
 
     @Override
     protected int getLayoutId() {
+        EventBus.getDefault().register(this);
         return R.layout.fragment_collapsing_tool_bar;
-//        EventBus.getDefault().register(this);
     }
+
 
     @Override
     protected void initData() {
@@ -132,6 +160,27 @@ public class StudentMoreFragment extends BaseFragment {
         ((AppCompatActivity) mActivity).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("");
         StatusBarCompat.setStatusBarColorForCollapsingToolbar(getActivity(), appbar, collapsingToolbar, toolbar, getResources().getColor(R.color.colorTheme));
+        appbar.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state, int i) {
+                if (state == State.EXPANDED) {
+                    LogUtil.e("EXPANDED===" + i);
+                    //展开状态
+                    rlRoot.setAlpha(1.0f);
+                } else if (state == State.COLLAPSED) {
+                    LogUtil.e("COLLAPSED===" + i);
+                    //折叠状态
+                    rlRoot.setAlpha(0.0f);
+
+                } else {
+                    rlRoot.setAlpha(0.3f);
+                    //中间状态
+
+                }
+            }
+
+        });
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,9 +189,35 @@ public class StudentMoreFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
+
+        initDatas();
+        //设置布局管理器
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        //设置适配器
+        mAdapter = new GalleryAdapter(mActivity, mDatas);
+        recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new GalleryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(mActivity, PhotoActivityForHor.class);
+                Rect rect = new Rect();
+                view.getGlobalVisibleRect(rect);
+
+                intent.putExtra("imgUrl", mUrls[position]);
+                intent.putExtra("startBounds", rect);
+
+                startActivity(intent);
+                mActivity.overridePendingTransition(0, 0);
+
+            }
+        });
+
     }
 
-    @OnClick({R.id.iv_settings, R.id.iv_headImage, R.id.rl_personalInformation, R.id.rl_contactWay, R.id.rl_educationBackground, R.id.rl_relatedIntention, R.id.rl_selfAssessment, R.id.rl_honoraryCcertificate, R.id.rl_workExperience})
+    @OnClick({R.id.iv_settings, R.id.iv_headImage, R.id.rl_personalInformation, R.id.rl_contactWay, R.id.rl_educationBackground, R.id.rl_relatedIntention, R.id.rl_selfAssessment, R.id.rl_honoraryCcertificate, R.id.rl_workExperience, R.id.rv_resume})
     public void Click(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -158,41 +233,82 @@ public class StudentMoreFragment extends BaseFragment {
                 break;
             //个人信息
             case R.id.rl_personalInformation:
-                intent.setClass(getActivity(), PersonalInformationActivity.class);
+                intent.setClass(mActivity, PersonalInformationActivity.class);
                 startActivity(intent);
                 break;
             //联系方式
             case R.id.rl_contactWay:
+                intent.setClass(mActivity, ContactWayActivity.class);
+                startActivity(intent);
                 break;
             //教育背景
             case R.id.rl_educationBackground:
+                intent.setClass(mActivity, EducationBackgroundActivity.class);
+                startActivity(intent);
                 break;
             //相关意向
             case R.id.rl_relatedIntention:
+                intent.setClass(mActivity, RelateIntentinActivty.class);
+                startActivity(intent);
                 break;
             //自我评价
             case R.id.rl_selfAssessment:
+                intent.setClass(mActivity, SelfAssessmentActivity.class);
+                startActivity(intent);
                 break;
             //荣誉证书
             case R.id.rl_honoraryCcertificate:
+                intent.setClass(mActivity, HonoraryCcertificateActivity.class);
+                startActivity(intent);
                 break;
             //工作经历
             case R.id.rl_workExperience:
+                intent.setClass(mActivity, WorkExperienceActivity.class);
+                startActivity(intent);
                 break;
 
-
+            //发送简历
+            case R.id.rv_resume:
+                intent.setClass(mActivity, ResumepreviewActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void helloEventBus(String message) {
-        if (message.equals("schoolContact")) {
+        if (message.equals("personInformation")) {
             llPersonalInformation.setVisibility(View.VISIBLE);
+        } else if (message.equals("contactway")) {
+            llContactWay.setVisibility(View.VISIBLE);
+        } else if (message.equals("educationbackground")) {
+            llEducationBackground.setVisibility(View.VISIBLE);
+        } else if (message.equals("relateIntentin")) {
+            llRelatedIntention.setVisibility(View.VISIBLE);
+        } else if (message.equals("selfassessment")) {
+            llSelfAssessment.setVisibility(View.VISIBLE);
+        } else if (message.equals("honoraryccertificate")) {
+            llHonoraryCcertificate.setVisibility(View.VISIBLE);
+        } else if (message.equals("workexperience")) {
+            llWorkExperience.setVisibility(View.VISIBLE);
+        } else if (message.equals("sendSample")) {
+            ivStutus.setBackgroundResource(R.mipmap.student_unchecked);
+            tvGoRight.setVisibility(View.GONE);
         }
+
+
     }
 
+    private void initDatas() {
 
+        mDatas = Arrays.asList(mUrls);
+    }
 
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
 
     /**
      * 上传头像
@@ -223,15 +339,15 @@ public class StudentMoreFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //权限判断
-                if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    //申请WRITE_EXTERNAL_STORAGE权限
-                    ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
-                } else {
-                    //跳转到调用系统相机
-                    gotoCamera();
-                }
+//                if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    //申请WRITE_EXTERNAL_STORAGE权限
+//                    ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                            WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+//                } else {
+                //跳转到调用系统相机
+                gotoCamera();
+//                }
                 popupWindow.dismiss();
             }
         });
@@ -239,15 +355,15 @@ public class StudentMoreFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //权限判断
-                if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    //申请READ_EXTERNAL_STORAGE权限
-                    ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            READ_EXTERNAL_STORAGE_REQUEST_CODE);
-                } else {
-                    //跳转到相册
-                    gotoPhoto();
-                }
+//                if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    //申请READ_EXTERNAL_STORAGE权限
+//                    ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                            READ_EXTERNAL_STORAGE_REQUEST_CODE);
+//                } else {
+                //跳转到相册
+                gotoPhoto();
+//                }
                 popupWindow.dismiss();
             }
         });
@@ -263,21 +379,6 @@ public class StudentMoreFragment extends BaseFragment {
     /**
      * 外部存储权限申请返回
      */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission Granted
-                gotoCamera();
-            }
-        } else if (requestCode == READ_EXTERNAL_STORAGE_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission Granted
-                gotoPhoto();
-            }
-        }
-    }
 
 
     /**
@@ -370,7 +471,5 @@ public class StudentMoreFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
-
-
 
 }

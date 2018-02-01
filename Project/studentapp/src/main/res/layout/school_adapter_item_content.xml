@@ -10,7 +10,7 @@
 
 
     <RelativeLayout
-        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:paddingLeft="@dimen/base_dimen_30"
         android:layout_marginTop="@dimen/base_dimen_20"
         style="@style/layout_mw">
 
@@ -78,7 +78,7 @@
             style="@style/layout_ww"
             android:text="38人"
             android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_28" />
+            android:textSize="@dimen/base_dimen_28"/>
 
 
 

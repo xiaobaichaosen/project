@@ -15,7 +15,7 @@
     <include
         android:id="@+id/app_title"
         layout="@layout/app_title"/>
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_below="@+id/app_title"
         android:fillViewport="true"
         android:layout_width="match_parent"
@@ -185,27 +185,19 @@
                         android:layout_width="match_parent"
                         android:text="往届实习项目"
                         android:layout_height="wrap_content" />
-                    <RelativeLayout
+                        <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:descendantFocusability="blocksDescendants"
                         >
-                    <android.support.v4.widget.SwipeRefreshLayout
-
-                        android:background="@color/colorPrimary"
-                        android:id="@+id/swipe_refresh_layout"
-                        style="@style/layout_mm"
-                        >
-
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/recycler_view"
                                 style="@style/layout_mm" />
+                     </RelativeLayout>
 
-                    </android.support.v4.widget.SwipeRefreshLayout>
-</RelativeLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

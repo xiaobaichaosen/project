@@ -148,7 +148,7 @@
             android:id="@+id/exit_app"
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_110"
+            android:layout_height="@dimen/base_dimen_86"
             android:layout_marginTop="@dimen/base_dimen_20"
             android:text="退出"
             android:textColor="@color/colorTheme"

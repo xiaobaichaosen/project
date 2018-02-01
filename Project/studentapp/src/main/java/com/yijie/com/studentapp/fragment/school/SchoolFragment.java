@@ -47,8 +47,7 @@ public class SchoolFragment extends BaseFragment {
     LinearLayout linearLayout;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
+
     private List<StudentBean> dataList = new ArrayList<>();
     private LoadMoreWrapper loadMoreWrapper;
 
@@ -63,8 +62,7 @@ public class SchoolFragment extends BaseFragment {
         back.setVisibility(View.GONE);
 
 
-        // 设置刷新控件颜色
-        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
+
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 //        loading.setRetryListener(new View.OnClickListener() {
 //            @Override
@@ -86,57 +84,41 @@ public class SchoolFragment extends BaseFragment {
         LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList,R.layout.school_adapter_item_content);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
-        recyclerView.setAdapter(loadMoreWrapper);
 
-//        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreSchoolAdapter.OnItemClickListener(
-//
-//                                                      ) {
-//                                                          @Override
-//                                                          public void onItemClick(View view, int position) {
-//                                                              Intent intent = new Intent();
+        recyclerView.setAdapter(loadMoreWrapper);
+        loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_ARROW);
+
+        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreSchoolAdapter.OnItemClickListener(
+
+                                                      ) {
+                                                          @Override
+                                                          public void onItemClick(View view, int position) {
+
+//                                                                  Intent intent = new Intent();
 //                                                              intent.setClass(mActivity, SchoolActivity.class);
 //                                                              startActivity(intent);
-//                                                          }
-//                                                      }
-//        );
 
-        // 设置下拉刷新
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//
+                                                          }
+                                                      }
+        );
+
+//加载更多监听
+        loadMoreWrapper.setOnClickListener(new LoadMoreWrapper.OnClickListener() {
             @Override
-            public void onRefresh() {
-                // 刷新数据
-                dataList.clear();
-                getData();
-                loadMoreWrapper.notifyDataSetChanged();
-
-                // 延时1s关闭下拉刷新
-                swipeRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                    }
-                }, 1000);
-            }
-        });
-
-        // 设置加载更多监听
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
-            @Override
-            public void onLoadMore() {
-                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
-
-                if (dataList.size() < 52) {
+            public void onClick(View view) {
+                if (dataList.size() < 15) {
                     // 模拟获取网络数据，延时1s
+                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+
                                     getData();
-                                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
+                                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_ARROW);
                                 }
                             });
                         }
@@ -147,6 +129,7 @@ public class SchoolFragment extends BaseFragment {
                 }
             }
         });
+
     }
 
     @OnClick({R.id.back})
@@ -179,7 +162,7 @@ public class SchoolFragment extends BaseFragment {
     private void getData() {
         //String.valueOf(letter)
         char letter = 'A';
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 3; i++) {
 
             dataList.add(new StudentBean(1, String.valueOf(letter)));
 

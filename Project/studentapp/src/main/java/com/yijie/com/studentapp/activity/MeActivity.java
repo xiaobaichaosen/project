@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.yijie.com.studentapp.R;
 import com.yijie.com.studentapp.base.BaseActivity;
 import com.yijie.com.studentapp.niorgai.StatusBarCompat;
+import com.yijie.com.studentapp.utils.LogUtil;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
+import com.yijie.com.studentapp.view.AppBarStateChangeListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +55,10 @@ public class MeActivity extends BaseActivity {
     RelativeLayout helpFeedback;
     @BindView(R.id.settings)
     RelativeLayout settings;
+    @BindView(R.id.rl_root)
+    RelativeLayout rlRoot;
+    @BindView(R.id.tv_newAppointmenttime)
+    TextView tvNewAppointmenttime;
 
     @Override
     public void setContentView() {
@@ -65,25 +71,25 @@ public class MeActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.collect_position:
-                ShowToastUtils.showToastMsg(this,"收藏职位");
+                ShowToastUtils.showToastMsg(this, "收藏职位");
                 break;
 
             case R.id.subscribe_position:
-                ShowToastUtils.showToastMsg(this,"订阅职位");
+                ShowToastUtils.showToastMsg(this, "订阅职位");
                 break;
 
             case R.id.focus_kendergard:
-                ShowToastUtils.showToastMsg(this,"关注园所");
+                ShowToastUtils.showToastMsg(this, "关注园所");
                 break;
             case R.id.position_consultant:
-            ShowToastUtils.showToastMsg(this,"我的职业顾问");
+                ShowToastUtils.showToastMsg(this, "我的职业顾问");
 
-            break;
+                break;
             case R.id.help_feedback:
-                ShowToastUtils.showToastMsg(this,"帮助与反馈");
+                ShowToastUtils.showToastMsg(this, "帮助与反馈");
                 break;
             case R.id.settings:
-                ShowToastUtils.showToastMsg(this,"设置");
+                ShowToastUtils.showToastMsg(this, "设置");
                 break;
         }
     }
@@ -94,6 +100,28 @@ public class MeActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("");
         StatusBarCompat.setStatusBarColorForCollapsingToolbar(this, appbar, collapsingToolbar, toolbar, getResources().getColor(R.color.colorTheme));
+
+        appbar.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state, int i) {
+                if (state == State.EXPANDED) {
+                    LogUtil.e("EXPANDED===" + i);
+                    //展开状态
+                    rlRoot.setAlpha(1.0f);
+                } else if (state == State.COLLAPSED) {
+                    LogUtil.e("COLLAPSED===" + i);
+                    //折叠状态
+                    rlRoot.setAlpha(0.0f);
+
+                } else {
+                    rlRoot.setAlpha(0.3f);
+                    //中间状态
+
+                }
+            }
+
+        });
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

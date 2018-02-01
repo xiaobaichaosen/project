@@ -45,13 +45,13 @@
             />
 
 
-
         <RadioButton
             android:id="@+id/radio_discover"
             style="@style/main_tab"
             android:drawableTop="@drawable/icon_discover"
             android:text="发现"
             />
+
     </RadioGroup>
 
     <View
