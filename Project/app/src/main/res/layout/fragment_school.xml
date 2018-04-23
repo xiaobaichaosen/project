@@ -25,14 +25,14 @@
                 android:textColor="@color/action_bar_text_color"
                 android:paddingLeft="@dimen/base_dimen_26"
                 android:layout_centerVertical="true"
-                android:drawableLeft="@mipmap/new_school"
+                android:drawableLeft="@mipmap/arrow_back"
 
                 android:textSize="@dimen/base_dimen_32" />
 
 
             <RelativeLayout
                 android:layout_marginLeft="45dp"
-                android:layout_marginRight="45dp"
+                android:layout_marginRight="@dimen/base_dimen_155"
                 android:background="@color/searchEditColor"
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
@@ -54,12 +54,10 @@
                     android:background="@null"
                     android:layout_height="match_parent"
                     android:paddingLeft="@dimen/base_dimen_8"
+                    android:textColor="@color/colorPrimary"
                     android:textColorHint="@color/colorPrimary"
                     android:hint="搜索"
                     android:layout_width="match_parent"
-
-
-
                     android:textSize="14sp"/>
 
 
@@ -87,6 +85,18 @@
                 android:padding="@dimen/base_dimen_18"
                 android:src="@mipmap/student_grounp_more"
                />
+            <ImageView
+                android:id="@+id/iv_new"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/action_item"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/base_dimen_20"
+                android:padding="@dimen/base_dimen_18"
+                android:src="@mipmap/new_school"
+                />
+
 
 
         </RelativeLayout>

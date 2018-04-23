@@ -31,6 +31,7 @@ import com.yijie.com.studentapp.base.BaseActivity;
 import com.yijie.com.studentapp.utils.AppInstallUtils;
 import com.yijie.com.studentapp.utils.KeyBoardHelper;
 import com.yijie.com.studentapp.utils.LogUtil;
+import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
 
 import org.json.JSONException;
@@ -91,14 +92,6 @@ public class LoginActivity extends BaseActivity {
     private KeyBoardHelper boardHelper;
     private int bottomHeight;
 
-    Handler hander = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-
-        }
-    };
     private MyCountDownTimer myCountDownTimer;
 
     @Override
@@ -190,6 +183,8 @@ public class LoginActivity extends BaseActivity {
                     btnSubmit.setText("下一步");
                     cbIsVisiable.setVisibility(View.GONE);
                     tvVerviCode.setVisibility(View.VISIBLE);
+                    etPassWord.setText("");
+
                 }
                 break;
 
@@ -203,53 +198,59 @@ public class LoginActivity extends BaseActivity {
 
         switch (view.getId()) {
             case R.id.btnSubmit:
-                Intent intent = new Intent();
-//                loading.showLoading();
                 if (btnSubmit.getText().toString().trim().equals("登陆")){
-                                intent.setClass(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                    loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
+                        @Override
+                        public void beforLogin() {
+                            dialog.show();
+                        }
+
+                        @Override
+                        public void onLoginSuccess(String success) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(success);
+                                LogUtil.e("==="+jsonObject);
+                                String status = jsonObject.getString("status");
+                                if (status.equals("ok")) {
+                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
+                                    JSONObject jsonObject2 = jsonObject.getJSONObject("result");
+                                    String bytes = jsonObject2.getString("bytes");
+                                    String user_phone = jsonObject2.getString("user_phone");
+                                    Integer user_id = jsonObject2.getInt("id");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this,"image",bytes);
+                                    SharedPreferencesUtils.setParam(LoginActivity.this,"user_phone",user_phone);
+                                    SharedPreferencesUtils.setParam(LoginActivity.this,"user_id",user_id);
+                                    Intent intent = new Intent();
+                                    intent.putExtra("image",bytes);
+                                    intent.setClass(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    dialog.dismiss();
+                                    finish();
+                                } else {
+                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
+                                    dialog.dismiss();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onLoginFail(Exception error) {
+                            dialog.dismiss();
+
+                        }
+
+                    });
                 }else {
+                    Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, PassWordActivity.class);
                     startActivity(intent);
-                    finish();
+//                    finish();
                 }
 
-//                loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
-//                    @Override
-//                    public void beforLogin() {
-//                        dialog.show();
-//                    }
-//
-//                    @Override
-//                    public void onLoginSuccess(String success) {
-//                        LogUtil.e(success);
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(success);
-//                            String status = jsonObject.getString("status");
-//                            if (status.equals("ok")) {
-//
-//                                ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
-//                                Intent intent = new Intent();
-//                                intent.setClass(LoginActivity.this, MainActivity.class);
-//                                startActivity(intent);
-//                                finish();
-//                            } else {
-//                                ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
-//                            }
-//                            dialog.dismiss();
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onLoginFail(Exception error) {
-//                        dialog.dismiss();
-//
-//                    }
-//
-//                });
+
 //
                 break;
             //qq登陆

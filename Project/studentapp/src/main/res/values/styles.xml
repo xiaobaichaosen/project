@@ -38,18 +38,29 @@
         <item name="android:taskToBackEnterAnimation">@null</item>
         <item name="android:taskToBackExitAnimation">@null</item>
     </style>
+    -<style parent="@android:style/Theme.Dialog" name="mystyle2">
 
+    <item name="android:windowFrame">@null</item>
+
+    <item name="android:windowIsFloating">true</item>
+
+    <item name="android:windowIsTranslucent">false</item>
+
+    <item name="android:windowNoTitle">true</item>
+
+    <item name="android:backgroundDimEnabled">true</item>
+
+</style>
 <!--tab-->
     <style name="main_tab">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">12dp</item>
         <item name="android:layout_weight">1.0</item>
         <item name="android:button">@null</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
         <item name="android:paddingTop">5dp</item>
-        <item name="android:singleLine">true</item>
         <item name="android:textColor">@drawable/tab_textcolor</item>
     </style>
 
@@ -129,5 +140,10 @@
 
     <style name="pdStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/pd_checkbox_style</item>
+    </style>
+
+    <style name="PopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
 </resources>

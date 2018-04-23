@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content">
+    <include
+        android:id="@+id/app_title"
+        layout="@layout/app_title"/>
+    <LinearLayout
+        android:layout_margin="@dimen/base_dimen_10"
+        android:orientation="vertical"
+        android:background="@color/app_background"
+        android:layout_below="@+id/app_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:padding="@dimen/base_dimen_8"
+            android:layout_height="@dimen/base_dimen_500"
+            android:layout_alignParentBottom="true"
+
+            android:layout_alignParentStart="true"
+            android:background="@null"
+            android:gravity="left"
+
+            android:hint="请输入自我评价"
+            android:maxLength="2000"
+            android:paddingBottom="@dimen/base_dimen_20"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+        <TextView
+            android:id="@+id/tv_num"
+            android:text="dd"
+            android:padding="@dimen/base_dimen_8"
+            android:layout_width="match_parent"
+            android:gravity="right"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>

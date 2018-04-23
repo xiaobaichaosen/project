@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  */
 public class CodeInput extends View {
 
-    private static final int DEFAULT_CODES = 6;
+    private static final int DEFAULT_CODES = 4;
     private static final Pattern KEYCODE_PATTERN = Pattern.compile("KEYCODE_(\\w)");
     private FixedStack<Character> characters;
     private Underline underlines[];
@@ -102,7 +102,7 @@ public class CodeInput extends View {
         hintX = 0;
         hintActualMarginBottom = 0;
         underlineAmount = DEFAULT_CODES;
-        reduction = 0.0F;
+        reduction = 100.0F;
     }
 
     private void initCustomAttributes(AttributeSet attributeset) {
@@ -264,7 +264,7 @@ public class CodeInput extends View {
             return false;
         }
     }
-    
+
     /**
      * When a touch is detected the view need to focus and animate if is necessary
      */
@@ -283,9 +283,9 @@ public class CodeInput extends View {
     @Override protected void onDraw(Canvas canvas) {
         for (int i = 0; i < underlines.length; i++) {
             Underline sectionpath = underlines[i];
-            float fromX = sectionpath.getFromX() + reduction;
+            float fromX = sectionpath.getFromX() + reduction/2*3;
             float fromY = sectionpath.getFromY();
-            float toX = sectionpath.getToX() - reduction;
+            float toX = sectionpath.getToX() + reduction;
             float toY = sectionpath.getToY();
             drawSection(i, fromX, fromY, toX, toY, canvas);
             if (characters.size() > i ) {

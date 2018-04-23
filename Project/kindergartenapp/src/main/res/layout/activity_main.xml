@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:layout_marginBottom="8dp"
+        />
+    <RadioGroup
+        android:id="@+id/main_tab_RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_96"
+        android:layout_gravity="bottom"
+        android:background="#F7F7F8"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+        <com.yijie.com.kindergartenapp.view.BadgeRadioButton
+            android:id="@+id/radio_student"
+            style="@style/main_tab"
+            android:drawableTop="@drawable/icon_student"
+            android:text="学生"
+            />
+        <RadioButton
+            android:id="@+id/radio_school"
+            style="@style/main_tab"
+
+            android:drawableTop="@drawable/icon_school"
+            android:text="学校"
+            />
+        <com.yijie.com.kindergartenapp.view.BadgeRadioButton
+            android:id="@+id/radio_kindergarten"
+            style="@style/main_tab"
+            android:drawableTop="@drawable/icon_kindergarten"
+            android:text="园所"
+            />
+
+
+        <RadioButton
+            android:id="@+id/radio_discover"
+            style="@style/main_tab"
+            android:drawableTop="@drawable/icon_discover"
+            android:text="发现"
+            />
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/bottom_shadow" />
+
+</LinearLayout>

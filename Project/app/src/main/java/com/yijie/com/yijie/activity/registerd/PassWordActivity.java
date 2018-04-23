@@ -81,7 +81,7 @@ public class PassWordActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.tv_toHome:
 //              dialog.show();
-                regist(phoneNumber,null);
+                regist(phoneNumber,"");
 //                dialog.dismiss();
                 break;
 
@@ -109,7 +109,7 @@ public class PassWordActivity extends BaseActivity {
     public void regist(String phone,String password){
         //请求网络
 
-        HttpUtils instance = HttpUtils.getinstance();
+        HttpUtils instance = HttpUtils.getinstance(PassWordActivity.this);
         Map map=new HashMap();
         map.put("phone",phone);
         map.put("password",password);

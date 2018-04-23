@@ -9,7 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/photoview" />
+            <option value="$PROJECT_DIR$/kindergartenapp" />
             <option value="$PROJECT_DIR$/pickerview" />
             <option value="$PROJECT_DIR$/studentapp" />
           </set>

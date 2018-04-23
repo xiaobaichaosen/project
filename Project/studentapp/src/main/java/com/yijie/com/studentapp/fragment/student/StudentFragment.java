@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.yijie.com.studentapp.R;
 import com.yijie.com.studentapp.base.BaseFragment;
+import com.yijie.com.studentapp.utils.ShowToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +46,7 @@ public class StudentFragment extends BaseFragment {
     protected void initData() {
 
     }
+
   @OnClick({R.id.btn_start})
   public void Click(View view){
       switch (view.getId()){
@@ -57,6 +59,12 @@ public class StudentFragment extends BaseFragment {
       }
 
   }
+
+
+    @Override
+    protected void lazyLoad() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

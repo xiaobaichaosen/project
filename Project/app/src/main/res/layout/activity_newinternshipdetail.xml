@@ -217,8 +217,6 @@
 
             android:textColor="#808080"
             />
-
-
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -226,7 +224,40 @@
 
             android:background="@color/app_background"
             />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/to_newintershipmoney"
+        android:layout_height="@dimen/base_dimen_86">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_centerVertical="true"
+            android:text="实习薪资" />
+
+        <TextView
+            android:id="@+id/tv_newintershipmoney"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+
+            android:textColor="#808080"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_2"
+
+            android:background="@color/app_background"
+            />
     </RelativeLayout>
 
 </LinearLayout>

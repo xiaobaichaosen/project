@@ -36,7 +36,7 @@ public class LoginModel implements ILoginModel {
 
             @Override
             public void onFailure(Request request, Exception e) {
-
+                callBack.onLoginFail(e);
             }
 
             @Override

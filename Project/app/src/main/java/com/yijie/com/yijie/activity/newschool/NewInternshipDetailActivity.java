@@ -1,14 +1,13 @@
 package com.yijie.com.yijie.activity.newschool;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lvfq.pickerview.TimePickerView;
-import com.yijie.com.yijie.MainActivity;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.db.ContactBean;
@@ -16,13 +15,11 @@ import com.yijie.com.yijie.db.DatabaseAdapter;
 import com.yijie.com.yijie.utils.ViewUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
-import okhttp3.internal.Util;
 
 /**
  * Created by 奕杰平台 on 2018/1/2.
@@ -64,6 +61,8 @@ public class NewInternshipDetailActivity extends BaseActivity {
     TextView tvNewAppointmenttime;
     @BindView(R.id.to_newAppointmenttime)
     RelativeLayout toNewAppointmenttime;
+    @BindView(R.id.to_newintershipmoney)
+    RelativeLayout toNewintershipmoney;
     private ContactBean contactBean;
     //学历集合
     private ArrayList<String> educationList = new ArrayList<String>();
@@ -94,9 +93,6 @@ public class NewInternshipDetailActivity extends BaseActivity {
         initData();
 
 
-
-
-
     }
 
     private void initData() {
@@ -104,8 +100,8 @@ public class NewInternshipDetailActivity extends BaseActivity {
         educationList.add(new String("大专"));
         educationList.add(new String("本科"));
 
-        for (int i=1;i<=12;i++){
-            monthList.add(new String(i+"月"));
+        for (int i = 1; i <= 12; i++) {
+            monthList.add(new String(i + "月"));
         }
         typeList.add(new String("定岗实习1"));
         typeList.add(new String("定岗实习2"));
@@ -118,7 +114,7 @@ public class NewInternshipDetailActivity extends BaseActivity {
 
 
         modiftyContactBean = (ContactBean) getIntent().getSerializableExtra("internshipModify");
-        if (modiftyContactBean!=null){
+        if (modiftyContactBean != null) {
             tvNewEducation.setText(modiftyContactBean.getSchoolEduction());
             tvNewMonth.setText(modiftyContactBean.getSchoolMonth());
             tvNewType.setText(modiftyContactBean.getSchoolType());
@@ -135,24 +131,25 @@ public class NewInternshipDetailActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.back,R.id.to_newEducation,R.id.to_newMonth,R.id.to_newType,R.id.to_line,R.id.to_newAppointmenttime,R.id.tv_recommend})
+    @OnClick({R.id.back, R.id.to_newEducation, R.id.to_newMonth, R.id.to_newType, R.id.to_line, R.id.to_newAppointmenttime, R.id.tv_recommend, R.id.to_newintershipmoney})
     public void Click(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.back:
                 finish();
                 break;
-            case R.id. to_newEducation:
+            case R.id.to_newEducation:
 
 
                 ViewUtils.alertBottomWheelOption(NewInternshipDetailActivity.this, educationList, new ViewUtils.OnWheelViewClick() {
                     @Override
                     public void onClick(View view, int postion) {
-                      tvNewEducation.setText(educationList.get(postion));
+                        tvNewEducation.setText(educationList.get(postion));
                     }
 
-            });
+                });
                 break;
-            case R.id. to_newMonth:
+            case R.id.to_newMonth:
 
 
                 ViewUtils.alertBottomWheelOption(NewInternshipDetailActivity.this, monthList, new ViewUtils.OnWheelViewClick() {
@@ -163,7 +160,7 @@ public class NewInternshipDetailActivity extends BaseActivity {
 
                 });
                 break;
-            case R.id. to_newType:
+            case R.id.to_newType:
 
 
                 ViewUtils.alertBottomWheelOption(NewInternshipDetailActivity.this, typeList, new ViewUtils.OnWheelViewClick() {
@@ -175,7 +172,7 @@ public class NewInternshipDetailActivity extends BaseActivity {
                 });
                 break;
 
-            case R.id. to_line:
+            case R.id.to_line:
 
 
                 ViewUtils.alertBottomWheelOption(NewInternshipDetailActivity.this, lineList, new ViewUtils.OnWheelViewClick() {
@@ -186,29 +183,36 @@ public class NewInternshipDetailActivity extends BaseActivity {
 
                 });
                 break;
-            case R.id. to_newAppointmenttime:
-                TimePickerView.Type  type = TimePickerView.Type.YEAR_MONTH_DAY;
+            case R.id.to_newintershipmoney:
+
+
+                intent.setClass(this, NewIntershipMoney.class);
+                startActivity(intent);
+                break;
+
+            case R.id.to_newAppointmenttime:
+                TimePickerView.Type type = TimePickerView.Type.YEAR_MONTH_DAY;
                 String format = "yyyy-MM-dd";
                 ViewUtils.alertTimerPicker(this, type, format, new ViewUtils.TimerPickerCallBack() {
                     @Override
                     public void onTimeSelect(String date) {
-                      tvNewAppointmenttime.setText(date);
+                        tvNewAppointmenttime.setText(date);
                     }
                 });
                 break;
             case R.id.tv_recommend:
 
 //                contactBean.setSchoolMode(t.getText().toString().trim());
-                ContactBean newContactBean=new ContactBean();
+                ContactBean newContactBean = new ContactBean();
                 newContactBean.setSchoolEduction(tvNewEducation.getText().toString().trim());
                 newContactBean.setSchoolMonth(tvNewMonth.getText().toString().trim());
                 newContactBean.setSchoolType(tvNewType.getText().toString().trim());
                 newContactBean.setSchoolLine(tvLine.getText().toString().trim());
                 newContactBean.setSchoolTime(tvNewAppointmenttime.getText().toString().trim());
-                if (modiftyContactBean!=null){
+                if (modiftyContactBean != null) {
                     newContactBean.setId(modiftyContactBean.getId());
                     DatabaseAdapter.getIntance(NewInternshipDetailActivity.this).update(newContactBean);
-                }else {
+                } else {
                     DatabaseAdapter.getIntance(NewInternshipDetailActivity.this).inserInfo(newContactBean);
                 }
                 EventBus.getDefault().post("schoolInternshipDetail");

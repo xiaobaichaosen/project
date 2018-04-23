@@ -85,7 +85,7 @@ public class RegisteredActivity extends BaseActivity {
                 }else{
                     //请求网络
 
-                    HttpUtils getinstance = HttpUtils.getinstance();
+                    HttpUtils getinstance = HttpUtils.getinstance(RegisteredActivity.this);
 
                     getinstance.get(Constant.getRegistCodeUrl+"?phone="+phoneNumber, new BaseCallback<String>() {
                         @Override

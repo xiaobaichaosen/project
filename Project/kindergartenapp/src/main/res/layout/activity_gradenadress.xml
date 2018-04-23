@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include
+        layout="@layout/app_title"/>
+    <RelativeLayout
+        android:id="@+id/rl_gradAdress"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/base_dimen_90">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/base_dimen_30"
+            android:text="园所地址" />
+        <ImageView
+            android:layout_centerVertical="true"
+            android:padding="@dimen/base_dimen_20"
+            android:id="@+id/iv_goright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="园所全称"
+            android:layout_toLeftOf="@+id/iv_goright"
+            />
+
+    </RelativeLayout>
+<EditText
+    android:layout_width="match_parent"
+    android:hint="请输入园所详细地址"
+    android:layout_height="wrap_content" />
+</LinearLayout>

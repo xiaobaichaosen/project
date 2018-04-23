@@ -13,8 +13,8 @@ import android.widget.ImageView;
 
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.newschool.NewSchoolActivity;
-import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.activity.school.SchoolActivity;
+import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.base.BaseFragment;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
@@ -50,20 +50,26 @@ public class SchoolFragment extends BaseFragment {
 
     @BindView(R.id.action_item)
     ImageView action_item;
+    @BindView(R.id.iv_new)
+    ImageView ivNew;
     private List<StudentBean> dataList = new ArrayList<>();
     private OnButtonClick onButtonClick;//2、定义接口成员变量
+
     //定义接口变量的get方法
     public OnButtonClick getOnButtonClick() {
         return onButtonClick;
     }
+
     //定义接口变量的set方法
     public void setOnButtonClick(OnButtonClick onButtonClick) {
         this.onButtonClick = onButtonClick;
     }
+
     //1、定义接口
-    public interface OnButtonClick{
+    public interface OnButtonClick {
         public void onClick(View view);
     }
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_school;
@@ -88,14 +94,14 @@ public class SchoolFragment extends BaseFragment {
             public void onClick(View view) {
 //                getFragmentManager().beginTransaction().replace()
 //4、如果接口成员变量不为空null，则调用接口变量的方法。
-                if(onButtonClick!=null){
+                if (onButtonClick != null) {
                     onButtonClick.onClick(view);
                 }
             }
         });
 
 
-        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList,R.layout.school_adapter_item);
+        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList, R.layout.school_adapter_item);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
         recyclerView.setAdapter(loadMoreWrapper);
@@ -171,18 +177,22 @@ public class SchoolFragment extends BaseFragment {
             letter++;
         }
     }
-    @OnClick({R.id.back})
-    public void Click(View view){
-        switch (view.getId()){
-            case R.id.back:
-             Intent intent=new Intent();
-             intent.setClass(mActivity, NewSchoolActivity.class);
-             startActivity(intent);
-                break;
 
+    @OnClick({R.id.back,R.id.iv_new})
+    public void Click(View view) {
+        switch (view.getId()) {
+            case R.id.iv_new:
+                Intent intent = new Intent();
+                intent.setClass(mActivity, NewSchoolActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.back:
+               mActivity.finish();
+                break;
         }
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view

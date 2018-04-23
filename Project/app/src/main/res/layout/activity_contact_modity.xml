@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/app_title"
+        layout="@layout/app_title"/>
+<TextView
+    android:layout_below="@+id/app_title"
+    android:id="@+id/tv_addContact"
+    android:background="@color/colorPrimary"
+  android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:layout_width="wrap_content"
+    android:text="添加联系人"
+    android:drawableLeft="@mipmap/add_contact"
+    android:layout_height="@dimen/base_dimen_80" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/tv_addContact"
+        android:id="@+id/recyclerView"
+        style="@style/layout_mm"
+        android:layout_marginBottom="@dimen/base_dimen_80"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:id="@+id/ll_commit"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:gravity="bottom"
+        android:layout_height="@dimen/base_dimen_80"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_delect"
+            android:text="删除 "
+            android:textColor="#5a5a5a"
+            android:padding="@dimen/base_dimen_9"
+            android:layout_width="0dp"     android:textSize="@dimen/base_dimen_40"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_height="@dimen/base_dimen_80"
+            android:src="@mipmap/shool_pictor" />
+
+        <TextView
+            android:id="@+id/tv_confim"
+            android:text="确定"
+            android:background="#fcb519"
+            android:textSize="@dimen/base_dimen_40"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:padding="@dimen/base_dimen_9"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/base_dimen_80"
+            android:src="@mipmap/shool_pictor" />
+
+
+    </LinearLayout>
+</RelativeLayout>

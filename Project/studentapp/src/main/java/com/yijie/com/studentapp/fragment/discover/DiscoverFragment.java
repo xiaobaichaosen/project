@@ -35,6 +35,12 @@ public class DiscoverFragment extends BaseFragment {
         back.setVisibility(View.GONE);
     }
 
+
+    @Override
+    protected void lazyLoad() {
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view

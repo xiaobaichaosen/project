@@ -9,38 +9,95 @@
     <include
         android:id="@+id/app_title"
         layout="@layout/app_title"/>
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
+
         android:layout_width="match_parent"
-        android:background="@color/action_bar_bg"
-        android:layout_marginTop="@dimen/base_dimen_2"
-        android:paddingRight="@dimen/base_dimen_30"
-        android:layout_height="@dimen/base_dimen_80">
+        android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+        android:background="@color/colorTheme"
+        android:padding="@dimen/base_dimen_26"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/tv_contact"
+            android:layout_width="0dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_dimen_8"
+            android:drawableTop="@mipmap/iv_qq"
+            android:text="联系方式"
+            />
 
         <TextView
-          android:id="@+id/tv_develop"
-            android:layout_width="wrap_content"
-          android:gravity="center_vertical"
-            android:textSize="@dimen/base_dimen_28"
-            android:textColor="#4d4d4d"
-            android:layout_alignParentRight="true"
-            android:text="开发"
-            android:drawableRight="@mipmap/arrow_down"
-            android:layout_height="match_parent" />
-
+            android:id="@+id/tv_memorandum"
+            android:gravity="center"
+            android:padding="@dimen/base_dimen_8"
+            android:layout_width="0dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/iv_qq"
+            android:text="备忘录"
+            />
         <TextView
-            android:textSize="@dimen/base_dimen_28"
-            android:textColor="#4d4d4d"
-            android:gravity="center_vertical"
-            android:id="@+id/tv_give"
-            android:layout_width="wrap_content"
-           android:layout_toLeftOf="@+id/tv_develop"
-            android:text="授权转移"
-            android:drawableRight="@mipmap/arrow_down"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerView"/>
+            android:id="@+id/tv_newSchoolSample"
+            android:padding="@dimen/base_dimen_8"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/iv_qq"
+            android:text="学校简历"
+            />
+        <TextView
+            android:id="@+id/tv_InternshipDetail"
+            android:padding="@dimen/base_dimen_8"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/iv_qq"
+            android:text="实习详情"
+            />
+        <TextView
+            android:id="@+id/tv_trainDetail"
+            android:padding="@dimen/base_dimen_8"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/iv_qq"
+            android:text="培训详情"
+            />
 
+    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            >
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                style="@style/layout_mm" />
+        </RelativeLayout>
+    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

@@ -2,9 +2,12 @@ package com.yijie.com.studentapp.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.yijie.com.studentapp.R;
@@ -16,8 +19,8 @@ import com.yijie.com.studentapp.R;
 public class CommomDialog extends Dialog implements View.OnClickListener{
     private TextView contentTxt;
     private TextView titleTxt;
-    private TextView submitTxt;
-    private TextView cancelTxt;
+    private Button submitTxt;
+    private Button cancelTxt;
 
     private Context mContext;
     private String content;
@@ -25,6 +28,9 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private String positiveName;
     private String negativeName;
     private String title;
+    private String buttonContent;
+    private Button submit;
+    private Boolean isVisable;
 
     public CommomDialog(Context context) {
         super(context);
@@ -58,7 +64,10 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         this.title = title;
         return this;
     }
-
+    public CommomDialog setPostionButtonContent(String buttonContent){
+        this.buttonContent = buttonContent;
+        return this;
+    }
     public CommomDialog setPositiveButton(String name){
         this.positiveName = name;
         return this;
@@ -68,7 +77,11 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         this.negativeName = name;
         return this;
     }
+    public CommomDialog setNegativeButtonVisable(Boolean b){
+        this.isVisable=b;
 
+        return this;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,14 +93,16 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private void initView(){
         contentTxt = (TextView)findViewById(R.id.content);
         titleTxt = (TextView)findViewById(R.id.title);
-        submitTxt = (TextView)findViewById(R.id.submit);
+
+        submitTxt = (Button)findViewById(R.id.submit);
         submitTxt.setOnClickListener(this);
-        cancelTxt = (TextView)findViewById(R.id.cancel);
+        cancelTxt = (Button)findViewById(R.id.cancel);
         cancelTxt.setOnClickListener(this);
 
         contentTxt.setText(content);
         if(!TextUtils.isEmpty(positiveName)){
             submitTxt.setText(positiveName);
+
         }
 
         if(!TextUtils.isEmpty(negativeName)){
@@ -96,6 +111,12 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
 
         if(!TextUtils.isEmpty(title)){
             titleTxt.setText(title);
+        }
+        if (isVisable){
+            cancelTxt.setVisibility(View.GONE);
+            submitTxt.setBackground(null);
+            submitTxt.setGravity(Gravity.RIGHT);
+            submitTxt.setTextColor(Color.parseColor("#3F51B5"));
         }
 
     }

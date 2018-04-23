@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        style="@style/layout_mw">
+        <TextView
+            android:id="@+id/school_name"
+            style="@style/layout_ww"
+
+            android:text="国际幼稚园"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:id="@+id/tv_data"
+            style="@style/layout_ww"
+
+            android:text="2017/09/28"
+            android:textColor="#999999"
+            android:textSize="@dimen/base_dimen_22" />
+
+    </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:text="实习人数 5人"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

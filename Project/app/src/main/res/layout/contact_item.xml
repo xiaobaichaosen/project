@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:paddingLeft="@dimen/base_dimen_20"
+        android:layout_width="wrap_content"
+        android:text="王老师"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_1"
+        android:background="#ECECEC" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingLeft="@dimen/base_dimen_20"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="手机"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:text="123131"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:layout_marginBottom="@dimen/base_dimen_20"
+            android:layout_width="@dimen/base_dimen_1"
+            android:layout_height="match_parent"
+            android:background="#ECECEC" />
+        <LinearLayout
+            android:paddingLeft="@dimen/base_dimen_20"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="座机"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_zjNumber"
+                android:layout_width="wrap_content"
+                android:text="123131"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+
+        android:layout_height="@dimen/base_dimen_1"
+        android:background="#ECECEC" />
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingLeft="@dimen/base_dimen_20"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="微信"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_wxNumber"
+                android:layout_width="wrap_content"
+                android:text="123131"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:layout_marginBottom="@dimen/base_dimen_20"
+            android:layout_width="@dimen/base_dimen_1"
+            android:layout_height="match_parent"
+            android:background="#ECECEC" />
+        <LinearLayout
+            android:paddingLeft="@dimen/base_dimen_20"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="QQ"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_qqNumber"
+                android:layout_width="wrap_content"
+                android:text="123131"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_1"
+        android:background="#ECECEC" />
+</LinearLayout>

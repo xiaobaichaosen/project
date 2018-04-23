@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <include layout="@layout/app_title"/>
+
+            <EditText
+                android:layout_toRightOf="@+id/iv"
+                android:id="@+id/keyWord"
+                android:background="@drawable/edittext_shap"
+                android:layout_height="@dimen/base_dimen_70"
+                android:paddingLeft="@dimen/base_dimen_8"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_marginLeft="@dimen/base_dimen_30"
+                android:layout_marginRight="@dimen/base_dimen_30"
+                android:textColorHint="@color/colorTheme"
+                android:hint="搜索"
+                android:layout_width="match_parent"
+                android:textSize="14sp"/>
+
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/base_dimen_480" />
+    <TextView
+        android:id="@+id/tv_school"
+        android:textColor="@color/colorTheme"
+        android:textSize="@dimen/base_dimen_32"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/base_dimen_90" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:background="@color/colorPrimary"
+        android:id="@+id/swipe_refresh_layout"
+        style="@style/layout_mm"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            style="@style/layout_mm" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

@@ -23,39 +23,35 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         >
-
-        <RadioButton
-            android:id="@+id/radio_school"
-            style="@style/main_tab"
-
-            android:drawableTop="@drawable/icon_school"
-            android:text="学校"
-            />
-        <RadioButton
-            android:id="@+id/radio_kindergarten"
-            android:layout_gravity="center_horizontal"
-            style="@style/main_tab"
-            android:drawableTop="@drawable/icon_kindergarten"
-            android:text="园所"
-            />
         <RadioButton
             android:id="@+id/radio_logo"
             style="@style/main_tab"
             android:drawableTop="@drawable/icon_logo"
             android:text="YIJIE"
             />
+
         <RadioButton
-            android:id="@+id/radio_student"
+            android:id="@+id/radio_kindergarten"
             style="@style/main_tab"
-            android:drawableTop="@drawable/icon_student"
-            android:text="学生"
+            android:drawableTop="@drawable/icon_find"
+            android:text="发现"
             />
+
+        <RadioButton
+            android:id="@+id/radio_school"
+
+            android:layout_gravity="center_horizontal"
+            style="@style/main_tab"
+            android:drawableTop="@drawable/icon_kindergarten"
+            android:text="通讯录"
+            />
+
 
         <RadioButton
             android:id="@+id/radio_discover"
             style="@style/main_tab"
             android:drawableTop="@drawable/icon_discover"
-            android:text="发现"
+            android:text="我的"
             />
     </RadioGroup>
 

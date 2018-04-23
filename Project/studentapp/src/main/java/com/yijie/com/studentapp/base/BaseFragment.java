@@ -1,6 +1,7 @@
 package com.yijie.com.studentapp.base;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.tu.loadingdialog.LoadingDailog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -19,6 +22,8 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
     protected Activity mActivity;
     Unbinder unbinder;
+    public Dialog dialog;
+
     /**
      * 获得全局的，防止使用getActivity()为空
      * @param context
@@ -28,6 +33,30 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(context);
         this.mActivity = (Activity)context;
     }
+
+    protected boolean isVisible;
+    protected boolean isPrepared;
+    /**
+     * 在这里实现Fragment数据的缓加载.
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(getUserVisibleHint()) {
+            isVisible = true;
+            onVisible();
+        } else {
+//            isVisible = false;
+//            onInvisible();
+
+        }
+    }
+    protected void onVisible(){
+        lazyLoad();
+    }
+    protected abstract void lazyLoad();
+//    protected abstract void onInvisible();
 //    /**
 //     * 打开activity
 //     */
@@ -49,7 +78,12 @@ public abstract class BaseFragment extends Fragment {
             , Bundle savedInstanceState) {
         View view = LayoutInflater.from(mActivity)
                 .inflate(getLayoutId(), container, false);
+        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(mActivity)
+                .setMessage("加载中...")
+                .setCancelable(true)
+                .setCancelOutside(true);
 
+        dialog = loadBuilder.create();
         unbinder = ButterKnife.bind(this, view);
         return view;
     }

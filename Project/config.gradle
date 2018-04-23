@@ -1,0 +1,49 @@
+ext {
+
+    android = [
+            compileSdkVersion: 26,
+            minSdkVersion : 17,
+            targetSdkVersion : 26,
+            versionCode  : 1,
+            versionName  : "1.0"
+    ]
+
+    dependVersion = [
+            support: "26.1.0"
+    ]
+    dependencies = [
+            // ------------- Android -------------
+//            implementation fileTree(include: ['*.jar'], dir: 'libs')
+            supportV4   : "com.android.support:support-v4:${dependVersion.support}",
+            appcompatV7   : "com.android.support:appcompat-v7:${dependVersion.support}",
+            design    : "com.android.support:design:${dependVersion.support}",
+            junit    : "junit:junit:4.12",
+            cardview:"com.android.support:cardview-v7:${dependVersion.support}",
+            recyclerview:"com.android.support:recyclerview-v7:${dependVersion.support}",
+            // ------------- 网络请求 -------------
+            okhttp    : 'com.squareup.okhttp3:okhttp:3.8.0',
+
+            // ------------- 图片加载 -------------
+
+
+
+
+            // ------------- json解析 -------------
+            fastJson    : 'com.alibaba:fastjson:1.1.54.android',
+            gson     : 'com.google.code.gson:gson:2.8.0',
+
+
+
+            // ------------- ButterKnife -------------
+            butterknife   : 'com.jakewharton:butterknife:8.8.1',
+            butterknifeCompiler : 'com.jakewharton:butterknife-compiler:8.8.1',
+
+            // ------------- other-------------
+            eventbus:"de.greenrobot:eventbus:3.0.0-beta1",
+            imagepicker:"com.lzy.widget:imagepicker:0.5.4",
+            ratingbar:"me.zhanghai.android.materialratingbar:library:1.2.0",
+            constraintlayout:"com.android.support.constraint:constraint-layout:1.0.2",
+            // ------------- 加载等待-------------
+            Loading:"com.github.gittjy:LoadingDialog:1.0.2"
+    ]
+}

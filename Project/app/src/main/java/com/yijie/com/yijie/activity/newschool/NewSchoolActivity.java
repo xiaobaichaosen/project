@@ -12,10 +12,14 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.activity.PoiKeywordSearchActivity;
+import com.yijie.com.yijie.activity.PoiSearchActivity;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
+import com.yijie.com.yijie.bean.SchoolAdress;
 import com.yijie.com.yijie.db.ContactBean;
 import com.yijie.com.yijie.db.DatabaseAdapter;
+import com.yijie.com.yijie.utils.LogUtil;
 import com.yijie.com.yijie.utils.SharedPreferencesUtils;
 import com.yijie.com.yijie.view.OptionsPickerView;
 
@@ -55,7 +59,7 @@ public class NewSchoolActivity extends BaseActivity {
     @BindView(R.id.to_newSchoolAdress)
     RelativeLayout toNewSchoolAdress;
     @BindView(R.id.et_detalAdress)
-    EditText etDetalAdress;
+    TextView etDetalAdress;
 
     @BindView(R.id.tv_newType)
     TextView tvNewType;
@@ -64,10 +68,8 @@ public class NewSchoolActivity extends BaseActivity {
 
     @BindView(R.id.tv_newSchoolSample)
     TextView tvNewSchoolSample;
-    @BindView(R.id.tv_mode)
-    TextView tvMode;
-    @BindView(R.id.to_newSchoolPicture)
-    TextView toNewSchoolPicture;
+
+
     @BindView(R.id.tv_newAppointmenttime)
     TextView tvNewAppointmenttime;
     @BindView(R.id.to_newAppointmenttime)
@@ -82,10 +84,15 @@ public class NewSchoolActivity extends BaseActivity {
     View lineOrV;
     @BindView(R.id.to_newSchoolSample)
     RelativeLayout toNewSchoolSample;
+    @BindView(R.id.to_memorandum)
+    RelativeLayout toMemorandum;
+    @BindView(R.id.toGetAdress)
+    RelativeLayout toGetAdress;
     private OptionsPickerView pvOptions;
     private ArrayList<JsonBean> options1Items = new ArrayList<JsonBean>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<ArrayList<String>>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<ArrayList<ArrayList<String>>>();
+    private MessageBean messageBean;
 
     @Override
     public void setContentView() {
@@ -110,7 +117,7 @@ public class NewSchoolActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.back, R.id.to_newSchoolAdress, R.id.to_newAppointmenttime, R.id.to_newContact,R.id.to_newSchoolSample})
+    @OnClick({R.id.back, R.id.to_newSchoolAdress, R.id.to_newAppointmenttime, R.id.to_newContact, R.id.to_newSchoolSample, R.id.to_memorandum,R.id.toGetAdress})
     public void Click(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -122,15 +129,19 @@ public class NewSchoolActivity extends BaseActivity {
 
                 showOptions();
                 break;
+            case R.id.to_memorandum:
+
+                intent.setClass(this, MemorandumActivity.class);
+                startActivity(intent);
+                break;
             case R.id.to_newAppointmenttime:
                 //实训详情
                 intent.setClass(this, NewInternshipDetailActivity.class);
-                if (tvNewAppointmenttime.getText().equals("已填写"))
-                {
+                if (tvNewAppointmenttime.getText().equals("已填写")) {
                     List<ContactBean> list = DatabaseAdapter.getIntance(this).queryAll();
                     for (int i = 0; i < list.size(); i++) {
-                      ContactBean  contactBean = list.get(i);
-                        if (null==contactBean.getPhoneNumber()){
+                        ContactBean contactBean = list.get(i);
+                        if (null == contactBean.getPhoneNumber()) {
                             Bundle mBundle = new Bundle();
                             mBundle.putSerializable("internshipModify", contactBean);
                             intent.putExtras(mBundle);
@@ -142,7 +153,6 @@ public class NewSchoolActivity extends BaseActivity {
                 startActivity(intent);
 
 
-
                 break;
             case R.id.to_newContact:
 
@@ -150,23 +160,28 @@ public class NewSchoolActivity extends BaseActivity {
                 startActivity(intent);
 
                 break;
+            case R.id.toGetAdress:
+                intent.setClass(this, PoiSearchActivity.class);
+                startActivity(intent);
+
+                break;
             case R.id.to_newSchoolSample:
 
                 intent.setClass(this, NewSchoolIntroduction.class);
-                if (tvNewSchoolSample.getText().equals("已填写"))
-                {
-                    List<ContactBean> list = DatabaseAdapter.getIntance(this).queryAll();
-                    for (int i = 0; i < list.size(); i++) {
-                        ContactBean  contactBean = list.get(i);
-                        if (null==contactBean.getPhoneNumber()){
-                            Bundle mBundle = new Bundle();
-                            mBundle.putSerializable("sampleModify", contactBean);
-                            intent.putExtras(mBundle);
-                            break;
-                        }
-                    }
-
-                }
+//                if (tvNewSchoolSample.getText().equals("已填写")) {
+//                    List<ContactBean> list = DatabaseAdapter.getIntance(this).queryAll();
+//                    for (int i = 0; i < list.size(); i++) {
+//                        ContactBean contactBean = list.get(i);
+//                        if (null == contactBean.getPhoneNumber()) {
+                Bundle mBundle = new Bundle();
+//                            mBundle.putSerializable("sampleModify", contactBean);
+                mBundle.putSerializable("sampleModify", messageBean);
+                intent.putExtras(mBundle);
+//                            break;
+//                        }
+//                    }
+//
+//                }
 
                 startActivity(intent);
 
@@ -178,51 +193,69 @@ public class NewSchoolActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void helloEventBus(String message) {
-       if (message.equals("schoolContact")){
-           final List<ContactBean> list = DatabaseAdapter.getIntance(NewSchoolActivity.this).queryAll();
-           final List<ContactBean> listContact=new ArrayList<ContactBean>();
-           for (int i = 0; i <list.size() ; i++) {
-               ContactBean contactBean = list.get(i);
-               if (null != contactBean.getPhoneNumber()) {
-                   listContact.add(contactBean);
-               }
-           }
-           recyclerView.setVisibility(View.VISIBLE);
-           if (listContact.size() > 0) {
-               toNewContact.setImageResource(R.mipmap.add_contact);
-               lineOrV.setVisibility(View.INVISIBLE);
-           } else {
-               lineOrV.setVisibility(View.VISIBLE);
-               toNewContact.setImageResource(R.mipmap.goright);
-           }
-           recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-           recyclerView.setLayoutManager(new LinearLayoutManager(this));
-           ContactAdapter contactAdapter = null;
-           if (contactAdapter == null) {
-               contactAdapter = new ContactAdapter(this, listContact);
-               recyclerView.setAdapter(contactAdapter);
-           } else {
-               contactAdapter.notifyDataSetChanged();
-           }
-           contactAdapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
-               @Override
-               public void onClick(View v, int position) {
-                   Intent intent = new Intent();
-                   intent.setClass(NewSchoolActivity.this, NewContactActivity.class);
-                   Bundle mBundle = new Bundle();
-                   mBundle.putSerializable("contactModify", listContact.get(position));
-                   intent.putExtras(mBundle);
-                   startActivity(intent);
-               }
-           });
-       }else if (message.equals("schoolIntroduction")){
-           tvNewSchoolSample.setText("已填写");
-       }else if (message.equals("schoolInternshipDetail")){
-           tvNewAppointmenttime.setText("已填写");
-       }
+        if (message.equals("schoolContact")) {
+            final List<ContactBean> list = DatabaseAdapter.getIntance(NewSchoolActivity.this).queryAll();
+            final List<ContactBean> listContact = new ArrayList<ContactBean>();
+            for (int i = 0; i < list.size(); i++) {
+                ContactBean contactBean = list.get(i);
+                if (null != contactBean.getPhoneNumber()) {
+                    listContact.add(contactBean);
+                }
+            }
+            recyclerView.setVisibility(View.VISIBLE);
+            if (listContact.size() > 0) {
+                toNewContact.setImageResource(R.mipmap.add_contact);
+                lineOrV.setVisibility(View.INVISIBLE);
+            } else {
+                lineOrV.setVisibility(View.VISIBLE);
+                toNewContact.setImageResource(R.mipmap.goright);
+            }
+            recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            ContactAdapter contactAdapter = null;
+            if (contactAdapter == null) {
+                contactAdapter = new ContactAdapter(this, listContact);
+                recyclerView.setAdapter(contactAdapter);
+            } else {
+                contactAdapter.notifyDataSetChanged();
+            }
+            contactAdapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
+                @Override
+                public void onClick(View v, int position) {
+                    Intent intent = new Intent();
+                    intent.setClass(NewSchoolActivity.this, NewContactActivity.class);
+                    Bundle mBundle = new Bundle();
+                    mBundle.putSerializable("contactModify", listContact.get(position));
+                    intent.putExtras(mBundle);
+                    startActivity(intent);
+                }
+            });
+        } else if (message.equals("schoolIntroduction")) {
 
 
+        } else if (message.equals("schoolInternshipDetail")) {
+            tvNewAppointmenttime.setText("已填写");
+        } else if (message.equals("schooldetailadress")) {
+            etDetalAdress.setText("已填写");
+        }
 
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onEventMainThread(MessageBean event) {
+        if (event != null) {
+            tvNewSchoolSample.setText("已填写");
+            messageBean = event;
+            LogUtil.e("content==" + event.getContent());
+        }
+    }
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void handleSomethingElse(SchoolAdress schoolAdress) {
+        int type = schoolAdress.getType();
+        if (type==2){
+            etDetalAdress.setText(schoolAdress.getName());
+        }
 
     }
 

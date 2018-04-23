@@ -1,6 +1,7 @@
 package com.yijie.com.yijie.activity.school.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.activity.newschool.ContactAdapter;
+import com.yijie.com.yijie.activity.newschool.NewSchoolActivity;
 import com.yijie.com.yijie.activity.school.StudentBean;
+import com.yijie.com.yijie.adapter.ContactRecycleViewAapter;
+import com.yijie.com.yijie.db.ContactBean;
+import com.yijie.com.yijie.db.DatabaseAdapter;
 
 import java.util.List;
 
@@ -145,20 +151,25 @@ public class SchoolAdapterRecyclerView extends RecyclerView.Adapter<RecyclerView
             final CheckBox checkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
             final LinearLayout linearLayout = (LinearLayout) itemView.findViewById(R.id.linearLayout);
             final LinearLayout ll_addContact = (LinearLayout) itemView.findViewById(R.id.ll_addContact);
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if (b){
-                        ll_addContact.setVisibility(View.VISIBLE);
-                        linearLayout.setVisibility(View.GONE);
-                        checkBox.setText("收起");
-                    }else{
-                        checkBox.setText("更多");
-                        ll_addContact.setVisibility(View.GONE);
-                        linearLayout.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
+            RecyclerView recyclerViewContact=(RecyclerView)itemView.findViewById(R.id.recyclerViewContact);
+            recyclerViewContact.setLayoutManager(new LinearLayoutManager(mContext)); // Set LayoutManager in the RecyclerView
+            List<ContactBean> list = DatabaseAdapter.getIntance(mContext).queryAll();
+            ContactRecycleViewAapter   myAdapterRecyclerView = new ContactRecycleViewAapter(mContext, list,R.layout.contact_item); // Create Instance of SchoolAdapterRecyclerView
+            recyclerViewContact.setAdapter(myAdapterRecyclerView); // Set Adapter for RecyclerView
+//            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                    if (b){
+//                        ll_addContact.setVisibility(View.VISIBLE);
+//                        linearLayout.setVisibility(View.GONE);
+//                        checkBox.setText("收起");
+//                    }else{
+//                        checkBox.setText("更多");
+//                        ll_addContact.setVisibility(View.GONE);
+//                        linearLayout.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//            });
 
 
         }

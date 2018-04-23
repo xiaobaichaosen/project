@@ -169,8 +169,6 @@ public class LoginActivity extends BaseActivity {
 
         switch (view.getId()) {
             case R.id.btnSubmit:
-//                loading.showLoading();
-
                 loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
                     @Override
                     public void beforLogin() {

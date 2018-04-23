@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+
+        android:layout_height="@dimen/base_dimen_86">
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="#4d4d4d"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_height="wrap_content"
+            android:text="期间*"
+            />
+
+        <EditText
+            android:id="@+id/tv_newEducation"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:hint="请输入时间"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/to_newSchoolAdress"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#4d4d4d"
+            android:text="薪资*" />
+
+        <EditText
+            android:id="@+id/tv_newSchoolAdress"
+            android:background="@null"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:hint="请输入薪资"
+            android:paddingRight="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_86"
+
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="费用合计"
+                android:textColor="#4d4d4d"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <EditText
+                android:id="@+id/tv_newType"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/to_newContact"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_height="@dimen/base_dimen_4"
+
+                android:background="@color/app_background"
+                />
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/to_newSchoolSample"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#4d4d4d"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp"
+            android:text="学校*" />
+
+
+        <TextView
+            android:id="@+id/tv_newSchoolSample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/to_newAppointmenttime"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#4d4d4d"
+            android:layout_centerVertical="true"
+            android:text="奕杰" />
+
+        <TextView
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/base_dimen_22"
+            android:id="@+id/tv_newAppointmenttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

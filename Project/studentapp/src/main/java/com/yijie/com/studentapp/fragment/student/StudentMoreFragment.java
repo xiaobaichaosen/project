@@ -1,5 +1,8 @@
 package com.yijie.com.studentapp.fragment.student;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,20 +20,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.utils.L;
+import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.GalleryAdapter;
+import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.activity.AttendanceActivity;
 import com.yijie.com.studentapp.activity.ContactWayActivity;
 import com.yijie.com.studentapp.activity.EducationBackgroundActivity;
 import com.yijie.com.studentapp.activity.HonoraryCcertificateActivity;
@@ -42,17 +51,28 @@ import com.yijie.com.studentapp.activity.ResumepreviewActivity;
 import com.yijie.com.studentapp.activity.SelfAssessmentActivity;
 import com.yijie.com.studentapp.activity.SettingActivity;
 import com.yijie.com.studentapp.activity.WorkExperienceActivity;
+import com.yijie.com.studentapp.activity.login.PassWordActivity;
 import com.yijie.com.studentapp.base.BaseFragment;
 import com.yijie.com.studentapp.headportrait.ClipImageActivity;
 import com.yijie.com.studentapp.headportrait.util.FileUtil;
 import com.yijie.com.studentapp.niorgai.StatusBarCompat;
+import com.yijie.com.studentapp.utils.BaseCallback;
+import com.yijie.com.studentapp.utils.HttpUtils;
 import com.yijie.com.studentapp.utils.LogUtil;
-import com.yijie.com.studentapp.view.AppBarStateChangeListener;
+import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
+import com.yijie.com.studentapp.utils.ShowToastUtils;
 import com.yijie.com.studentapp.view.CircleImageView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,6 +81,10 @@ import butterknife.Unbinder;
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by 奕杰平台 on 2018/1/29.
@@ -134,11 +158,34 @@ public class StudentMoreFragment extends BaseFragment {
     TextView rvResume;
     @BindView(R.id.rl_root)
     RelativeLayout rlRoot;
-    @BindView(R.id.tv_goRight)
-    TextView tvGoRight;
-    private List<String> mDatas;
-    private String[] mUrls = new String[]{
 
+    @BindView(R.id.tv_attendance)
+    TextView tvAttendance;
+    @BindView(R.id.tv_phone)
+    TextView tvPhone;
+    @BindView(R.id.tv)
+    TextView tv;
+    @BindView(R.id.tv_personalInformation)
+    TextView tvPersonalInformation;
+    @BindView(R.id.tv_contactWay)
+    TextView tvContactWay;
+    @BindView(R.id.tv_educationBackground)
+    TextView tvEducationBackground;
+    @BindView(R.id.tv_workExperience)
+    TextView tvWorkExperience;
+    @BindView(R.id.tv_relateIntention)
+    TextView tvRelateIntention;
+    @BindView(R.id.tv_selfAssessment)
+    TextView tvSelfAssessment;
+    @BindView(R.id.tv_honoraryCertificate)
+    TextView tvHonoraryCertificate;
+    @BindView(R.id.ll_start)
+    LinearLayout llStart;
+    @BindView(R.id.btn_start)
+    Button btnStart;
+    private List<String> mDatas;
+    private boolean isStart;
+    private String[] mUrls = new String[]{
             "http://d.hiphotos.baidu.com/image/h%3D200/sign=201258cbcd80653864eaa313a7dca115/ca1349540923dd54e54f7aedd609b3de9c824873.jpg",
             "http://img5.imgtn.bdimg.com/it/u=2437456944,1135705439&fm=21&gp=0.jpg",
             "http://img2.imgtn.bdimg.com/it/u=3251359643,4211266111&fm=21&gp=0.jpg",
@@ -150,36 +197,58 @@ public class StudentMoreFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         EventBus.getDefault().register(this);
-        return R.layout.fragment_collapsing_tool_bar;
+        return R.layout.fragment_student_more;
     }
 
+    public static StudentMoreFragment newInstance(String image) {
+        StudentMoreFragment fragment = new StudentMoreFragment();
+        Bundle args = new Bundle();
+        args.putString("image", image);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public void setHeadImage() {
+        String user_phone = (String) SharedPreferencesUtils.getParam(mActivity, "user_phone", "");
+        String image = (String) SharedPreferencesUtils.getParam(mActivity, "image", "");
+        tvPhone.setText(user_phone);
+        if (image.equals("null") || image.equals("")) {
+            ivHeadImage.setBackgroundResource(R.mipmap.head);
+
+        } else {
+            byte[] bitmapArray = Base64.decode(image, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
+            ivHeadImage.setImageBitmap(bitmap);
+        }
+
+
+    }
 
     @Override
     protected void initData() {
+//        SharedPreferencesUtils.setParam(mActivity,"isStart",true);
+
+        isStart = (boolean) SharedPreferencesUtils.getParam(mActivity, "isStart", false);
+        if (isStart){
+            llStart.setVisibility(View.GONE);
+        }
+        //初始化控件
+        isPrepared = true;
+//        lazyLoad();
+        setHeadImage();
+
         ((AppCompatActivity) mActivity).setSupportActionBar(toolbar);
         ((AppCompatActivity) mActivity).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("");
         StatusBarCompat.setStatusBarColorForCollapsingToolbar(getActivity(), appbar, collapsingToolbar, toolbar, getResources().getColor(R.color.colorTheme));
-        appbar.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+
+        appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
-            public void onStateChanged(AppBarLayout appBarLayout, State state, int i) {
-                if (state == State.EXPANDED) {
-                    LogUtil.e("EXPANDED===" + i);
-                    //展开状态
-                    rlRoot.setAlpha(1.0f);
-                } else if (state == State.COLLAPSED) {
-                    LogUtil.e("COLLAPSED===" + i);
-                    //折叠状态
-                    rlRoot.setAlpha(0.0f);
-
-                } else {
-                    rlRoot.setAlpha(0.3f);
-                    //中间状态
-
-                }
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                rlRoot.setAlpha(1 - Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange());
             }
-
         });
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,7 +286,7 @@ public class StudentMoreFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.iv_settings, R.id.iv_headImage, R.id.rl_personalInformation, R.id.rl_contactWay, R.id.rl_educationBackground, R.id.rl_relatedIntention, R.id.rl_selfAssessment, R.id.rl_honoraryCcertificate, R.id.rl_workExperience, R.id.rv_resume})
+    @OnClick({R.id.iv_settings, R.id.iv_headImage, R.id.rl_personalInformation, R.id.rl_contactWay, R.id.rl_educationBackground, R.id.rl_relatedIntention, R.id.rl_selfAssessment, R.id.rl_honoraryCcertificate, R.id.rl_workExperience, R.id.rv_resume, R.id.tv_attendance, R.id.btn_start})
     public void Click(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -272,35 +341,141 @@ public class StudentMoreFragment extends BaseFragment {
                 intent.setClass(mActivity, ResumepreviewActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.tv_attendance:
+                //考勤
+                intent.setClass(mActivity, AttendanceActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.btn_start:
+                PropertyValuesHolder pvhScaleA = PropertyValuesHolder.ofFloat("alpha", 1.0f,0f);
+                PropertyValuesHolder pvhScaleX = PropertyValuesHolder.ofFloat("scaleX", 1f, 0f);
+                PropertyValuesHolder pvhScaleY = PropertyValuesHolder.ofFloat("scaleY", 1f, 0f);
+                ValueAnimator   objAnimator = ObjectAnimator.ofPropertyValuesHolder(llStart, /*pvhTransX,*/ pvhScaleX, pvhScaleY, pvhScaleA);
+                objAnimator.setDuration(500);
+                objAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                     if ((float)animation.getAnimatedValue()==0f){
+                        llStart.setVisibility(View.GONE);
+                     }
+                    }
+                });
+                objAnimator.start();
+                SharedPreferencesUtils.setParam(mActivity,"isStart",true);
+                isStart=true;
+                break;
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        if (isStart){
+            ShowToastUtils.showToastMsg(mActivity, "提示信息");
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void lazyLoad() {
+        //在调用了onCreateView后并且fragment的UI是可见的就填充数据
+        //不加判断会引起context空
+        if (!isPrepared || !isVisible)
+            return;
+        //填充各控件的数据
+        if (isStart){
+            ShowToastUtils.showToastMsg(mActivity, "提示信息");
+        }
+
     }
 
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void helloEventBus(String message) {
         if (message.equals("personInformation")) {
             llPersonalInformation.setVisibility(View.VISIBLE);
+            tvPersonalInformation.setCompoundDrawables(null, null, null, null);
+            tvPersonalInformation.setText("编辑");
+            tvPersonalInformation.setTextColor(getResources().getColor(R.color.colorTheme));
         } else if (message.equals("contactway")) {
             llContactWay.setVisibility(View.VISIBLE);
+            llPersonalInformation.setVisibility(View.VISIBLE);
+            tvContactWay.setCompoundDrawables(null, null, null, null);
+            tvContactWay.setText("编辑");
+            tvContactWay.setTextColor(getResources().getColor(R.color.colorTheme));
         } else if (message.equals("educationbackground")) {
             llEducationBackground.setVisibility(View.VISIBLE);
+            tvEducationBackground.setCompoundDrawables(null, null, null, null);
+            tvEducationBackground.setText("编辑");
+            tvEducationBackground.setTextColor(getResources().getColor(R.color.colorTheme));
         } else if (message.equals("relateIntentin")) {
             llRelatedIntention.setVisibility(View.VISIBLE);
+            tvRelateIntention.setCompoundDrawables(null, null, null, null);
+            tvRelateIntention.setText("编辑");
+            tvRelateIntention.setTextColor(getResources().getColor(R.color.colorTheme));
         } else if (message.equals("selfassessment")) {
             llSelfAssessment.setVisibility(View.VISIBLE);
+            tvSelfAssessment.setCompoundDrawables(null, null, null, null);
+            tvSelfAssessment.setText("编辑");
+            tvSelfAssessment.setTextColor(getResources().getColor(R.color.colorTheme));
         } else if (message.equals("honoraryccertificate")) {
-            llHonoraryCcertificate.setVisibility(View.VISIBLE);
+            //获取证书图片
+            HttpUtils instance = HttpUtils.getinstance();
+            Map map = new HashMap();
+            Integer id = (Integer) SharedPreferencesUtils.getParam(mActivity, "user_id", 0);
+            map.put("id", String.valueOf(id));
+            instance.post(Constant.honoraryCcertificateGetUrl, map, new BaseCallback<String>() {
+                @Override
+                public void onRequestBefore() {
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onFailure(Request request, Exception e) {
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onSuccess(Response response, String s) {
+                    dialog.dismiss();
+                    try {
+                        JSONObject jsonObject = new JSONObject(s);
+                        LogUtil.e("--------"+jsonObject);
+//                        if (jsonObject.getString("status").equals("ok")) {
+//
+//                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onError(Response response, int errorCode, Exception e) {
+                    dialog.dismiss();
+                }
+            });
+
+//            llHonoraryCcertificate.setVisibility(View.VISIBLE);
+//            tvHonoraryCertificate.setCompoundDrawables(null, null, null, null);
+            tvHonoraryCertificate.setText("编辑");
+            tvHonoraryCertificate.setTextColor(getResources().getColor(R.color.colorTheme));
         } else if (message.equals("workexperience")) {
             llWorkExperience.setVisibility(View.VISIBLE);
+            tvWorkExperience.setCompoundDrawables(null, null, null, null);
+            tvWorkExperience.setText("编辑");
+            tvWorkExperience.setTextColor(getResources().getColor(R.color.colorTheme));
         } else if (message.equals("sendSample")) {
             ivStutus.setBackgroundResource(R.mipmap.student_unchecked);
-            tvGoRight.setVisibility(View.GONE);
+            tvPersonalInformation.setVisibility(View.GONE);
         }
 
 
     }
 
     private void initDatas() {
-
         mDatas = Arrays.asList(mUrls);
     }
 
@@ -323,6 +498,9 @@ public class StudentMoreFragment extends BaseFragment {
         popupWindow.setOutsideTouchable(true);
         View parent = LayoutInflater.from(mActivity).inflate(R.layout.activity_main, null);
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        popupWindow.setAnimationStyle(R.style.PopupAnimation);
+        popupWindow.setClippingEnabled(true);
+        popupWindow.update();
         //popupWindow在弹窗的时候背景半透明
         final WindowManager.LayoutParams params = mActivity.getWindow().getAttributes();
         params.alpha = 0.5f;
@@ -436,13 +614,47 @@ public class StudentMoreFragment extends BaseFragment {
                     if (uri == null) {
                         return;
                     }
-                    String cropImagePath = FileUtil.getRealFilePathFromUri(mActivity, uri);
-                    Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
+                    final String cropImagePath = FileUtil.getRealFilePathFromUri(mActivity, uri);
 
-                    ivHeadImage.setImageBitmap(bitMap);
 
                     //此处后面可以将bitMap转为二进制上传后台网络
                     //......
+                    List<File> files = new ArrayList<>();
+                    File file = new File(cropImagePath);
+                    files.add(file);
+                    Map<String, String> parames = new HashMap<>();
+
+                    String user_phone = (String) SharedPreferencesUtils.getParam(mActivity, "user_phone", "");
+                    parames.put("phone", user_phone);
+                    HttpUtils.getinstance().uploadFiles(Constant.headUploadUrl, parames, files, new BaseCallback<String>() {
+                        @Override
+                        public void onRequestBefore() {
+
+                        }
+
+                        @Override
+                        public void onFailure(Request request, Exception e) {
+
+                        }
+
+                        @Override
+                        public void onSuccess(Response response, String o) {
+                            ShowToastUtils.showToastMsg(mActivity, "上传图像成功");
+                            Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
+                            ivHeadImage.setImageBitmap(bitMap);
+                            //更新本地存储
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            bitMap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                            byte[] datas = baos.toByteArray();
+                            String decode = Base64.encodeToString(datas, Base64.DEFAULT);
+                            SharedPreferencesUtils.setParam(mActivity, "image", decode);
+                        }
+
+                        @Override
+                        public void onError(Response response, int errorCode, Exception e) {
+
+                        }
+                    });
 
                 }
                 break;
@@ -471,5 +683,7 @@ public class StudentMoreFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
+
+
 
 }

@@ -18,7 +18,12 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取WIFI信息状态的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取网络状态改变的权限 -->
     <application
         android:allowBackup="true"
         android:name="com.yijie.com.studentapp.base.APPApplication"
@@ -37,7 +42,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".activity.login.LoginActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -76,7 +81,7 @@
         </activity>
 
         <activity android:name=".base.PermissionsActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".activity.login.LoginActivity"/>
         <activity android:name=".activity.login.PassWordActivity"/>
         <activity android:name=".activity.MeActivity"/>
         <activity android:name=".activity.SettingActivity"/>
@@ -93,6 +98,15 @@
         <activity android:name="com.yijie.com.studentapp.activity.SelfAssessmentActivity"/>
         <activity android:name="com.yijie.com.studentapp.activity.HonoraryCcertificateActivity"/>
         <activity android:name="com.yijie.com.studentapp.activity.WorkExperienceActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.AttendanceActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.photo.CameraActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.photo.PhotoProcessActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.kndergard.KndergardLoadingAcitivity"/>
+    <activity android:name="com.yijie.com.studentapp.activity.PracticeDetailsActivity"/>
+        <activity android:name="com.yijie.com.studentapp.activity.PostCollectionActivity"/>
+        <activity
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:theme="@style/ImagePickerThemeFullScreen"/>
     </application>
 
 </manifest>

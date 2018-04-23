@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             app:underline_color="#F38583"
             app:underline_selected_color="#F11583"
-            app:codes="6"
+            app:codes="4"
             />
     <LinearLayout
         android:layout_width="match_parent"

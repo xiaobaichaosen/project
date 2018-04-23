@@ -1,5 +1,6 @@
 package com.yijie.com.yijie.utils;
 
+import android.content.Context;
 import android.database.Observable;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,11 +11,17 @@ import com.google.gson.JsonParseException;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
 
 import java.util.concurrent.TimeUnit;
 
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,23 +44,31 @@ public class HttpUtils {
     private Handler mHandler;
     private Gson mGson;
     private static HttpUtils mOkHttpUtilsInstance;
+    private static Context mContext;
     /**
      * 获取实例
      *
      * @return
      */
-    public static HttpUtils getinstance() {
+    public static HttpUtils getinstance(Context context) {
         if (mOkHttpUtilsInstance == null) {
             synchronized (HttpUtils.class) {
                 if (mOkHttpUtilsInstance == null) {
+                    mContext=context;
+
                     mOkHttpUtilsInstance = new HttpUtils();
+
+
                 }
             }
         }        return mOkHttpUtilsInstance;
     }
     private HttpUtils() {
-
-        mClientInstance = new OkHttpClient.Builder()
+        try {
+            HttpsUtils.SSLParams sslParams3 = HttpsUtils.getSslSocketFactory(mContext.getAssets().open("tomcat.keystore"));
+                 mClientInstance = new OkHttpClient.Builder()
+                         .sslSocketFactory(sslParams3.sSLSocketFactory, sslParams3.trustManager)
+                         .hostnameVerifier(new SafeHostnameVerifier())
                 .readTimeout(10, TimeUnit.SECONDS)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
@@ -61,7 +76,12 @@ public class HttpUtils {
         mGson=new Gson();
 
         mHandler = new Handler(Looper.getMainLooper());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
     /**
      * 对外公开的get方法
      *
@@ -233,5 +253,34 @@ public class HttpUtils {
             }
         });
     }
+    private class SafeTrustManager implements X509TrustManager {
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+        }
 
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            try {
+                for (X509Certificate certificate : chain) {
+                    certificate.checkValidity(); //检查证书是否过期，签名是否通过等
+                }
+            } catch (Exception e) {
+                throw new CertificateException(e);
+            }
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+    }
+
+    private class SafeHostnameVerifier implements HostnameVerifier {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            //验证主机名是否匹配
+
+            return true;
+        }
+    }
 }

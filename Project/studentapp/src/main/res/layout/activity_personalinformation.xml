@@ -2,6 +2,8 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:layout_height="match_parent">
     <include layout="@layout/app_title"/>
@@ -130,6 +132,8 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+
         <View
             android:id="@+id/line_or_v"
             android:layout_width="match_parent"
@@ -313,12 +317,12 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_28"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newNodetal"
+            android:layout_toLeftOf="@+id/to_newNodetal1"
             android:textColor="#808080"
             />
 
         <TextView
-            android:id="@+id/to_newNodetal"
+            android:id="@+id/to_newNodetal1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -334,4 +338,21 @@
             />
 
     </RelativeLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_addPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="singleChoice"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbarStyle="outsideOverlay"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            app:spanCount="4"
+            tools:listitem="@layout/list_item_image" />
+
+
+
 </LinearLayout>

@@ -9,15 +9,23 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.base.BaseActivity;
+import com.yijie.com.yijie.utils.BaseCallback;
+import com.yijie.com.yijie.utils.HttpUtils;
 import com.yijie.com.yijie.utils.ShowToastUtils;
 import com.yijie.com.yijie.view.verficationcode.codeinputlib.CodeInput;
 import com.yijie.com.yijie.view.verficationcode.codeinputlib.callback.CodeInputCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/1/12.
@@ -100,6 +108,7 @@ public class VerificationCodeActivity extends BaseActivity  implements CodeInput
         //计时过程
         @Override
         public void onTick(long l) {
+            isGetCode=false;
             //防止计时过程中重复点击
             tvRecode.setClickable(false);
             tvReVoiceCode.setClickable(false);
@@ -128,7 +137,46 @@ public class VerificationCodeActivity extends BaseActivity  implements CodeInput
 
         switch (view.getId()) {
             case R.id.tv_recode:
-                ShowToastUtils.showToastMsg(VerificationCodeActivity.this, "重写获取验证码");
+//                ShowToastUtils.showToastMsg(VerificationCodeActivity.this, "重写获取验证码");
+                //请求网络
+
+                HttpUtils getinstance = HttpUtils.getinstance(VerificationCodeActivity.this);
+
+                getinstance.get(Constant.getRegistCodeUrl+"?phone="+phoneNumber, new BaseCallback<String>() {
+                    @Override
+                    public void onRequestBefore() {
+                        dialog.show();
+                    }
+
+                    @Override
+                    public void onFailure(Request request, Exception e) {
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onSuccess(Response response, String s) {
+                        dialog.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(s);
+                            if (jsonObject.getString("status").equals("ok")) {
+                                registCode= jsonObject.getString("result");
+                                ShowToastUtils.showToastMsg(VerificationCodeActivity.this,registCode);
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response response, int errorCode, Exception e) {
+                        dialog.dismiss();
+                    }
+
+
+
+                });
                 myCountDownTimer.start();
                 break;
             case R.id.tv_reVoiceCode:

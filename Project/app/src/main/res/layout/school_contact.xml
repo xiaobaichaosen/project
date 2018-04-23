@@ -15,31 +15,24 @@
     app:cardElevation="@dimen/base_dimen_2">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
         android:layout_marginLeft="@dimen/base_dimen_20"
         android:layout_marginRight="@dimen/base_dimen_20"
-
-
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_86"
-            android:layout_marginLeft="@dimen/base_dimen_10"
 
-            android:layout_marginTop="@dimen/base_dimen_10">
 
             <TextView
                 android:id="@+id/ivUser"
+                android:layout_marginLeft="@dimen/base_dimen_10"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/base_dimen_10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/base_dimen_86"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/base_dimen_9"
                 android:contentDescription="TODO"
-                android:text="联系人"
+                android:text="联系方式"
                 android:textColor="#4d4d4d"
                 android:textSize="@dimen/base_dimen_28" />
 
@@ -51,28 +44,16 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="72dp"
-                android:layout_marginStart="72dp"
                 android:background="#ECECEC" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewContact"
+            style="@style/layout_mm" />
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:background="@android:color/transparent"
-                android:button="@null"
-                android:textSize="@dimen/base_dimen_28"
-                android:text="更多"
-                android:textColor="#f08786"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:paddingRight="@dimen/base_dimen_5" />
-
-        </RelativeLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,7 +64,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
                 android:paddingTop="@dimen/base_dimen_10">
 
                 <TextView

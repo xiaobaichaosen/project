@@ -21,8 +21,10 @@ import com.yijie.com.yijie.base.BaseFragment2;
 import com.yijie.com.yijie.base.PermissionsActivity;
 import com.yijie.com.yijie.base.PermissionsChecker;
 import com.yijie.com.yijie.fragment.kndergaren.KndergartenBaseFragment;
+import com.yijie.com.yijie.fragment.mine.MeFragment;
 import com.yijie.com.yijie.fragment.school.SchoolBaseFragment;
 import com.yijie.com.yijie.fragment.student.StudentFragment;
+import com.yijie.com.yijie.fragment.yijie.YiJieFragment;
 import com.yijie.com.yijie.home.ViewPagerAdapter;
 import com.yijie.com.yijie.utils.ShowToastUtils;
 import com.yijie.com.yijie.utils.StutasToolUtils;
@@ -34,9 +36,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-
-
-
     @BindView(R.id.main_ViewPager)
     ViewPager mainViewPager;
     @BindView(R.id.radio_school)
@@ -45,8 +44,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     RadioButton radioKindergarten;
     @BindView(R.id.radio_logo)
     RadioButton radioLogo;
-    @BindView(R.id.radio_student)
-    RadioButton radioStudent;
+
     @BindView(R.id.radio_discover)
     RadioButton radioDiscover;
     @BindView(R.id.main_tab_RadioGroup)
@@ -59,8 +57,26 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.CALL_PHONE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_PHONE_STATE,
+
+//            Manifest.permission.WAKE_LOCK,
+//            Manifest.permission.READ_PHONE_STATE,
+//            Manifest.permission.WRITE_SETTINGS,
+//            Manifest.permission.VIBRATE,
+//            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
+//            Manifest.permission.ACCESS_NETWORK_STATE,
+
+//            Manifest.permission.ACCESS_WIFI_STATE,
+////            Manifest.permission.SYSTEM_ALERT_WINDOW,
+//            Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
+////            Manifest.permission.GET_TASKS,
+//            Manifest.permission.CHANGE_NETWORK_STATE,
     };
+
+
     //记录用户首次点击返回键的时间
     private long firstTime = 0;
     private static final int REQUEST_CODE = 0; // 请求码
@@ -130,11 +146,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         fragmentList = new ArrayList<Fragment>();
 
         // 将各Fragment加入数组中
-        fragmentList.add(new SchoolBaseFragment());
+        fragmentList.add(new YiJieFragment());
         fragmentList.add(new KndergartenBaseFragment());
-        fragmentList.add(BaseFragment2.newInstance("YIJIE"));
-        fragmentList.add(new StudentFragment());
-        fragmentList.add(BaseFragment2.newInstance("发现"));
+        fragmentList.add(BaseFragment2.newInstance("通讯录"));
+        fragmentList.add(new MeFragment());
         // 设置ViewPager的设配器`
         mainViewPager.setAdapter(new MyAdapter(getSupportFragmentManager(),
                 fragmentList));
@@ -189,18 +204,16 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             int current = mainViewPager.getCurrentItem();
             switch (current) {
                 case 0:
-                    mainTabRadioGroup.check(R.id.radio_school);
+                    mainTabRadioGroup.check(R.id.radio_logo);
                     break;
                 case 1:
                     mainTabRadioGroup.check(R.id.radio_kindergarten);
                     break;
                 case 2:
-                    mainTabRadioGroup.check(R.id.radio_logo);
+                    mainTabRadioGroup.check(R.id.radio_school);
                     break;
+
                 case 3:
-                    mainTabRadioGroup.check(R.id.radio_student);
-                    break;
-                case 4:
                     mainTabRadioGroup.check(R.id.radio_discover);
                     break;
             }
@@ -214,21 +227,19 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         int current = 0;
         switch (CheckedId) {
 
-            case R.id.radio_school:
+            case R.id.radio_logo:
 
                 current = 0;
                 break;
             case R.id.radio_kindergarten:
                 current = 1;
                 break;
-            case R.id.radio_logo:
+            case R.id.radio_school:
                 current = 2;
                 break;
-            case R.id.radio_student:
-                current = 3;
-                break;
+
             case R.id.radio_discover:
-                current = 4;
+                current = 3;
                 break;
         }
         if (mainViewPager.getCurrentItem() != current) {

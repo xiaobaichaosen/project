@@ -1,1 +1,1 @@
-include ':app', ':photoview', ':studentapp','pickerview'
+include ':app', ':studentapp', ':kindergartenapp','pickerview'

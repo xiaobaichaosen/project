@@ -5,9 +5,11 @@ import android.os.Looper;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.lzy.imagepicker.bean.ImageItem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -78,45 +80,87 @@ public class HttpUtils {
         Request request = buildRequest(url, params, HttpMethodType.POST);
         request(request, callback);
     }
+
+    /**
+     * 传递json
+     * @param url
+     * @param json
+     * @param callback
+     */
+    public void post(String url, String json, BaseCallback callback) {
+      MediaType JSON=MediaType.parse("application/json; charset=utf-8");
+        //json为String类型的json数据
+        RequestBody requestBody = RequestBody.create(JSON, json);
+        //创建一个请求对象
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+        request(request, callback);
+    }
+
+
+//    /**
+//     * 上传图片和参数
+//     * @param resUrl
+//     * @param parames
+//     * @param pathList
+//     */
+//  public void uploadFiles(String resUrl, Map<String,String> parames, List<ImageItem> pathList, BaseCallback callback)
+//  {
+//      MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+//      Map<String,File> files=new HashMap<>();
+//      for (int i = 0; i < pathList.size(); i++) {
+//            String newPath=BitmapUtils.compressImageUpload(pathList.get(i).path);
+//            files.put(pathList.get(i).name+i,new File(newPath));
+//          //image为参数名
+//          builder.addFormDataPart("image",pathList.get(i).name+i,RequestBody.create(MediaType.parse("image/*"),new File(newPath)));
+//      }
+//          RequestBody requestBody = builder.build();
+//           Request request = new Request.Builder()
+//                   .url(resUrl)
+//              .post(requestBody)
+//              .build();
+//                request(request, callback);
+//
+//
+//
+//
+//  }
     /**
      * 上传图片和参数
      * @param resUrl
      * @param parames
      * @param files
      */
-  public void uploadFiles(String resUrl, Map<String,String> parames, List<File> files,BaseCallback callback)
-  {
-      MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-      if (parames==null){
-          int i=0;
-           for (File file:files){
-               if (file.exists()){
-                   builder.addFormDataPart("image"+i,file.getName(),RequestBody.create(MediaType.parse("image/png"),file));
-                           i++;
-               }
-           }
-      }else {
-          for (String key:parames.keySet()){
-              builder.addFormDataPart(key,parames.get(key));
-          }
-          int i=0;
-          for (File file:files){
-              if (file.exists()){
-                  builder.addFormDataPart("image"+i,file.getName(),RequestBody.create(MediaType.parse("image/png"),file));
-                  i++;
-              }
-          }
-      }
-    RequestBody requestBody = builder.build();
-      Request request = new Request.Builder()
-              .header("Authorization", "Client-ID " + "...")
-              .url(resUrl)
-              .post(requestBody)
-              .build();
-      request(request, callback);
+    public void uploadFiles(String resUrl, Map<String,String> parames, List<File> files,BaseCallback callback)
+    {
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        if (parames==null){
+            for (File file:files){
+                if (file.exists()){
+                    builder.addFormDataPart("headload",file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
+                }
+            }
+        }else {
+            for (String key:parames.keySet()){
+                builder.addFormDataPart(key,parames.get(key));
+            }
+            for (File file:files){
+                if (file.exists()){
+                    builder.addFormDataPart("headload",file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
+                }
+            }
+        }
+        RequestBody requestBody = builder.build();
+        Request request = new Request.Builder()
+//              .header("Authorization", "Client-ID " + "...")
+                .url(resUrl)
+                .post(requestBody)
+                .build();
+        request(request, callback);
 
-  }
-
+    }
     /**
      * 构建请求对象
      */

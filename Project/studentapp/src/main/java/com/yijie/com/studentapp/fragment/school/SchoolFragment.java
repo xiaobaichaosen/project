@@ -1,9 +1,7 @@
 package com.yijie.com.studentapp.fragment.school;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.activity.PracticeDetailsActivity;
 import com.yijie.com.studentapp.base.BaseFragment;
-import com.yijie.com.studentapp.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.studentapp.base.baseadapter.LoadMoreWrapper;
+import com.yijie.com.studentapp.utils.ShowToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +42,10 @@ public class SchoolFragment extends BaseFragment {
     @BindView(R.id.checkBox)
     CheckBox checkBox;
     Unbinder unbinder;
-    @BindView(R.id.linearLayout)
-    LinearLayout linearLayout;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.linearLayout_photo)
+    LinearLayout linearLayoutPhoto;
 
     private List<StudentBean> dataList = new ArrayList<>();
     private LoadMoreWrapper loadMoreWrapper;
@@ -60,7 +59,6 @@ public class SchoolFragment extends BaseFragment {
     protected void initData() {
         title.setText("学校名称");
         back.setVisibility(View.GONE);
-
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -81,7 +79,7 @@ public class SchoolFragment extends BaseFragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         //设置适配器
-        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList,R.layout.school_adapter_item_content);
+        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList, R.layout.school_adapter_item_content);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
 
@@ -94,9 +92,9 @@ public class SchoolFragment extends BaseFragment {
                                                           @Override
                                                           public void onItemClick(View view, int position) {
 
-//                                                                  Intent intent = new Intent();
-//                                                              intent.setClass(mActivity, SchoolActivity.class);
-//                                                              startActivity(intent);
+                                                              Intent intent = new Intent();
+                                                              intent.setClass(mActivity, PracticeDetailsActivity.class);
+                                                              startActivity(intent);
 
 //
                                                           }
@@ -149,16 +147,17 @@ public class SchoolFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.checkBox:
                 if (ischanged) {
-                    linearLayout.setVisibility(View.VISIBLE);
+                    linearLayoutPhoto.setVisibility(View.VISIBLE);
                     checkBox.setText("收起");
                 } else {
                     checkBox.setText("更多");
-                    linearLayout.setVisibility(View.GONE);
+                    linearLayoutPhoto.setVisibility(View.GONE);
                 }
                 break;
 
         }
     }
+
     private void getData() {
         //String.valueOf(letter)
         char letter = 'A';
@@ -169,6 +168,12 @@ public class SchoolFragment extends BaseFragment {
             letter++;
         }
     }
+
+
+    @Override
+    protected void lazyLoad() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view

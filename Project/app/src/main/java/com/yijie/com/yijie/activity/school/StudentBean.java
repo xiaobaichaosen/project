@@ -7,6 +7,9 @@ public class StudentBean {
     private int idImage;
     private String name,description;
 
+public StudentBean(){
+
+}
     public StudentBean(int idImage, String name, String description, int type) {
         this.idImage = idImage;
         this.name = name;
