@@ -1,161 +1,419 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:background="@color/app_background"
     android:layout_height="match_parent">
     <include layout="@layout/app_title"/>
-
-
-
-    <RelativeLayout
-        android:background="@color/colorPrimary"
-        android:id="@+id/to_newSchoolSample"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:layout_height="@dimen/base_dimen_86">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="11dp"
-            android:text="院校培训负责人"
-            android:textColor="#4d4d4d"
-            android:textSize="@dimen/base_dimen_32" />
-
-
-        <TextView
-            android:id="@+id/tv_newSchoolSample"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_28"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
-        <View
+        <com.yijie.com.yijie.view.LoadingLayout
+            android:id="@+id/loading"
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+            android:layout_height="match_parent"
+      >
 
-            android:background="@color/app_background"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:orientation="vertical">
 
-    </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90"
+                    android:background="@color/colorPrimary"
+                    android:paddingLeft="@dimen/base_dimen_22">
 
-    <RelativeLayout
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:id="@+id/to_newAppointmenttime"
-        android:layout_height="@dimen/base_dimen_86">
+                    <TextView
+                        android:id="@+id/tv_toBeijin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="到京时间"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="联系电话"
-            android:textColor="#4d4d4d"
-            android:textSize="@dimen/base_dimen_32" />
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:layout_toLeftOf="@+id/iv_toBeijing"
+                        android:layout_toRightOf="@+id/tv_toBeijin"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:singleLine="true"
+                        android:textSize="@dimen/base_dimen_28" />
 
-        <TextView
-            android:drawableRight="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            android:paddingRight="@dimen/base_dimen_22"
-            android:id="@+id/tv_newAppointmenttime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_28"
-            android:layout_centerVertical="true"
-            android:textColor="#808080"
-            />
+                    <ImageView
+                        android:id="@+id/iv_toBeijing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:src="@mipmap/goright" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_4"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/app_background" />
+                </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+                <RelativeLayout
+                    android:id="@+id/rl_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90"
+                    android:background="@color/colorPrimary"
+                    android:paddingLeft="@dimen/base_dimen_22">
 
-            android:background="@color/app_background"
-            />
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="到京方式"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
 
-    </RelativeLayout>
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toLeftOf="@+id/iv_type"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-    <RelativeLayout
-        android:id="@+id/to_trainTime"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="@dimen/base_dimen_86"
-        android:paddingLeft="@dimen/base_dimen_22">
+                        <RadioButton
+                            android:id="@+id/rb_me"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:layout_toRightOf="@+id/tv_type"
+                            android:background="@null"
+                            android:paddingRight="@dimen/base_dimen_22"
+                            android:text="自行"
+                            android:textSize="@dimen/base_dimen_28" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="培训时间"
-            android:textColor="#4d4d4d"
-            android:textSize="@dimen/base_dimen_32" />
+                        <RadioButton
+                            android:id="@+id/rb_together"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:layout_toRightOf="@+id/rb_me"
+                            android:background="@null"
+                            android:paddingRight="@dimen/base_dimen_22"
+                            android:singleLine="true"
+                            android:text="统一"
+                            android:textSize="@dimen/base_dimen_28" />
 
-        <TextView
-            android:id="@+id/tv_trainTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newNodetal"
-            android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_28" />
+                    </RadioGroup>
 
-        <TextView
-            android:id="@+id/to_newNodetal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
+                    <ImageView
+                        android:id="@+id/iv_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:src="@mipmap/goright" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_4"
-            android:layout_alignParentBottom="true"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_4"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/app_background" />
+                </RelativeLayout>
 
-            android:background="@color/app_background" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90"
+                    android:background="@color/colorPrimary"
+                    android:paddingLeft="@dimen/base_dimen_22">
 
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/to_adress"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="@dimen/base_dimen_86"
-        android:paddingLeft="@dimen/base_dimen_22">
+                    <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="报名人数"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="地址"
-            android:textColor="#4d4d4d"
-            android:textSize="@dimen/base_dimen_32" />
+                    <EditText
+                        android:id="@+id/et_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:layout_toLeftOf="@+id/iv_number"
+                        android:layout_toRightOf="@+id/tv_number"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:singleLine="true"
+                        android:textSize="@dimen/base_dimen_28" />
 
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newNodetal1"
-            android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_28" />
+                    <ImageView
+                        android:id="@+id/iv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:src="@mipmap/goright" />
 
-        <TextView
-            android:id="@+id/to_newNodetal1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_4"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/app_background" />
+                </RelativeLayout>
 
-    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90"
+                    android:background="@color/colorPrimary"
+                    android:paddingLeft="@dimen/base_dimen_22">
+
+                    <TextView
+                        android:id="@+id/tv_fare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="报销路费"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toLeftOf="@+id/iv_fare"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:background="@null"
+                            android:paddingRight="@dimen/base_dimen_22"
+                            android:text="是"
+                            android:textSize="@dimen/base_dimen_28" />
+
+                        <RadioButton
+                            android:id="@+id/rb_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:layout_toRightOf="@+id/rb_me"
+                            android:background="@null"
+                            android:paddingRight="@dimen/base_dimen_22"
+                            android:singleLine="true"
+                            android:text="否"
+                            android:textSize="@dimen/base_dimen_28" />
+
+                    </RadioGroup>
+
+                    <ImageView
+                        android:id="@+id/iv_fare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:src="@mipmap/goright" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_4"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/app_background" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90"
+                    android:background="@color/colorPrimary"
+                    android:paddingLeft="@dimen/base_dimen_22">
+
+                    <TextView
+                        android:id="@+id/tv_hight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="实习中自我提升"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toLeftOf="@+id/iv_hight"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_height_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:background="@null"
+                            android:paddingRight="@dimen/base_dimen_22"
+                            android:text="是"
+                            android:textSize="@dimen/base_dimen_28" />
+
+                        <RadioButton
+                            android:id="@+id/rb_hight_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:layout_toRightOf="@+id/rb_me"
+                            android:background="@null"
+                            android:paddingRight="@dimen/base_dimen_22"
+                            android:singleLine="true"
+                            android:text="否"
+                            android:textSize="@dimen/base_dimen_28" />
+
+                    </RadioGroup>
+
+                    <ImageView
+                        android:id="@+id/iv_hight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:src="@mipmap/goright" />
+
+                    <View
+                        android:id="@+id/view_gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_4"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/app_background" />
+                </RelativeLayout>
+
+                <!--如果选择是显示，如果选择否隐藏-->
+                <LinearLayout
+                    android:id="@+id/ll_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/base_dimen_20"
+                        android:paddingTop="@dimen/base_dimen_20">
+
+                        <CheckBox
+                            android:id="@+id/cb_jieben"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/base_dimen_56"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:background="@drawable/edittext_shap"
+                            android:button="@null"
+                            android:text="接本"
+                            android:textColor="@color/item_content" />
+
+                        <CheckBox
+                            android:id="@+id/cb_teacher"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/base_dimen_56"
+                            android:layout_marginLeft="@dimen/base_dimen_30"
+                            android:background="@drawable/edittext_shap"
+                            android:button="@null"
+                            android:text="教师资格证考试"
+                            android:textColor="@color/item_content" />
+                    </LinearLayout>
+
+                    <com.yijie.com.yijie.view.BGAFlowLayout
+                        android:id="@+id/flowlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/base_dimen_30"
+                        app:fl_horizontalChildGap="15dp"
+                        app:fl_isDistributionWhiteSpacing="true"
+                        app:fl_verticalChildGap="10dp">
+
+                        <EditText
+                            android:id="@+id/et_main_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext_shap"
+                            android:imeActionLabel="添加"
+                            android:imeOptions="actionGo"
+                            android:minWidth="120dp"
+                            android:padding="5dp"
+                            android:singleLine="true"
+                            android:textColor="@color/colorTheme" />
+
+                    </com.yijie.com.yijie.view.BGAFlowLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_4"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/base_dimen_26"
+                        android:background="@color/app_background" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_finishTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90"
+                    android:background="@color/colorPrimary"
+                    android:paddingLeft="@dimen/base_dimen_22">
+
+                    <TextView
+                        android:id="@+id/tv_finish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="实习结束时间"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32" />
+
+                    <TextView
+                        android:id="@+id/tv_finishTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:layout_toLeftOf="@+id/iv_finishTime"
+                        android:layout_toRightOf="@+id/tv_finish"
+                        android:background="@null"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:singleLine="true"
+                        android:textSize="@dimen/base_dimen_28" />
+
+                    <ImageView
+                        android:id="@+id/iv_finishTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingRight="@dimen/base_dimen_22"
+                        android:src="@mipmap/goright" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </com.yijie.com.yijie.view.LoadingLayout>
+    </ScrollView>
 </LinearLayout>

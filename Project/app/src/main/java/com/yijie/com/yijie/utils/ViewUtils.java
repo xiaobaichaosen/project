@@ -1,20 +1,24 @@
 package com.yijie.com.yijie.utils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.lvfq.pickerview.TimePickerView;
+
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.view.ArrayWheelAdapter;
-import com.yijie.com.yijie.view.WheelView;
+import com.yijie.com.yijie.view.CustomDialog;
+import com.yijie.com.yijie.view.MyPopuList;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,54 +59,12 @@ public class ViewUtils {
      * @param list
      * @param click
      */
-    public static void alertBottomWheelOption(Context context, ArrayList<?> list, final OnWheelViewClick click) {
+    public static void alertBottomWheelOption(final Context context, ArrayList<?> list, final OnWheelViewClick click) {
+        MyPopuList myPopuList = new MyPopuList(context, (ArrayList<String>) list,click);
+        myPopuList.show();
 
-        final PopupWindow popupWindow = new PopupWindow();
 
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_bottom_wheel_option, null);
-        TextView tv_confirm = (TextView) view.findViewById(R.id.btnSubmit);
-        final WheelView wv_option = (WheelView) view.findViewById(R.id.wv_option);
-        wv_option.setAdapter(new ArrayWheelAdapter(list));
-        wv_option.setCyclic(false);
-//        wv_option.setTextSize(context.getResources().getDimension(R.dimen.base_dimen_24));
-        tv_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popupWindow.dismiss();
-                click.onClick(view, wv_option.getCurrentItem());
-            }
-        });
-
-        view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: 2016/8/11 0011 取消
-                popupWindow.dismiss();
-            }
-        });
-        view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                int top = view.findViewById(R.id.ll_container).getTop();
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    int y = (int) motionEvent.getY();
-                    if (y < top) {
-                        popupWindow.dismiss();
-                    }
-                }
-                return true;
-            }
-        });
-        popupWindow.setContentView(view);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setFocusable(true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
-        popupWindow.showAtLocation(((ViewGroup) ((Activity) context).findViewById(android.R.id.content)).getChildAt(0), Gravity.CENTER, 0, 0);
     }
-
-
 
     /**
      * 弹出时间选择
@@ -118,7 +80,7 @@ public class ViewUtils {
         //        Calendar calendar = Calendar.getInstance();
         //        pvTime.setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR));
         pvTime.setTime(new Date());
-        pvTime.setCyclic(false);
+        pvTime.setCyclic(true);
         pvTime.setCancelable(true);
         //时间选择后回调
         pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
@@ -146,5 +108,14 @@ public class ViewUtils {
      */
     public interface TimerPickerCallBack {
         void onTimeSelect(String date);
+    }
+    public static ProgressDialog getProgressDialog(Context context){
+       ProgressDialog progressDialog=new ProgressDialog(context);
+        progressDialog.setMessage("拼命加载中，请稍后。。。");
+        return progressDialog;
+    }
+    public static CustomDialog getCustomDialog (Context context){
+        CustomDialog progressDialog=new CustomDialog(context, R.style.CustomDialog);
+        return progressDialog;
     }
 }

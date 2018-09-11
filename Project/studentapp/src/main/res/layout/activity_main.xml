@@ -24,31 +24,31 @@
         android:orientation="horizontal"
         >
         <com.yijie.com.studentapp.view.BadgeRadioButton
-            android:id="@+id/radio_student"
+            android:id="@+id/radio_discover"
             style="@style/main_tab"
-            android:drawableTop="@drawable/icon_student"
-            android:text="学生"
+            android:drawableTop="@drawable/icon_discover"
+            android:text="发现"
             />
         <RadioButton
             android:id="@+id/radio_school"
             style="@style/main_tab"
 
-            android:drawableTop="@drawable/icon_school"
-            android:text="学校"
+            android:drawableTop="@drawable/icon_kindergarten"
+            android:text="园所"
             />
         <com.yijie.com.studentapp.view.BadgeRadioButton
             android:id="@+id/radio_kindergarten"
             style="@style/main_tab"
-            android:drawableTop="@drawable/icon_kindergarten"
-            android:text="园所"
+            android:drawableTop="@drawable/icon_yijie"
+            android:text="YIJIE"
             />
 
 
         <RadioButton
-            android:id="@+id/radio_discover"
+            android:id="@+id/radio_student"
             style="@style/main_tab"
-            android:drawableTop="@drawable/icon_discover"
-            android:text="发现"
+            android:drawableTop="@drawable/icon_me"
+            android:text="我的"
             />
 
     </RadioGroup>

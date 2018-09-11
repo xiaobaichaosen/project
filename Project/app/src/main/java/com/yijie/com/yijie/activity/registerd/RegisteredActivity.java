@@ -1,10 +1,7 @@
 package com.yijie.com.yijie.activity.registerd;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Looper;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.tu.loadingdialog.LoadingDailog;
 import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.base.BaseActivity;
@@ -50,7 +46,6 @@ public class RegisteredActivity extends BaseActivity {
     RelativeLayout loading;
     @BindView(R.id.et_phone)
     EditText etPhone;
-    LoadingDailog dialog;
     @Override
     public void setContentView() {
 
@@ -61,13 +56,6 @@ public class RegisteredActivity extends BaseActivity {
     public void init() {
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
-
-        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(this)
-                .setMessage("加载中...")
-                .setCancelable(true)
-                .setCancelOutside(true);
-
-        dialog = loadBuilder.create();
 
     }
 

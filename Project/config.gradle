@@ -44,6 +44,6 @@ ext {
             ratingbar:"me.zhanghai.android.materialratingbar:library:1.2.0",
             constraintlayout:"com.android.support.constraint:constraint-layout:1.0.2",
             // ------------- 加载等待-------------
-            Loading:"com.github.gittjy:LoadingDialog:1.0.2"
+//            Loading:"com.github.gittjy:LoadingDialog:1.0.2"
     ]
 }

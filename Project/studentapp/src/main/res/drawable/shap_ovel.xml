@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- android:radius 弧形的半径 -->
+    <corners
+        android:radius="@dimen/base_dimen_20"
+        android:topLeftRadius="@dimen/base_dimen_20"
+        android:topRightRadius="@dimen/base_dimen_20"
+        android:bottomLeftRadius="@dimen/base_dimen_20"
+        android:bottomRightRadius="@dimen/base_dimen_20"/>
+    <!-- 填充的颜色 -->
+    <solid android:color="@color/app_background" />
+
+</shape>

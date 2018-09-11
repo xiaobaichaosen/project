@@ -18,6 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -35,7 +36,7 @@ dependencies {
     implementation files('libs/SocialSDK_WeChat_Simplify.jar')
     compile rootProject.ext.dependencies.butterknife
     annotationProcessor rootProject.ext.dependencies.butterknifeCompiler
-    compile rootProject.ext.dependencies.Loading
+    //    compile rootProject.ext.dependencies.Loading
     compile rootProject.ext.dependencies.okhttp
     compile rootProject.ext.dependencies.gson
     compile rootProject.ext.dependencies.recyclerview
@@ -46,8 +47,10 @@ dependencies {
     compile rootProject.ext.dependencies.eventbus
     compile rootProject.ext.dependencies.imagepicker
     implementation project(':pickerview')
+    implementation project(':library')
+    //    implementation project(':allrecycleview')
     compile rootProject.ext.dependencies.imagepicker
-    compile 'com.fynn.switcher:switch:1.0.2'
+    compile 'com.kyleduo.switchbutton:library:1.4.1'
     implementation files('libs/Amap_2DMap_V5.2.0_20170627.jar')
     implementation files('libs/AMap_Search_V6.1.0_20180330.jar')
     implementation files('libs/AMap_Location_V3.8.0_20180201.jar')

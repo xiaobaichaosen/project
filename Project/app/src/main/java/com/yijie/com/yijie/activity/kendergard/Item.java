@@ -14,6 +14,7 @@ public class Item {
     }
 public Item(int type,String name){
     this.type=type;
+    this.name=name;
 }
     public int getType() {
         return type;

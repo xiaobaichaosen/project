@@ -1,65 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    xmlns:switch="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_background"
 
-    android:background="#e7e7e7">
+    android:orientation="vertical">
     <include
         android:id="@+id/app_title"
         layout="@layout/app_title"/>
 
-
+            <LinearLayout
+                android:id="@+id/rl_root"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/to_newSchoolSample"
+        android:id="@+id/rl_train"
         android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="@dimen/base_dimen_86"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:background="@color/colorPrimary"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:layout_height="@dimen/base_dimen_86">
+        android:paddingLeft="@dimen/base_dimen_22">
 
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="@dimen/base_dimen_32"
-            android:textColor="#4d4d4d"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="11dp"
-            android:text="培训" />
+            android:text="培训"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
 
-        <com.fynn.switcher.Switch
-            android:layout_width="wrap_content"
+
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/swith_train"
+            style="@style/SwitchButtonStyle"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_30"
-            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            switch:checked="false"
-            switch:duration="250"
-            switch:switchOnColor="@color/colorTheme"
-            switch:spotOffColor="#e0e0e0"
-            switch:switchOffColor="#ffffff"
-            switch:switchOffStrokeColor="#000000"
-            switch:spotPadding="2dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
+            android:layout_centerInParent="true"
+            android:checked="false"
+            app:kswAnimationDuration="300"
+            app:kswBackDrawable="@drawable/ios_back_drawable"
+            app:kswBackMeasureRatio="1.4"
+            app:kswThumbDrawable="@drawable/ios_thumb_selector"
+            app:kswThumbMarginBottom="-8dp"
+            app:kswThumbMarginLeft="-5dp"
+            app:kswThumbMarginRight="-5dp"
+            app:kswThumbMarginTop="-2.5dp" />
 
-            android:background="@color/app_background"
-            />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_numset"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_86"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+    >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置园所提需求人数"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="可设置园所提交的人数，便于园所工作配置"
+            android:layout_marginRight="@dimen/base_dimen_30"
+ />
 
+    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
+            android:textSize="@dimen/base_dimen_28" />
+    </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/to_newSchoolSample"
+        android:id="@+id/rl_kendergard"
         android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
         android:background="@color/colorPrimary"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:layout_height="@dimen/base_dimen_86">
+        android:paddingLeft="@dimen/base_dimen_22">
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,120 +118,33 @@
             android:text="园所公开"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
-
-        <com.fynn.switcher.Switch
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/switch_kendergard"
+            style="@style/SwitchButtonStyle"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:checked="false"
+            app:kswAnimationDuration="300"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_30"
-            android:layout_centerVertical="true"
-            switch:switchOnColor="@color/colorTheme"
-            android:layout_height="wrap_content"
-            switch:checked="false"
-            switch:duration="250"
-            switch:spotOffColor="#e0e0e0"
-            switch:switchOffColor="#ffffff"
-            switch:switchOffStrokeColor="#000000"
-            switch:spotPadding="2dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
+            app:kswBackDrawable="@drawable/ios_back_drawable"
+            app:kswBackMeasureRatio="1.4"
+            app:kswThumbDrawable="@drawable/ios_thumb_selector"
+            app:kswThumbMarginBottom="-8dp"
+            app:kswThumbMarginLeft="-5dp"
+            app:kswThumbMarginRight="-5dp"
+            app:kswThumbMarginTop="-2.5dp" />
 
     </RelativeLayout>
-
-
     <RelativeLayout
-        android:id="@+id/to_newSchoolSample"
+        android:visibility="gone"
+        android:id="@+id/toOtherTearch"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_86"
         android:background="@color/colorPrimary"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:layout_height="@dimen/base_dimen_86">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="11dp"
-            android:text="双选会招聘"
-            android:textColor="#4d4d4d"
-            android:textSize="@dimen/base_dimen_32" />
-
-        <com.fynn.switcher.Switch
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_30"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content"
-            switch:switchOnColor="@color/colorTheme"
-            switch:checked="false"
-            switch:duration="250"
-            switch:spotOffColor="#e0e0e0"
-            switch:switchOffColor="#ffffff"
-            switch:switchOffStrokeColor="#000000"
-            switch:spotPadding="2dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/to_newSchoolSample"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:layout_height="@dimen/base_dimen_86">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="11dp"
-            android:text="x"
-            android:textColor="#4d4d4d"
-            android:textSize="@dimen/base_dimen_32" />
-
-        <com.fynn.switcher.Switch
-            android:layout_width="wrap_content"
-            switch:switchOnColor="@color/colorTheme"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/base_dimen_30"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content"
-            switch:checked="false"
-            switch:duration="250"
-            switch:spotOffColor="#e0e0e0"
-            switch:switchOffColor="#ffffff"
-            switch:switchOffStrokeColor="#000000"
-            switch:spotPadding="2dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
-    </RelativeLayout>
-
-
-
-    <RelativeLayout
-        android:id="@+id/to_newSchoolSample"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:layout_height="@dimen/base_dimen_86">
+        android:paddingLeft="@dimen/base_dimen_22">
 
         <TextView
             android:layout_width="wrap_content"
@@ -199,19 +160,13 @@
             android:id="@+id/tv_newSchoolSample"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_28"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
+            android:paddingRight="@dimen/base_dimen_22"
+            android:textSize="@dimen/base_dimen_28" />
     </RelativeLayout>
+     </LinearLayout>
+
 
 </LinearLayout>

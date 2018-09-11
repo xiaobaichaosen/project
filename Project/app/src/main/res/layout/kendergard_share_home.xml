@@ -17,6 +17,7 @@
 
     <RelativeLayout
         android:id="@+id/rl"
+        android:visibility="gone"
         android:layout_below="@+id/app_title"
         android:layout_width="match_parent"
         android:background="@color/action_bar_bg"

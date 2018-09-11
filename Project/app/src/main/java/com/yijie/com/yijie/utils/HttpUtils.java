@@ -6,8 +6,13 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
+import com.yijie.com.yijie.activity.login.LoginActivity;
+import com.yijie.com.yijie.bean.school.SchoolMain;
 
+
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +50,7 @@ public class HttpUtils {
     private Gson mGson;
     private static HttpUtils mOkHttpUtilsInstance;
     private static Context mContext;
+    public   MediaType JSON= MediaType.parse("application/json; charset=utf-8");
     /**
      * 获取实例
      *
@@ -67,11 +73,12 @@ public class HttpUtils {
         try {
             HttpsUtils.SSLParams sslParams3 = HttpsUtils.getSslSocketFactory(mContext.getAssets().open("tomcat.keystore"));
                  mClientInstance = new OkHttpClient.Builder()
-                         .sslSocketFactory(sslParams3.sSLSocketFactory, sslParams3.trustManager)
-                         .hostnameVerifier(new SafeHostnameVerifier())
+//                         .sslSocketFactory(sslParams3.sSLSocketFactory, sslParams3.trustManager)
+//                         .hostnameVerifier(new SafeHostnameVerifier())
                 .readTimeout(10, TimeUnit.SECONDS)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
+
                 .build();
         mGson=new Gson();
 
@@ -90,8 +97,12 @@ public class HttpUtils {
      * new BaseCallback<List<Banner>>() 传集合
      */
     public void get(String url, BaseCallback callback) {
-        Request request = buildRequest(url, null, HttpMethodType.GET);
+        Request request = new Request.Builder()
+                .header("cookie", "JSESSIONID="+(String)(SharedPreferencesUtils.getParam(mContext,"cookie","")))
+                .url(url)
+                .build();
         request(request, callback);
+
     }    /**
      * 对外公开的post方法
      *
@@ -100,60 +111,87 @@ public class HttpUtils {
      * @param callback
      */
     public void post(String url, Map<String, String> params, BaseCallback callback) {
-        Request request = buildRequest(url, params, HttpMethodType.POST);
-        request(request, callback);
+            Request request = new Request.Builder()
+                    .header("cookie", "JSESSIONID=" + (String) (SharedPreferencesUtils.getParam(mContext, "cookie", "")))
+                    .post(buildRequestBody(params))
+                    .url(url)
+                    .build();
+            request(request, callback);
+
     }
+
+    /**
+     * 上传json到服务器
+     * @param url
+     * @param object
+     * @param callback
+     *
+     */
+    public void postJson(String url,Object object, BaseCallback callback) {
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+        RequestBody requestBody = RequestBody.create(JSON,gson.toJson(object));
+        Request request = new Request.Builder()
+                .url(url)
+                .header("cookie", "JSESSIONID="+(String)(SharedPreferencesUtils.getParam(mContext,"cookie","")))
+                .post(requestBody)
+                .build();
+        request(request, callback);
+
+    }
+
     /**
      * 上传图片和参数
      * @param resUrl
      * @param parames
      * @param files
      */
-  public void uploadFiles(String resUrl, Map<String,String> parames, List<File> files,BaseCallback callback)
-  {
-      MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-      if (parames==null){
-          int i=0;
-           for (File file:files){
-               if (file.exists()){
-                   builder.addFormDataPart("image"+i,file.getName(),RequestBody.create(MediaType.parse("image/png"),file));
-                           i++;
-               }
-           }
-      }else {
-          for (String key:parames.keySet()){
-              builder.addFormDataPart(key,parames.get(key));
-          }
-          int i=0;
-          for (File file:files){
-              if (file.exists()){
-                  builder.addFormDataPart("image"+i,file.getName(),RequestBody.create(MediaType.parse("image/png"),file));
-                  i++;
-              }
-          }
-      }
-    RequestBody requestBody = builder.build();
-      Request request = new Request.Builder()
-              .header("Authorization", "Client-ID " + "...")
-              .url(resUrl)
-              .post(requestBody)
-              .build();
-      request(request, callback);
+    /**
+     * 上传图片和参数
+     * @param resUrl
+     * @param parames
+     * @param files
+     */
+    public void uploadFiles(String resUrl, Map<String,String> parames, List<File> files,BaseCallback callback)
+    {
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        if (parames==null){
+            for (File file:files){
+                if (file.exists()){
+                    builder.addFormDataPart("headload",file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
+                }
+            }
+        }else {
+            for (String key:parames.keySet()){
+                builder.addFormDataPart(key,parames.get(key));
+            }
+            for (File file:files){
+                if (file.exists()){
+                    builder.addFormDataPart("headload",file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
+                }
+            }
+        }
+        RequestBody requestBody = builder.build();
+        Request request = new Request.Builder()
+                .header("cookie", "JSESSIONID="+(String)(SharedPreferencesUtils.getParam(mContext,"cookie","")))
+                .url(resUrl)
+                .post(requestBody)
+                .build();
+        request(request, callback);
 
-  }
+    }
 
     /**
      * 构建请求对象
      */
-    private Request buildRequest(String url, Map<String, String> params, HttpMethodType type) {
-        Request.Builder builder = new Request.Builder();
-        builder.url(url);
-        if (type == HttpMethodType.GET) {
-            builder.get();
-        } else if (type == HttpMethodType.POST) {
-            builder.post(buildRequestBody(params));
-        }        return builder.build();
-    }
+//    private Request buildRequest(String url, Map<String, String> params, HttpMethodType type) {
+//        Request.Builder builder = new Request.Builder();
+//        builder.url(url).header("cookie","JSESSIONID="+(String)(SharedPreferencesUtils.getParam(mContext,"token","")));
+//        if (type == HttpMethodType.GET) {
+//            builder.get();
+//        } else if (type == HttpMethodType.POST) {
+//            builder.post(buildRequestBody(params));
+//        }        return builder.build();
+//    }
 
     /**
      * 通过Map的键值对构建请求对象的body
@@ -182,6 +220,7 @@ public class HttpUtils {
      * 封装reques方法
      */
     public void request(final Request request,final  BaseCallback callback){
+        if (NetWorkUtils.isNetworkConnected(mContext)) {
         callback.onRequestBefore();
         mClientInstance.newCall(request).enqueue(new Callback() {
             @Override
@@ -212,8 +251,14 @@ public class HttpUtils {
                 }
             }
         });
+        }else{
+            ShowToastUtils.showToastMsg(mContext,"请检测网络是否可用");
+        }
     }
-     /* 在主线程中执行的回调
+
+
+
+    /* 在主线程中执行的回调
      *
              * @param response
      * @param resString
@@ -223,7 +268,11 @@ public class HttpUtils {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                callback.onSuccess(response, o);
+                try {
+                    callback.onSuccess(response,o);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }    /**
@@ -253,34 +302,35 @@ public class HttpUtils {
             }
         });
     }
-    private class SafeTrustManager implements X509TrustManager {
-        @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
+    //https需要加
+//    private class SafeTrustManager implements X509TrustManager {
+//        @Override
+//        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+//        }
+//
+//        @Override
+//        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+//            try {
+//                for (X509Certificate certificate : chain) {
+//                    certificate.checkValidity(); //检查证书是否过期，签名是否通过等
+//                }
+//            } catch (Exception e) {
+//                throw new CertificateException(e);
+//            }
+//        }
+//
+//        @Override
+//        public X509Certificate[] getAcceptedIssuers() {
+//            return new X509Certificate[0];
+//        }
+//    }
 
-        @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-            try {
-                for (X509Certificate certificate : chain) {
-                    certificate.checkValidity(); //检查证书是否过期，签名是否通过等
-                }
-            } catch (Exception e) {
-                throw new CertificateException(e);
-            }
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return new X509Certificate[0];
-        }
-    }
-
-    private class SafeHostnameVerifier implements HostnameVerifier {
-        @Override
-        public boolean verify(String hostname, SSLSession session) {
-            //验证主机名是否匹配
-
-            return true;
-        }
-    }
+//    private class SafeHostnameVerifier implements HostnameVerifier {
+//        @Override
+//        public boolean verify(String hostname, SSLSession session) {
+//            //验证主机名是否匹配
+//
+//            return true;
+//        }
+//    }
 }

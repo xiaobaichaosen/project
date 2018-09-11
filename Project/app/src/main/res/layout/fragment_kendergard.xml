@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yijie.com.yijie.view.LoadingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/loading"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/base_dimen_26"
                 android:layout_centerVertical="true"
-                android:drawableLeft="@mipmap/new_school"
+                android:drawableLeft="@mipmap/arrow_back"
                 android:text="返回"
                 android:textSize="@dimen/base_dimen_32" />
 
@@ -89,16 +89,70 @@
 
         </RelativeLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_below="@+id/app_title"
-        android:id="@+id/swipe_refresh_layout"
-        style="@style/layout_mm"
-      >
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            style="@style/layout_mm" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+  <LinearLayout
+      android:id="@+id/loading"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_below="@+id/app_title"
+            android:background="@color/colorPrimary"
+            android:id="@+id/swipe_refresh_layout"
+            style="@style/layout_mm"
+            >
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="园所需求"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32"
+                        android:background="@color/app_background"
+                        android:paddingLeft="@dimen/base_dimen_30"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_80" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_loading"
+                        android:background="@color/app_background"
+                        style="@style/layout_mw" />
+
+                    <TextView
+                        android:background="@color/app_background"
+                        android:paddingLeft="@dimen/base_dimen_30"
+                        android:gravity="center_vertical"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32"
+                        android:text="合作园所"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_80"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_company"
+                        style="@style/layout_mm" />
+
+                    <TextView
+                        android:background="@color/app_background"
+                        android:paddingLeft="@dimen/base_dimen_30"
+                        android:gravity="center_vertical"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_32"
+                        android:text="往前合作园所"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_80"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        style="@style/layout_mm" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+  </LinearLayout>
     </LinearLayout>
-</com.yijie.com.yijie.view.LoadingLayout>
+</LinearLayout>

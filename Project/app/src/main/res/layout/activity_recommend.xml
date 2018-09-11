@@ -8,6 +8,13 @@
         android:id="@+id/app_title"
         layout="@layout/app_title"/>
 
+    <com.yijie.com.yijie.view.LoadingLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:background="@color/app_background"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@+id/app_title"
         android:id="@+id/swipe_refresh_layout"
@@ -19,5 +26,5 @@
             style="@style/layout_mm" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
+    </com.yijie.com.yijie.view.LoadingLayout>
 </LinearLayout>

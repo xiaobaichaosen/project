@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_background"
+    android:layout_height="match_parent">
+    <include  layout="@layout/app_title"/>
+      <ScrollView
+          android:layout_marginTop="@dimen/base_dimen_20"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+          <LinearLayout
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+              <TextView
+                  android:id="@+id/tv_kindName"
+
+                  android:paddingTop="@dimen/base_dimen_20"
+                  android:background="@color/colorPrimary"
+                  android:layout_width="match_parent"
+                  android:gravity="center"
+                  android:layout_height="wrap_content" />
+              <com.yijie.com.kindergartenapp.view.ExpandableTextView
+                  android:background="@color/colorPrimary"
+                  android:id="@+id/expand_text_view"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  expandableTextView:animAlphaStart="1"
+                  expandableTextView:maxCollapsedLines="4">
+                  <TextView
+                      android:id="@id/expandable_text"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginRight="10dp"
+                      android:layout_marginTop="8dp"
+                      android:fontFamily="sans-serif-light"
+                      android:textColor="#666666"
+                      android:textSize="16sp"/>
+                  <ImageButton
+                      android:id="@id/expand_collapse"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="end|bottom"
+                      android:background="@android:color/transparent"
+                      android:padding="16dp" />
+
+              </com.yijie.com.kindergartenapp.view.ExpandableTextView>
+
+
+
+
+
+
+
+
+
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:background="@color/colorPrimary"
+                  android:paddingLeft="@dimen/base_dimen_30"
+                  android:paddingRight="@dimen/base_dimen_30"
+                  android:layout_marginTop="@dimen/base_dimen_20"
+                  android:paddingTop="@dimen/base_dimen_30"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:gravity="center_vertical"
+                      android:text="园所信息"
+                      android:textSize="@dimen/base_dimen_32" />
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:orientation="horizontal"
+
+                      >
+                      <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          >
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="占地面积"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="园所类型"
+                              android:textColor="#808080" />
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="园所级别"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="幼儿人数"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="班级数量"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="班级配置"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="特色教程"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="住宿安排"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="三餐安排"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="工服押金"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="首年体检费"
+                              android:textColor="#808080" />
+
+                      </LinearLayout>
+                      <LinearLayout
+                          android:layout_marginLeft="@dimen/base_dimen_80"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical"
+
+                          >
+
+                          <TextView
+                              android:id="@+id/tv_area"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_category"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_level"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_phonenum"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_classnum"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_classConfig"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_SpecCourses"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_stay"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_meals"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_uniform"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_checkmoney"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+
+                      </LinearLayout>
+
+                  </LinearLayout>
+                  <TextView
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:text="荣誉证书"
+                      android:textColor="#808080" />
+
+                  <android.support.v7.widget.RecyclerView
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:id="@+id/recycler_view_certificate"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <View
+                      android:layout_width="match_parent"
+                      android:layerType="software"
+                      android:layout_height="5dp"
+                      android:background="@drawable/bg_dotted_line"
+                      />
+
+                  <TextView
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:text="营业执照"
+                      android:textColor="#808080" />
+                  <android.support.v7.widget.RecyclerView
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:id="@+id/recycler_view_license"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <View
+                      android:layout_width="match_parent"
+                      android:layerType="software"
+                      android:layout_marginBottom="@dimen/base_dimen_30"
+                      android:layout_height="5dp"
+                      android:background="@drawable/bg_dotted_line"
+                      />
+                  <TextView
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:text="园所照片"
+                      android:textColor="#808080" />
+                  <android.support.v7.widget.RecyclerView
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:id="@+id/recycler_view_pictrue"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <View
+                      android:layout_width="match_parent"
+                      android:layerType="software"
+                      android:layout_marginBottom="@dimen/base_dimen_30"
+                      android:layout_height="5dp"
+                      android:background="@drawable/bg_dotted_line"
+                      />
+                  <TextView
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:text="宿舍环境"
+                      android:textColor="#808080" />
+                  <android.support.v7.widget.RecyclerView
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:id="@+id/recycler_view_attachment"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+              </LinearLayout>
+
+
+              <LinearLayout
+                  android:background="@color/colorPrimary"
+                  android:layout_width="match_parent"
+                  android:layout_marginTop="@dimen/base_dimen_20"
+                  android:paddingLeft="@dimen/base_dimen_30"
+                  android:paddingRight="@dimen/base_dimen_30"
+                  android:orientation="vertical"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:paddingTop="@dimen/base_dimen_30"
+                      android:layout_height="wrap_content"
+                      android:gravity="center_vertical"
+                      android:text="联系方式"
+                      android:textSize="@dimen/base_dimen_32" />
+
+
+
+                  <LinearLayout
+                      android:id="@+id/linearLayout"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/base_dimen_20"
+                      android:paddingBottom="@dimen/base_dimen_30"
+                      android:orientation="horizontal"
+
+                      >
+                      <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginBottom="@dimen/base_dimen_34"
+                          android:orientation="vertical"
+
+                          >
+
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="联系人:"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="联系电话:"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="微信:"
+                              android:textColor="#808080" />
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="QQ:"
+                              android:textColor="#808080" />
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="邮箱:"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="地址:"
+                              android:textColor="#808080" />
+                          <TextView
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:text="详细地址:"
+                              android:textColor="#808080" />
+
+                      </LinearLayout>
+                      <LinearLayout
+                          android:layout_marginLeft="@dimen/base_dimen_30"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginBottom="@dimen/base_dimen_34"
+                          android:orientation="vertical"
+
+                          >
+
+                          <TextView
+                              android:id="@+id/tv_contactName"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_contactPhone"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_wachat"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+                          <TextView
+                              android:id="@+id/tv_qq"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_email"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20"
+                              android:textColor="#808080" />
+
+                          <TextView
+                              android:id="@+id/tv_adress"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20" />
+                          <TextView
+                              android:id="@+id/tv_detailAdress"
+                              android:layout_width="fill_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/base_dimen_20" />
+                      </LinearLayout>
+                  </LinearLayout>
+              </LinearLayout>
+
+          </LinearLayout>
+
+      </ScrollView>
+
+</LinearLayout>

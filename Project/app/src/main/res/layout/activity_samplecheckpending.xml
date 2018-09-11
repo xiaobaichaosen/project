@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/app_title"
+        layout="@layout/app_title"/>
+
+        <LinearLayout
+            android:id="@+id/rl_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90">
+
+   <TextView
+       android:id="@+id/tv_speedCheck"
+       android:padding="@dimen/base_dimen_8"
+       android:text="快速处理26"
+       android:layout_centerVertical="true"
+       android:background="@drawable/speed_shape"
+       android:textColor="@color/greenColor"
+       android:layout_marginRight="@dimen/base_dimen_30"
+       android:layout_alignParentRight="true"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@+id/app_title"
+        android:id="@+id/swipe_refresh_layout"
+        style="@style/layout_mm"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            style="@style/layout_mm" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+        </LinearLayout>
+
+</LinearLayout>

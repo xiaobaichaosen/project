@@ -2,13 +2,14 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/app_background"
     android:layout_height="match_parent">
     <include layout="@layout/app_title"/>
-
     <RelativeLayout
-        android:id="@+id/to_newEducation"
+        android:id="@+id/to_year"
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_22"
         android:paddingLeft="@dimen/base_dimen_22"
         android:layout_height="@dimen/base_dimen_86">
         <TextView
@@ -17,7 +18,37 @@
             android:textSize="@dimen/base_dimen_32"
             android:textColor="#808080"
             android:layout_height="wrap_content"
-            android:text="学历"
+            android:text="年份 *"
+            />
+
+        <TextView
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:id="@+id/tv_year"
+            android:drawableRight="@mipmap/goright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_32" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/to_newEducation"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:layout_height="@dimen/base_dimen_86">
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:text="学历 *"
             />
 
         <TextView
@@ -32,19 +63,14 @@
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_32" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-           android:layout_height="@dimen/base_dimen_2"
-
-            android:background="@color/app_background"
-            />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:id="@+id/to_newMonth"
         android:layout_height="@dimen/base_dimen_86">
 
@@ -54,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:textSize="@dimen/base_dimen_32"
-            android:text="实习月份" />
+            android:text="实习月份 *" />
 
         <TextView
             android:id="@+id/tv_newMonth"
@@ -68,18 +94,12 @@
             android:textSize="@dimen/base_dimen_32"/>
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-           android:layout_height="@dimen/base_dimen_2"
-
-            android:background="@color/app_background"
-            />
-
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:paddingLeft="@dimen/base_dimen_22"
         android:id="@+id/to_newType"
         android:layout_height="@dimen/base_dimen_86">
@@ -90,7 +110,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_32"
             android:layout_centerVertical="true"
-            android:text="实习类型" />
+            android:text="实习类型 *" />
 
         <TextView
             android:id="@+id/tv_newType"
@@ -104,19 +124,12 @@
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_32"/>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-           android:layout_height="@dimen/base_dimen_2"
-
-            android:background="@color/app_background"
-            />
-
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:paddingLeft="@dimen/base_dimen_22"
         android:id="@+id/to_line"
         android:layout_height="@dimen/base_dimen_86">
@@ -129,7 +142,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="11dp"
-            android:text="实习期限" />
+            android:text="实习期限 *" />
 
         <TextView
             android:id="@+id/tv_line"
@@ -144,18 +157,13 @@
            />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-           android:layout_height="@dimen/base_dimen_2"
-
-            android:background="@color/app_background"
-            />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="match_parent"        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
+
         android:paddingLeft="@dimen/base_dimen_22"
         android:id="@+id/to_mode"
         android:layout_height="@dimen/base_dimen_86">
@@ -180,20 +188,13 @@
             android:textColor="#808080"
 />
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-           android:layout_height="@dimen/base_dimen_2"
-
-            android:background="@color/app_background"
-            />
-
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:id="@+id/to_newAppointmenttime"
         android:layout_height="@dimen/base_dimen_86">
 
@@ -217,17 +218,18 @@
 
             android:textColor="#808080"
             />
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-           android:layout_height="@dimen/base_dimen_2"
 
-            android:background="@color/app_background"
-            />
     </RelativeLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/base_dimen_22"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
+        android:background="@color/colorPrimary"
         android:id="@+id/to_newintershipmoney"
         android:layout_height="@dimen/base_dimen_86">
 
@@ -237,7 +239,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_32"
             android:layout_centerVertical="true"
-            android:text="实习薪资" />
+            android:text="实习薪资 *" />
 
         <TextView
             android:id="@+id/tv_newintershipmoney"
@@ -248,16 +250,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_32"
-
             android:textColor="#808080"
             />
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_2"
 
-            android:background="@color/app_background"
-            />
     </RelativeLayout>
-
+        <LinearLayout
+            android:id="@+id/ll_pay"
+            android:visibility="gone"
+            android:paddingLeft="@dimen/base_dimen_22"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="期间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="薪资"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="管理费"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_manageMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

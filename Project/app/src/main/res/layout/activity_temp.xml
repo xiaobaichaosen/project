@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <include layout="@layout/app_title"
+        />
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapse_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_180"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+            <RelativeLayout
+                android:id="@+id/id_stickynavlayout_topview"
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/base_dimen_30"
+                android:layout_height="wrap_content"
+                >
+
+                <com.yijie.com.yijie.view.CircleImageView
+                    android:id="@+id/iv_schoolPic"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_width="@dimen/base_dimen_110"
+                    android:layout_height="@dimen/base_dimen_110" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                   android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/iv_schoolPic"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv_schoolName"
+                        android:text="河北冶金"
+                        android:layout_alignParentLeft="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_contact"
+                        android:layout_marginTop="@dimen/base_dimen_10"
+                        android:text="王老师 1891123456"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_schoolName_edit"
+                    android:text="编辑"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:tabIndicatorColor="@color/colorAccent" />
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:orientation="vertical"
+        android:id="@+id/main_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+    </FrameLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
+
+
+

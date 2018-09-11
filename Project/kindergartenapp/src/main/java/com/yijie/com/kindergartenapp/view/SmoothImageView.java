@@ -34,7 +34,7 @@ public class SmoothImageView extends PhotoView {
 	private Paint mPaint;
 	private int mBgColor = 0xFF000000;
 	private Matrix matrix;
-	private boolean transformEnabled = true;
+	private boolean transformEnabled =false;
 	private Bitmap mBitmap;
 
 	private Transform startTransform;
@@ -47,7 +47,6 @@ public class SmoothImageView extends PhotoView {
 		float left, top, width, height;
 		int alpha;
 		float scale;
-
 		public Transform clone() {
 			Transform obj = null;
 			try {

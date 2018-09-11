@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.kendergard.KndergardAcitivity;
 import com.yijie.com.yijie.activity.recommend.recommendadapter.LoadMoreRecommendWrapperAdapter;
@@ -18,8 +20,18 @@ import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
+import com.yijie.com.yijie.bean.StudentResume;
+import com.yijie.com.yijie.utils.BaseCallback;
+import com.yijie.com.yijie.utils.HttpUtils;
+import com.yijie.com.yijie.utils.LogUtil;
+import com.yijie.com.yijie.view.LoadingLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,6 +39,8 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2017/12/21.
@@ -46,18 +60,29 @@ public class RecommendActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.loading)
+    LoadingLayout loading;
     private List<StudentBean> dataList = new ArrayList<>();
     private LoadMoreWrapper loadMoreWrapper;
+    private int currentPage;
 
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_recommend);
 
     }
-@OnClick(R.id.back)
-public void goBack(){
+    @Override
+    protected void onResume() {
+        dataList.clear();
+        getData();
+        super.onResume();
+    }
+
+    @OnClick(R.id.back)
+    public void goBack() {
         finish();
-}
+    }
+
     @Override
     public void init() {
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
@@ -67,9 +92,7 @@ public void goBack(){
         recyclerView.setLayoutManager(new LinearLayoutManager(RecommendActivity.this));
         title.setText("推荐");
         actionItem.setBackgroundResource(R.mipmap.search);
-        // 模拟获取数据
-        getData();
-       LoadMoreRecommendWrapperAdapter loadMoreWrapperAdapter = new LoadMoreRecommendWrapperAdapter(dataList);
+        LoadMoreRecommendWrapperAdapter loadMoreWrapperAdapter = new LoadMoreRecommendWrapperAdapter(dataList);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
         recyclerView.setAdapter(loadMoreWrapper);
@@ -81,7 +104,7 @@ public void goBack(){
                                                               Intent intent = new Intent();
                                                               intent.setClass(RecommendActivity.this, KndergardAcitivity.class);
 
-                                                                intent.putExtra("isShowMove",true);
+                                                              intent.putExtra("isShowMove", true);
 
 
                                                               startActivity(intent);
@@ -139,15 +162,57 @@ public void goBack(){
     }
 
     private void getData() {
-        //String.valueOf(letter)
-        char letter = 'A';
-        for (int i = 0; i < 26; i++) {
+        HttpUtils getinstance = HttpUtils.getinstance(RecommendActivity.this);
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        stringStringHashMap.put("pageStart", currentPage + "");
+        getinstance.post(Constant.SELECTDEMANDLIST, stringStringHashMap, new BaseCallback<String>() {
+            @Override
+            public void onRequestBefore() {
+                loading.showLoading();
+            }
 
-                dataList.add(new StudentBean(1, String.valueOf(letter)));
+            @Override
+            public void onFailure(Request request, Exception e) {
+                loading.showError();
+            }
 
+            @Override
+            public void onSuccess(Response response, String o) {
+                LogUtil.e(o);
+                try {
+                    JSONObject jsonObject = new JSONObject(o);
+//                    JSONObject data = jsonObject.getJSONObject("data");
+//                    JSONArray studentIdList = data.getJSONArray("studentIdList");
+//                    for (int j = 0; j < studentIdList.length(); j++) {
+//                        int anInt = studentIdList.getInt(j);
+//                        idList.add(anInt);
+//                    }
+//
+//                    LogUtil.e("studentList=" + studentIdList);
+//                    Gson gson = new Gson();
+//
+//                    total = data.getString("total");
+//                    tvSpeedCheck.setText("快速处理" + total);
+//                    JSONArray list = data.getJSONArray("list");
+//                    for (int i = 0; i < list.length(); i++) {
+//                        StudentResume studentResume = gson.fromJson(list.get(i).toString(), StudentResume.class);
+//                        dataList.add(studentResume);
+//                    }
+//                    if (list.length() < 10) {
+//                        loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
+//                    }
+                    loadMoreWrapper.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                loading.showContent();
+            }
 
-            letter++;
-        }
+            @Override
+            public void onError(Response response, int errorCode, Exception e) {
+                loading.showError();
+            }
+        });
     }
 
     @Override

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="@dimen/base_dimen_40"
+    android:paddingRight="@dimen/base_dimen_40"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90"
+        android:gravity="center_vertical"
+        android:text="姓名" />
+    <EditText
+        android:id="@+id/et_realName"
+        android:hint="请输入真实姓名"
+        android:textSize="@dimen/base_dimen_24"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_80" />
+    <View
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:background="@color/app_background"
+        android:layout_height="@dimen/base_dimen_2"/>
+    <TextView
+        android:text="请选择所在的幼儿园"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+
+        <AutoCompleteTextView
+            android:id="@+id/et_kinder"
+            android:hint="请输入所在的幼儿园"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_80">
+            <requestFocus />
+        </AutoCompleteTextView>
+        <TextView
+            android:id="@+id/tv_down"
+            android:drawableRight="@mipmap/arrow_down"
+            android:visibility="gone"
+            android:padding="@dimen/base_dimen_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/view_line"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_width="match_parent"
+        android:background="@color/app_background"
+        android:layout_height="@dimen/base_dimen_2"/>
+    <Button
+
+        android:id="@+id/btn_two"
+        android:layout_marginTop="@dimen/base_dimen_50"
+        android:background="@drawable/bg_round_ligtred"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="下一步" />
+</LinearLayout>

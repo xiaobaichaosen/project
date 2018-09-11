@@ -17,20 +17,23 @@ import butterknife.Unbinder;
  */
 
 public class KndergartenBaseFragment extends BaseFragment {
-
-
     Unbinder unbinder;
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_kndergardbase;
     }
 
     @Override
-    protected void initData() {
+    public void onResume() {
+        isPrepared = true;
+        initData();
+        super.onResume();
+    }
+
+    @Override
+    protected void initView() {
         final KndergartenFragment kndergartenFragment = new KndergartenFragment();
-       final KndergartenMoreFragment kndergartenMoreFragment = new KndergartenMoreFragment();
+        final KndergartenMoreFragment kndergartenMoreFragment = new KndergartenMoreFragment();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_kndergard_layout,kndergartenFragment);
         fragmentTransaction.commit();
@@ -55,6 +58,14 @@ public class KndergartenBaseFragment extends BaseFragment {
                 fragmentTransaction.commit();
             }
         });
+
+    }
+
+    @Override
+    protected void initData() {
+        if(!isPrepared || !isVisible) {
+            return;
+        }
 
     }
 

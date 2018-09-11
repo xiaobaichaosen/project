@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_title"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="设置园所需求数据"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <EditText
+            android:id="@+id/tv_num"
+            android:hint="请输入最大招聘人数"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:background="@null"
+            android:gravity="right"
+            android:textColor="#808080"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/base_dimen_28" />
+    </RelativeLayout>
+
+
+</LinearLayout>

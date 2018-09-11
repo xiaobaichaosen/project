@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_120"
+    android:background="@color/colorPrimary"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_12"
+        android:text="2017届"
+        android:textColor="#8F8F8F"
+        android:textSize="@dimen/base_dimen_32" />
+
+    <TextView
+        android:id="@+id/tv_education"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_12"
+        android:text="大专"
+        android:textColor="#8F8F8F"
+        android:textSize="@dimen/base_dimen_32" />
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_12"
+        android:text="定岗实习"
+        android:textColor="#8F8F8F"
+        android:textSize="@dimen/base_dimen_32" />
+    <TextView
+        android:id="@+id/tv_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_12"
+        android:text="3月"
+        android:textColor="#8F8F8F"
+        android:textSize="@dimen/base_dimen_32" />
+</LinearLayout>

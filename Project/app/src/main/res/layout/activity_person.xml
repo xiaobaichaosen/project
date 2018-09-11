@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:layout_marginTop="@dimen/base_dimen_22"
+        android:layout_height="@dimen/base_dimen_86">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:text="姓名 *"
+            />
+
+
+        <EditText
+            android:layout_toRightOf="@+id/tv_name"
+            android:id="@+id/et_name"
+            android:gravity="right"
+            android:layout_marginLeft="@dimen/base_dimen_22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:background="@null"
+            android:hint="请输入姓名"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_2"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+android:layout_marginTop="@dimen/base_dimen_2"
+        android:background="@color/colorPrimary"
+        android:layout_height="@dimen/base_dimen_86">
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:textColor="#808080"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/base_dimen_32"
+            android:text="金额 *" />
+
+        <EditText
+            android:layout_toRightOf="@+id/tv_phone"
+            android:id="@+id/et_money"
+            android:gravity="right"
+            android:layout_marginLeft="@dimen/base_dimen_22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:inputType="number"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:background="@null"
+            android:hint="请输入金额"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_2"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

@@ -10,8 +10,9 @@ import android.widget.RadioGroup;
 
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.base.BaseActivity;
-import com.yijie.com.yijie.base.BaseFragment2;
 import com.yijie.com.yijie.fragment.kndergaren.KndergartenBaseFragment;
+import com.yijie.com.yijie.fragment.kndergaren.KndergartenFragment;
+import com.yijie.com.yijie.fragment.school.ProjectListFragment;
 import com.yijie.com.yijie.fragment.school.SchoolBaseFragment;
 import com.yijie.com.yijie.fragment.student.StudentFragment;
 
@@ -65,12 +66,14 @@ public class SchoolMoreActivity extends BaseActivity implements RadioGroup.OnChe
 
     }
     public void InitViewPager() {
-        mainViewPager.setOffscreenPageLimit(2);
+        mainViewPager.setOffscreenPageLimit(0);
         fragmentList = new ArrayList<Fragment>();
 
         // 将各Fragment加入数组中
-        fragmentList.add(new SchoolBaseFragment());
-        fragmentList.add(new KndergartenBaseFragment());
+//        fragmentList.add(new SchoolBaseFragment());
+//        fragmentList.add(new KndergartenBaseFragment());
+        fragmentList.add(new ProjectListFragment());
+        fragmentList.add(new KndergartenFragment());
         fragmentList.add(new StudentFragment());
         // 设置ViewPager的设配器`
         mainViewPager.setAdapter(new MyAdapter(getSupportFragmentManager(),

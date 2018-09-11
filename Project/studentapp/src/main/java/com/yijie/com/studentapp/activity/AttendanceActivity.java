@@ -1,181 +1,91 @@
 package com.yijie.com.studentapp.activity;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yijie.com.studentapp.R;
-import com.yijie.com.studentapp.activity.photo.CameraActivity;
 import com.yijie.com.studentapp.base.BaseActivity;
-import com.yijie.com.studentapp.utils.BaseCallback;
-import com.yijie.com.studentapp.utils.HttpUtils;
-import com.yijie.com.studentapp.utils.LogUtil;
-import com.yijie.com.studentapp.utils.ShowToastUtils;
-import com.yijie.com.studentapp.view.CircleRelativeLayout;
+import com.yijie.com.studentapp.fragment.ApplyForFragment;
+import com.yijie.com.studentapp.fragment.PunchCardFragment;
+import com.yijie.com.studentapp.fragment.StatisticsFragment;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
- * Created by 奕杰平台 on 2018/2/6.
- * 考勤
+ * 考勤打卡，申请，统计
  */
+public class AttendanceActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+    @BindView(R.id.main_ViewPager)
+    ViewPager mainViewPager;
 
-public class AttendanceActivity extends BaseActivity {
-
-
-    @BindView(R.id.circleRelative)
-    CircleRelativeLayout circleRelative;
-    @BindView(R.id.tv_wifi)
-    TextView tvWifi;
-    private LocationManager locationManager;
-    private String provider;
-    private Location location;
+    @BindView(R.id.main_tab_RadioGroup)
+    RadioGroup mainTabRadioGroup;
+    @BindView(R.id.activity_main)
+    LinearLayout activityMain;
+    @BindView(R.id.radio_punchCard)
+    RadioButton radioPunchCard;
+    @BindView(R.id.radio_applyFor)
+    RadioButton radioApplyFor;
+    @BindView(R.id.radio_statistics)
+    RadioButton radioStatistics;
+    @BindView(R.id.back)
+    TextView back;
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.action_item)
+    ImageView actionItem;
+    // 类型为Fragment的动态数组
+    private ArrayList<Fragment> fragmentList;
 
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_attendance);
-
     }
 
     @Override
     public void init() {
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);//获得位置服务
-        provider = judgeProvider(locationManager);
-        if (provider != null) {//有位置提供器的情况
-            //为了压制getLastKnownLocation方法的警告
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-
-
-            LocationListener  listener= new LocationListener(){
-
-                @Override
-                public void onLocationChanged(Location location) {
-                    getLocation(location);//得到当前经纬度并开启线程去反向地理编码
-                }
-
-                @Override
-                public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                }
-
-                @Override
-                public void onProviderEnabled(String s) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String s) {
-
-                }
-            };
-            if (locationManager.getProvider(LocationManager.NETWORK_PROVIDER) != null || locationManager.getProvider(LocationManager.GPS_PROVIDER) != null) {
-
-                locationManager.requestLocationUpdates(provider, 1000, 1000, listener);
-            } else {
-                //无法定位：1、提示用户打开定位服务；2、跳转到设置界面
-                Toast.makeText(this, "无法定位，请打开定位服务", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent();
-                i.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(i);
-            }
-
-
-        }else{//不存在位置提供器的情况
-
-        }
-        WifiManager wifiManager= (WifiManager)getApplicationContext().getSystemService(WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-//        tvWifi.setText("wifi信息："+wifiInfo.toString()+"wifi名称："+wifiInfo.getSSID());
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
+        InitViewPager();
+        mainTabRadioGroup.setOnCheckedChangeListener(this);
+        mainTabRadioGroup.check(R.id.radio_punchCard);
+        title.setText("考勤打卡");
     }
 
+    public void InitViewPager() {
+        //会影响沉浸式状态栏如果设置成2
+        mainViewPager.setOffscreenPageLimit(3);
+        fragmentList = new ArrayList<Fragment>();
 
-    /**
-     * 得到当前经纬度并开启线程去反向地理编码116.296674,40.106374
-     */
-    public void getLocation(Location location) {
-        String latitude = location.getLatitude()+"";
-        String longitude = location.getLongitude()+"";
-        String url = "http://api.map.baidu.com/geocoder/v2/?ak=jx1GmOGTvg7au8tzR7gtKI2HpPmxgdrK&callback=renderReverse&location="+latitude+","+longitude+"&output=json&pois=0";
-        HttpUtils instance = HttpUtils.getinstance();
-        instance.get(url, new BaseCallback<String>(
+        // 将各Fragment加入数组中
+        fragmentList.add(new PunchCardFragment());
+        fragmentList.add(new ApplyForFragment());
+        fragmentList.add(new StatisticsFragment());
 
-        ) {
-            @Override
-            public void onRequestBefore() {
 
-            }
+        // 设置ViewPager的设配器`
+        mainViewPager.setAdapter(new MyAdapter(getSupportFragmentManager(),
+                fragmentList));
+        // 当前为第一个页面
 
-            @Override
-            public void onFailure(Request request, Exception e) {
-
-            }
-
-            @Override
-            public void onSuccess(Response response, String str) {
-                try {
-                    LogUtil.e(str);
-                    str = str.replace("renderReverse&&renderReverse","");
-                    str = str.replace("(","");
-                    str = str.replace(")","");
-                    JSONObject jsonObject = new JSONObject(str);
-                    JSONObject address = jsonObject.getJSONObject("result");
-                    String city = address.getString("formatted_address");
-                    String district = address.getString("sematic_description");
-                    tvWifi.setText("当前位置："+city+district);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(Response response, int errorCode, Exception e) {
-
-            }
-        });
-
-    }
-    /**
-     * 判断是否有可用的内容提供器
-     * @return 不存在返回null
-     */
-    private String judgeProvider(LocationManager locationManager) {
-        List<String> prodiverlist = locationManager.getProviders(true);
-        if(prodiverlist.contains(LocationManager.NETWORK_PROVIDER)){
-            return LocationManager.NETWORK_PROVIDER;
-        }else if(prodiverlist.contains(LocationManager.GPS_PROVIDER)) {
-            return LocationManager.GPS_PROVIDER;
-        }else{
-            ShowToastUtils.showToastMsg(this,"没有可用的位置提供器");
-        }
-        return null;
-    }
-    @OnClick(R.id.circleRelative)
-    public void onViewClicked() {
-        Intent intent = new Intent();
-        intent.setClass(this, CameraActivity.class);
-        startActivity(intent);
-
+//		main_viewPager.setCurrentItem(1);
+        // ViewPager的页面改变监听器
+        mainViewPager.setOnPageChangeListener(new MyListner());
     }
 
     @Override
@@ -183,5 +93,97 @@ public class AttendanceActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @OnClick({R.id.back, R.id.action_item})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+            case R.id.action_item:
+                break;
+        }
+    }
+
+    public class MyAdapter extends FragmentPagerAdapter {
+        ArrayList<Fragment> list;
+
+        public MyAdapter(FragmentManager fm, ArrayList<Fragment> list) {
+            super(fm);
+            this.list = list;
+        }
+
+        @Override
+        public Fragment getItem(int arg0) {
+            return list.get(arg0);
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+    }
+
+    public class MyListner implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageSelected(int arg0) {
+            //获取当前页面用于改变对应RadioButton的状态
+            int current = mainViewPager.getCurrentItem();
+            switch (current) {
+                case 0:
+                    mainTabRadioGroup.check(R.id.radio_punchCard);
+                    title.setText("打卡");
+                    break;
+                case 1:
+                    mainTabRadioGroup.check(R.id.radio_applyFor);
+                    title.setText("申请");
+                    break;
+                case 2:
+                    mainTabRadioGroup.check(R.id.radio_statistics);
+                    title.setText("统计");
+                    break;
+
+            }
+        }
+
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int CheckedId) {
+        //获取当前被选中的RadioButton的ID，用于改变ViewPager的当前页
+        int current = 0;
+        switch (CheckedId) {
+
+
+            case R.id.radio_punchCard:
+                current = 0;
+                title.setText("考勤打卡");
+                break;
+            case R.id.radio_applyFor:
+                title.setText("申请");
+                current = 1;
+                break;
+            case R.id.radio_statistics:
+                current = 2;
+                title.setText("统计");
+                break;
+
+
+        }
+        if (mainViewPager.getCurrentItem() != current) {
+            mainViewPager.setCurrentItem(current);
+        }
     }
 }

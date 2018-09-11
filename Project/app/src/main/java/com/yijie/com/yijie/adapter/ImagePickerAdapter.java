@@ -2,6 +2,7 @@ package com.yijie.com.yijie.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,10 @@ import android.widget.ImageView;
 
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.newschool.NewSchoolIntroduction;
+import com.yijie.com.yijie.utils.ImageLoaderUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,8 +97,13 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
                 clickPosition = NewSchoolIntroduction.IMAGE_ITEM_ADD;
             } else {
                 //加载网络图片
-                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
-//                iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
+                if (item.path.startsWith("http:")){
+                    ImageLoaderUtil.getImageLoader(mContext).displayImage(item.path, iv_img, ImageLoaderUtil.getPhotoImageOption());
+                }else{
+                    iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
+                }
+
+
                 clickPosition = position;
             }
         }

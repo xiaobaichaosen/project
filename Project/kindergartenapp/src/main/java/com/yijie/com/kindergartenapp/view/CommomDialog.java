@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -19,8 +20,8 @@ import com.yijie.com.kindergartenapp.R;
 public class CommomDialog extends Dialog implements View.OnClickListener{
     private TextView contentTxt;
     private TextView titleTxt;
-    private Button submitTxt;
-    private Button cancelTxt;
+    private TextView submitTxt;
+    private TextView cancelTxt;
 
     private Context mContext;
     private String content;
@@ -28,9 +29,7 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private String positiveName;
     private String negativeName;
     private String title;
-    private String buttonContent;
-    private Button submit;
-    private Boolean isVisable;
+    private int titleColor;
 
     public CommomDialog(Context context) {
         super(context);
@@ -54,7 +53,13 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         this.content = content;
         this.listener = listener;
     }
-
+    public CommomDialog(Context context, int themeResId,String title, String content, OnCloseListener listener) {
+        super(context, themeResId);
+        this.mContext = context;
+        this.content = content;
+        this.listener = listener;
+        this.title=title;
+    }
     protected CommomDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         this.mContext = context;
@@ -64,10 +69,11 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         this.title = title;
         return this;
     }
-    public CommomDialog setPostionButtonContent(String buttonContent){
-        this.buttonContent = buttonContent;
+    public CommomDialog setTitleColor(int titleColor){
+        this.titleColor = titleColor;
         return this;
     }
+
     public CommomDialog setPositiveButton(String name){
         this.positiveName = name;
         return this;
@@ -77,11 +83,7 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         this.negativeName = name;
         return this;
     }
-    public CommomDialog setNegativeButtonVisable(Boolean b){
-        this.isVisable=b;
 
-        return this;
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,16 +95,14 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private void initView(){
         contentTxt = (TextView)findViewById(R.id.content);
         titleTxt = (TextView)findViewById(R.id.title);
-
-        submitTxt = (Button)findViewById(R.id.submit);
+        submitTxt = (TextView)findViewById(R.id.submit);
         submitTxt.setOnClickListener(this);
-        cancelTxt = (Button)findViewById(R.id.cancel);
+        cancelTxt = (TextView)findViewById(R.id.cancel);
         cancelTxt.setOnClickListener(this);
-
-        contentTxt.setText(content);
+        contentTxt.setOnClickListener(this);
+        contentTxt.setText(Html.fromHtml(content));
         if(!TextUtils.isEmpty(positiveName)){
             submitTxt.setText(positiveName);
-
         }
 
         if(!TextUtils.isEmpty(negativeName)){
@@ -112,11 +112,9 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         if(!TextUtils.isEmpty(title)){
             titleTxt.setText(title);
         }
-        if (isVisable){
-            cancelTxt.setVisibility(View.GONE);
-            submitTxt.setBackground(null);
-            submitTxt.setGravity(Gravity.RIGHT);
-            submitTxt.setTextColor(Color.parseColor("#3F51B5"));
+        if(!TextUtils.isEmpty(titleColor+"")){
+            titleTxt.setTextColor(titleColor);
+
         }
 
     }
@@ -134,12 +132,19 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
                 if(listener != null){
                     listener.onClick(this, true);
                 }
-                this.dismiss();
+
                 break;
+                case R.id.content:
+                if(listener != null){
+                    listener.onContentClick();
+                }
+                break;
+
         }
     }
 
     public interface OnCloseListener{
         void onClick(Dialog dialog, boolean confirm);
+        void onContentClick();
     }
 }

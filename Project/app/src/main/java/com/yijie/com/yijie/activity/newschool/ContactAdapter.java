@@ -106,8 +106,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
         TextView tvName;
         @BindView(R.id.tv_phone)
         TextView tvPhone;
-        @BindView(R.id.tv_modify)
-        TextView tvModify;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);

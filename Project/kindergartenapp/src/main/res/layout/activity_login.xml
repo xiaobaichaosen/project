@@ -25,9 +25,6 @@
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/iv_yijie_reject" />
 
-
-
-
         </RelativeLayout>
 
         <LinearLayout
@@ -55,7 +52,7 @@
             <View
                 android:layout_marginTop="@dimen/base_dimen_30"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/base_dimen_2"
+                android:layout_height="@dimen/base_dimen_1"
                 android:background="@color/colorPrimary"/>
 
 
@@ -92,7 +89,7 @@
             <View
                 android:layout_marginTop="@dimen/base_dimen_30"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/base_dimen_2"
+                android:layout_height="@dimen/base_dimen_1"
                 android:background="@color/colorPrimary"/>
         </LinearLayout>
 
@@ -105,9 +102,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="登陆" />
-
-
-
 
 
         <RelativeLayout
@@ -123,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="@dimen/base_dimen_26"
-                android:text="忘记密码"
+                android:text="忘记密码?"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/base_dimen_28" />
 
@@ -137,6 +131,34 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/base_dimen_28" />
             <LinearLayout
+                android:visibility="gone"
+                android:layout_above="@+id/ll_bottom"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:background="@color/app_background"
+                    android:layout_height="@dimen/base_dimen_4"/>
+                <TextView
+                    android:layout_weight="0"
+                    android:textColor="@color/app_background"
+                    android:text="其他方式登陆"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:background="@color/app_background"
+                    android:layout_height="@dimen/base_dimen_4"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@id/ll_bottom"
+                android:visibility="gone"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"

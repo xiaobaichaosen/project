@@ -33,4 +33,8 @@
     <color name="underline_selected_color">#000</color>
     <color name="hintColor">#CCCCCC</color>
     <color name="textColor">#000</color>
+
+
+    <color name="item_title">#282828</color>
+    <color name="item_content">#AAAAAA</color>
 </resources>

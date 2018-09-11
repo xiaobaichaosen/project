@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:background="@color/colorPrimary"
@@ -17,8 +16,6 @@
         android:layout_below="@+id/app_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
     <EditText
         android:id="@+id/et_content"
         android:layout_width="match_parent"
@@ -37,7 +34,6 @@
         android:textSize="@dimen/base_dimen_28" />
     <TextView
         android:id="@+id/tv_num"
-        android:text="dd"
         android:padding="@dimen/base_dimen_8"
         android:layout_width="match_parent"
         android:gravity="right"

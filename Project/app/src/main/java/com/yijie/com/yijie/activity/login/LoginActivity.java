@@ -1,49 +1,53 @@
 package com.yijie.com.yijie.activity.login;
 
-import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.SystemClock;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.tu.loadingdialog.LoadingDailog;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.MainActivity;
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.login.modle.LoginCallBack;
+import com.yijie.com.yijie.activity.ForgetPwdActivity;
 import com.yijie.com.yijie.activity.login.modle.LoginModel;
-import com.yijie.com.yijie.activity.registerd.RegisteredActivity;
 import com.yijie.com.yijie.base.BaseActivity;
-import com.yijie.com.yijie.utils.AppInstallUtils;
+import com.yijie.com.yijie.utils.BaseCallback;
+import com.yijie.com.yijie.utils.HttpUtils;
 import com.yijie.com.yijie.utils.KeyBoardHelper;
 import com.yijie.com.yijie.utils.LogUtil;
+import com.yijie.com.yijie.utils.SharedPreferencesUtils;
 import com.yijie.com.yijie.utils.ShowToastUtils;
+import com.yijie.com.yijie.utils.ViewUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/1/12.
@@ -63,12 +67,8 @@ public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.loading)
     RelativeLayout loading;
-    @BindView(R.id.iv_qq_login)
-    ImageView ivQqLogin;
-    @BindView(R.id.iv_wx_login)
-    ImageView ivWxLogin;
-    @BindView(R.id.tv_registered)
-    TextView tvRegistered;
+
+
     @BindView(R.id.tv_fogetPassWord)
     TextView tvFogetPassWord;
     @BindView(R.id.btnSubmit)
@@ -81,17 +81,12 @@ public class LoginActivity extends BaseActivity {
     EditText etPassWord;
     @BindView(R.id.cb_isVisiable)
     CheckBox cbIsVisiable;
+    @BindView(R.id.tv_smsLogin)
+    TextView tvSmsLogin;
     private KeyBoardHelper boardHelper;
     private int bottomHeight;
+    private int userId;
 
-    Handler hander = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-
-        }
-    };
 
     @Override
     public void setContentView() {
@@ -107,7 +102,6 @@ public class LoginActivity extends BaseActivity {
         setColor(LoginActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(LoginActivity.this); // 改变状态栏变成透明
 //        loading.showContent();
-
 
 
         llBottom.post(new Runnable() {
@@ -158,85 +152,119 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        if (boardHelper!=null) {
+        if (boardHelper != null) {
             boardHelper.onDestory();
         }
         super.onDestroy();
     }
 
-    @OnClick({R.id.btnSubmit, R.id.iv_qq_login, R.id.iv_wx_login, R.id.tv_registered, R.id.et_passWord, R.id.et_name})
+    @OnClick({R.id.btnSubmit, R.id.et_passWord, R.id.et_name, R.id.tv_fogetPassWord,R.id.tv_smsLogin})
     public void Click(View view) {
-
+        Intent intent = new Intent();
         switch (view.getId()) {
+
             case R.id.btnSubmit:
-                loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
+                //请求网络
+                final HttpUtils instance = HttpUtils.getinstance(LoginActivity.this);
+                Map map = new HashMap();
+                map.put("username", etName.getText().toString());
+                map.put("password", etPassWord.getText().toString());
+                final ProgressDialog progressDialog = ViewUtils.getProgressDialog(this);
+                instance.post(Constant.LOGIN, map, new BaseCallback<String>() {
+
                     @Override
-                    public void beforLogin() {
-                        dialog.show();
+                    public void onRequestBefore() {
+                        progressDialog.show();
                     }
-
                     @Override
-                    public void onLoginSuccess(String success) {
-                        LogUtil.e(success);
-                        try {
-                            JSONObject jsonObject=new JSONObject(success);
-                            String status = jsonObject.getString("status");
-                            if (status.equals("ok")){
-
-                                ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
-                                Intent intent = new Intent();
-                                intent.setClass(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }else {
-                                ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
+                    public void onFailure(Request request, Exception e) {
+                        progressDialog.dismiss();
+                    }
+                    @Override
+                    public void onSuccess(Response response, String s) throws JSONException {
+                        JSONObject jsonObject = new JSONObject(s);
+                        LogUtil.e(s);
+                        if (jsonObject.getString("rescode").equals("200")) {
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            SharedPreferencesUtils.setParam(LoginActivity.this, "cookie", data.getString("cookieString"));
+                            SharedPreferencesUtils.setParam(LoginActivity.this, "user", data.toString());
+                            SharedPreferencesUtils.setParam(LoginActivity.this, "isLogin", "登录成功");
+                            SharedPreferencesUtils.setParam(LoginActivity.this, "roleName", data.getString("roleName"));
+                            try {
+                                JSONObject json = new JSONObject(data.toString());
+                                userId = Integer.parseInt(json.getString("id"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            dialog.dismiss();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            Set<String> tags = new HashSet<String>();
+                            //清除tags
+                            tags.add("");
+                            JPushInterface.setAliasAndTags(LoginActivity.this, "", tags, new TagAliasCallback() {
+                                @Override
+                                public void gotResult(int i, String s, Set<String> set) {
+                                }
+                            });
+                            //重新设置推送tags
+                            tags.clear();
+//                    tags.add(data.getString("roleName"));
+                            String roleName = data.getString("roleName");
+                            String[] split = roleName.split(",");
+                            for (int i = 0; i < split.length; i++) {
+                                tags.add(split[i]);
+                            }
+                            JPushInterface.setAliasAndTags(LoginActivity.this, userId + "", tags, new TagAliasCallback() {
+                                @Override
+                                public void gotResult(int code, String s, Set<String> set) {
+                                    switch (code) {
+                                        case 0:
+                                            //这里可以往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
+                                            LogUtil.e("Set tag and alias success极光推送别名设置成功");
+                                            Intent intent = new Intent();
+                                            intent.setClass(LoginActivity.this, MainActivity.class);
+                                            ShowToastUtils.showToastMsg(LoginActivity.this, "登录成功！");
+                                            startActivity(intent);
+                                            finish();
+                                            progressDialog.dismiss();
+                                            break;
+                                        case 6002:
+                                            //极低的可能设置失败 我设置过几百回 出现3次失败 不放心的话可以失败后继续调用上面那个方面 重连3次即可 记得return 不要进入死循环了...
+                                            LogUtil.e("Failed to set alias and tags due to timeout. Try again after 60s.极光推送别名设置失败，60秒后重试");
+                                            break;
+                                        default:
+                                            LogUtil.e("极光推送设置失败，Failed with errorCode = " + code);
+                                            break;
+                                    }
+
+                                }
+                            });
+                        } else {
+                            ShowToastUtils.showToastMsg(LoginActivity.this, "登录失败！");
+                            progressDialog.dismiss();
                         }
+
                     }
+
                     @Override
-                    public void onLoginFail(Exception error) {
-                        dialog.dismiss();
-
+                    public void onError(Response response, int errorCode, Exception e) {
+                        progressDialog.dismiss();
                     }
-
                 });
-//
-                break;
-            //qq登陆
-            case R.id.iv_qq_login:
-                if (AppInstallUtils.isQQClientAvailable(LoginActivity.this)) {
-                    authorization(SHARE_MEDIA.QQ);
-                } else {
-                    ShowToastUtils.showToastMsg(LoginActivity.this, "请先安装QQ");
-                }
-
 
                 break;
-            //微信登陆
-            case R.id.iv_wx_login:
-
-                if (AppInstallUtils.isQQClientAvailable(LoginActivity.this)) {
-                    authorization(SHARE_MEDIA.WEIXIN);
-                } else {
-                    ShowToastUtils.showToastMsg(LoginActivity.this, "请先安装微信");
-                }
 
 
-                break;
-            case R.id.tv_registered:
-
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, RegisteredActivity.class);
+            case R.id.tv_fogetPassWord:
+                //忘记密码
+                intent.setClass(LoginActivity.this, ForgetPwdActivity.class);
+                intent.putExtra("isFromForget",1);
                 startActivity(intent);
                 break;
-            case R.id.tv_fogetPassWord:
-
-                //忘记密码
+            case R.id.tv_smsLogin:
+                //验证码登录
+                intent.setClass(LoginActivity.this, ForgetPwdActivity.class);
+                intent.putExtra("isFromForget",2);
+                startActivity(intent);
                 break;
-
             case R.id.et_name:
                 boardHelper = new KeyBoardHelper(LoginActivity.this);
                 boardHelper.onCreate();
@@ -340,4 +368,6 @@ public class LoginActivity extends BaseActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
+
 }

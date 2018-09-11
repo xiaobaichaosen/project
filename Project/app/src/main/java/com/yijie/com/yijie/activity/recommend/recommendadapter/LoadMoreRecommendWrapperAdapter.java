@@ -85,7 +85,7 @@ public class LoadMoreRecommendWrapperAdapter extends RecyclerView.Adapter<Recycl
             public void onClick(View view) {
                 new CommomDialog(mContext, R.style.dialog, "同时推荐的有[胡瑞彩]", new CommomDialog.OnCloseListener() {
                     @Override
-                    public void onClick(Dialog dialog, boolean confirm) {
+                    public void onClick(Dialog dialog, boolean confirm,String string) {
                         if(confirm){
                             ShowToastUtils.showToastMsg(mContext,"推荐");
                             dialog.dismiss();

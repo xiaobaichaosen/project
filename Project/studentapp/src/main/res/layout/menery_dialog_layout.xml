@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00FFFFFF" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/base_dimen_400"
+        android:background="@drawable/shap_ovel"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_80"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="打卡备注"
+            android:textSize="18sp" />
+
+        <TextView
+            android:background="@color/app_background"
+            android:id="@+id/dialog_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="打卡时间: 08:50" />
+
+        <TextView
+            android:background="@color/app_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打卡地点: 办公W" />
+
+        <ImageView
+            android:id="@+id/iv_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/yijie_normal" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_close"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_80"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:text="关闭" />
+
+    </RelativeLayout>
+
+</LinearLayout>

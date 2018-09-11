@@ -2,12 +2,14 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/app_background"
     android:layout_height="match_parent">
     <include layout="@layout/app_title"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_22"
         android:paddingLeft="@dimen/base_dimen_22"
         android:layout_height="@dimen/base_dimen_86">
         <TextView
@@ -22,6 +24,7 @@
         <EditText
             android:id="@+id/tv_newEducation"
             android:background="@null"
+            android:gravity="right"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:hint="请输入学校名称"
@@ -32,18 +35,16 @@
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
     </RelativeLayout>
-
+<LinearLayout
+    android:id="@+id/ll_click"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:paddingLeft="@dimen/base_dimen_22"
         android:id="@+id/to_newSchoolAdress"
         android:layout_height="@dimen/base_dimen_86">
@@ -70,20 +71,13 @@
             android:textSize="@dimen/base_dimen_28" />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/toGetAdress"
         android:layout_width="match_parent"
-
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_height="@dimen/base_dimen_86"
         android:paddingLeft="@dimen/base_dimen_22">
 
@@ -91,81 +85,21 @@
             android:id="@+id/et_detalAdress"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/base_dimen_86"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:layout_centerVertical="true"
             android:background="@null"
-            android:hint="请输入详细地址"
+            android:hint="请输入详细地址 *"
             android:textColor="#999999"
             android:textSize="@dimen/base_dimen_28" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_4"
-            android:layout_alignParentBottom="true"
-
-            android:background="@color/app_background" />
 
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_86"
-
-            android:paddingLeft="@dimen/base_dimen_22">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="联系人 *"
-                android:textColor="#4d4d4d"
-                android:textSize="@dimen/base_dimen_32" />
-
-            <TextView
-                android:id="@+id/tv_newType"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/to_newContact"
-                android:textColor="#808080"
-                android:textSize="@dimen/base_dimen_28" />
-
-            <ImageView
-                android:id="@+id/to_newContact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:padding="@dimen/base_dimen_22"
-                android:layout_centerVertical="true"
-
-                android:src="@mipmap/goright" />
-
-
-        </RelativeLayout>
-        <android.support.v7.widget.RecyclerView
-            android:visibility="gone"
-
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <View
-            android:id="@+id/line_or_v"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/to_newSchoolSample"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:background="@color/colorPrimary"
         android:paddingLeft="@dimen/base_dimen_22"
         android:layout_height="@dimen/base_dimen_86">
 
@@ -189,19 +123,15 @@
             android:layout_centerVertical="true"
             android:drawableRight="@mipmap/goright"
             android:paddingRight="@dimen/base_dimen_22" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:background="@color/colorPrimary"
         android:id="@+id/to_newAppointmenttime"
         android:layout_height="@dimen/base_dimen_86">
 
@@ -211,7 +141,7 @@
             android:textSize="@dimen/base_dimen_32"
             android:textColor="#4d4d4d"
             android:layout_centerVertical="true"
-            android:text="实习详情" />
+            android:text="实习详情 *" />
 
         <TextView
             android:drawableRight="@mipmap/goright"
@@ -226,20 +156,61 @@
             />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/to_newContact"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="@dimen/base_dimen_86"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:paddingLeft="@dimen/base_dimen_22">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/base_dimen_32"
+                android:textColor="#4d4d4d"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="11dp"
+                android:text="联系人 *"/>
+
+
+            <TextView
+                android:id="@+id/tv_newType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/base_dimen_28"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawableRight="@mipmap/goright"
+                android:paddingRight="@dimen/base_dimen_22" />
+
+
+
+
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/to_memorandum"
         android:layout_width="match_parent"
-
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_20"
         android:layout_height="@dimen/base_dimen_86"
         android:paddingLeft="@dimen/base_dimen_22">
 
@@ -269,12 +240,6 @@
             android:drawableRight="@mipmap/goright"
             android:paddingRight="@dimen/base_dimen_22" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_4"
-            android:layout_alignParentBottom="true"
-
-            android:background="@color/app_background" />
-
     </RelativeLayout>
+</LinearLayout>
 </LinearLayout>

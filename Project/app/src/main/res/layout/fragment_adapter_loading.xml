@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_marginTop="@dimen/base_dimen_2"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:padding="@dimen/base_dimen_20"
+
+        style="@style/layout_mw">
+        <ImageView
+            android:id="@+id/iv_kendegard"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/base_dimen_100"
+            android:layout_height="@dimen/base_dimen_100" />
+        <LinearLayout
+
+            android:layout_toRightOf="@+id/iv_kendegard"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/kendegard_name"
+                style="@style/layout_ww"
+                android:text="国际幼稚园"
+                android:textColor="#4d4d4d"
+                android:textSize="@dimen/base_dimen_28" />
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:progressTint="#f06764"
+                android:isIndicator="true"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="2"
+                style="@style/Widget.MaterialRatingBar.RatingBar.Small" />
+            <RelativeLayout
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/school_title"
+                    android:layout_alignParentLeft="true"
+                    style="@style/layout_ww"
+                    android:text="2018 大专 顶岗实习 7月到京"
+                    android:textColor="#4d4d4d"
+                    android:textSize="@dimen/base_dimen_28" />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/base_dimen_30"
+                    android:id="@+id/tv_data"
+                    style="@style/layout_ww"
+                    android:text="2017/09/28"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/base_dimen_22" />
+            </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/base_dimen_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/school_name"
+                        android:layout_alignParentLeft="true"
+                        style="@style/layout_ww"
+                        android:text="河北省新华冶金技工学校"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_28" />
+
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/student_number"
+                        style="@style/layout_ww"
+                        android:text="需求：4人"
+                        android:textColor="@color/colorTheme"
+                        android:textSize="@dimen/base_dimen_28" />
+
+            </RelativeLayout>
+
+
+                <TextView
+                    android:layout_marginTop="@dimen/base_dimen_10"
+                    android:id="@+id/tv_people"
+                    android:layout_alignParentRight="true"
+                    style="@style/layout_ww"
+                    android:text="投递：4"
+                    android:textColor="@color/colorTheme"
+                    android:textSize="@dimen/base_dimen_28" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+<View
+    android:background="@color/app_background"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_2"/>
+
+</LinearLayout>

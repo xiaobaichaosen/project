@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yijie.com.kindergartenapp">
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <!--友盟需要的权限-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -17,33 +18,225 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取WIFI信息状态的权限 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取网络状态改变的权限 -->
+>
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="com.yijie.com.kindergartenapp.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
+    <!-- Optional for location -->
+    <!--加这个条件有得手机会报错-->
+    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> &lt;!&ndash; 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 &ndash;&gt;-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 极光推送需要的权限Required -->
+    <permission
+        android:name="com.yijie.com.kindergartenapp.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
     <application
         android:allowBackup="true"
+        android:name=".base.APPApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.login.LoginActivity">
+
+
+        /*高德地图key*/
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="bad09a5d8462fda475ba79590bba7a4b" />
+        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
+        <service android:name="com.amap.api.location.APSService"></service>
+        <!-- Rich push 核心功能 since 2.0.6-->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:theme="@style/MyDialogStyle"
+            android:exported="false">
+        </activity>
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.yijie.com.kindergartenapp" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:process=":mult"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <!-- since 3.0.9 Required SDK 核心功能-->
+        <provider
+            android:authorities="com.yijie.com.kindergartenapp.DataProvider"
+            android:name="cn.jpush.android.service.DataProvider"
+            android:exported="false"
+            />
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="com.yijie.com.kindergartenapp" />
+            </intent-filter>
+
+        </service>
+        <!-- since 3.1.0 Required SDK 核心功能-->
+        <provider
+            android:authorities="com.yijie.com.kindergartenapp.DownloadProvider"
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:exported="true"
+            />
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <category android:name="com.yijie.com.kindergartenapp" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能-->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"/>
+
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name="com.yijie.com.kindergartenapp.jpush.MyReceiver"
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.yijie.com.kindergartenapp" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="3f5c018c288a624c7d912628" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.yijie.com.kindergartenapp.base.PermissionsActivity"/>
+        <activity android:name=".base.PermissionsActivity"/>
+        <activity android:name=".activity.PoiSearchActivity"/>
+        <activity android:name=".activity.login.LoginActivity"/>
+        <activity android:name=".activity.KenderDetailAcitivity"/>
+        <activity android:name=".activity.ModiKenderDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
         <activity android:name=".MainActivity"/>
-        <activity android:name="com.yijie.com.kindergartenapp.activity.regist.RegistActivity"/>
-        <activity android:name="com.yijie.com.kindergartenapp.activity.regist.RegistDetailActivity"/>
-    <activity android:name="com.yijie.com.kindergartenapp.activity.StayActivity"/>
-        <activity android:name="com.yijie.com.kindergartenapp.activity.MealsActivity"/>
-        <activity android:name="com.yijie.com.kindergartenapp.activity.GrademAdressActivity"/>
+        <activity android:name=".activity.regist.RegistActivity"/>
+        <activity android:name=".activity.regist.RegistDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity android:name=".activity.StudentResumnActivity"/>
+        <activity android:name=".activity.KinderDetailAdressActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+            />
+
+        <activity android:name=".activity.SettingAcitivity"/>
+        <activity android:name=".activity.CompanyResumnActivity"/>
+        <activity android:name=".activity.RequestDetailActivity"/>
+        <activity android:name=".activity.StayActivity"/>
+        <activity android:name=".activity.MealsActivity"/>
+        <activity android:name=".activity.KenderCategoryActivity"/>
+        <activity android:name=".activity.KenderGradeActivity"/>
+        <activity android:name=".activity.ConfigurationActivity"/>
+        <activity android:name=".activity.CourseActivity"/>
+        <activity android:name=".activity.UniformFreeActivity"/>
+        <activity android:name=".activity.ExaminationFeeActivity"/>
+        <activity android:name=".activity.LicenseActivity"/>
+        <activity android:name=".activity.KendPictureActivity"/>
+        <activity android:name=".activity.CertificateActivity"/>
+        <activity android:name=".activity.SearchAcivity"/>
+        <activity android:name=".activity.RecruitmentActivity"/>
+        <activity android:name=".activity.ResumnStatusActivity"/>
+        <activity android:name=".activity.KinderSimple"/>
+        <activity android:name=".activity.sendlocation.SearchActivity"/>
+        <activity android:name=".activity.WebViewActivity"/>
+        <activity android:name=".activity.regist.RegistKindActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+            />
+        <activity
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:theme="@style/ImagePickerThemeFullScreen"/>
+        <activity android:name=".activity.sendlocation.SendLocationActivity"/>
+
+//        android:windowSoftInputMode="stateHidden|adjustResize"
+//        android:configChanges="keyboardHidden|orientation|screenSize"
+//        android:screenOrientation="portrait"
+
+        <activity android:name=".activity.RequstActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            />
+        <activity android:name=".activity.RequsetComActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+            />
+
+        <activity android:name=".activity.regist.PerfectInformationActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity android:name=".utils.PhotoActivityForHor"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
+        <activity android:name=".activity.AttachmentActivity"
+            />
     </application>
 
 </manifest>

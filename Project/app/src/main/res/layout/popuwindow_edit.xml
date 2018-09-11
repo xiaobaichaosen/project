@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="@dimen/base_dimen_50"
+    android:background="@color/colorPrimary"
+    android:gravity="center_vertical"
+    android:layout_height="@dimen/base_dimen_200">
+<EditText
+    android:id="@+id/et_content"
+    android:hint="请输入备忘信息"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_below="@+id/et_content"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorTheme"
+        android:text="修改"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

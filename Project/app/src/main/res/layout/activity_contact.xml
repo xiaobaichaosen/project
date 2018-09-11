@@ -2,12 +2,14 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/app_background"
     android:layout_height="match_parent">
     <include layout="@layout/app_title"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_20"
         android:paddingLeft="@dimen/base_dimen_22"
 
         android:layout_height="@dimen/base_dimen_86">
@@ -50,7 +52,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:background="@color/colorPrimary"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -60,11 +62,12 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:textSize="@dimen/base_dimen_32"
-            android:text="手机 *" />
+            android:text="手机" />
 
         <EditText
             android:layout_toRightOf="@+id/tv_phone"
             android:id="@+id/et_phone"
+            android:inputType="phone"
             android:gravity="right"
             android:layout_marginLeft="@dimen/base_dimen_22"
             android:layout_width="match_parent"
@@ -91,7 +94,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:background="@color/colorPrimary"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -132,7 +135,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:background="@color/colorPrimary"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -175,7 +178,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-
+        android:background="@color/colorPrimary"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -199,16 +202,15 @@
             android:hint="请输入QQ号"
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
-
-
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_height="@dimen/base_dimen_2"
-
             android:background="@color/app_background"
             />
 
     </RelativeLayout>
+
+
 
 </LinearLayout>

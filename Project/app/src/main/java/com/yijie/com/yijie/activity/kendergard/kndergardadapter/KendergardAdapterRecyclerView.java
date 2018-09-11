@@ -122,10 +122,8 @@ public class KendergardAdapterRecyclerView extends RecyclerView.Adapter<Recycler
             ThreeHolder threeHolder = (ThreeHolder) holder;
             if (mList != null) {
                 Item item = mList.get(position); // Object StudentBean
-
                 threeHolder.setName(item.getName()); // Name
-//                holder.setDescription(item.getDescription()); // Description
-//                holder.setImage(item.getIdImage()); // Image
+
             }
         }else if (holder instanceof KindergardNeddHolder){
             KindergardNeddHolder twoHolder = (KindergardNeddHolder) holder;

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/app_title"
+        layout="@layout/app_title"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/rl_root"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:padding="@dimen/base_dimen_30"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_projectName"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_updateTime"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_people"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_studentNumber"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_schoolName"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/item_content"
+        android:layout_width="wrap_content"
+        android:paddingBottom="@dimen/base_dimen_20"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/view_gone"
+        android:visibility="gone"
+        android:background="@color/app_background"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_2"/>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_below="@+id/app_title"
+            android:id="@+id/swipe_refresh_layout"
+            style="@style/layout_mm"
+            >
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_studentSample"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
+</LinearLayout>

@@ -82,7 +82,7 @@ this.res=res;
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
-        recyclerViewHolder.kndergarten_status.setText(dataList.get(position).getName());
+//        recyclerViewHolder.kndergarten_status.setText(dataList.get(position).getName());
         //将position保存在itemView的Tag中，以便点击时进行获取
         recyclerViewHolder.itemView.setTag(position);
     }
@@ -93,60 +93,17 @@ this.res=res;
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_address)
-        TextView tvAddress;
-        @BindView(R.id.kndergarten_name)
-        TextView kndergartenName;
-        @BindView(R.id.tv_Principal)
-        TextView tvPrincipal;
-        @BindView(R.id.tv_name)
-        TextView tvName;
-        @BindView(R.id.tv_phone)
-        TextView tv_phone;
-        @BindView(R.id.kndergarten_status)
-        TextView kndergarten_status;
-        @BindView(R.id.kndergarten_integrity)
-        TextView kndergartenIntegrity;
-        @BindView(R.id.tv_training_data)
-        TextView tvTrainingData;
+
 
         RecyclerViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            tv_phone.setOnClickListener(new View.OnClickListener() {
-                public static final int REQUEST_CODE = 0;
-
-                @Override
-                public void onClick(View view) {
-
-                    new CommomDialog(mContext, R.style.dialog, "您确定拨打电话么？", new CommomDialog.OnCloseListener() {
-                        @Override
-                        public void onClick(Dialog dialog, boolean confirm) {
-                            if(confirm){
-                                call("15865125759");
-                                dialog.dismiss();
-                            }
-
-                        }
-                    })
-                            .setTitle("提示").show();
-
-                }
-            });
 
         }
 
     }
 
 
-    /**
-     * 拨打电话
-     *
-     * @param phone 电话号码
-     */
-    private void call(String phone) {
-        Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+phone));
-        mContext.startActivity(intent);
-    }
+
 }

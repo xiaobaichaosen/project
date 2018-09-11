@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+
+
+    <item
+        android:id="@+id/action_noSelect"
+        android:orderInCategory="100"
+        android:title="待选"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_select"
+        android:orderInCategory="100"
+        android:title="已选"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_noPass"
+        android:orderInCategory="100"
+        android:title="放弃"
+        app:showAsAction="never" />
+</menu>

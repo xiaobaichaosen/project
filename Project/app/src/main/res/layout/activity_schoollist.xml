@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/app_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_96"
+        android:background="@color/colorTheme"
+        >
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/base_dimen_26"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@mipmap/arrow_back"
+            android:text="返回"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="@dimen/base_dimen_60"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingRight="@dimen/base_dimen_30"
+            android:padding="@dimen/base_dimen_8"
+            android:src="@mipmap/search"
+            android:textSize="@dimen/base_dimen_26" />
+        <ImageView
+            android:layout_toLeftOf="@+id/iv_search"
+            android:id="@+id/iv_newSchool"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingRight="@dimen/base_dimen_30"
+            android:padding="@dimen/base_dimen_8"
+            android:src="@mipmap/new_school"
+            android:textSize="@dimen/base_dimen_26" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@+id/app_title"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:id="@+id/swipe_refresh_layout"
+        style="@style/layout_mm"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            style="@style/layout_mm" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

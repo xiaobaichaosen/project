@@ -30,7 +30,22 @@
         android:layout_marginRight="40dp"
         android:layout_marginTop="6dp"
         android:gravity="center"
-        android:text="点击可填写退回原因"
+        android:lineSpacingExtra="3dp"
+        android:textColor="#a1a1a1"
+        android:textSize="12sp" />
+    <EditText
+        android:id="@+id/et_content"
+        android:visibility="gone"
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:hint="点击可填写退回原因"
         android:lineSpacingExtra="3dp"
         android:textColor="#a1a1a1"
         android:textSize="12sp" />

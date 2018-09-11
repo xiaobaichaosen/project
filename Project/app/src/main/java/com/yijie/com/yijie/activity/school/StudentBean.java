@@ -5,9 +5,49 @@ package com.yijie.com.yijie.activity.school;
  */
 public class StudentBean {
     private int idImage;
-    private String name,description;
+    private String name,description,concatName,phoneNumber,ziNubmer,memeryContent,creatDate;
 
-public StudentBean(){
+    public String getConcatName() {
+        return concatName;
+    }
+
+    public void setConcatName(String concatName) {
+        this.concatName = concatName;
+    }
+
+    public String getMemeryContent() {
+        return memeryContent;
+    }
+
+    public void setMemeryContent(String memeryContent) {
+        this.memeryContent = memeryContent;
+    }
+
+    public String getCreatDate() {
+        return creatDate;
+    }
+
+    public void setCreatDate(String creatDate) {
+        this.creatDate = creatDate;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getZiNubmer() {
+        return ziNubmer;
+    }
+
+    public void setZiNubmer(String ziNubmer) {
+        this.ziNubmer = ziNubmer;
+    }
+
+    public StudentBean(){
 
 }
     public StudentBean(int idImage, String name, String description, int type) {

@@ -143,7 +143,6 @@ public class InternshipStatusActivity extends BaseActivity {
         });
 
 
-
         mAdapter.setOnHeaderClickListener(new GroupedRecyclerViewAdapter.OnHeaderClickListener() {
             @Override
             public void onHeaderClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder,

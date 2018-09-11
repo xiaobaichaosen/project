@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yijie.com.yijie.R;
@@ -24,6 +25,7 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private String positiveName;
     private String negativeName;
     private String title;
+    private EditText etContentText;
 
     public CommomDialog(Context context) {
         super(context);
@@ -47,7 +49,13 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         this.content = content;
         this.listener = listener;
     }
-
+    public CommomDialog(Context context, int themeResId,String title, String content, OnCloseListener listener) {
+        super(context, themeResId);
+        this.mContext = context;
+        this.content = content;
+        this.listener = listener;
+        this.title=title;
+    }
     protected CommomDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         this.mContext = context;
@@ -78,6 +86,7 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
 
     private void initView(){
         contentTxt = (TextView)findViewById(R.id.content);
+        etContentText = (EditText)findViewById(R.id.et_content);
         titleTxt = (TextView)findViewById(R.id.title);
         submitTxt = (TextView)findViewById(R.id.submit);
         submitTxt.setOnClickListener(this);
@@ -85,6 +94,11 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         cancelTxt.setOnClickListener(this);
 
         contentTxt.setText(content);
+        if ("".equals(contentTxt.getText().toString().trim())){
+            contentTxt.setVisibility(View.GONE);
+            etContentText.setVisibility(View.VISIBLE);
+        }
+
         if(!TextUtils.isEmpty(positiveName)){
             submitTxt.setText(positiveName);
         }
@@ -104,19 +118,19 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         switch (v.getId()){
             case R.id.cancel:
                 if(listener != null){
-                    listener.onClick(this, false);
+                    listener.onClick(this, false,"");
                 }
                 this.dismiss();
                 break;
             case R.id.submit:
                 if(listener != null){
-                    listener.onClick(this, true);
+                    listener.onClick(this, true,etContentText.getText().toString());
                 }
                 break;
         }
     }
 
     public interface OnCloseListener{
-        void onClick(Dialog dialog, boolean confirm);
+        void onClick(Dialog dialog, boolean confirm,String sContent);
     }
 }

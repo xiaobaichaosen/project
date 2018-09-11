@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.yijie.com.yijie.bean.CommonBean;
 import com.yijie.com.yijie.db.DatabaseHelper;
 import com.yijie.com.yijie.db.DatabaseManager;
 
@@ -39,6 +40,118 @@ public class DatabaseAdapter<B> {
 		manager = DatabaseManager.getInstance(new DatabaseHelper(mContext));
 		return adapter;
 	}
+
+
+//======================================个人============================================
+	/**
+	 * 查询所有个人
+	 * @param <
+	 *
+	 * @param
+	 *
+	 * @return
+	 */
+	public List<CommonBean> queryPersonAll() {
+		List<CommonBean> resultArray = new ArrayList<CommonBean>();
+		SQLiteDatabase database = manager.getReadableDatabase();
+		Cursor cursor = null;
+		try {
+			cursor = database.rawQuery("select * from "
+							+ DatabaseHelper.TABLE_NAME2
+					, null);
+
+			while (cursor.moveToNext()) {
+				CommonBean commonBean = new CommonBean();
+				commonBean.setId(cursor.getString(cursor.getColumnIndex("id")));
+				commonBean.setName(cursor.getString(cursor.getColumnIndex("name")));
+				commonBean.setMoney(cursor.getString(cursor.getColumnIndex("money")));
+				resultArray.add(commonBean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.toString();
+		} finally {
+			manager.closeDatabase();
+		}
+		return resultArray;
+	}
+	/**
+	 * 插入信息
+	 *
+	 * @param
+	 */
+	public void inserPersonInfo(CommonBean commonBean) {
+		SQLiteDatabase database = manager.getWritableDatabase();
+
+		try {
+			ContentValues values = new ContentValues();
+			values.put("name", commonBean.getName());
+			values.put("money",commonBean.getMoney());
+			database.insert(DatabaseHelper.TABLE_NAME2, null, values);
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			manager.closeDatabase();
+
+		}
+
+
+	}
+
+	/**
+	 * 删除表中的所有数据
+	 */
+	public void deletePersonAll() {
+		SQLiteDatabase database = manager.getWritableDatabase();
+		try {
+			database.delete(DatabaseHelper.TABLE_NAME2, null, null);
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			manager.closeDatabase();
+		}
+	}
+
+	/**
+	 * 根据id删除表中数据
+	 */
+	public void deletePersonById(String id) {
+		SQLiteDatabase database = manager.getWritableDatabase();
+		try {
+			database.delete(DatabaseHelper.TABLE_NAME2, "id=?",  new String[]{id});
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			manager.closeDatabase();
+		}
+	}
+	/**
+	 * 更新一条个人
+	 * @param bean
+	 */
+	public void updatePerson(CommonBean bean){
+
+		SQLiteDatabase database = manager.getWritableDatabase();
+
+		try {
+			ContentValues values = new ContentValues();
+			values.put("name",bean.getName());
+			values.put("money",bean.getMoney());
+
+			database.update(DatabaseHelper.TABLE_NAME2, values, "id=?", new String[]{bean.getId()});
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			manager.closeDatabase();
+		}
+
+
+
+
+	}
+
+	//=====================================================联系人======================================================
 
 	/**
 	 * 插入信息
@@ -90,16 +203,12 @@ public class DatabaseAdapter<B> {
 		List<ContactBean> resultArray = new ArrayList<ContactBean>();
 		SQLiteDatabase database = manager.getReadableDatabase();
 		Cursor cursor = null;
-
 		try {
-
-
 			cursor = database.rawQuery("select * from "
 					+ DatabaseHelper.TABLE_NAME
 					, null);
 
 			while (cursor.moveToNext()) {
-
 				ContactBean contactBean = new ContactBean();
 				contactBean.setId(cursor.getString(cursor.getColumnIndex("id")));
 				contactBean.setName(cursor.getString(cursor.getColumnIndex("name")));
@@ -107,7 +216,6 @@ public class DatabaseAdapter<B> {
                 contactBean.setZjNubmer(cursor.getString(cursor.getColumnIndex("zjNumber")));
                 contactBean.setWxNubmer(cursor.getString(cursor.getColumnIndex("wxNumber")));
                 contactBean.setQqNubmer(cursor.getString(cursor.getColumnIndex("qqNumber")));
-
 				contactBean.setSchoolSample(cursor.getString(cursor.getColumnIndex("schoolSample")));
 				contactBean.setSchoolEduction(cursor.getString(cursor.getColumnIndex("schoolEduction")));
 				contactBean.setSchoolMonth(cursor.getString(cursor.getColumnIndex("schoolMonth")));
@@ -115,23 +223,17 @@ public class DatabaseAdapter<B> {
 				contactBean.setSchoolLine(cursor.getString(cursor.getColumnIndex("schoolLine")));
 				contactBean.setSchoolMode(cursor.getString(cursor.getColumnIndex("schoolMode")));
 				contactBean.setSchoolTime(cursor.getString(cursor.getColumnIndex("schoolTime")));
-
-
-
 				resultArray.add(contactBean);
 
 			}
-
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.toString();
 		} finally {
 			manager.closeDatabase();
 		}
-
 		return resultArray;
 	}
-
 
 	/**
 	 * 删除表中的所有数据
@@ -157,7 +259,6 @@ public class DatabaseAdapter<B> {
 
 		try {
 			database.delete(DatabaseHelper.TABLE_NAME, "id=?",  new String[]{id});
-
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {

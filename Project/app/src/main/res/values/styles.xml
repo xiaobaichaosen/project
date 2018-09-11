@@ -6,8 +6,8 @@
         <item name="colorPrimary">@color/colorTheme</item>
         <item name="colorPrimaryDark">@color/colorTheme</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowAnimationStyle">@style/Animation</item>
-        <item name="styleLoadingLayout">@style/LoadingLayoutStyle</item>
+        <!--<item name="android:windowAnimationStyle">@style/Animation</item>-->
+        <!--<item name="styleLoadingLayout">@style/LoadingLayoutStyle</item>-->
     </style>
     <style name="layout_mm" >
         <item name="android:layout_width">match_parent</item>
@@ -120,7 +120,9 @@
     <style name="pdStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/pd_checkbox_style</item>
     </style>
-
+    <style name="registpdStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/pd_checkbox_style_rgist</item>
+    </style>
 
     -<style name="push_style">
 
@@ -158,4 +160,26 @@
     <item name="android:textSize">14sp</item>
 
 </style>
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@color/colorTheme</item>
+    </style>
+
+    <style name="main_rb">
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@drawable/selector_color_gay</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
 </resources>

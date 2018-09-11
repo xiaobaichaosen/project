@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_title"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/student_bg_bar">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/head" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="已审核"
+                android:textColor="@color/colorPrimary" />
+
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_kendMessage"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="园所信息"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_kendMessage"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_requst"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="招聘需求记录"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_requst"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_kendSimple"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="收到的简历"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_kendSimple"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_kendTrouble"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="问题提交/处理"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_kendTrouble"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_kendAttendance"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤管理"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_kendAttendance"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffffff</color>
-    <color name="colorTheme">#11C5A6</color>
+    <color name="colorTheme">#F16765</color>
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#FF4081</color>
     <color name="action_bar_bg">#ffffff</color>
     <color name="action_bar_text_color">#f66168</color>
     <color name="blueColor">#2952cc</color>
-    <color name="greenColor">#3eb585</color>
+    <color name="greenColor">#F1817F</color>
     <color name="tab_checked">#f66168</color>
     <color name="tab_unchecked">#8F8F8F</color>
 <color name="app_background">#f2f2f2</color>
@@ -15,9 +15,11 @@
     <color name="maskPressed">#33888888</color>
     <color name="maskPressed2">#22808080</color>
    <color name="searchEditColor">#F1817F</color>
-    <color name="appBarColor">#11C5A6</color>
-
+    <color name="appBarColor">#F16765</color>
+    <color name="item_key">#7C7C7C</color>
+    <color name="item_value">#000029</color>
     <color name="colorDark">#D02090</color>
+    <color name="stepColor">#8BC34A</color>
 
     <color name="pickerview_timebtn_nor">#585AAC</color>
     <color name="pickerview_timebtn_pre">#c2daf5</color>
@@ -33,4 +35,9 @@
     <color name="underline_selected_color">#000</color>
     <color name="hintColor">#CCCCCC</color>
     <color name="textColor">#000</color>
+
+    <color name="item_title">#282828</color>
+    <color name="item_content">#AAAAAA</color>
+    <color name="swipRefrsh">#f66168</color>
+
 </resources>

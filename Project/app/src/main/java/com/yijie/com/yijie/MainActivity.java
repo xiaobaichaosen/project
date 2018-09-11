@@ -3,7 +3,6 @@ package com.yijie.com.yijie;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,22 +11,16 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 
 import com.yijie.com.yijie.base.AppManager;
 import com.yijie.com.yijie.base.BaseActivity;
-import com.yijie.com.yijie.base.BaseFragment;
 import com.yijie.com.yijie.base.BaseFragment2;
 import com.yijie.com.yijie.base.PermissionsActivity;
 import com.yijie.com.yijie.base.PermissionsChecker;
-import com.yijie.com.yijie.fragment.kndergaren.KndergartenBaseFragment;
+import com.yijie.com.yijie.fragment.discover.DiscoverFragment;
 import com.yijie.com.yijie.fragment.mine.MeFragment;
-import com.yijie.com.yijie.fragment.school.SchoolBaseFragment;
-import com.yijie.com.yijie.fragment.student.StudentFragment;
 import com.yijie.com.yijie.fragment.yijie.YiJieFragment;
-import com.yijie.com.yijie.home.ViewPagerAdapter;
 import com.yijie.com.yijie.utils.ShowToastUtils;
-import com.yijie.com.yijie.utils.StutasToolUtils;
 
 import java.util.ArrayList;
 
@@ -102,7 +95,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     public void init() {
 
-
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         InitViewPager();
@@ -147,7 +139,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
         // 将各Fragment加入数组中
         fragmentList.add(new YiJieFragment());
-        fragmentList.add(new KndergartenBaseFragment());
+        fragmentList.add(new DiscoverFragment());
         fragmentList.add(BaseFragment2.newInstance("通讯录"));
         fragmentList.add(new MeFragment());
         // 设置ViewPager的设配器`

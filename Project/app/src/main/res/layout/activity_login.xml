@@ -25,40 +25,7 @@
             android:layout_alignParentLeft="true"
             android:src="@mipmap/iv_yijie_reject" />
 
-        <LinearLayout
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/base_dimen_2"
-            android:layout_alignParentRight="true"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="账号登陆"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/base_dimen_28" />
-
-            <View
-                android:layout_width="@dimen/base_dimen_2"
-                android:layout_height="@dimen/base_dimen_28"
-                android:layout_marginLeft="@dimen/base_dimen_20"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/base_dimen_20"
-                android:background="@color/app_background" />
-
-            <TextView
-                android:paddingTop="@dimen/base_dimen_14"
-                android:paddingBottom="@dimen/base_dimen_14"
-                android:id="@+id/tv_registered"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="新用户注册"
-                android:textColor="#80ffffff"
-                android:textSize="@dimen/base_dimen_28" />
-        </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout
@@ -167,7 +134,7 @@
         android:textSize="@dimen/base_dimen_32"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="登陆" />
+        android:text="登录" />
 
 
 
@@ -185,33 +152,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="@dimen/base_dimen_26"
+            android:padding="@dimen/base_dimen_26"
             android:text="忘记密码"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/base_dimen_28" />
-        <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_qq_login"
-
-            android:layout_marginRight="@dimen/base_dimen_6"
-            android:padding="@dimen/base_dimen_18"
-            android:src="@mipmap/iv_qq"
+        <TextView
+            android:id="@+id/tv_smsLogin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/iv_wx_login"
-            android:padding="@dimen/base_dimen_18"
-            android:layout_marginLeft="@dimen/base_dimen_6"
-            android:src="@mipmap/iv_wx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/base_dimen_26"
+            android:text="使用验证码登录"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/base_dimen_28" />
     </RelativeLayout>
 </LinearLayout>
 

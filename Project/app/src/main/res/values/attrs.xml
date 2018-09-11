@@ -34,4 +34,58 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="BadgeView">
+        <!-- 徽章背景色 -->
+        <attr name="badge_bgColor" format="reference|color" />
+        <!-- 徽章文本的颜色 -->
+        <attr name="badge_textColor" format="reference|color" />
+        <!-- 徽章文本字体大小 -->
+        <attr name="badge_textSize" format="reference|dimension" />
+        <!-- 徽章背景与宿主控件上下边缘间距离 -->
+        <attr name="badge_verticalMargin" format="reference|dimension" />
+        <!-- 徽章背景与宿主控件左右边缘间距离 -->
+        <attr name="badge_horizontalMargin" format="reference|dimension" />
+        <!-- 徽章文本边缘与徽章背景边缘间的距离 -->
+        <attr name="badge_padding" format="reference|dimension" />
+        <!-- 徽章在宿主控件中的位置 -->
+        <attr name="badge_gravity" format="enum">
+            <enum name="rightTop" value="0" />
+            <enum name="rightCenter" value="1" />
+            <enum name="rightBottom" value="2" />
+        </attr>
+        <!-- 是否可以拖拽删除徽章 -->
+        <attr name="badge_dragable" format="boolean" />
+        <!-- 拖拽徽章超出轨迹范围后，再次放回到轨迹范围时，是否恢复轨迹 -->
+        <attr name="badge_isResumeTravel" format="boolean" />
+        <!-- 徽章描边宽度 -->
+        <attr name="badge_borderWidth" format="reference|dimension" />
+        <!-- 徽章描边颜色 -->
+        <attr name="badge_borderColor" format="reference|color" />
+        <!-- 触发开始拖拽徽章事件的扩展触摸距离 -->
+        <attr name="badge_dragExtra" format="reference|dimension" />
+    </declare-styleable>
+    <declare-styleable name="BGAFlowLayout">
+        <!-- 标签之间的水平间距 -->
+        <attr name="fl_horizontalChildGap" format="dimension" />
+        <!-- 标签之间的垂直间距 -->
+        <attr name="fl_verticalChildGap" format="dimension" />
+        <!-- 是否平均分配每一行的剩余水平方向的空白区域给该行的标签 -->
+        <attr name="fl_isDistributionWhiteSpacing" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxCollapsedLines" format="integer"/>
+        <attr name="animDuration" format="integer"/>
+        <attr name="animAlphaStart" format="float"/>
+        <attr name="expandIndicator" format="reference"/>
+        <attr name="collapseIndicator" format="reference"/>
+        <attr name="expandToggleType" format="enum">
+            <enum name="ImageButton" value="0"/>
+            <enum name="TextView" value="1"/>
+        </attr>
+        <attr name="expandableTextId" format="reference"/>
+        <attr name="expandCollapseToggleId" format="reference"/>
+        <attr name="expandToggleOnTextClick" format="boolean"/>
+    </declare-styleable>
 </resources>

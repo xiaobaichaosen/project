@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" >
+    <include layout="@layout/app_title"/>
+<ScrollView android:layout_width="match_parent"
+    android:layout_weight="2"
+    android:layout_height="match_parent"
+  >
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <include layout="@layout/app_title"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
@@ -16,37 +22,31 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
+            android:text="园所全称*"
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
             android:layout_centerVertical="true"
             />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
+
+        <EditText
+            android:id="@+id/kenderName"
+            android:background="@null"
             android:layout_alignParentRight="true"
-            />
-        <TextView
+            android:paddingRight="@dimen/base_dimen_20"
+            android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
+            android:drawableRight="@mipmap/goright"
+            android:hint="请输入园所全称"
+            android:textSize="@dimen/base_dimen_24"
             android:layout_centerVertical="true"
             />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
-            />
+
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_gradAdress"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
         android:layout_height="@dimen/base_dimen_90">
@@ -57,33 +57,46 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
-            android:text="园所地址" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            />
+            android:text="园所地址*" />
+
         <TextView
-            android:layout_centerVertical="true"
+
+            android:id="@+id/tv_adress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:gravity="right"
+            android:hint="请输入园所地址"
+            android:paddingRight="@dimen/base_dimen_20"
+            android:textSize="@dimen/base_dimen_24" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_detailAdress"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/base_dimen_90">
+
+        <TextView
+            android:id="@+id/et_detailAdress"
+            android:background="@null"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/base_dimen_30"
+            android:paddingRight="@dimen/base_dimen_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入园所详细地址"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:gravity="center_vertical"
         android:layout_height="@dimen/base_dimen_90">
 
@@ -93,34 +106,26 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
-            android:text="联系人" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
+            android:text="联系人*" />
+        <EditText
+            android:id="@+id/et_contact"
+            android:background="@null"
             android:layout_alignParentRight="true"
-            />
-        <TextView
-            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/base_dimen_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
+            android:drawableRight="@mipmap/goright"
+            android:gravity="right"
+            android:hint="请输入联系人"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_height="@dimen/base_dimen_90">
 
         <TextView
@@ -129,34 +134,27 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
-            android:text="手机号码" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
+            android:text="手机号码*" />
+        <EditText
+            android:id="@+id/et_phone"
+            android:background="@null"
             android:layout_alignParentRight="true"
-            />
-        <TextView
-            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/base_dimen_20"
             android:layout_width="wrap_content"
+            android:gravity="right"
+            android:inputType="phone"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
+            android:drawableRight="@mipmap/goright"
+            android:hint="请输入手机号"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_height="@dimen/base_dimen_90">
 
         <TextView
@@ -166,33 +164,25 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
             android:text="电子邮箱" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
+        <EditText
+            android:id="@+id/et_email"
+            android:background="@null"
             android:layout_alignParentRight="true"
-            />
-        <TextView
-            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/base_dimen_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
+            android:drawableRight="@mipmap/goright"
+            android:gravity="right"
+            android:hint="请输入电子邮箱"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_height="@dimen/base_dimen_90">
 
         <TextView
@@ -202,32 +192,24 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
             android:text="微信号" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
+        <EditText
+            android:id="@+id/et_wachat"
+            android:background="@null"
             android:layout_alignParentRight="true"
-            />
-        <TextView
-            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/base_dimen_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
-            />
+            android:gravity="right"
+            android:drawableRight="@mipmap/goright"
+            android:hint="请输入微信号"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_centerVertical="true"
+          />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:gravity="center_vertical"
         android:layout_height="@dimen/base_dimen_90">
 
@@ -238,67 +220,54 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
             android:text="QQ号" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
+        <EditText
+            android:id="@+id/et_qq"
+            android:background="@null"
             android:layout_alignParentRight="true"
-            />
-        <TextView
-            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/base_dimen_20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
+            android:gravity="right"
+            android:drawableRight="@mipmap/goright"
+            android:hint="请输入QQ号"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/editText"
         android:background="@color/colorPrimary"
-        android:gravity="center_vertical"
-        android:layout_height="@dimen/base_dimen_90">
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:paddingLeft="@dimen/base_dimen_30"
             android:text="占地面积" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            />
-        <TextView  android:layout_centerVertical="true"
 
+        <EditText
+            android:id="@+id/et_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
-            />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:drawableRight="@mipmap/goright"
+            android:gravity="right"
+            android:hint="请输入占地面积"
+            android:paddingRight="@dimen/base_dimen_20"
+            android:textSize="@dimen/base_dimen_24" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_gradStay"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
@@ -311,31 +280,23 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
             android:text="住宿安排" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            />
+
         <TextView
-            android:layout_centerVertical="true"
+            android:id="@+id/tv_stay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/base_dimen_2"
-            android:background="@color/app_background"
-            android:layout_alignParentBottom="true"
-            />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:gravity="right"
+            android:drawableRight="@mipmap/goright"
+            android:hint="请输入住宿安排"
+            android:paddingRight="@dimen/base_dimen_20"
+            android:textSize="@dimen/base_dimen_24" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_meal"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical"
@@ -348,23 +309,29 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="@dimen/base_dimen_30"
             android:text="三餐安排" />
-        <ImageView
-            android:layout_centerVertical="true"
-            android:padding="@dimen/base_dimen_20"
-            android:id="@+id/iv_goright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/goright"
-            android:layout_alignParentRight="true"
-            />
         <TextView
-            android:layout_centerVertical="true"
+            android:id="@+id/tv_meal"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/base_dimen_20"
+            android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="园所全称"
-            android:layout_toLeftOf="@+id/iv_goright"
+            android:drawableRight="@mipmap/goright"
+            android:hint="请输入三餐安排"
+            android:textSize="@dimen/base_dimen_24"
+            android:layout_centerVertical="true"
             />
-
     </RelativeLayout>
 </LinearLayout>
 </ScrollView>
+    <Button
+        android:layout_weight="0"
+        android:id="@+id/btn_regist"
+        android:text="注册"
+        android:layout_alignParentBottom="true"
+        android:background="#FFB500"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+</LinearLayout>

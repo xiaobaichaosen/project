@@ -23,8 +23,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	// private static final String DB_NAME = "yijie.db";// 数据库名称
 	public static final String DB_NAME = SDBHelper.DB_DIR + File.separator
 			+ "yijie.db";
-	public static final String TABLE_NAME = "contact";// 表名
-
+	public static final String TABLE_NAME = "contact";// 联系人
+	public static final String TABLE_NAME2 = "person";// 个人呢
 	/**
 	 * DatabaseHelper构造方法
 	 *
@@ -48,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		createAutoTable(db);
+		createPersonTable(db);
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 创建数据库表
+	 * 创建联系人数据库表
 	 *
 	 * @param db
 	 */
@@ -65,6 +66,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("create table  if not exists "
 				+ TABLE_NAME
 				+ "(id  INTEGER PRIMARY KEY AUTOINCREMENT,name varchar(255),phoneNumber varchar(255),zjNumber varchar(255),wxNumber varchar(255),qqNumber varchar(255),schoolSample varchar(2500),schoolEduction varchar(255),schoolMonth varchar(255),schoolType varchar(255),schoolLine varchar(255),schoolMode varchar(255),schoolTime varchar(255))");
+	}
+
+	/**
+	 * 创建个人数据库表
+	 *
+	 * @param db
+	 */
+
+	private void createPersonTable(SQLiteDatabase db) {
+		db.execSQL("create table  if not exists "
+				+ TABLE_NAME2
+				+ "(id  INTEGER PRIMARY KEY AUTOINCREMENT,name varchar(255),money varchar(255))");
 	}
 
 }

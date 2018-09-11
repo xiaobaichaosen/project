@@ -1,1 +1,2 @@
-include ':app', ':studentapp', ':kindergartenapp','pickerview'
+include ':app', ':studentapp', ':kindergartenapp', ':switch', 'pickerview', ':searchview',':library'
+//,':allrecycleview', ':viewfractory'

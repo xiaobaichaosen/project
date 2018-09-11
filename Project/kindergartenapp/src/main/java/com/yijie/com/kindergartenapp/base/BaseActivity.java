@@ -12,7 +12,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.android.tu.loadingdialog.LoadingDailog;
+import com.yijie.com.kindergartenapp.utils.HttpUtils;
+import com.yijie.com.kindergartenapp.utils.ViewUtils;
+import com.yijie.com.kindergartenapp.view.CommomDialog;
+import com.yijie.com.kindergartenapp.view.CustomDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -24,6 +27,8 @@ import butterknife.Unbinder;
 public abstract  class BaseActivity extends AppCompatActivity {
     Unbinder bind;
     public Dialog dialog;
+    protected CustomDialog commonDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +38,9 @@ public abstract  class BaseActivity extends AppCompatActivity {
         AppManager.getAppManager().addActivity(this);
         setContentView();
         ButterKnife.bind(this);
+        commonDialog = ViewUtils.getCustomDialog(this);
 
 
-        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(this)
-                .setMessage("加载中...")
-                .setCancelable(true)
-                .setCancelOutside(true);
-
-        dialog = loadBuilder.create();
         bind = ButterKnife.bind(this);
 
 

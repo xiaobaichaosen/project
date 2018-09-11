@@ -6,6 +6,8 @@ package com.yijie.com.kindergartenapp.utils;
 
 import com.google.gson.internal.$Gson$Types;
 
+import org.json.JSONException;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -54,7 +56,7 @@ public abstract void onRequestBefore();
      * @param response
      * @param t
      */
-    public abstract void onSuccess(Response response, T t);
+    public abstract void onSuccess(Response response, T t) throws JSONException;
     /**
      * 请求成功但是有错误的时候调用，例如Gson解析错误等
      *

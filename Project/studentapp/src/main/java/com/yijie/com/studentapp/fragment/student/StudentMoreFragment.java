@@ -34,10 +34,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.utils.L;
 import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.GalleryAdapter;
-import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
 import com.yijie.com.studentapp.activity.AttendanceActivity;
 import com.yijie.com.studentapp.activity.ContactWayActivity;
@@ -51,7 +49,6 @@ import com.yijie.com.studentapp.activity.ResumepreviewActivity;
 import com.yijie.com.studentapp.activity.SelfAssessmentActivity;
 import com.yijie.com.studentapp.activity.SettingActivity;
 import com.yijie.com.studentapp.activity.WorkExperienceActivity;
-import com.yijie.com.studentapp.activity.login.PassWordActivity;
 import com.yijie.com.studentapp.base.BaseFragment;
 import com.yijie.com.studentapp.headportrait.ClipImageActivity;
 import com.yijie.com.studentapp.headportrait.util.FileUtil;
@@ -83,8 +80,6 @@ import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by 奕杰平台 on 2018/1/29.
@@ -343,7 +338,7 @@ public class StudentMoreFragment extends BaseFragment {
                 break;
 
             case R.id.tv_attendance:
-                //考勤
+                //考勤AttendanceActivity
                 intent.setClass(mActivity, AttendanceActivity.class);
                 startActivity(intent);
                 break;

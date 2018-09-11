@@ -8,13 +8,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/btn_kendergard"
-        android:text="园所"
+        android:id="@+id/btn_project"
+        android:text="项目"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btn_student"
         android:text="学生"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_kendergard"
+        android:text="园所"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

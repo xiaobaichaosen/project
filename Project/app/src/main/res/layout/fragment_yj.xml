@@ -1,0 +1,275 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:background="@color/app_background"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_400"
+        android:background="@color/colorTheme">
+
+        <LinearLayout
+
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+
+                android:id="@+id/ll_et"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_search"
+                    android:padding="5dp"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@mipmap/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="搜索"
+                    android:textColorHint="@color/colorPrimary"
+                    android:background="#22ffffff" />
+
+
+                <ImageButton
+                    android:paddingStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:src="@mipmap/add" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4" />
+                <Button
+                    android:id="@+id/btn_yijie_school"
+                    style="@style/main_rb"
+                    android:drawableTop="@mipmap/yijie_school"
+                    android:text="学校"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btn_yijie_project"
+                    style="@style/main_rb"
+                    android:drawableTop="@mipmap/yijie_project"
+                    android:text="实习项目" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btn_yijie_kinder"
+                    style="@style/main_rb"
+                    android:drawableTop="@mipmap/yijie_kinder"
+                    android:text="园所" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    style="@style/main_rb"
+                    android:id="@+id/btn_yijie_student"
+                    android:drawableTop="@mipmap/yijie_student"
+                    android:text="学生" />
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4" />
+
+
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
+            <LinearLayout
+                android:id="@+id/rl_bicon1"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4" />
+                <Button
+                    android:id="@+id/btn_yijie_attendance"
+                    style="@style/main_rb"
+                    android:drawableTop="@mipmap/yijie_attendance"
+                    android:text="考勤"/>
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btn_yijie_allot"
+                    style="@style/main_rb"
+                    android:drawableTop="@mipmap/yijie_allot"
+                    android:text="分配" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btn_yijie_question"
+                    style="@style/main_rb"
+                    android:drawableTop="@mipmap/yijie_question"
+                    android:text="问题处理" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    style="@style/main_rb"
+                    android:id="@+id/btn_yijie_share"
+                    android:drawableTop="@mipmap/yijie_share"
+                    android:text="分享" />
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4" />
+
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_icon"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:clickable="false"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/img_yijie_school"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/yijie_school" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
+            <ImageButton
+                android:id="@+id/img_yijie_project"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/yijie_project" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
+            <ImageButton
+                android:id="@+id/img_yijie_kinder"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/yijie_kinder" />
+            <android.support.v4.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
+            <ImageButton
+                android:id="@+id/img_yijie_student"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/yijie_student" />
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1.5" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="@dimen/base_dimen_20"
+                android:alpha="0.3"
+                android:background="#efefef"
+                android:clickable="false"
+                />
+
+            <ImageButton
+                android:id="@+id/img_main_msg_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:src="@mipmap/add" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <com.yijie.com.yijie.homepage.RefrushRecycleView
+        android:id="@+id/rc_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.yijie.com.yijie.homepage.CustomBehavior"
+        >
+
+    </com.yijie.com.yijie.homepage.RefrushRecycleView>
+
+</android.support.design.widget.CoordinatorLayout>

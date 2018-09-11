@@ -7,10 +7,10 @@
         <item name="android:windowAnimationStyle">@style/Animation</item>
         <item name="styleLoadingLayout">@style/LoadingLayoutStyle</item>
 
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">#ffffff</item>
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--<item name="android:statusBarColor">@color/colorTheme</item>-->
     </style>
 
 </resources>

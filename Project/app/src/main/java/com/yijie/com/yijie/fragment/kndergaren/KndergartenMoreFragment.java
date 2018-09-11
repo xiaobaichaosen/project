@@ -18,6 +18,7 @@ import com.yijie.com.yijie.base.BaseFragment;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
+import com.yijie.com.yijie.bean.SchoolSimple;
 import com.yijie.com.yijie.fragment.school.LoadMoreSchoolAdapter;
 import com.yijie.com.yijie.view.LoadingLayout;
 
@@ -47,7 +48,7 @@ public class KndergartenMoreFragment extends BaseFragment {
     @BindView(R.id.back)
     ImageView back;
 
-    private List<StudentBean> dataList = new ArrayList<>();
+    private  List<SchoolSimple> dataList;
     private OnButtonClick onButtonClick;//2、定义接口成员变量
 
     //定义接口变量的get方法
@@ -69,9 +70,24 @@ public class KndergartenMoreFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_morekndergard;
     }
+    @Override
+    public void onResume() {
+        isPrepared=true;
+        initData();
+        super.onResume();
+    }
+
+    @Override
+    protected void initView() {
+
+    }
 
     @Override
     protected void initData() {
+        // TODO 正常应该是!isVisble,待解决
+        if(!isPrepared || !isVisible) {
+            return;
+        }
         // 设置刷新控件颜色
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -83,7 +99,7 @@ public class KndergartenMoreFragment extends BaseFragment {
         });
         loading.showContent();
         // 模拟获取数据
-        getData();
+//        getData();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +112,7 @@ public class KndergartenMoreFragment extends BaseFragment {
         });
 
 
-        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList,R.layout.kndergarten_adaptermore_item);
+        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(false,dataList,R.layout.kndergarten_adaptermore_item);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
         recyclerView.setAdapter(loadMoreWrapper);
@@ -118,7 +134,7 @@ public class KndergartenMoreFragment extends BaseFragment {
             public void onRefresh() {
                 // 刷新数据
                 dataList.clear();
-                getData();
+//                getData();
                 loadMoreWrapper.notifyDataSetChanged();
 
                 // 延时1s关闭下拉刷新
@@ -147,7 +163,7 @@ public class KndergartenMoreFragment extends BaseFragment {
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    getData();
+//                                    getData();
                                     loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
                                 }
                             });
@@ -161,17 +177,17 @@ public class KndergartenMoreFragment extends BaseFragment {
         });
 
     }
-
-    private void getData() {
-        //String.valueOf(letter)
-        char letter = 'A';
-        for (int i = 0; i < 26; i++) {
-
-            dataList.add(new StudentBean(1, String.valueOf(letter)));
-
-            letter++;
-        }
-    }
+//
+//    private void getData() {
+//        //String.valueOf(letter)
+//        char letter = 'A';
+//        for (int i = 0; i < 26; i++) {
+//
+//            dataList.add(new StudentBean(1, String.valueOf(letter)));
+//
+//            letter++;
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

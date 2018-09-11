@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical"
+    >
+    <include
+        layout="@layout/app_title"
+        android:id="@+id/app_title"
+        />
+
+    <ScrollView
+        android:layout_below="@+id/app_title"
+        android:id="@+id/ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_background"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/item_title"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="需求详情" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/base_dimen_20"
+                android:paddingBottom="@dimen/base_dimen_20"
+                android:background="@color/colorPrimary"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/item_key"
+                        android:text="人数需求" />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:textColor="@color/item_key"
+                        android:text="薪资" />
+                    <TextView
+
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:textColor="@color/item_key"
+                        android:text="服务费用" />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:textColor="@color/item_key"
+                        android:text="特长" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/base_dimen_60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_requestnum"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/item_value"
+                        />
+                    <TextView
+                        android:id="@+id/tv_money"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:textColor="@color/item_value"
+                        />
+                    <TextView
+                        android:id="@+id/tv_serviceFree"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:textColor="@color/item_value"
+                        />
+                    <TextView
+                        android:id="@+id/tv_nb"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:textColor="@color/item_value"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="人数需求"/>
+                <com.yijie.com.kindergartenapp.view.AmountView
+                    android:id="@+id/et_studentNum"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textSize="@dimen/base_dimen_24"
+                    android:layout_centerVertical="true"
+                    app:btnTextSize="14sp"
+                    app:btnWidth="36dp"
+                    app:tvWidth="50dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_90"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:background="@color/colorPrimary"
+           >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="服务费用" />
+
+
+                    <TextView
+                        android:id="@+id/tv_free"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="800/元"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="@dimen/base_dimen_30"
+                        android:textColor="@color/tab_checked"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_90"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:background="@color/colorPrimary"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="首次支付月数" />
+
+
+                <TextView
+                    android:id="@+id/tv_paymonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/base_dimen_30"
+                    android:textColor="@color/tab_checked"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_90"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:background="@color/colorPrimary"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/tab_checked"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="合计:" />
+
+
+                <TextView
+                    android:id="@+id/tv_totalmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="@dimen/base_dimen_30"
+                    android:textColor="@color/tab_checked" />
+
+            </RelativeLayout>
+             <TextView
+                 android:layout_margin="@dimen/base_dimen_30"
+                 android:text="如对以上费用无异议，可确认发布需求，待招聘人员确定后付款。"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/ll_commit"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="@dimen/base_dimen_90"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_totalFree"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/shool_pictor"
+            android:textColor="@color/colorTheme"
+            android:textSize="@dimen/base_dimen_40" />
+
+        <TextView
+            android:id="@+id/tv_requst"
+            android:text="发布需求"
+            android:background="@color/colorTheme"
+            android:textSize="@dimen/base_dimen_40"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@mipmap/shool_pictor" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/app_background"
+
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/app_title"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/base_dimen_90">
+        <TextView
+            android:text="手机号"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_cellphone"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:text="下一步"
+        android:id="@+id/tv_next"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/text_radius_shap"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginRight="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_40"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+</LinearLayout>

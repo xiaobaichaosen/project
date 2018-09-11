@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yijie.com.yijie"><uses-sdk android:targetSdkVersion="21" android:minSdkVersion="9"/>
+    package="com.yijie.com.yijie">
+    <uses-sdk android:targetSdkVersion="21" android:minSdkVersion="9"/>
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -40,6 +41,7 @@
         android:name="com.yijie.com.yijie.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
 
+
     <!-- Required  一些系统要求的权限，如访问网络等-->
     <uses-permission android:name="com.yijie.com.yijie.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -55,15 +57,13 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 
+
     <!-- Optional for location -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <!--加这个条件有得手机会报错-->
+    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> &lt;!&ndash; 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 &ndash;&gt;-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-
     <application
         android:allowBackup="true"
         android:name=".base.APPApplication"
@@ -71,7 +71,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
 
 
         <!-- Rich push 核心功能 since 2.0.6-->
@@ -80,7 +81,6 @@
             android:theme="@style/MyDialogStyle"
             android:exported="false">
         </activity>
-
         <!-- Required SDK核心功能-->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
@@ -177,14 +177,13 @@
         <meta-data android:name="JPUSH_APPKEY" android:value="f6a2e1dc4cf256d205f43e4e" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
-
-    /*高德地图key*/
+        /*高德地图key*/
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="d184b33065a65a6115f3ad6d4ec7d481" />
         <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService"></service>
-      /*  设置友盟appid*/
+        /*  设置友盟appid*/
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5a585d48f43e480581000012" >
@@ -193,11 +192,11 @@
 
         /*微信登陆*/
         <activity
-        android:name="com.yijie.com.yijie.activity.login.WXEntryActivity"
-        android:configChanges="keyboardHidden|orientation|screenSize"
-        android:exported="true"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:name="com.yijie.com.yijie.activity.login.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!--qq精简版-->
         <activity
@@ -210,12 +209,19 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <!--这里的scheme是qq分享要用的，100424468为自己申请的appid，真实项目中需要替换-->
-       <!--         <data android:scheme="tencent100424468"/>-->
+                <!--         <data android:scheme="tencent100424468"/>-->
             </intent-filter>
         </activity>
         <activity
             android:name="com.yijie.com.yijie.activity.PoiKeywordSearchActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.amap.api.navi.AmapRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.yijie.com.yijie.activity.kendergard.KendergardMachDetailAcitivty"
+            >
         </activity>
 
         <activity
@@ -224,31 +230,46 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".activity.SplashActivity"
             android:theme="@style/Main"
             android:windowSoftInputMode="adjustPan"
-
-
             >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<activity android:name=".activity.login.LoginActivity"
-    android:windowSoftInputMode="adjustPan|stateHidden"
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
 
-    />
+            />
+        /*        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:screenOrientation="portrait"*/ <!--android:windowSoftInputMode="stateAlwaysHidden|adjustPan"-->
+        <activity android:name=".activity.TempActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+
+        <activity android:name=".activity.login.LoginActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
         <activity android:name=".activity.kendergard.KndergardAcitivity"/>
         <activity android:name=".activity.kendergard.MoreShareActivity"/>
         <activity android:name=".activity.kendergard.PhotoActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
-
+        <activity android:name=".activity.student.StudentStatusActivity"/>
+        <activity android:name=".activity.MapLocationActivity"/>
         <activity android:name=".activity.school.SchoolActivity"/>
         <activity android:name=".activity.student.StudentActivity"/>
+        <activity android:name=".activity.student.TBStributedActivity"/>
+        <activity android:name=".activity.ReNameSchoolAcitivty"/>
+        <activity android:name=".activity.WebViewActivity"/>
+        <activity android:name=".activity.ForgetPwdActivity"/>
+        <activity android:name=".activity.ResetPwdActivity"/>
+        <activity android:name=".activity.SmsLoginAcitivity"/>
+        <activity android:name=".activity.ModityPwdAcitivity"/>
+
         <activity android:name=".utils.PhotoActivityForHor"
 
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -257,10 +278,10 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             />
         <activity android:name=".activity.recommend.RecommendActivity"/>
-         <activity android:name=".base.PermissionsActivity"
-             android:theme="@style/AppTheme.NoActionBar.Permissions"
-             />
-        <activity android:name=".permission.PermissionActivity"/>
+        <activity android:name=".base.PermissionsActivity"
+            android:theme="@style/AppTheme.NoActionBar.Permissions"
+            />
+
         <activity android:name=".activity.kendergard.InternshipStatusActivity"
 
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
@@ -277,34 +298,91 @@
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
 
             />
+        <activity android:name="com.yijie.com.yijie.activity.student.HasPassedActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
 
+            />
 
         <activity android:name=".activity.newschool.NewInternshipDetailActivity"
             />
-        <activity android:name="com.yijie.com.yijie.activity.school.SchoolMoreActivity"
+        <activity android:name=".activity.TransferActivity"
+            />
+        <activity android:name=".activity.ProjectActivity"
+            />
+        <activity android:name=".activity.ProjectDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+
             />
 
-    <activity android:name=".activity.registerd.RegisteredActivity"/>
+
+        <activity android:name=".activity.SchoolListAcitivity"
+            />
+        <activity android:name=".activity.ProjectListAcitivity"
+            />
+        <activity android:name=".activity.SchoolProjectDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
+        <activity android:name=".activity.newschool.NewSchoolLiaisonsActivity"
+            />
+        <activity android:name=".activity.newschool.NewPersonActivity"
+            />
+
+        <activity android:name="com.yijie.com.yijie.activity.school.SchoolMoreActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity android:name="com.yijie.com.yijie.activity.student.SamplecCheckPendingActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity android:name="com.yijie.com.yijie.activity.student.NotPassActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+
+        <activity android:name=".activity.registerd.RegisteredActivity"/>
+        <activity android:name=".activity.SettingAcitivity"/>
+        <activity android:name=".activity.student.StudentSpeedCheckActivity"/>
 
         <activity android:name=".activity.newschool.NewSchoolActivity"/>
         <activity android:name=".activity.newschool.NewContactActivity"/>
+        <activity android:name=".activity.NewNoTrainActivity"/>
 
         <activity android:name=".activity.registerd.VerificationCodeActivity"/>
-    <activity android:name=".activity.registerd.PassWordActivity"/>
+        <activity android:name=".activity.registerd.PassWordActivity"/>
         <activity android:name=".base.search.AppSearchActivity"/>
         <activity android:name=".activity.newschool.NewSchoolIntroduction"
             android:windowSoftInputMode="adjustPan|stateHidden"
             />
         <activity android:name=".activity.kendergard.FinishInternshipActivity"/>
+        <activity android:name=".activity.student.studentgrounp.InternshipActivity"/>
+
         <activity android:name=".activity.ConversionActivity"/>
         <activity android:name=".activity.ContactModityActivity"/>
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
             android:theme="@style/ImagePickerThemeFullScreen"/>
-        <activity android:name=".activity.newschool.MemorandumActivity"/>
+        <activity android:name=".activity.newschool.MemorandumActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            />
+        <activity android:name=".activity.search.SchoolListSearchActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            />
+        <activity android:name=".activity.search.ProjectListSearchActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            />
+
         <activity android:name=".activity.TrainDetailAcitity"/>
         <activity android:name="com.yijie.com.yijie.activity.PowerActivity"/>
-    <activity android:name="com.yijie.com.yijie.activity.newschool.NewIntershipMoney"/>
+        <activity android:name=".activity.kendergard.KendergardStatusActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity android:name=".activity.newschool.NewIntershipMoney"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity android:name=".activity.SettingNumActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
 </manifest>

@@ -11,8 +11,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.android.tu.loadingdialog.LoadingDailog;
 import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.MainActivity;
 import com.yijie.com.yijie.R;
@@ -20,7 +18,6 @@ import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.utils.BaseCallback;
 import com.yijie.com.yijie.utils.HttpUtils;
 import com.yijie.com.yijie.utils.ShowToastUtils;
-import com.yijie.com.yijie.utils.TelephoneRejestUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

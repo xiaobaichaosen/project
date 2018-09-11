@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/base_dimen_30"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_height="@dimen/base_dimen_90">
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="通知"
+        android:drawablePadding="@dimen/base_dimen_10"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:drawableLeft="@mipmap/notice"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:id="@+id/rc_gv"
+        android:nestedScrollingEnabled="false"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -91,11 +91,12 @@ public class CameraActivity extends Activity implements View.OnTouchListener,OnC
 		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//全屏
 		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);//拍照过程屏幕一直处于高亮
 		setContentView(R.layout.camera_home);
-		type = getIntent().getIntExtra(CAMERA_TYPE, CAMERA_TYPE_2);
-		addressString = getIntent().getStringExtra("addressString");
-
 		initView();
 		InitData();
+		type = getIntent().getIntExtra(CAMERA_TYPE, CAMERA_TYPE_2);
+		addressString = getIntent().getStringExtra("adress");
+		tv_address.setText(addressString);
+
 
 	}
 

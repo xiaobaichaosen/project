@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="11dp"
         android:layout_marginRight="11dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="#f2f2f2"/>
     <LinearLayout
         android:id="@+id/timepicker"

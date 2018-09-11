@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-
-import com.android.tu.loadingdialog.LoadingDailog;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -34,14 +31,6 @@ public abstract  class BaseActivity extends AppCompatActivity {
         AppManager.getAppManager().addActivity(this);
         setContentView();
         ButterKnife.bind(this);
-
-
-        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(this)
-                .setMessage("加载中...")
-                .setCancelable(true)
-                .setCancelOutside(true);
-
-        dialog = loadBuilder.create();
         bind = ButterKnife.bind(this);
 
 

@@ -1,65 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loading"
     android:layout_width="match_parent"
-    android:background="@color/colorTheme"
-
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/base_dimen_46"
-        android:background="@color/colorTheme"
-        android:fitsSystemWindows="true" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/base_dimen_110"
-        android:layout_centerHorizontal="true"
 
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:text="简历"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/base_dimen_32" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@mipmap/student_bg_start">
+        <include
+            android:id="@+id/app_title"
+            layout="@layout/app_title"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/base_dimen_280"
-            android:layout_marginLeft="@dimen/base_dimen_30"
-            android:text="个人简历"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/base_dimen_32" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/base_dimen_150"
-            android:layout_marginLeft="@dimen/base_dimen_60"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/activity_floating_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-            <View
-                android:layout_width="@dimen/base_dimen_110"
-                android:layout_height="@dimen/base_dimen_6"
-                android:layout_gravity="center_vertical"
-                android:background="@color/colorPrimary" />
-
-            <Button
-                android:id="@+id/btn_start"
+            <com.yijie.com.kindergartenapp.view.StickyHeaderLayout
+                android:id="@+id/sticky_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary" />
+            </com.yijie.com.kindergartenapp.view.StickyHeaderLayout>
+            <com.melnykov.fab.FloatingActionButton
+                android:id="@+id/fab"
+                android:src="@mipmap/ic_take_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:text="从这里开始"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/base_dimen_28" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="15dp"
+                app:fab_shadow="true"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/color_gray"
+                fab:fab_colorRipple="@color/color_gray" />
+        </RelativeLayout>
+
 </LinearLayout>
-
-

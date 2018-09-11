@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_title"
+
+        />
+    <RelativeLayout
+        android:id="@+id/rl_shipdetail"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="实习详情"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+        <TextView
+            android:id="@+id/tv_shipdetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_dimen_22"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newContact"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_shipmoney"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="实习薪资"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_shipmoney"
+            android:padding="@dimen/base_dimen_22"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_shoolcontact"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="学校联络人"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_scool_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_dimen_22"
+            android:drawableRight="@mipmap/goright"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newContact"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

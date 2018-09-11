@@ -76,6 +76,8 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
     @BindView(R.id.tv_school)
     TextView tvSchool;
     private String schoolDatil;
+    private String latString;
+    private String lonString;
 
     private List<SchoolAdress> dataList = new ArrayList<>();
     private List<SchoolAdress> moreList = new ArrayList<>();
@@ -131,6 +133,8 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
 //
                 tvSchool.setText("所选学校:" + moreList.get(position).getName());
                 schoolDatil=moreList.get(position).getDetailAdress();
+                latString=moreList.get(position).getLat();
+                lonString=moreList.get(position).getLon();
 //                loadMoreWrapperAdapter.notifyDataSetChanged();
                 //设置点击的标记
                 setMarkerOptions(moreList.get(position).getName(), Double.parseDouble(moreList.get(position).getLat()), Double.parseDouble(moreList.get(position).getLon()));
@@ -202,8 +206,9 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory
                 .fromResource(R.mipmap.location_marker));// 设置小蓝点的图标
-//        myLocationStyle.strokeColor(Color.BLACK);// 设置圆形的边框颜色
-//        myLocationStyle.radiusFillColor(Color.argb(100, 0, 0, 180));// 设置圆形的填充颜色
+
+        myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 设置圆形的边框颜色
+        myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色  。
 //        myLocationStyle.strokeWidth(1.0f);// 设置圆形的边框粗细
         aMap.setMyLocationStyle(myLocationStyle);
         aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_SHOW));
@@ -211,7 +216,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
         aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         aMap.getUiSettings().setZoomControlsEnabled(false);//设置缩放按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-        deepType = "学校";//设置搜索类型为学校
+        deepType = "";//设置搜索类型为学校
     }
 
     @Override
@@ -236,10 +241,15 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         String newText = charSequence.toString().trim();
         poiString = newText;
-        if (!"".equals(newText)) {
+        if ("".equals(newText)) {
+            ShowToastUtils.showToastMsg(this, "请输入搜索关键字");
+            return;
+        } else {
             moreList.clear();
             doSearchQuery(newText);
         }
+
+
     }
 
     /**
@@ -363,6 +373,8 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                 SchoolAdress schoolAdress = new SchoolAdress();
                 schoolAdress.setType(2);
                 schoolAdress.setName(schoolDatil);
+                schoolAdress.setLon(lonString);
+                schoolAdress.setLat(latString);
                 EventBus.getDefault().post(schoolAdress);
                 finish();
                 break;

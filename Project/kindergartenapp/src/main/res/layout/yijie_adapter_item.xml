@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/base_dimen_20"
+    android:paddingBottom="@dimen/base_dimen_20"
+    android:gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:paddingLeft="@dimen/base_dimen_30"
+        style="@style/layout_mw">
+
+        <TextView
+            android:id="@+id/tv_shcoolName"
+            style="@style/layout_ww"
+            android:drawablePadding="@dimen/base_dimen_20"
+            android:text="河北省石家庄市"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+
+        <TextView
+            android:id="@+id/tv_request"
+            style="@style/layout_ww"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:textSize="@dimen/base_dimen_22" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:orientation="horizontal"
+        style="@style/layout_mw">
+        <TextView
+            android:id="@+id/tv_projectName"
+            android:drawablePadding="@dimen/base_dimen_20"
+            style="@style/layout_ww"
+            android:text="2017届 大专 定岗实习 9月"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_22" />
+        <TextView
+            android:id="@+id/tv_receiveNum"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_toRightOf="@+id/tv_projectName"
+            android:drawablePadding="@dimen/base_dimen_20"
+            style="@style/layout_ww"
+            android:textColor="@color/tab_checked"
+            android:textSize="@dimen/base_dimen_22" />
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/layout_ww"
+            android:text="2月7日"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:textColor="@color/item_content"
+            android:textSize="@dimen/base_dimen_22"/>
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

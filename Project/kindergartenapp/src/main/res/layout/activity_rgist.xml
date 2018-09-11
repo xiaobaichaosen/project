@@ -6,27 +6,42 @@
     android:background="@color/colorTheme"
     >
     <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingRight="@dimen/base_dimen_40"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/base_dimen_30"
+            android:text="登录"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"
+           android:layout_gravity="right"
+            />
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/ll_content"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/base_dimen_70"
-        android:paddingRight="@dimen/base_dimen_70"
+        android:paddingLeft="@dimen/base_dimen_40"
+        android:paddingRight="@dimen/base_dimen_40"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_dimen_120"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv"
-                android:layout_centerHorizontal="true"
                 android:layout_width="@dimen/base_dimen_140"
                 android:layout_height="@dimen/base_dimen_140"
-                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
                 android:src="@mipmap/iv_yijie_reject" />
-
 
         </RelativeLayout>
 
@@ -51,7 +66,7 @@
                     android:background="@null"
                     android:textColorHint="#80ffffff"
                     android:textColor="#ffffff"
-                    android:hint="请输入手机号码"
+                    android:hint="请输入邮箱/手机号码"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -114,7 +129,7 @@
                     android:textColor="#ffffff"
                     android:password="true"
                     android:layout_weight="1"
-                    android:hint="请输入密码"
+                    android:hint=" 密码为6-20位字母数字组合"
                     android:id="@+id/et_passWord"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -143,7 +158,6 @@
 
                 <CheckBox
                     android:id="@+id/cb_isGreen"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -151,16 +165,26 @@
 
                 <TextView
 
-                    android:background="@null"
-                    android:textSize="@dimen/base_dimen_32"
-                    android:textColorHint="#80ffffff"
-                    android:textColor="#ffffff"
-                    android:password="true"
-                    android:layout_weight="1"
-                    android:hint="我已经同意奕杰"
-                    android:layout_width="match_parent"
+                    android:textColor="#80ffffff"
+                    android:text="我已经同意奕杰"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
+                <TextView
+                    android:id="@+id/tv_user_yes"
+                    android:text="《用户服务协议》"
+                    android:paddingTop="@dimen/base_dimen_10"
+                    android:paddingBottom="@dimen/base_dimen_10"
+                    android:textColor="#80ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_sm_yes"
+                    android:layout_width="wrap_content"
+                    android:paddingTop="@dimen/base_dimen_10"
+                    android:paddingBottom="@dimen/base_dimen_10"
+                    android:textColor="#80ffffff"
+                    android:text="《隐私条款》"
+                android:layout_height="wrap_content" />
             </LinearLayout>
 
         </LinearLayout>
@@ -175,7 +199,7 @@
             android:textSize="@dimen/base_dimen_32"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="注册" />
+            android:text="下一步" />
 
 
     </LinearLayout>

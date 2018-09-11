@@ -32,10 +32,10 @@ public class LoginModel implements ILoginModel {
         //请求网络
 
 //        HttpUtils instance = HttpUtils.getinstance();
-//        Map map=new HashMap();
-//        map.put("phone",username);
-//        map.put("password",password);
-//        instance.post(Constant.loginUrl, map, new BaseCallback<String>() {
+        Map map=new HashMap();
+        map.put("phone",username);
+        map.put("password",password);
+//        instance.post(Constant.LOGIN, map, new BaseCallback<String>() {
 //            @Override
 //            public void onRequestBefore() {
 //               callBack.beforLogin();

@@ -96,7 +96,8 @@ public class KndergardAcitivity extends BaseActivity implements CallbackItemTouc
     @Override
     public void init() {
 
-
+        String kinderName = getIntent().getStringExtra("kinderName");
+        title.setText(kinderName);
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         //true是从推荐跳转过来的
@@ -134,7 +135,7 @@ public class KndergardAcitivity extends BaseActivity implements CallbackItemTouc
             case R.id.tv_recommend:
                 new CommomDialog(KndergardAcitivity.this, R.style.dialog, "同时推荐的有[胡瑞彩]", new CommomDialog.OnCloseListener() {
                     @Override
-                    public void onClick(Dialog dialog, boolean confirm) {
+                    public void onClick(Dialog dialog, boolean confirm,String string) {
                         if(confirm){
                             ShowToastUtils.showToastMsg(KndergardAcitivity.this,"推荐");
                             dialog.dismiss();
@@ -174,12 +175,11 @@ public class KndergardAcitivity extends BaseActivity implements CallbackItemTouc
         // Adds data to List of Objects StudentBean
         mList = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {
-
-
             if (i == 0) {
-                mList.add(new Item(images[i], names[i], "", 1));
-            } else if (i == 1) {
                 mList.add(new Item(images[i], names[i], "", 2));
+            } else if (i == 1) {
+                mList.add(new Item(images[i], names[i], "", 1));
+
             } else if (i == 2) {
                 mList.add(new Item(images[i], names[i], "", 3));
             } else if (i == 3) {

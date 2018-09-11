@@ -18,9 +18,9 @@ import com.yijie.com.yijie.activity.kendergard.KndergardAcitivity;
 import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.base.BaseFragment;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
-import com.yijie.com.yijie.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
-import com.yijie.com.yijie.view.LoadingLayout;
+import com.yijie.com.yijie.bean.bean.KindergartenNeed;
+import com.yijie.com.yijie.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +44,8 @@ public class KndergartenFragment extends BaseFragment {
     //    @BindView(R.id.back)
 //    CheckBox back;
     Unbinder unbinder;
-    @BindView(R.id.loading)
-    LoadingLayout loading;
+    //    @BindView(R.id.loading)
+//    LoadingLayout loading;
     @BindView(R.id.iv)
     ImageView iv;
     @BindView(R.id.clearEditText)
@@ -56,41 +56,57 @@ public class KndergartenFragment extends BaseFragment {
     ImageView actionItem;
     @BindView(R.id.app_title)
     RelativeLayout appTitle;
+    @BindView(R.id.recycler_loading)
+    RecyclerView recyclerLoading;
+    @BindView(R.id.recycler_company)
+    RecyclerView recyclerCompany;
     private List<StudentBean> dataList = new ArrayList<>();
+    private List<List<KindergartenNeed>> loadingList = new ArrayList<>();
+    private List<StudentBean> companyList = new ArrayList<>();
     private OnButtonClick onButtonClick;//2、定义接口成员变量
+    private LoadMoreWrapper loadMoreLoadingWrapper;
+    private LoadMoreWrapper loadMoreCompanyWrapper;
+
     //定义接口变量的get方法
     public OnButtonClick getOnButtonClick() {
         return onButtonClick;
     }
+
     //定义接口变量的set方法
     public void setOnButtonClick(OnButtonClick onButtonClick) {
         this.onButtonClick = onButtonClick;
     }
+
     //1、定义接口
-    public interface OnButtonClick{
+    public interface OnButtonClick {
         public void onClick(View view);
     }
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_kendergard;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        isPrepared=true;
+        LogUtil.e("onResume="+isVisible);
+        initData();
+    }
 
     @Override
-    protected void initData() {
+    protected void initView() {
         // 设置刷新控件颜色
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
-        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        loading.setRetryListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loading.showContent();
-            }
-        });
-        loading.showContent();
-
-        // 模拟获取数据
-        getData();
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
+        LinearLayoutManager loadingLinearLayoutManager = new LinearLayoutManager(mActivity);
+        LinearLayoutManager companyLinearLayoutManager = new LinearLayoutManager(mActivity);
+        recyclerView.setHasFixedSize(true);
+        recyclerCompany.setHasFixedSize(true);
+        recyclerLoading.setHasFixedSize(true);
+        setLinearLayout(linearLayoutManager, recyclerView);
+        setLinearLayout(companyLinearLayoutManager, recyclerCompany);
+        setLinearLayout(loadingLinearLayoutManager, recyclerLoading);
         actionItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,31 +117,66 @@ public class KndergartenFragment extends BaseFragment {
                 }
             }
         });
-        LoadMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreKndergrtenAdapter(dataList, mActivity,R.layout.kndergarten_adapter_item);
+        //往期园所
+        LoadMoreKndergrtenAdapter loadMoreWrapperAdapter = new LoadMoreKndergrtenAdapter(dataList, mActivity, R.layout.kendergard_adapter_company);
+        //正在招聘园所
+        LoadMoreLoadingKndergrtenAdapter loadMoreLoadingKndergrtenAdapter = new LoadMoreLoadingKndergrtenAdapter(loadingList, mActivity, R.layout.fragment_adapter_loading_item);
+        //正在合作的园所
+        LoadMoreCompanyKndergrtenAdapter loadMoreCompanyKndergrtenAdapter = new LoadMoreCompanyKndergrtenAdapter(companyList, mActivity, R.layout.kendergard_adapter_company);
         loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
-
+        loadMoreLoadingWrapper = new LoadMoreWrapper(loadMoreLoadingKndergrtenAdapter);
+        loadMoreCompanyWrapper = new LoadMoreWrapper(loadMoreCompanyKndergrtenAdapter);
         recyclerView.setAdapter(loadMoreWrapper);
-        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreKndergrtenAdapter.OnItemClickListener(
-
-                                                      ) {
+        recyclerLoading.setAdapter(loadMoreLoadingWrapper);
+        recyclerCompany.setAdapter(loadMoreCompanyWrapper);
+        loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_ARROW);
+        loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING_ARROW);
+        loadMoreCompanyWrapper.setLoadState(loadMoreCompanyWrapper.LOADING_ARROW);
+        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreKndergrtenAdapter.OnItemClickListener() {
                                                           @Override
                                                           public void onItemClick(View view, int position) {
                                                               Intent intent = new Intent();
                                                               intent.setClass(mActivity, KndergardAcitivity.class);
                                                               startActivity(intent);
-
                                                           }
                                                       }
         );
+        loadMoreLoadingKndergrtenAdapter.setOnItemClickListener(new LoadMoreLoadingKndergrtenAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent();
+                intent.setClass(mActivity, KndergardAcitivity.class);
+                startActivity(intent);
+            }
+        });
+
+        loadMoreCompanyKndergrtenAdapter.setOnItemClickListener(new LoadMoreCompanyKndergrtenAdapter.OnItemClickListener() {
+                                                                    @Override
+                                                                    public void onItemClick(View view, int position) {
+                                                                        Intent intent = new Intent();
+                                                                        intent.setClass(mActivity, KndergardAcitivity.class);
+                                                                        startActivity(intent);
+                                                                    }
+                                                                }
+        );
+//
         recyclerView.addItemDecoration(new DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
+//        recyclerLoading.addItemDecoration(new DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
+        recyclerCompany.addItemDecoration(new DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
         // 设置下拉刷新
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // 刷新数据
                 dataList.clear();
+                loadingList.clear();
+                companyList.clear();
                 getData();
-                loadMoreWrapper.notifyDataSetChanged();
+//                getLoadingData();
+                getCompanyData();
+                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_ARROW);
+                loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING_ARROW);
+                loadMoreCompanyWrapper.setLoadState(loadMoreCompanyWrapper.LOADING_ARROW);
 
                 // 延时1s关闭下拉刷新
                 swipeRefreshLayout.postDelayed(new Runnable() {
@@ -139,22 +190,23 @@ public class KndergartenFragment extends BaseFragment {
             }
         });
 
-        // 设置加载更多监听
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
-            @Override
-            public void onLoadMore() {
-                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
+        // 设置往期合作加载更多监听
 
-                if (dataList.size() < 52) {
+        loadMoreWrapper.setOnClickListener(new LoadMoreWrapper.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dataList.size() < 6) {
                     // 模拟获取网络数据，延时1s
+                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+
                                     getData();
-                                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
+                                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_ARROW);
                                 }
                             });
                         }
@@ -166,18 +218,137 @@ public class KndergartenFragment extends BaseFragment {
             }
         });
 
+        // 设置正在招聘
+
+        loadMoreLoadingWrapper.setOnClickListener(new LoadMoreWrapper.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (loadingList.size() < 6) {
+                    // 模拟获取网络数据，延时1s
+                    loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING);
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            mActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+//                                    getLoadingData();
+                                    loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING_ARROW);
+                                }
+                            });
+                        }
+                    }, 1000);
+                } else {
+                    // 显示加载到底的提示
+                    loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING_END);
+                }
+            }
+        });
+        // 设置正在合作
+        loadMoreCompanyWrapper.setOnClickListener(new LoadMoreWrapper.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (companyList.size() < 6) {
+                    // 模拟获取网络数据，延时1s
+                    loadMoreCompanyWrapper.setLoadState(loadMoreCompanyWrapper.LOADING);
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            mActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getCompanyData();
+                                    loadMoreCompanyWrapper.setLoadState(loadMoreCompanyWrapper.LOADING_ARROW);
+                                }
+                            });
+                        }
+                    }, 1000);
+                } else {
+                    // 显示加载到底的提示
+                    loadMoreCompanyWrapper.setLoadState(loadMoreCompanyWrapper.LOADING_END);
+                }
+            }
+        });
 
     }
 
+    @Override
+    protected void initData() {
+        // TODO 正常应该是!isVisble,待解决
+        LogUtil.e("initData="+isVisible);
+        if(!isPrepared || !isVisible) {
+            return;
+        }
+
+
+        // 模拟获取数据
+        getData();
+//        getLoadingData();
+        getCompanyData();
+
+
+    }
+
+    /**
+     * 解决嵌套卡顿问题
+     *
+     * @param linearLayoutManager
+     * @param recyclerView
+     */
+    private void setLinearLayout(LinearLayoutManager linearLayoutManager, RecyclerView recyclerView) {
+        linearLayoutManager.setSmoothScrollbarEnabled(true);
+        linearLayoutManager.setAutoMeasureEnabled(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
+    }
 
 
     private void getData() {
         //String.valueOf(letter)
         char letter = 'A';
-        for (int i = 0; i < 26; i++) {
-
+        for (int i = 0; i < 2; i++) {
             dataList.add(new StudentBean(1, String.valueOf(letter)));
+            letter++;
+        }
+    }
 
+//    private void getLoadingData() {
+//        //String.valueOf(letter)
+//        char letter = 'A';
+//        for (int i = 0; i < 2; i++) {
+//            if (i==0){
+//                ArrayList<StudentBean> studentBeans = new ArrayList<>();
+//                for (int j = 0; j < 3; j++) {
+//                    StudentBean studentBean = new StudentBean(1, String.valueOf(letter));
+//                    studentBeans.add(studentBean);
+//
+//                    letter++;
+//                }
+//                loadingList.add(studentBeans);
+//            }
+//            char letter2 = 'F';
+//            if (i==1){
+//                ArrayList<StudentBean> studentBeans = new ArrayList<>();
+//                for (int j = 0; j < 1; j++) {
+//                    StudentBean studentBean = new StudentBean(1, String.valueOf(letter2));
+//                    studentBeans.add(studentBean);
+//
+//                    letter++;
+//                }
+//                loadingList.add(studentBeans);
+//            }
+//        }
+//
+//
+//
+//    }
+
+    private void getCompanyData() {
+        //String.valueOf(letter)
+        char letter = 'A';
+        for (int i = 0; i < 2; i++) {
+            companyList.add(new StudentBean(1, String.valueOf(letter)));
             letter++;
         }
     }

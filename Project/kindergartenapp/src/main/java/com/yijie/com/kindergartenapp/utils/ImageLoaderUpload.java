@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.lzy.imagepicker.loader.ImageLoader;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
+import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
 
 import java.io.File;
@@ -21,7 +22,7 @@ public class ImageLoaderUpload implements ImageLoader {
 
     @Override
     public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
-        com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(ImageDownloader.Scheme.FILE.wrap(path),imageView,getPhotoImageOption());
+        ImageLoaderUtil.getImageLoader(activity).displayImage(path, imageView, ImageLoaderUtil.getPhotoImageOption());
 
     }
 
@@ -31,14 +32,5 @@ public class ImageLoaderUpload implements ImageLoader {
 
     }
 
-    public DisplayImageOptions getPhotoImageOption() {
-        Integer extra = 1;
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true)
-                .showImageForEmptyUri(R.mipmap.ic_launcher).showImageOnFail(R.mipmap.ic_launcher)
-                .showImageOnLoading(R.mipmap.ic_launcher)
-                .extraForDownloader(extra)
-                .bitmapConfig(Bitmap.Config.RGB_565).build();
-        return options;
-    }
 
 }

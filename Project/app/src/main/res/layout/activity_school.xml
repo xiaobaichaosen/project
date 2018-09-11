@@ -2,25 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#f2f2f2"
+    android:background="@color/app_background"
     android:orientation="vertical"
     android:layout_height="match_parent"
 >
     <include
         android:id="@+id/app_title"
         layout="@layout/app_title"/>
-    <android.support.v4.widget.NestedScrollView
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <LinearLayout
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
 
         <LinearLayout
         android:background="@color/colorTheme"
@@ -89,15 +77,689 @@
             />
 
     </LinearLayout>
-        <RelativeLayout
+        <ScrollView
+            android:layout_marginTop="@dimen/base_dimen_20"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:descendantFocusability="blocksDescendants"
             >
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+            <TextView
+                android:paddingLeft="@dimen/base_dimen_30"
+                android:background="@color/colorPrimary"
+                android:text="联系方式"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_90" />
+             <!--解决嵌套显示不全问题-->
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:descendantFocusability="blocksDescendants">
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                style="@style/layout_mm" />
-        </RelativeLayout>
-    </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:id="@+id/recycler_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+             </RelativeLayout>
+             <!--备忘录可以不填，如果没有数据隐藏布局-->
+             <LinearLayout
+                 android:layout_marginTop="@dimen/base_dimen_20"
+                 android:orientation="vertical"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+             <TextView
+                 android:text="备忘录"
+                 android:paddingLeft="@dimen/base_dimen_30"
+                 android:background="@color/colorPrimary"
+                 android:gravity="center_vertical"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/base_dimen_90" />
+                 <RelativeLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:descendantFocusability="blocksDescendants">
+                 <android.support.v7.widget.RecyclerView
+                 android:id="@+id/recycler_memery"
+                 android:layout_marginTop="@dimen/base_dimen_2"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+                 </RelativeLayout>
+             </LinearLayout>
+           <!--实习详情可以为空，如果数据为空隐藏布局-->
+            <LinearLayout
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="实习详情"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90" />
+                <View
+                    android:background="@color/app_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_2"/>
+                <TextView
+                    android:id="@+id/tv_projectName"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorTheme"
+                    android:layout_marginTop="@dimen/base_dimen_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90" />
+                    <View
+                        android:layout_marginLeft="@dimen/base_dimen_26"
+                        android:background="@color/app_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/base_dimen_2"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90">
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="年份"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:background="@color/app_background"
+                        android:layout_marginTop="@dimen/base_dimen_4"
+                        android:layout_marginBottom="@dimen/base_dimen_4"
+                        android:layout_width="@dimen/base_dimen_2"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="学历"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_education"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:background="@color/app_background"
+                        android:layout_marginTop="@dimen/base_dimen_4"
+                        android:layout_marginBottom="@dimen/base_dimen_4"
+                        android:layout_width="@dimen/base_dimen_2"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="实习期间"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_during"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:background="@color/app_background"
+                        android:layout_marginTop="@dimen/base_dimen_4"
+                        android:layout_marginBottom="@dimen/base_dimen_4"
+                        android:layout_width="@dimen/base_dimen_2"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="实习月份"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_marginLeft="@dimen/base_dimen_26"
+                    android:background="@color/app_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_2"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90">
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="管理模式"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_mode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:background="@color/app_background"
+                        android:layout_marginTop="@dimen/base_dimen_4"
+                        android:layout_marginBottom="@dimen/base_dimen_4"
+                        android:layout_width="@dimen/base_dimen_2"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="实习类型"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:background="@color/app_background"
+                        android:layout_marginTop="@dimen/base_dimen_4"
+                        android:layout_marginBottom="@dimen/base_dimen_4"
+                        android:layout_width="@dimen/base_dimen_2"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="预约时间"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_appoitTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="@dimen/base_dimen_26"
+                    android:background="@color/app_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_2"/>
+                <TextView
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/base_dimen_2"
+                    android:text="实习薪资"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90" />
+                <View
+                    android:layout_marginLeft="@dimen/base_dimen_26"
+                    android:background="@color/app_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_2"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_90">
+
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="期间"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_toBeijinTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <View
+                        android:background="@color/app_background"
+                        android:layout_marginTop="@dimen/base_dimen_4"
+                        android:layout_marginBottom="@dimen/base_dimen_4"
+                        android:layout_width="@dimen/base_dimen_2"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="薪资"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_pay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:background="@color/app_background"
+                        android:layout_marginTop="@dimen/base_dimen_4"
+                        android:layout_marginBottom="@dimen/base_dimen_4"
+                        android:layout_width="@dimen/base_dimen_2"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="管理费"
+                            android:textColor="@color/item_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_managePay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_marginLeft="@dimen/base_dimen_26"
+                    android:background="@color/app_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_2"/>
+            </LinearLayout>
+
+
+
+             <!--培训详情可以为空，如果数据为空隐藏布局-->
+             <LinearLayout
+                 android:orientation="vertical"
+                 android:background="@color/colorPrimary"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                 <TextView
+                     android:text="培训详情"
+                     android:layout_marginTop="@dimen/base_dimen_20"
+                     android:paddingLeft="@dimen/base_dimen_30"
+                     android:gravity="center_vertical"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_90" />
+                 <View
+                     android:background="@color/app_background"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_2"/>
+
+                 <LinearLayout
+                     android:orientation="horizontal"
+                     android:background="@color/colorPrimary"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_90">
+
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="院校培训负责人"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="刘老师"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+
+                     </LinearLayout>
+                     <View
+                         android:background="@color/app_background"
+                         android:layout_marginTop="@dimen/base_dimen_4"
+                         android:layout_marginBottom="@dimen/base_dimen_4"
+                         android:layout_width="@dimen/base_dimen_2"
+                         android:layout_height="match_parent"/>
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="联系电话"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="18610446284"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+
+                 </LinearLayout>
+                 <View
+                     android:layout_marginLeft="@dimen/base_dimen_26"
+                     android:background="@color/app_background"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_2"/>
+                 <LinearLayout
+                     android:orientation="horizontal"
+                     android:background="@color/colorPrimary"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_90">
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="培训时间"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="2017.2.28 15:00"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                     <View
+                         android:background="@color/app_background"
+                         android:layout_marginTop="@dimen/base_dimen_4"
+                         android:layout_marginBottom="@dimen/base_dimen_4"
+                         android:layout_width="@dimen/base_dimen_2"
+                         android:layout_height="match_parent"/>
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="地址"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="河北省保定市"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                 </LinearLayout>
+                 <View
+                     android:layout_marginLeft="@dimen/base_dimen_26"
+                     android:background="@color/app_background"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_2"/>
+                 <LinearLayout
+                     android:orientation="horizontal"
+                     android:background="@color/colorPrimary"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_90">
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="到京时间"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="2017.2.28"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                     <View
+                         android:background="@color/app_background"
+                         android:layout_marginTop="@dimen/base_dimen_4"
+                         android:layout_marginBottom="@dimen/base_dimen_4"
+                         android:layout_width="@dimen/base_dimen_2"
+                         android:layout_height="match_parent"/>
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="到京方式"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="自行"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                 </LinearLayout>
+                 <View
+                     android:layout_marginLeft="@dimen/base_dimen_26"
+                     android:background="@color/app_background"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_2"/>
+                 <LinearLayout
+                     android:orientation="horizontal"
+                     android:background="@color/colorPrimary"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_90">
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="报名人数"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="5人"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                     <View
+                         android:background="@color/app_background"
+                         android:layout_marginTop="@dimen/base_dimen_4"
+                         android:layout_marginBottom="@dimen/base_dimen_4"
+                         android:layout_width="@dimen/base_dimen_2"
+                         android:layout_height="match_parent"/>
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="报销路费"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="是"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                 </LinearLayout>
+                 <View
+                     android:layout_marginLeft="@dimen/base_dimen_26"
+                     android:background="@color/app_background"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_2"/>
+                 <LinearLayout
+                     android:orientation="horizontal"
+                     android:background="@color/colorPrimary"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/base_dimen_90">
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="实习中自我提升"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="教师资格证考试"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                     <View
+                         android:background="@color/app_background"
+                         android:layout_marginTop="@dimen/base_dimen_4"
+                         android:layout_marginBottom="@dimen/base_dimen_4"
+                         android:layout_width="@dimen/base_dimen_2"
+                         android:layout_height="match_parent"/>
+                     <LinearLayout
+                         android:layout_marginLeft="@dimen/base_dimen_20"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:layout_weight="1"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:text="实习结束时间"
+                             android:textColor="@color/item_content"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                         <TextView
+                             android:text="2017年9月24日"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content" />
+                     </LinearLayout>
+                 </LinearLayout>
+             </LinearLayout>
+            <!--学校简介-->
+            <!--学校简介-可以不填，如果没有数据隐藏布局-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+             <TextView
+                 android:layout_marginTop="@dimen/base_dimen_20"
+                 android:background="@color/colorPrimary"
+                 android:paddingLeft="@dimen/base_dimen_30"
+                 android:text="学校简介"
+                 android:gravity="center_vertical"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/base_dimen_90" />
+             <ImageView
+                 android:scaleType="fitXY"
+                 android:src="@mipmap/shool_pictor"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" />
+
+             <TextView
+                 android:id="@+id/tv_content"
+                 android:layout_width="match_parent"
+                 android:layout_marginTop="@dimen/base_dimen_10"
+                 android:textColor="#1a1a1a"
+                 android:textSize="@dimen/base_dimen_24"
+                 android:layout_height="wrap_content"
+                 />
+             <!--HorizontalScrollView 以后替换LinearLayout-->
+             <LinearLayout
+                 android:layout_width="match_parent"
+
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+
+                 <ImageView
+                     android:padding="@dimen/base_dimen_9"
+                     android:layout_width="@dimen/base_dimen_154"
+                     android:layout_height="@dimen/base_dimen_154"
+                     android:src="@mipmap/shool_pictor" />
+
+                 <ImageView
+                     android:padding="@dimen/base_dimen_9"
+                     android:layout_width="@dimen/base_dimen_154"
+                     android:layout_height="@dimen/base_dimen_154"
+                     android:src="@mipmap/shool_pictor" />
+
+                 <ImageView
+                     android:padding="@dimen/base_dimen_9"
+                     android:layout_width="@dimen/base_dimen_154"
+                     android:layout_height="@dimen/base_dimen_154"
+                     android:src="@mipmap/shool_pictor" />
+
+                 <ImageView
+                     android:padding="@dimen/base_dimen_9"
+                     android:layout_width="@dimen/base_dimen_154"
+                     android:layout_height="@dimen/base_dimen_154"
+                     android:src="@mipmap/shool_pictor" />
+             </LinearLayout>
+            </LinearLayout>
+         </LinearLayout>
+        </ScrollView>
+
 </LinearLayout>

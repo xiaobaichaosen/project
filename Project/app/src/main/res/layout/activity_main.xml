@@ -42,7 +42,7 @@
 
             android:layout_gravity="center_horizontal"
             style="@style/main_tab"
-            android:drawableTop="@drawable/icon_kindergarten"
+            android:drawableTop="@drawable/icon_contact"
             android:text="通讯录"
             />
 

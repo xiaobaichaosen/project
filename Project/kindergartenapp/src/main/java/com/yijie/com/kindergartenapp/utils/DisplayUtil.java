@@ -3,6 +3,9 @@ package com.yijie.com.kindergartenapp.utils;
 import android.content.Context;
 import android.content.Context;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class DisplayUtil {
     /**
      * 将px值转换为dip或dp值，保证尺寸大小不变
@@ -41,5 +44,13 @@ public class DisplayUtil {
     public static int sp2px(Context context, float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
+    }
+    public static boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isNum = pattern.matcher(str);
+        if (!isNum.matches()) {
+            return false;
+        }
+        return true;
     }
 }

@@ -1,9 +1,9 @@
 package com.yijie.com.kindergartenapp.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijie.com.kindergartenapp.R;
@@ -18,22 +18,21 @@ import butterknife.OnClick;
  */
 
 public class GrademAdressActivity extends BaseActivity {
+
+
     @BindView(R.id.back)
     TextView back;
     @BindView(R.id.title)
     TextView title;
-    @BindView(R.id.cb_up)
-    CheckBox cbUp;
-    @BindView(R.id.cb_down)
-    CheckBox cbDown;
-    @BindView(R.id.cb_out)
-    CheckBox cbOut;
-    @BindView(R.id.cb_other)
-    CheckBox cbOther;
+    @BindView(R.id.action_item)
+    ImageView actionItem;
     @BindView(R.id.tv_recommend)
     TextView tvRecommend;
-    @BindView(R.id.tv_warn)
-    TextView tvWarn;
+
+    @BindView(R.id.iv_goright)
+    ImageView ivGoright;
+    @BindView(R.id.rl_gradAdress)
+    RelativeLayout rlGradAdress;
 
     @Override
     public void setContentView() {
@@ -56,20 +55,5 @@ public class GrademAdressActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.back, R.id.cb_up, R.id.cb_down, R.id.cb_out, R.id.cb_other})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.back:
-                finish();
-                break;
-            case R.id.cb_up:
-                break;
-            case R.id.cb_down:
-                break;
-            case R.id.cb_out:
-                break;
-            case R.id.cb_other:
-                break;
-        }
-    }
+
 }

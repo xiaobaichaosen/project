@@ -18,21 +18,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
         android:layout_marginLeft="@dimen/base_dimen_20"
         android:layout_marginRight="@dimen/base_dimen_20"
-
-
         android:orientation="vertical">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/base_dimen_34"
-
-
             >
 
             <TextView
@@ -42,7 +35,6 @@
                 android:gravity="center_vertical"
                 android:text="联系方式"
                 android:textSize="@dimen/base_dimen_32" />
-
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -56,9 +48,7 @@
                 android:textColor="#f08786"
                 android:textSize="@dimen/base_dimen_28" />
 
-
         </RelativeLayout>
-
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
@@ -66,15 +56,12 @@
             android:layout_marginTop="@dimen/base_dimen_40"
             android:orientation="horizontal"
 
-
             >
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 android:layout_marginBottom="@dimen/base_dimen_34"
                 android:orientation="vertical"
-
 
                 >
 

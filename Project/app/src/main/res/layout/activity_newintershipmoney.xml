@@ -2,11 +2,51 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/app_background"
     android:layout_height="match_parent">
     <include layout="@layout/app_title"/>
-
+<com.yijie.com.yijie.view.LoadingLayout
+    android:id="@+id/loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:id="@+id/rl_start"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:layout_marginTop="@dimen/base_dimen_22"
+        android:layout_height="@dimen/base_dimen_86">
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="#4d4d4d"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_height="wrap_content"
+            android:text="到京时间 *"
+            />
+
+        <TextView
+            android:id="@+id/tv_startTime"
+            android:drawableRight="@mipmap/goright"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base_dimen_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_end"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
 
@@ -17,15 +57,15 @@
             android:layout_width="wrap_content"
             android:textSize="@dimen/base_dimen_32"
             android:layout_height="wrap_content"
-            android:text="期间*"
+            android:text="结束时间 *"
             />
 
-        <EditText
-            android:id="@+id/tv_newEducation"
+        <TextView
+            android:id="@+id/tv_endTime"
             android:background="@null"
             android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/goright"
             android:layout_marginRight="@dimen/base_dimen_22"
-            android:hint="请输入时间"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -33,18 +73,14 @@
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
 
-            android:background="@color/app_background"
-            />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:paddingLeft="@dimen/base_dimen_22"
         android:id="@+id/to_newSchoolAdress"
         android:layout_height="@dimen/base_dimen_86">
@@ -58,11 +94,13 @@
             android:text="薪资*" />
 
         <EditText
-            android:id="@+id/tv_newSchoolAdress"
+            android:id="@+id/et_pay"
             android:background="@null"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
+            android:gravity="right"
             android:hint="请输入薪资"
+            android:inputType="number"
             android:paddingRight="@dimen/base_dimen_22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,22 +109,15 @@
             android:textSize="@dimen/base_dimen_28" />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
     </RelativeLayout>
 
 
 
         <RelativeLayout
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_86"
-
+            android:layout_marginTop="@dimen/base_dimen_2"
             android:paddingLeft="@dimen/base_dimen_22">
 
             <TextView
@@ -97,29 +128,23 @@
                 android:textColor="#4d4d4d"
                 android:textSize="@dimen/base_dimen_32" />
 
-            <EditText
-                android:id="@+id/tv_newType"
-
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_marginRight="@dimen/base_dimen_30"
+                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/to_newContact"
                 android:textColor="#808080"
                 android:textSize="@dimen/base_dimen_28" />
 
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_height="@dimen/base_dimen_4"
-
-                android:background="@color/app_background"
-                />
 
         </RelativeLayout>
 
 
     <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:id="@+id/to_newSchoolSample"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
@@ -136,28 +161,67 @@
             android:text="学校*" />
 
 
-        <TextView
-            android:id="@+id/tv_newSchoolSample"
+        <EditText
+            android:id="@+id/et_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_28"
+            android:gravity="right"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:background="@null"
+            android:inputType="number"
             android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
+            android:hint="请输入金额"
+            android:paddingRight="@dimen/base_dimen_22"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:id="@+id/to_newPerson"
+        android:layout_width="match_parent"
+android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="个人"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/to_newContact"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <ImageView
+            android:id="@+id/to_newContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/base_dimen_22"
+            android:src="@mipmap/add_contact" />
+
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_2"
         android:id="@+id/to_newAppointmenttime"
         android:layout_height="@dimen/base_dimen_86">
 
@@ -169,27 +233,23 @@
             android:layout_centerVertical="true"
             android:text="奕杰" />
 
-        <TextView
+
+        <EditText
+            android:id="@+id/et_yijie"
+            android:background="@null"
+            android:gravity="right"
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
+            android:inputType="number"
+            android:hint="请输入金额"
             android:paddingRight="@dimen/base_dimen_22"
-            android:id="@+id/tv_newAppointmenttime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_28"
             android:layout_centerVertical="true"
             android:textColor="#808080"
-            />
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
+            android:textSize="@dimen/base_dimen_28" />
 
     </RelativeLayout>
-
+    </LinearLayout>
+</com.yijie.com.yijie.view.LoadingLayout>
 </LinearLayout>

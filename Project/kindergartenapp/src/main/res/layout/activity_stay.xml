@@ -2,20 +2,23 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     android:orientation="vertical"
     >
     <include layout="@layout/app_title"/>
 <TextView
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/base_dimen_30"
+    android:layout_height="@dimen/base_dimen_100"
+    android:gravity="center_vertical"
     android:text="住宿安排"
     />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/base_dimen_2"
-        android:background="@color/app_background"/>
-
     <LinearLayout
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:padding="@dimen/base_dimen_30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -43,7 +46,58 @@
             />
 
     </LinearLayout>
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <CheckBox
+            android:id="@+id/cb_foureight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="4-8人"
+            android:layout_weight="1"
+            />
+        <CheckBox
+            android:id="@+id/cb_eighttwelve"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="8-12人"
+            android:layout_weight="1"
+            />
+        <CheckBox
+            android:id="@+id/cb_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="两居"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <CheckBox
+            android:id="@+id/cb_three"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="三居"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
 <LinearLayout
+    android:background="@color/colorPrimary"
+    android:paddingLeft="@dimen/base_dimen_30"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -57,11 +111,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_20"
         android:text="当选择其他时,可填写相关内容"
         />
 </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
     <EditText
         android:id="@+id/et_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:paddingLeft="@dimen/base_dimen_10"
+        android:background="@drawable/edittext_shap"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/base_dimen_60"/>
+</LinearLayout>
 </LinearLayout>

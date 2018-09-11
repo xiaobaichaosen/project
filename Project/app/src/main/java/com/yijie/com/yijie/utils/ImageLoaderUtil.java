@@ -21,7 +21,7 @@ public class ImageLoaderUtil {
         Integer extra = 1;
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true)
                 .showImageForEmptyUri(R.mipmap.ic_launcher).showImageOnFail(R.mipmap.ic_launcher)
-                .showImageOnLoading(R.mipmap.ic_launcher)
+                .showImageOnLoading(R.mipmap.logo)
                 .extraForDownloader(extra)
                 .bitmapConfig(Bitmap.Config.RGB_565).build();
         return options;

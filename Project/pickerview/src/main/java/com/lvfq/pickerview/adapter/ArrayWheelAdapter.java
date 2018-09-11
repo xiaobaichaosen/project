@@ -7,7 +7,10 @@ import java.util.ArrayList;
  * @param <T> the element type
  */
 public class ArrayWheelAdapter<T> implements WheelAdapter {
-	
+
+
+
+
 	/** The default items length */
 	public static final int DEFAULT_LENGTH = 4;
 	

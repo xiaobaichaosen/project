@@ -35,155 +35,179 @@ import butterknife.Unbinder;
  */
 
 public class SchoolMoreFragment extends BaseFragment {
-
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
-    LoadMoreWrapper loadMoreWrapper;
-    @BindView(R.id.loading)
-    LoadingLayout loading;
-    Unbinder unbinder;
-    @BindView(R.id.back)
-    ImageView back;
-
-    private List<StudentBean> dataList = new ArrayList<>();
-    private SchoolFragment.OnButtonClick onButtonClick;//2、定义接口成员变量
-
-    //定义接口变量的get方法
-    public SchoolFragment.OnButtonClick getOnButtonClick() {
-        return onButtonClick;
-    }
-
-    //定义接口变量的set方法
-    public void setOnButtonClick(SchoolFragment.OnButtonClick onButtonClick) {
-        this.onButtonClick = onButtonClick;
-    }
-
-    //1、定义接口
-    public interface OnButtonClick {
-        public void onClick(View view);
+    @Override
+    protected int getLayoutId() {
+        return 0;
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_moreschool;
+    public void onResume() {
+        isPrepared=true;
+        initData();
+        super.onResume();
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override
     protected void initData() {
-        // 设置刷新控件颜色
-        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
-        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        loading.setRetryListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loading.showContent();
-            }
-        });
-        loading.showContent();
-        // 模拟获取数据
-        getData();
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                getFragmentManager().beginTransaction().replace()
-//4、如果接口成员变量不为空null，则调用接口变量的方法。
-                if (onButtonClick != null) {
-                    onButtonClick.onClick(view);
-                }
-            }
-        });
-
-
-        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList,R.layout.school_adapter_more_item);
-        loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
-
-        recyclerView.setAdapter(loadMoreWrapper);
-        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreSchoolAdapter.OnItemClickListener(
-
-                                                      ) {
-                                                          @Override
-                                                          public void onItemClick(View view, int position) {
-                                                              Intent intent = new Intent();
-                                                              intent.setClass(mActivity, SchoolActivity.class);
-                                                              startActivity(intent);
-                                                          }
-                                                      }
-        );
-        recyclerView.addItemDecoration(new DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
-        // 设置下拉刷新
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // 刷新数据
-                dataList.clear();
-                getData();
-                loadMoreWrapper.notifyDataSetChanged();
-
-                // 延时1s关闭下拉刷新
-                swipeRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                    }
-                }, 1000);
-            }
-        });
-
-        // 设置加载更多监听
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
-            @Override
-            public void onLoadMore() {
-                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
-
-                if (dataList.size() < 52) {
-                    // 模拟获取网络数据，延时1s
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            mActivity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    getData();
-                                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
-                                }
-                            });
-                        }
-                    }, 1000);
-                } else {
-                    // 显示加载到底的提示
-                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
-                }
-            }
-        });
-
-    }
-
-    private void getData() {
-        //String.valueOf(letter)
-        char letter = 'A';
-        for (int i = 0; i < 26; i++) {
-
-            dataList.add(new StudentBean(1, String.valueOf(letter)));
-
-            letter++;
+        // TODO 正常应该是!isVisble,待解决
+        if(!isPrepared || !isVisible) {
+            return;
         }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+//    @BindView(R.id.recycler_view)
+//    RecyclerView recyclerView;
+//    @BindView(R.id.swipe_refresh_layout)
+//    SwipeRefreshLayout swipeRefreshLayout;
+//    LoadMoreWrapper loadMoreWrapper;
+//    @BindView(R.id.loading)
+//    LoadingLayout loading;
+//    Unbinder unbinder;
+//    @BindView(R.id.back)
+//    ImageView back;
+//
+//    private List<StudentBean> dataList = new ArrayList<>();
+//    private ProjectListFragment.OnButtonClick onButtonClick;//2、定义接口成员变量
+//
+//    //定义接口变量的get方法
+//    public ProjectListFragment.OnButtonClick getOnButtonClick() {
+//        return onButtonClick;
+//    }
+//
+//    //定义接口变量的set方法
+//    public void setOnButtonClick(ProjectListFragment.OnButtonClick onButtonClick) {
+//        this.onButtonClick = onButtonClick;
+//    }
+//
+//    //1、定义接口
+//    public interface OnButtonClick {
+//        public void onClick(View view);
+//    }
+//
+//    @Override
+//    protected int getLayoutId() {
+//        return R.layout.fragment_moreschool;
+//    }
+//
+//    @Override
+//    protected void initData() {
+//        // 设置刷新控件颜色
+//        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
+//        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+//        loading.setRetryListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loading.showContent();
+//            }
+//        });
+//        loading.showContent();
+//        // 模拟获取数据
+//        getData();
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                getFragmentManager().beginTransaction().replace()
+////4、如果接口成员变量不为空null，则调用接口变量的方法。
+//                if (onButtonClick != null) {
+//                    onButtonClick.onClick(view);
+//                }
+//            }
+//        });
+//
+//
+//        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList,R.layout.school_adapter_more_item);
+//        loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
+//
+//        recyclerView.setAdapter(loadMoreWrapper);
+//        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreSchoolAdapter.OnItemClickListener(
+//
+//                                                      ) {
+//                                                          @Override
+//                                                          public void onItemClick(View view, int position) {
+//                                                              Intent intent = new Intent();
+//                                                              intent.setClass(mActivity, SchoolActivity.class);
+//                                                              startActivity(intent);
+//                                                          }
+//                                                      }
+//        );
+//        recyclerView.addItemDecoration(new DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
+//        // 设置下拉刷新
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                // 刷新数据
+//                dataList.clear();
+//                getData();
+//                loadMoreWrapper.notifyDataSetChanged();
+//
+//                // 延时1s关闭下拉刷新
+//                swipeRefreshLayout.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+//                            swipeRefreshLayout.setRefreshing(false);
+//                        }
+//                    }
+//                }, 1000);
+//            }
+//        });
+//
+//        // 设置加载更多监听
+//        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+//            @Override
+//            public void onLoadMore() {
+//                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
+//
+//                if (dataList.size() < 52) {
+//                    // 模拟获取网络数据，延时1s
+//                    new Timer().schedule(new TimerTask() {
+//                        @Override
+//                        public void run() {
+//                            mActivity.runOnUiThread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    getData();
+//                                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
+//                                }
+//                            });
+//                        }
+//                    }, 1000);
+//                } else {
+//                    // 显示加载到底的提示
+//                    loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
+//                }
+//            }
+//        });
+//
+//    }
+//
+//    private void getData() {
+//        //String.valueOf(letter)
+//        char letter = 'A';
+//        for (int i = 0; i < 26; i++) {
+//
+//            dataList.add(new StudentBean(1, String.valueOf(letter)));
+//
+//            letter++;
+//        }
+//    }
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // TODO: inflate a fragment view
+//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+//        unbinder = ButterKnife.bind(this, rootView);
+//        return rootView;
+//    }
+//
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
+}
 }

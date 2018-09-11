@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="@dimen/base_dimen_40"
+    android:paddingRight="@dimen/base_dimen_40"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_background"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_height="@dimen/base_dimen_90">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="园所全称*"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:layout_centerVertical="true"
+                    />
+
+                <EditText
+                    android:id="@+id/kenderName"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/goright"
+                    android:hint="请输入园所全称"
+                    android:textSize="@dimen/base_dimen_24"
+                    android:layout_centerVertical="true"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_gradAdress"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="园所地址*" />
+
+                <TextView
+                    android:id="@+id/tv_adress"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableRight="@mipmap/goright"
+                    android:gravity="right"
+                    android:hint="请输入园所地址"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:textSize="@dimen/base_dimen_24" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="幼儿人数" />
+
+                <EditText
+                    android:id="@+id/et_peoplenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:inputType="phone"
+                    android:drawableRight="@mipmap/goright"
+                    android:gravity="right"
+                    android:hint="请输入幼儿人数"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:textSize="@dimen/base_dimen_24" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="班级数量" />
+                <EditText
+                    android:id="@+id/et_classnum"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:layout_width="wrap_content"
+                    android:gravity="right"
+                    android:inputType="phone"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/goright"
+                    android:hint="请输入班级数量"
+                    android:textSize="@dimen/base_dimen_24"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_configuration"
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="班级配置" />
+                <TextView
+                    android:id="@+id/tv_configuration"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/goright"
+                    android:gravity="right"
+                    android:hint="请输入班级配置"
+                    android:textSize="@dimen/base_dimen_24"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_gradStay"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="住宿安排" />
+
+                <TextView
+                    android:id="@+id/tv_stay"
+                    android:maxLength="14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:gravity="right"
+                    android:drawableRight="@mipmap/goright"
+                    android:hint="请输入住宿安排"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:textSize="@dimen/base_dimen_24" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_meal"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="三餐安排" />
+                <TextView
+                    android:id="@+id/tv_meal"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/goright"
+                    android:hint="请输入三餐安排"
+                    android:textSize="@dimen/base_dimen_24"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_uniform"
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/base_dimen_90">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="工服押金" />
+                <TextView
+                    android:id="@+id/tv_uniform"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:drawableRight="@mipmap/goright"
+                    android:hint="请输入工服押金"
+                    android:textSize="@dimen/base_dimen_24"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_examinationFee"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_90"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/editText"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="首年体检费" />
+
+                <TextView
+                    android:id="@+id/tv_examinationFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableRight="@mipmap/goright"
+                    android:gravity="right"
+                    android:hint="请输入体检费用"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:textSize="@dimen/base_dimen_24" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/btn_three"
+        android:layout_marginTop="@dimen/base_dimen_32"
+        android:background="@drawable/bg_round_ligtred"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_32"
+        android:layout_marginBottom="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="完成" />
+
+
+</LinearLayout>

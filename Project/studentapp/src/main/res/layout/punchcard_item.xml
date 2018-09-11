@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imagePoint"
+                android:layout_width="@dimen/base_dimen_10"
+                android:layout_height="@dimen/base_dimen_10"
+                android:src="@drawable/red_shap"/>
+            <View
+                android:id="@+id/view_line"
+                android:background="@color/app_background"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/base_dimen_4"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="上班时间09:00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="打卡时间08:30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="正常"
+                        android:background="@drawable/edittext_shap"
+                        android:layout_marginLeft="@dimen/base_dimen_40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:text="YJ"
+                    android:layout_marginTop="@dimen/base_dimen_10"
+                    android:drawableLeft="@mipmap/yijie_normal"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="查看备注"
+                    android:layout_marginTop="@dimen/base_dimen_10"
+                    android:id="@+id/tv_menery"
+                    android:drawableRight="@mipmap/goright"
+                    android:layout_marginBottom="@dimen/base_dimen_50"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

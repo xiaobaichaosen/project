@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content">
+    <com.yijie.com.yijie.view.CircleImageView
+        android:id="@+id/iv_logo"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center_vertical"
+        android:layout_width="@dimen/base_dimen_90"
+        android:layout_height="@dimen/base_dimen_90" />
+    <LinearLayout
+        android:layout_marginLeft="@dimen/base_dimen_20"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:layout_toRightOf="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginBottom="@dimen/base_dimen_10"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_projectName"
+            style="@style/layout_ww"
+            android:text="项目名称"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_school"
+            android:layout_marginBottom="@dimen/base_dimen_10"
+            android:visibility="gone"
+            style="@style/layout_ww">
+
+            <TextView
+                android:id="@+id/tv_schoolName"
+                style="@style/layout_ww"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/layout_ww"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/base_dimen_30"
+                android:layout_marginLeft="@dimen/base_dimen_30"
+                android:textColor="@color/colorTheme"
+                android:textSize="@dimen/base_dimen_28" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_trainTime"
+            android:layout_marginBottom="@dimen/base_dimen_10"
+            style="@style/layout_ww">
+            <TextView
+                android:id="@+id/tv_"
+                android:text="培训时间:"
+                style="@style/layout_ww"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+
+            <TextView
+                android:id="@+id/tv_training_data"
+                style="@style/layout_ww"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:layout_toRightOf="@+id/tv_"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_marginBottom="@dimen/base_dimen_10"
+            android:visibility="gone"
+            style="@style/layout_ww"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_24" />
+        <LinearLayout
+            android:id="@+id/ll_manage"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/base_dimen_10"
+            android:layout_height="wrap_content">
+            <com.yijie.com.yijie.view.CircleImageView
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/base_dimen_50"
+                android:layout_height="@dimen/base_dimen_50" />
+            <TextView
+                android:id="@+id/tv_manageName"
+                android:layout_toRightOf="@+id/iv_head"
+                android:layout_marginLeft="@dimen/base_dimen_10"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_marginBottom="@dimen/base_dimen_10"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_status"
+            style="@style/layout_ww"
+            android:layout_gravity="right"
+            android:textColor="@color/colorTheme"
+            android:textSize="@dimen/base_dimen_28" />
+        <TextView
+            android:id="@+id/tv_training_time"
+            style="@style/layout_ww"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -131,8 +131,8 @@ public class KndergartenFragment extends BaseFragment {
         loadMoreLoadingWrapper = new LoadMoreWrapper(loadMoreLoadingWrapperAdapter);
         recyclerView.setAdapter(loadMoreWrapper);
         recyclerLoading.setAdapter(loadMoreLoadingWrapper);
+        loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING_ARROW);
         loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_ARROW);
-        loadMoreLoadingWrapper .setLoadState(loadMoreWrapper.LOADING_ARROW);
         loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreKndergrtenAdapter.OnItemClickListener(
 
                                                       ) {
@@ -169,9 +169,8 @@ public class KndergartenFragment extends BaseFragment {
                 dataListLoading.clear();
                 getData();
                 getLoadingData();
-                loadMoreWrapper.notifyDataSetChanged();
-                loadMoreLoadingWrapper.notifyDataSetChanged();
-
+                loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING_ARROW);
+                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_ARROW);
                 // 延时1s关闭下拉刷新
                 swipeRefreshLayout.postDelayed(new Runnable() {
                     @Override
@@ -188,7 +187,7 @@ public class KndergartenFragment extends BaseFragment {
         loadMoreLoadingWrapper.setOnClickListener(new LoadMoreWrapper.OnClickListener() {
                                                @Override
                                                public void onClick(View view) {
-                                                   if (dataList.size() < 15) {
+                                                   if (dataListLoading.size() < 6) {
                                                        // 模拟获取网络数据，延时1s
                                                        loadMoreLoadingWrapper.setLoadState(loadMoreLoadingWrapper.LOADING);
                                                        new Timer().schedule(new TimerTask() {

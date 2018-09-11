@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/app_title"/>
+    <TextView
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_100"
+        android:gravity="center_vertical"
+        android:text="工服押金"
+        />
+    <RadioGroup
+        android:id="@+id/rp_all"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="有" />
+
+            <EditText
+                android:id="@+id/et_yesContent"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:hint="/元"
+                android:gravity="center"
+                android:paddingLeft="@dimen/base_dimen_10"
+                android:background="@drawable/edittext_shap"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_60"/>
+        </LinearLayout>
+
+        <RadioButton
+            android:id="@+id/rb_no"
+            android:layout_marginTop="@dimen/base_dimen_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无"
+            />
+        <LinearLayout
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_30"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:id="@+id/rb_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="其他"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:text="当选择其他时,可填写相关内容"
+                />
+        </LinearLayout>
+
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/et_otherContent"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:paddingLeft="@dimen/base_dimen_10"
+            android:background="@drawable/edittext_shap"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_60"/>
+    </LinearLayout>
+</LinearLayout>

@@ -9,6 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yijie.com.kindergartenapp.utils.HttpUtils;
+import com.yijie.com.kindergartenapp.utils.ViewUtils;
+import com.yijie.com.kindergartenapp.view.CustomDialog;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -17,8 +21,12 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment extends Fragment {
+    protected boolean isPrepared;
+    protected boolean isVisible;
     protected Activity mActivity;
     Unbinder unbinder;
+    protected CustomDialog commonDialog;
+
     /**
      * 获得全局的，防止使用getActivity()为空
      * @param context
@@ -29,8 +37,6 @@ public abstract class BaseFragment extends Fragment {
         this.mActivity = (Activity)context;
     }
 
-    protected boolean isVisible;
-    protected boolean isPrepared;
     /**
      * 在这里实现Fragment数据的缓加载.
      * @param isVisibleToUser
@@ -38,34 +44,28 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(getUserVisibleHint()) {
-            isVisible = true;
+        if (getUserVisibleHint()){
+            isVisible=true;
             onVisible();
-        } else {
-//            isVisible = false;
-//            onInvisible();
-
+        }else {
+            isVisible=false;
+            onInvisible();
         }
     }
     protected void onVisible(){
-        lazyLoad();
+
+        initData();
     }
-    protected abstract void lazyLoad();
-//    protected abstract void onInvisible();
-//    /**
-//     * 打开activity
-//     */
-//    protected void openActivity(Class<?> cls) {
-//        openActivity(mActivity, cls);
-//        mActivity.   overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//    }
-//    /**
-//     * 打开activity
-//     */
-//    public static void openActivity(Context context, Class<?> cls) {
-//        Intent intent = new Intent(context, cls);
-//        context.startActivity(intent);
-//    }
+
+
+    protected abstract void initView();
+
+    /**
+     * 执行数据的加载
+     */
+    protected abstract void initData();
+    protected abstract void onInvisible();
+
 
     @Nullable
     @Override
@@ -73,16 +73,17 @@ public abstract class BaseFragment extends Fragment {
             , Bundle savedInstanceState) {
         View view = LayoutInflater.from(mActivity)
                 .inflate(getLayoutId(), container, false);
-
         unbinder = ButterKnife.bind(this, view);
+        commonDialog = ViewUtils.getCustomDialog(mActivity);
+        initView();
         return view;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initData();
-    }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        initData();
+//    }
 
     /**
      * 该抽象方法就是 onCreateView中需要的layoutID
@@ -95,15 +96,12 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        HttpUtils.getinstance(mActivity).cancleQuest();
         unbinder.unbind();
     }
 
 
 
-    /**
-     * 执行数据的加载
-     */
-    protected abstract void initData();
 
 
 }

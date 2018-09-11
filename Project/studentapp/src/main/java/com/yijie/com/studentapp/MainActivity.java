@@ -144,14 +144,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         // 将各Fragment加入数组中
 //        boolean isStart = (boolean) SharedPreferencesUtils.getParam(this, "isStart", false);
 //        if (isStart){
-            fragmentList.add(new StudentMoreFragment());
 //        }else {
 //            fragmentList.add(new StudentlBaseFragment());
 //        }
 
-        fragmentList.add(new SchoolFragment());
-        fragmentList.add(new KndergartenFragment());
+
         fragmentList.add(new DiscoverFragment());
+        fragmentList.add(new KndergartenFragment());
+        fragmentList.add(new SchoolFragment());
+        fragmentList.add(new StudentMoreFragment());
         // 设置ViewPager的设配器`
 
         myAdapter = new MyAdapter(getSupportFragmentManager(),
@@ -208,7 +209,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             int current = mainViewPager.getCurrentItem();
             switch (current) {
                 case 0:
-                    mainTabRadioGroup.check(R.id.radio_student);
+                    mainTabRadioGroup.check(R.id.radio_discover);
+
                     break;
                 case 1:
                     mainTabRadioGroup.check(R.id.radio_school);
@@ -219,7 +221,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
                     break;
                 case 3:
-                    mainTabRadioGroup.check(R.id.radio_discover);
+                    mainTabRadioGroup.check(R.id.radio_student);
 
                     break;
 
@@ -233,21 +235,21 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         //获取当前被选中的RadioButton的ID，用于改变ViewPager的当前页
         int current = 0;
         switch (CheckedId) {
-
-
-            case R.id.radio_student:
+            case R.id.radio_discover:
                 current = 0;
                 break;
+
+
             case R.id.radio_school:
                 current = 1;
                 break;
             case R.id.radio_kindergarten:
                 current = 2;
                 break;
-            case R.id.radio_discover:
+
+            case R.id.radio_student:
                 current = 3;
                 break;
-
         }
         if (mainViewPager.getCurrentItem() != current) {
             mainViewPager.setCurrentItem(current);

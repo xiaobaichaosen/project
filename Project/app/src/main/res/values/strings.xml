@@ -50,4 +50,19 @@
 
     <string name="setting_su">Succeed to set</string>
 
+
+
+    <string name="compact">合同管理</string>
+    <string name="insurance">保险管理</string>
+    <string name="returned">回款管理</string>pay
+    <string name="pay">项目费用</string>
+    <string name="performance">业绩考核</string>
+    <string name="leave">请销假</string>
+    <string name="visit">访评</string>
+
+    <string name="showContent">全文</string>
+    <string name="hiden">收起</string>
+    <string name="no_more">没有更多数据了</string>
+    <string name="no_data">没有数据</string>
+
 </resources>

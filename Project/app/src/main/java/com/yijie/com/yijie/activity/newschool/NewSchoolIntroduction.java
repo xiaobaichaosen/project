@@ -1,5 +1,6 @@
 package com.yijie.com.yijie.activity.newschool;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,23 +15,43 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.adapter.CardAdapter;
 import com.yijie.com.yijie.adapter.ImagePickerAdapter;
 import com.yijie.com.yijie.base.BaseActivity;
+import com.yijie.com.yijie.bean.school.School;
+import com.yijie.com.yijie.bean.school.SchoolMain;
+import com.yijie.com.yijie.bean.school.SchoolPractice;
+import com.yijie.com.yijie.utils.BaseCallback;
+import com.yijie.com.yijie.utils.HttpUtils;
+import com.yijie.com.yijie.utils.LogUtil;
 import com.yijie.com.yijie.utils.SharedPreferencesUtils;
+import com.yijie.com.yijie.utils.ShowToastUtils;
+import com.yijie.com.yijie.utils.ViewUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import de.greenrobot.event.EventBus;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/1/22.
@@ -59,7 +80,10 @@ public class NewSchoolIntroduction extends BaseActivity implements ImagePickerAd
     EditText etContent;
     @BindView(R.id.tv_num)
     TextView tvNum;
-
+    //要去提交数据
+    boolean isFromNet;
+    //从网络来的数据
+   private SchoolMain fromNetSchoolMain;
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_newschoolintroduction);
@@ -73,12 +97,34 @@ public class NewSchoolIntroduction extends BaseActivity implements ImagePickerAd
         title.setText("学校简介");
         tvRecommend.setVisibility(View.VISIBLE);
         tvRecommend.setText("保存");    selImageList = new ArrayList<>();
+        Bundle extras = getIntent().getExtras();
+        if (extras!=null){
+            fromNetSchoolMain = (SchoolMain)extras.getSerializable("schoolMain");
+            MessageBean messageBean= (MessageBean) extras.getSerializable("sampleModify");
+            isFromNet = extras.getBoolean("isFromNet", false);
+            //添加时修改回显数据
+            if (null!=messageBean){
+                etContent.setText(messageBean.getContent());
+                selImageList.addAll(messageBean.getSelImageList());
+            }
+            //网络过来回显数据
+            if (null!=fromNetSchoolMain){
+                etContent.setText(fromNetSchoolMain.getContent());
+                //TODO 图片待处理
+                String img = fromNetSchoolMain.getImg();
+                if (!"".equals(img)&&null!=img){
+                    String[] split = img.split(";");
+                    List<String> strings = Arrays.asList(split);
+                    ArrayList<ImageItem> imageItems = new ArrayList<>();
+                    for (int i = 0; i < strings.size(); i++) {
+                        ImageItem imageItem = new ImageItem();
+                        imageItem.path=Constant.getheadUrl+fromNetSchoolMain.getId()+"/summary/"+strings.get(i);
+                        imageItems.add(imageItem);
+                    }
+                    selImageList.addAll(imageItems);
+                }
+            }
 
-//        String textContent = (String) SharedPreferencesUtils.getParam(this, "textContent", "");
-        MessageBean messageBean= (MessageBean) getIntent().getExtras().getSerializable("sampleModify");
-        if (null!=messageBean){
-            etContent.setText(messageBean.getContent());
-            selImageList.addAll(messageBean.getSelImageList());
         }
 
 
@@ -97,17 +143,22 @@ public class NewSchoolIntroduction extends BaseActivity implements ImagePickerAd
         tvNum.setText((2000 - s.length()) + "/2000");
     }
 
-    @OnClick({R.id.action_item, R.id.back})
+    @OnClick({R.id.tv_recommend, R.id.back})
     public void click(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.action_item:
-                SharedPreferencesUtils.setParam(this, "textContent", etContent.getText().toString().trim());
-//                EventBus.getDefault().post("schoolIntroduction");
+            case R.id.tv_recommend:
+                if (isFromNet){
+                    SchoolMain schoolMain = new SchoolMain();
+                    schoolMain.setContent(etContent.getText().toString().trim());
+                    schoolMain.setId(fromNetSchoolMain.getId());
+                    schoolMain.setCreateBy(fromNetSchoolMain.getCreateBy());
+                    updateSchoolSimple(schoolMain);
+                }else{
                     EventBus.getDefault().post(new MessageBean( etContent.getText().toString().trim(),selImageList));
-                finish();
+                    finish();
+                }
                 break;
-
             case R.id.back:
                 finish();
                 break;
@@ -208,6 +259,64 @@ public class NewSchoolIntroduction extends BaseActivity implements ImagePickerAd
                 }
             }
         }
+    }
+
+    /**
+     * 修改学校简介
+     * @param schoolMain
+     */
+    public void updateSchoolSimple(SchoolMain schoolMain){
+        final ProgressDialog progressDialog = ViewUtils.getProgressDialog(this);
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        ArrayList<File> files = new ArrayList<File>();
+        //TODO 以前的图片怎么处理呢？
+        StringBuilder sb=new StringBuilder();
+         for (ImageItem slist:selImageList) {
+             //网络来得图片
+             if (slist.path.startsWith("http")){
+                 String fileName = slist.path.substring(slist.path.lastIndexOf("/")+1);
+                sb.append(fileName+";");
+             }else{
+                 String path = slist.path;
+                 File file = new File(path);
+                 files.add(file);
+             }
+        }
+        schoolMain.setImg(sb.toString());
+        Gson gson=new Gson();
+        stringStringHashMap.put("parm",gson.toJson(schoolMain).toString());
+//                HttpUtils.getinstance(NewSchoolIntroduction.this).post(Constant.UPDATESCHOOLSIMPLE,stringStringHashMap, new BaseCallback<String>() {
+        HttpUtils.getinstance(NewSchoolIntroduction.this).uploadFiles(Constant.UPDATESCHOOLSIMPLE,stringStringHashMap,files, new BaseCallback<String>() {
+            @Override
+            public void onRequestBefore() {
+                progressDialog.show();
+            }
+
+            @Override
+            public void onFailure(Request request, Exception e) {
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onSuccess(Response response, String s) throws JSONException {
+                LogUtil.e("============"+s);
+                JSONObject jsonObject = new JSONObject(s);
+                progressDialog.dismiss();
+                String resMessage = jsonObject.getString("resMessage");
+                ShowToastUtils.showToastMsg(NewSchoolIntroduction.this,resMessage);
+                String rescode = jsonObject.getString("rescode");
+                if (rescode.equals("200")){
+                    finish();
+                }
+            }
+
+            @Override
+            public void onError(Response response, int errorCode, Exception e) {
+                progressDialog.dismiss();
+            }
+
+        });
+
     }
 
 }

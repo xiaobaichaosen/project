@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent" android:layout_height="match_parent">
     <include
         android:id="@+id/app_title"
         layout="@layout/app_title"/>
 
     <android.support.v7.widget.RecyclerView
-
+        android:id="@+id/recycler_view"
+        android:layout_below="@+id/app_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+    />
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
         <EditText
-
             android:id="@+id/et_content"
+            android:layout_width="0dp"
+            android:hint="请输入内容"
+            android:textSize="@dimen/base_dimen_26"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingLeft="@dimen/base_dimen_20"
             android:layout_weight="1"
-            android:layout_margin="@dimen/base_dimen_8"
-            android:background="@drawable/edittext_shap"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:maxLines="5"/>
         <Button
             android:id="@+id/btn_send"
-            android:layout_alignParentBottom="true"
             android:textColor="@color/colorPrimary"
+            android:layout_gravity="center_vertical"
             android:text="发送"
             android:layout_alignParentRight="true"
             android:background="@color/colorTheme"
@@ -36,4 +39,4 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

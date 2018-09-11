@@ -1,8 +1,10 @@
 package com.yijie.com.kindergartenapp.activity.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,28 +19,41 @@ import android.widget.Toast;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.MainActivity;
 import com.yijie.com.kindergartenapp.R;
-import com.yijie.com.kindergartenapp.activity.login.modle.LoginCallBack;
-import com.yijie.com.kindergartenapp.activity.login.modle.LoginModel;
+
 import com.yijie.com.kindergartenapp.activity.regist.RegistActivity;
+import com.yijie.com.kindergartenapp.activity.regist.RegistDetailActivity;
+import com.yijie.com.kindergartenapp.activity.regist.RegistKindActivity;
 import com.yijie.com.kindergartenapp.base.BaseActivity;
 import com.yijie.com.kindergartenapp.utils.AppInstallUtils;
+import com.yijie.com.kindergartenapp.utils.BaseCallback;
+import com.yijie.com.kindergartenapp.utils.HttpUtils;
 import com.yijie.com.kindergartenapp.utils.KeyBoardHelper;
 import com.yijie.com.kindergartenapp.utils.LogUtil;
 import com.yijie.com.kindergartenapp.utils.SharedPreferencesUtils;
 import com.yijie.com.kindergartenapp.utils.ShowToastUtils;
+import com.yijie.com.kindergartenapp.utils.StutasToolUtils;
+import com.yijie.com.kindergartenapp.utils.ViewUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/1/12.
@@ -47,7 +62,7 @@ import butterknife.OnTextChanged;
 
 public class LoginActivity extends BaseActivity {
 
-    LoginModel loginModel;
+
     @BindView(R.id.et_name)
     EditText etName;
 
@@ -92,7 +107,7 @@ public class LoginActivity extends BaseActivity {
     public void init() {
 
 
-        loginModel = new LoginModel();
+
         setColor(LoginActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(LoginActivity.this); // 改变状态栏变成透明
 
@@ -156,57 +171,105 @@ public class LoginActivity extends BaseActivity {
 
         switch (view.getId()) {
             case R.id.btnSubmit:
-                if (btnSubmit.getText().toString().trim().equals("登陆")) {
-                    loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
+                final HttpUtils instance = HttpUtils.getinstance(LoginActivity.this);
+//                final ProgressDialog progressDialog = ViewUtils.getProgressDialog(LoginActivity.this);
+                Map map = new HashMap();
+
+                String phoneOremail = etName.getText().toString().trim();
+
+                    if (StutasToolUtils.checkEmail(phoneOremail)){
+                        map.put("eamil", phoneOremail);
+                    }else {
+                        map.put("cellphone",phoneOremail);
+                    }
+                    map.put("password", etPassWord.getText().toString());
+                    if (TextUtils.isEmpty(phoneOremail)){
+                        ShowToastUtils.showToastMsg(LoginActivity.this,"请填写手机号");
+                        return;
+                   }else if (TextUtils.isEmpty(etPassWord.getText().toString().trim())){
+                        ShowToastUtils.showToastMsg(LoginActivity.this,"请填写密码");
+                        return;
+                    }
+                    instance.post(Constant.LOGINURL, map, new BaseCallback<String>() {
+
                         @Override
-                        public void beforLogin() {
-                            dialog.show();
+                        public void onRequestBefore() {
+                            commonDialog.show();
+                            commonDialog.setTitle("登录中...");
                         }
 
                         @Override
-                        public void onLoginSuccess(String success) {
-                            try {
-                                JSONObject jsonObject = new JSONObject(success);
-                                LogUtil.e("===" + jsonObject);
-                                String status = jsonObject.getString("status");
-                                if (status.equals("ok")) {
-                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
-                                    JSONObject jsonObject2 = jsonObject.getJSONObject("result");
-                                    String bytes = jsonObject2.getString("bytes");
-                                    String user_phone = jsonObject2.getString("user_phone");
-                                    Integer user_id = jsonObject2.getInt("id");
-                                    SharedPreferencesUtils.setParam(LoginActivity.this, "image", bytes);
-                                    SharedPreferencesUtils.setParam(LoginActivity.this, "user_phone", user_phone);
-                                    SharedPreferencesUtils.setParam(LoginActivity.this, "user_id", user_id);
-                                    Intent intent = new Intent();
-                                    intent.putExtra("image", bytes);
-                                    intent.setClass(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    dialog.dismiss();
-                                    finish();
-                                } else {
-                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
-                                    dialog.dismiss();
-                                }
+                        public void onFailure(Request request, Exception e) {
+                            commonDialog.dismiss();
+                        }
 
+                        @Override
+                        public void onSuccess(Response response, String s) {
+                            LogUtil.e(s);
+                            try {
+                                JSONObject jsonObject = new JSONObject(s);
+                                String resode = jsonObject.getString("rescode");
+                                boolean success = jsonObject.getBoolean("success");
+                                final String resMessage = jsonObject.getString("resMessage");
+
+                                if (success){
+                                    int userId = jsonObject.getJSONObject("data").getInt("id");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this, "userId",userId+"");
+                                    Set<String> tags = new HashSet<String>();
+                                    JPushInterface.setAliasAndTags(LoginActivity.this, "",tags, new TagAliasCallback() {
+                                        @Override
+                                        public void gotResult(int i, String s, Set<String> set) {
+                                        }
+                                    });
+                                    //重新设置推送tags
+                                    tags.clear();
+                                    JPushInterface.setAliasAndTags(LoginActivity.this, userId+"",tags, new TagAliasCallback() {
+                                        @Override
+                                        public void gotResult(int code, String s, Set<String> set) {
+                                            switch (code) {
+                                                case 0:
+                                                    //这里可以往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
+                                                    LogUtil.e("Set tag and alias success极光推送别名设置成功");
+                                                    ShowToastUtils.showToastMsg(LoginActivity.this,resMessage);
+                                                    Intent intent = new Intent();
+                                                    intent.setClass(LoginActivity.this, MainActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                    commonDialog.dismiss();
+                                                    break;
+                                                case 6002:
+                                                    //极低的可能设置失败 我设置过几百回 出现3次失败 不放心的话可以失败后继续调用上面那个方面 重连3次即可 记得return 不要进入死循环了...
+                                                    LogUtil.e("Failed to set alias and tags due to timeout. Try again after 60s.极光推送别名设置失败，60秒后重试");
+                                                    commonDialog.dismiss();
+                                                    break;
+                                                default:
+                                                    LogUtil.e("极光推送设置失败，Failed with errorCode = " + code);
+                                                    commonDialog.dismiss();
+                                                    break;
+                                            }
+
+                                        }
+                                    });
+
+                                }else{
+                                    ShowToastUtils.showToastMsg(LoginActivity.this,resMessage);
+                                    commonDialog.dismiss();
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+
+
                         }
 
                         @Override
-                        public void onLoginFail(Exception error) {
-                            dialog.dismiss();
-
+                        public void onError(Response response, int errorCode, Exception e) {
+                            commonDialog.dismiss();
                         }
-
                     });
-                } else {
-                    Intent intent = new Intent();
-                    intent.setClass(LoginActivity.this, PassWordActivity.class);
-                    startActivity(intent);
-//                    finish();
-                }
+
+
+
 
 
 //
@@ -241,7 +304,8 @@ public class LoginActivity extends BaseActivity {
             case R.id.tv_regist:
                 //注册
                 Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, RegistActivity.class);
+//                intent.setClass(LoginActivity.this, RegistActivity.class);
+                intent.setClass(LoginActivity.this, RegistKindActivity.class);
                 startActivity(intent);
 
                 break;

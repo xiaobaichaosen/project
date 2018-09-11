@@ -9,9 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.android.tu.loadingdialog.LoadingDailog;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -78,12 +75,6 @@ public abstract class BaseFragment extends Fragment {
             , Bundle savedInstanceState) {
         View view = LayoutInflater.from(mActivity)
                 .inflate(getLayoutId(), container, false);
-        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(mActivity)
-                .setMessage("加载中...")
-                .setCancelable(true)
-                .setCancelOutside(true);
-
-        dialog = loadBuilder.create();
         unbinder = ButterKnife.bind(this, view);
         return view;
     }

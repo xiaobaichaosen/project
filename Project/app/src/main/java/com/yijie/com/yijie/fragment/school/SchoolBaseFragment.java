@@ -28,33 +28,29 @@ public class SchoolBaseFragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        isPrepared=true;
+        initData();
+        super.onResume();
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void initData() {
-        final   SchoolFragment schoolFragment = new SchoolFragment();
+        // TODO 正常应该是!isVisble,待解决
+        if(!isPrepared || !isVisible) {
+            return;
+        }
+        final ProjectListFragment schoolFragment = new ProjectListFragment();
        final SchoolMoreFragment schoolMoreFragment = new SchoolMoreFragment();
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame_layout,schoolFragment);
         fragmentTransaction.commit();
-        schoolFragment.setOnButtonClick(new SchoolFragment.OnButtonClick() {
-            @Override
-            public void onClick(View view) {
 
-
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//进从右向左   出从左向右
-                fragmentTransaction.setCustomAnimations(R.anim.on_activity_open,R.anim.on_activity_puse);
-                fragmentTransaction.replace(R.id.main_frame_layout,schoolMoreFragment);
-                fragmentTransaction.commit();
-            }
-        });
-        schoolMoreFragment.setOnButtonClick(new SchoolFragment.OnButtonClick() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.on_activity_reopen,R.anim.on_activity_close);
-                fragmentTransaction.replace(R.id.main_frame_layout,schoolFragment);
-                fragmentTransaction.commit();
-            }
-        });
 
     }
 

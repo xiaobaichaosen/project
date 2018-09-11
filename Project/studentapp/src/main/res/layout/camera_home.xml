@@ -131,6 +131,7 @@
             >
                    <TextView
                 android:id="@+id/tv_name"
+                       android:visibility="gone"
                 android:layout_alignParentRight="true"
                 android:paddingRight="15dp"
                 android:drawablePadding="5dp"
