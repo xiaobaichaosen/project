@@ -2,14 +2,15 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/app_background"
     android:layout_height="match_parent">
     <include layout="@layout/app_title"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
         android:paddingLeft="@dimen/base_dimen_22"
-        android:id="@+id/rl_registeredPermanent"
+        android:id="@+id/rl_adress"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
@@ -21,20 +22,18 @@
             android:textSize="@dimen/base_dimen_32" />
 
         <TextView
+            android:id="@+id/tv_adress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_28"
             android:layout_centerVertical="true"
             android:textColor="#808080"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -46,7 +45,8 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_wx"
+        android:id="@+id/rl_compay"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
         android:layout_height="@dimen/base_dimen_86">
@@ -58,25 +58,20 @@
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
-        <EditText
-
+        <TextView
+            android:id="@+id/tv_companionName"
             android:layout_width="wrap_content"
+            android:gravity="right"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:background="@null"
-            android:hint="请输入期望同伴"
+            android:hint="点击添加同伴"
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
 
-            android:background="@color/app_background"
-            />
 
     </RelativeLayout>
 

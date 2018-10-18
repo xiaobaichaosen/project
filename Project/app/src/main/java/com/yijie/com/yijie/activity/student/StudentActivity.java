@@ -3,11 +3,11 @@ package com.yijie.com.yijie.activity.student;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +22,7 @@ import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.recommend.RecommendActivity;
 import com.yijie.com.yijie.activity.student.adapter.GalleryAdapter;
+import com.yijie.com.yijie.adapter.InfoCardAdapter;
 import com.yijie.com.yijie.adapter.LoadMoreEducationAdapter;
 import com.yijie.com.yijie.adapter.LoadMoreWorkAdapter;
 import com.yijie.com.yijie.base.BaseActivity;
@@ -35,7 +36,6 @@ import com.yijie.com.yijie.bean.StudentWorkDue;
 import com.yijie.com.yijie.utils.BaseCallback;
 import com.yijie.com.yijie.utils.HttpUtils;
 import com.yijie.com.yijie.utils.LogUtil;
-import com.yijie.com.yijie.utils.PhotoActivityForHor;
 import com.yijie.com.yijie.utils.ViewUtils;
 import com.yijie.com.yijie.view.CommomDialog;
 import com.yijie.com.yijie.view.ScrollChangedScrollView;
@@ -56,6 +56,7 @@ import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2017/12/14.
+ * 简历审核
  */
 
 public class StudentActivity extends BaseActivity {
@@ -145,6 +146,10 @@ public class StudentActivity extends BaseActivity {
     TextView tvNo;
     @BindView(R.id.tv_yes)
     TextView tvYes;
+    @BindView(R.id.tv_age)
+    TextView tvAge;
+    @BindView(R.id.recycler_view_honor)
+    RecyclerView recyclerViewHonor;
     private GalleryAdapter mAdapter;
     private List<String> mDatas;
     /**
@@ -167,59 +172,39 @@ public class StudentActivity extends BaseActivity {
     //学生id
     int studentUserId;
     // 头部导航标签
-    private String[] navigationTag = {"个人信息", "联系方式", "教育背景", "工作经历", "相关意向", "自我评价", "特长爱好", "荣誉证书"};
-    private String[] mUrls = new String[]{
-
-            "http://d.hiphotos.baidu.com/image/h%3D200/sign=201258cbcd80653864eaa313a7dca115/ca1349540923dd54e54f7aedd609b3de9c824873.jpg",
-            "http://img5.imgtn.bdimg.com/it/u=2437456944,1135705439&fm=21&gp=0.jpg",
-            "http://img2.imgtn.bdimg.com/it/u=3251359643,4211266111&fm=21&gp=0.jpg",
-            "http://img4.duitang.com/uploads/item/201506/11/20150611000809_yFe5Z.jpeg",
-            "http://img5.imgtn.bdimg.com/it/u=1717647885,4193212272&fm=21&gp=0.jpg",
-    };
+    private List<String> navigationTag=new ArrayList<>();
+    private ArrayList<String> infoList = new ArrayList<>();
+    private ArrayList<String> honorList = new ArrayList<>();
 
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_student);
-
     }
 
     @Override
     public void init() {
-
         studentUserId = getIntent().getIntExtra("studentUserId", 0);
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         title.setText("简历审核");
         actionItem.setVisibility(View.INVISIBLE);
         getResumnDetail(studentUserId);
-        initDatas();
         initListener();
         //设置布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-        //设置适配器
-        mAdapter = new GalleryAdapter(this, mDatas);
-        mRecyclerView.setAdapter(mAdapter);
+
+        LinearLayoutManager horlinearLayoutManager = new LinearLayoutManager(this);
+        horlinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewHonor.setLayoutManager(horlinearLayoutManager);
 
         WindowManager manager = this.getWindowManager();
         DisplayMetrics outMetrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(outMetrics);
         final int width = outMetrics.widthPixels;
         final int height = outMetrics.heightPixels;
-        mAdapter.setOnItemClickListener(new GalleryAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(StudentActivity.this, PhotoActivityForHor.class);
-                ArrayList<Rect> rects = new ArrayList<>();
-                Rect rect = new Rect();
-                view.getGlobalVisibleRect(rect);
-                intent.putExtra("imgUrl", mUrls[position]);
-                intent.putExtra("startBounds", rect);
-                startActivity(intent);
 
-            }
-        });
     }
 
     /**
@@ -227,7 +212,7 @@ public class StudentActivity extends BaseActivity {
      *
      * @param id
      */
-    private void getResumnDetail(int id) {
+    private void getResumnDetail(final int id) {
         final HttpUtils instance = HttpUtils.getinstance(StudentActivity.this);
         final ProgressDialog progressDialog = ViewUtils.getProgressDialog(StudentActivity.this);
         Map map = new HashMap();
@@ -255,53 +240,120 @@ public class StudentActivity extends BaseActivity {
                     StudentResumeDetail studentResumeDetail = gson.fromJson(data.toString(), StudentResumeDetail.class);
                     //个人信息
                     StudentInfo studentInfo = studentResumeDetail.getStudentInfo();
-                    tvStuName.setText(studentInfo.getStuName());
-                    tvSex.setText(studentInfo.getSex());
-                    tvHeight.setText(studentInfo.getHeight() + "");
-                    tvWeight.setText(studentInfo.getWeight() + "");
-                    tvNation.setText(studentInfo.getNation());
-                    tvPlace.setText(studentInfo.getPlace());
-                    tvBirth.setText(studentInfo.getBirth() + "");
-                    tvAdress.setText(studentInfo.getAddress());
-                    tvIdcard.setText(studentInfo.getIdCard());
+                    if (null!=studentInfo){
+                        tvStuName.setText(studentInfo.getStuName());
+                        tvSex.setText(studentInfo.getSex());
+                        tvHeight.setText(studentInfo.getHeight() + "");
+                        tvWeight.setText(Math.round(studentInfo.getWeight()) + "");
+                        tvNation.setText(studentInfo.getNation());
+                        tvPlace.setText(studentInfo.getPlace());
+                        tvAge.setText(studentInfo.getStuAge()+"");
+                        tvBirth.setText(studentInfo.getBirth() + "");
+                        tvAdress.setText(studentInfo.getAddress());
+                        tvIdcard.setText(studentInfo.getIdCard());
+                        navigationTag.add("个人信息");
+                    }else {
+                        tabLlPersonalInformation.setVisibility(View.GONE);
+                    }
                     //联系方式
                     StudentContact studentContact = studentResumeDetail.getStudentContact();
-                    tvCellphone.setText(studentContact.getCellphone());
-                    tvWechat.setText(studentContact.getWechat());
-                    tvQq.setText(studentContact.getQq());
-                    tvEmail.setText(studentContact.getEmail());
-                    tvUrgentContact.setText(studentContact.getUrgentContact());
-                    tvUrgentCellphone.setText(studentContact.getUrgentCellphone());
+                    if (null!=studentContact){
+                        tvCellphone.setText(studentContact.getCellphone());
+                        tvWechat.setText(studentContact.getWechat());
+                        tvQq.setText(studentContact.getQq());
+                        tvEmail.setText(studentContact.getEmail());
+                        tvUrgentContact.setText(studentContact.getUrgentContact());
+                        tvUrgentCellphone.setText(studentContact.getUrgentCellphone());
+                        navigationTag.add("联系方式");
+                    }else {
+                        tabLlContact.setVisibility(View.GONE);
+                    }
 
                     //教育经历
                     List<StudentEducation> studentEducation = studentResumeDetail.getStudentEducation();
-                    LoadMoreEducationAdapter loadMoreEducationAdapter = new LoadMoreEducationAdapter(studentEducation);
-                    educationRecyclerView.addItemDecoration(new DividerItemDecoration(StudentActivity.this, LinearLayoutManager.VERTICAL));
-                    LinearLayoutManager educationManager = new LinearLayoutManager(StudentActivity.this);
-                    educationRecyclerView.setLayoutManager(educationManager);
-                    educationRecyclerView.setNestedScrollingEnabled(false);
-                    educationRecyclerView.setAdapter(loadMoreEducationAdapter);
+                    if (studentEducation.size()>0){
+                        LoadMoreEducationAdapter loadMoreEducationAdapter = new LoadMoreEducationAdapter(studentEducation);
+                        educationRecyclerView.addItemDecoration(new DividerItemDecoration(StudentActivity.this, LinearLayoutManager.VERTICAL));
+                        LinearLayoutManager educationManager = new LinearLayoutManager(StudentActivity.this);
+                        educationRecyclerView.setLayoutManager(educationManager);
+                        educationRecyclerView.setNestedScrollingEnabled(false);
+                        educationRecyclerView.setAdapter(loadMoreEducationAdapter);
+                        navigationTag.add("教育背景");
+                    }else {
+                        tabLlDucationBackground.setVisibility(View.GONE);
+                    }
+
                     //工作经历
                     List<StudentWorkDue> studentWorkDue = studentResumeDetail.getStudentWorkDue();
-                    LoadMoreWorkAdapter loadMoreWorkAdapter = new LoadMoreWorkAdapter(studentWorkDue);
-                    workRecyclerView.addItemDecoration(new DividerItemDecoration(StudentActivity.this, LinearLayoutManager.VERTICAL));
-                    LinearLayoutManager workManager = new LinearLayoutManager(StudentActivity.this);
-                    workRecyclerView.setLayoutManager(workManager);
-                    workRecyclerView.setNestedScrollingEnabled(false);
-                    workRecyclerView.setAdapter(loadMoreWorkAdapter);
-                    //相关意向
-
+                    if (studentWorkDue.size()>0){
+                        LoadMoreWorkAdapter loadMoreWorkAdapter = new LoadMoreWorkAdapter(studentWorkDue);
+                        workRecyclerView.addItemDecoration(new DividerItemDecoration(StudentActivity.this, LinearLayoutManager.VERTICAL));
+                        LinearLayoutManager workManager = new LinearLayoutManager(StudentActivity.this);
+                        workRecyclerView.setLayoutManager(workManager);
+                        workRecyclerView.setNestedScrollingEnabled(false);
+                        workRecyclerView.setAdapter(loadMoreWorkAdapter);
+                        navigationTag.add("工作经历");
+                    }else {
+                        tabLlWorkExprice.setVisibility(View.GONE);
+                    }
                     studentResume = studentResumeDetail.getStudentResume();
-                    tvExpectWorkPlace.setText(studentResume.getExpectWorkPlace());
+                    if (null!=studentResume){
+                        //相关意向
+                        tvExpectWorkPlace.setText(studentResume.getExpectWorkPlace());
+                        String expectPartener = studentResume.getExpectPartener();
+                        tvCompanionName.setText(expectPartener);
+                        if (!TextUtils.isEmpty(studentResume.getExpectWorkPlace())||!TextUtils.isEmpty(expectPartener)){
+                            navigationTag.add("相关意向");
+                        }else {
+                            tabLlIntent.setVisibility(View.GONE);
+                        }
+                        //自我评价
+                        tvSelfEvaluate.setText(studentResume.getSelfEvaluate());
+                        if (!TextUtils.isEmpty(studentResume.getSelfEvaluate())){
+                            navigationTag.add("自我评价");
+                        }else {
 
-                    String expectPartener = studentResume.getExpectPartener();
-                    tvCompanionName.setText(expectPartener);
-                    //特长爱好
-                    tvSelfNb.setText(studentResume.getHobby());
-                    //自我评价
-                    tvSelfEvaluate.setText(studentResume.getSelfEvaluate());
-                    //荣誉证书
-                    //TODO===============
+                            tabLlElfAssessment.setVisibility(View.GONE);
+                        }
+                        //特长爱好
+                        tvSelfNb.setText(studentResume.getHobby());
+                        if (!TextUtils.isEmpty(studentResume.getHobby())){
+                            navigationTag.add("特长爱好");
+                        }else {
+                            tabLlSelfNb.setVisibility(View.GONE);
+                        }
+                        //荣誉证书
+                        //TODO===============
+                        String img = studentInfo.getPic();
+                        if (!"".equals(img) && null != img) {
+                            String[] split = img.split(";");
+                            List<String> strings = Arrays.asList(split);
+                            for (int i = 0; i < strings.size(); i++) {
+                                infoList.add(strings.get(i));
+                            }
+
+                            mRecyclerView.setAdapter(new InfoCardAdapter(StudentActivity.this, infoList, id + "", "info", "info"));
+                        }
+                        if (!TextUtils.isEmpty(studentResume.getCertificate())) {
+                            String img1 = studentResume.getCertificate();
+                            if (!"".equals(img1) && null != img1) {
+                                String[] split = img1.split(";");
+                                List<String> strings = Arrays.asList(split);
+                                for (int i = 0; i < strings.size(); i++) {
+                                    honorList.add(strings.get(i));
+                                }
+                            }
+                            recyclerViewHonor.setAdapter(new InfoCardAdapter(StudentActivity.this, honorList, id + "", "certificate", "certificate"));
+                            navigationTag.add("荣誉证书");
+                        }else {
+                            tabLlHonoraryCertificate.setVisibility(View.GONE);
+                        }
+                    }
+                    //添加页面到导航标签
+                    for (String item : navigationTag) {
+                        anchorTagContainer.addTab(anchorTagContainer.newTab().setText(item));
+
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -453,16 +505,6 @@ public class StudentActivity extends BaseActivity {
     }
 
 
-    private void initDatas() {
-
-        mDatas = Arrays.asList(mUrls);
-        //添加页面到导航标签
-        for (String item : navigationTag) {
-            anchorTagContainer.addTab(anchorTagContainer.newTab().setText(item));
-
-        }
-
-    }
 
     /**
      * 简历审核
@@ -479,7 +521,8 @@ public class StudentActivity extends BaseActivity {
         map.put("rejectReason", rejectReason);
 //        map.put("formId",studentResume.getFormId());
         map.put("code", "");
-//        map.put("formId", "ddd");
+        map.put("formId", "ddd");
+
         instance.post(Constant.SENDRESUMEAUDIT, map, new BaseCallback<String>() {
 
             @Override

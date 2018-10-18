@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_background"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/app_title"/>
+    <TextView
+        android:id="@+id/tv_newClassSet"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:drawableLeft="@mipmap/yijie_normal"
+        android:text="新增全局班次"
+        android:gravity="center_vertical"
+        android:textColor="#5666BE"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_90"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/base_dimen_30"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:background="@color/colorTheme"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/colorPrimary" />
+    </RelativeLayout>
+</LinearLayout>

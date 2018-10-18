@@ -28,7 +28,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  * 横向的RecycleView
  */
 
-public class PhotoActivityForHor extends FragmentActivity  {	private SmoothImageView ivPhoto;
+public class  PhotoActivityForHor extends FragmentActivity  {	private SmoothImageView ivPhoto;
     private ProgressBar progressBar;
     private Rect startBounds;
     private Activity activity;
@@ -61,8 +61,8 @@ public class PhotoActivityForHor extends FragmentActivity  {	private SmoothImage
                         overridePendingTransition(0, 0);
                     }
                 });
-                    }
-                });
+            }
+        });
 
 
         progressBar = (ProgressBar)findViewById(R.id.progress);
@@ -71,45 +71,45 @@ public class PhotoActivityForHor extends FragmentActivity  {	private SmoothImage
         String imgUrl = getIntent().getStringExtra("imgUrl");
         startBounds = getIntent().getParcelableExtra("startBounds");
         ivPhoto.transformIn(startBounds, null);
-            File file = DiskCacheUtils.findInCache(imgUrl, ImageLoader.getInstance().getDiskCache());
-            final boolean showLoading = file == null || !file.exists();
-            ivPhoto.setTransformEnabled(!showLoading);
-            DisplayImageOptions options = new DisplayImageOptions.Builder()
-                    .resetViewBeforeLoading(false)  // default
-                    .cacheOnDisk(true) // default
-                    .showImageOnLoading(null) // resource or drawable
-                    .showImageForEmptyUri(R.mipmap.ic_launcher) // resource or drawable
-                    .showImageOnFail(R.mipmap.ic_launcher)
-                    .build();
-            ImageLoader.getInstance().displayImage(imgUrl, ivPhoto,options, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String s, View view) {
-                    if(showLoading){
-                        progressBar.setVisibility(View.VISIBLE);
-                    }else {
-                        progressBar.setVisibility(View.GONE);
-                    }
-                }
-
-                @Override
-                public void onLoadingFailed(String s, View view, FailReason failReason) {
+        File file = DiskCacheUtils.findInCache(imgUrl, ImageLoader.getInstance().getDiskCache());
+        final boolean showLoading = file == null || !file.exists();
+        ivPhoto.setTransformEnabled(!showLoading);
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .resetViewBeforeLoading(false)  // default
+                .cacheOnDisk(true) // default
+                .showImageOnLoading(null) // resource or drawable
+                .showImageForEmptyUri(R.mipmap.ic_launcher) // resource or drawable
+                .showImageOnFail(R.mipmap.ic_launcher)
+                .build();
+        ImageLoader.getInstance().displayImage(imgUrl, ivPhoto,options, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String s, View view) {
+                if(showLoading){
+                    progressBar.setVisibility(View.VISIBLE);
+                }else {
                     progressBar.setVisibility(View.GONE);
-                    ivPhoto.setTransformEnabled(true);
                 }
+            }
 
-                @Override
-                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                    progressBar.setVisibility(View.GONE);
-                    ivPhoto.setTransformEnabled(true);
-                }
+            @Override
+            public void onLoadingFailed(String s, View view, FailReason failReason) {
+                progressBar.setVisibility(View.GONE);
+                ivPhoto.setTransformEnabled(true);
+            }
 
-                @Override
-                public void onLoadingCancelled(String s, View view) {
-                    progressBar.setVisibility(View.GONE);
-                    ivPhoto.setTransformEnabled(true);
-                }
-            });
-        }
+            @Override
+            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                progressBar.setVisibility(View.GONE);
+                ivPhoto.setTransformEnabled(true);
+            }
+
+            @Override
+            public void onLoadingCancelled(String s, View view) {
+                progressBar.setVisibility(View.GONE);
+                ivPhoto.setTransformEnabled(true);
+            }
+        });
+    }
 
 
     public void transformOut(SmoothImageView.onTransformListener listener){

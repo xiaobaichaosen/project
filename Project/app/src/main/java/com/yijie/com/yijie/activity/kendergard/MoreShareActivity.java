@@ -74,10 +74,10 @@ public class MoreShareActivity extends BaseActivity {
         mAdapter.setList(mList);
         mRecyclerView.setAdapter(mAdapter);
     }
-@OnClick(R.id.back)
-public void Click(View view){
-        finish();
-}
+    @OnClick(R.id.back)
+    public void Click(View view){
+            finish();
+    }
     private void initListData() {
         NineGridTestModel model1 = new NineGridTestModel();
         model1.urlList.add(mUrls[0]);

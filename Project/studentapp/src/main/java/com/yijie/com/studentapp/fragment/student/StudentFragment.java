@@ -43,6 +43,11 @@ public class StudentFragment extends BaseFragment {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void initData() {
 
     }
@@ -61,10 +66,7 @@ public class StudentFragment extends BaseFragment {
   }
 
 
-    @Override
-    protected void lazyLoad() {
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
 import com.yijie.com.kindergartenapp.bean.StudentuserKinderneed;
+import com.yijie.com.kindergartenapp.utils.ImageLoaderUtil;
+import com.yijie.com.kindergartenapp.view.CircleImageView;
 
 import java.util.List;
 
@@ -79,18 +82,41 @@ public class LoadMoreResumnListAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
+        String headPic = dataList.get(position).getHeadPic();
+        if (null==headPic){
+            recyclerViewHolder.ivHead.setBackgroundResource(R.mipmap.head);
+        }else {
+            //加载网络图片
+            ImageLoaderUtil.getImageLoader(mContext).displayImage(Constant.infoUrl+dataList.get(position).getStudentUserId()+"/head_pic_/"+headPic, recyclerViewHolder.ivHead, ImageLoaderUtil.getPhotoImageOption());
+        }
         recyclerViewHolder.tvName.setText(dataList.get(position).getStuName());
+        recyclerViewHolder.tvCreatetime.setText(dataList.get(position).getCreateTime());
         Integer status = dataList.get(position).getStatus();
         if (status==0){
-            recyclerViewHolder.tvStatus.setText("待选");
+            recyclerViewHolder.tvStatus.setVisibility(View.GONE);
+//            recyclerViewHolder.tvStatus.setText("待选");
+            recyclerViewHolder.tvYearheightwight.setText("等待园所筛选");
+            recyclerViewHolder.tvNb.setText("剩余时间");
         }else if (status==2){
+            recyclerViewHolder.tvStatus.setVisibility(View.VISIBLE);
             recyclerViewHolder.tvStatus.setText("已选");
+            recyclerViewHolder.tvYearheightwight.setText("已筛选");
+            recyclerViewHolder.tvNb.setText("我们会尽快安排学生到园所报到,请耐心等待.");
         }else if (status==3){
+            recyclerViewHolder.tvStatus.setVisibility(View.VISIBLE);
+            recyclerViewHolder.tvYearheightwight.setText("简历已退回");
             recyclerViewHolder.tvStatus.setText("放弃");
+        }else if (status==3){
+            recyclerViewHolder.tvStatus.setVisibility(View.VISIBLE);
+            recyclerViewHolder.tvYearheightwight.setText("简历已退回");
+            recyclerViewHolder.tvStatus.setText("放弃");
+        }else if (status==4){
+            recyclerViewHolder.tvStatus.setVisibility(View.VISIBLE);
+            recyclerViewHolder.tvYearheightwight.setText("已关闭");
+            recyclerViewHolder.tvStatus.setText("由于您长期未审核简历,该简历已被退回简历库");
         }
-        String ageHeiWei=dataList.get(position).getStuAge()+"岁"+ " "+dataList.get(position).getHeight()+"cm"+" "+dataList.get(position).getWeight()+"kg";
-        recyclerViewHolder.tvYearheightwight.setText(ageHeiWei);
-        recyclerViewHolder.tvNb.setText(dataList.get(position).getHobby());
+
+
         recyclerViewHolder.itemView.setTag(position);
     }
 
@@ -109,6 +135,12 @@ public class LoadMoreResumnListAdapter extends RecyclerView.Adapter<RecyclerView
         TextView tvNb;
         @BindView(R.id.tv_status)
         TextView tvStatus;
+        @BindView(R.id.tv_createtime)
+        TextView tvCreatetime;
+        @BindView(R.id.iv_head)
+        CircleImageView ivHead;
+
+
         RecyclerViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

@@ -32,7 +32,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     testImplementation 'junit:junit:4.12'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
-    compile 'com.youth.banner:banner:1.4.10'  //最新版本
+    compile 'com.youth.banner:banner:1.4.10'
+    //最新版本
     implementation project(':searchview')
     implementation project(':pickerview')
     implementation project(':library')
@@ -47,9 +48,11 @@ dependencies {
     compile rootProject.ext.dependencies.ratingbar
     compile rootProject.ext.dependencies.eventbus
     compile rootProject.ext.dependencies.imagepicker
+    compile 'com.kyleduo.switchbutton:library:1.4.1'
     implementation files('libs/SocialSDK_QQ_Simplify.jar')
     implementation files('libs/jcore-android-1.2.0.jar')
     implementation files('libs/jpush-android-3.1.2.jar')
     implementation files('libs/Amap_2DMap_V5.2.0_20170627.jar')
     implementation files('libs/AMap_Location_V3.8.0_20180201.jar')
+    implementation files('libs/alipaySdk-20180601.jar')
 }

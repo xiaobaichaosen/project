@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <com.yijie.com.yijie.view.CircleRelativeLayout
+                android:background="@color/app_background"
+                android:gravity="center"
+                android:layout_width="@dimen/base_dimen_40"
+                android:layout_height="@dimen/base_dimen_40">
+            <TextView
+                android:id="@+id/tv_upordown"
+                android:text="上"
+                android:textSize="@dimen/base_dimen_14"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            </com.yijie.com.yijie.view.CircleRelativeLayout>
+            <View
+                android:id="@+id/view_line"
+                android:background="@color/app_background"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/base_dimen_4"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="打卡时间08:30（上班时间09:00）"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/iv_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/base_dimen_50"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/icon_worn" />
+
+        </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

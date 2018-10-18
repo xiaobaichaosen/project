@@ -17,6 +17,8 @@ public class Constant {
     public static final  String basepicUrl="http://192.168.0.163:8089";
     //图片获取地址
     public static final  String certificateUrl=basepicUrl+"/yijie/upload/kinder/kinder_user_id_";
+    //学生图片地址
+    public static final  String  infoUrl=basepicUrl+"/yijie/upload/student/student_user_id_";
     //登陆接口
     public static final  String LOGINURL=baseUrl+"/kinderUser/login";
     //获取手机验证码接口
@@ -31,10 +33,15 @@ public class Constant {
     public static final  String KINDERGARTENDETAIL=baseUrl+"/KindergartenDetail/saveOrUpdate";
     //园所招聘发布列表
     public static final  String SELECTPUBLISHLIST=baseUrl+"/kindergartenDiscovery/selectPublishList";
-    //园所详情查询接口
+    //通过园所id详情查询接口
     public static final  String KINDERGARTENDETAILBYID=baseUrl+"/KindergartenDetail/select";
+    //通过手机号园所详情查询接口
+    public static final  String SELECTBYCELLPHONE=baseUrl+"/KindergartenDetail/selectByCellPhone";
     //园所提需求
     public static final  String KINDERGARTENNEED=baseUrl+"/kindergartenNeed/saveOrUpdate";
+    //园所是否可以提需求
+    public static final  String ISSENDREQUEST=baseUrl+"/kindergartenNeed/isSendRequest";
+
     //项目需求列表
     public static final  String SELECTDEMANDLIST=baseUrl+"/kindergartenNeed/selectDemandList";
     //获取注册时候得所有园所名称

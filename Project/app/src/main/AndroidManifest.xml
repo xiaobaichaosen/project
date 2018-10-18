@@ -380,6 +380,17 @@
         <activity android:name=".activity.SettingNumActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             />
+
+        <activity android:name=".activity.SchoolSignActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity android:name=".activity.CalenderActivity"
+            />
+        <activity android:name=".activity.student.TBStriDetailActivity"
+            />
+
+
+
     </application>
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />

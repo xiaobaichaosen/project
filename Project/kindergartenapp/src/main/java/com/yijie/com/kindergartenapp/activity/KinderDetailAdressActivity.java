@@ -13,7 +13,6 @@ import com.yijie.com.kindergartenapp.base.JsonBean;
 import com.yijie.com.kindergartenapp.base.JsonFileReader;
 import com.yijie.com.kindergartenapp.bean.CommonBean;
 import com.yijie.com.kindergartenapp.bean.SchoolAdress;
-import com.yijie.com.kindergartenapp.bean.StayBean;
 import com.yijie.com.kindergartenapp.view.OptionsPickerView;
 
 import org.json.JSONArray;
@@ -24,6 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
 
 /**
  * 园所详细地址
@@ -39,6 +40,8 @@ public class KinderDetailAdressActivity extends BaseActivity {
     EditText etContent;
     @BindView(R.id.tv_addAdress)
     TextView tvAddAdress;
+    @BindView(R.id.tv_addDetailAdress)
+    TextView tvAddDetailAdress;
     private OptionsPickerView pvOptions;
     private ArrayList<JsonBean> options1Items = new ArrayList<JsonBean>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<ArrayList<String>>();
@@ -47,6 +50,7 @@ public class KinderDetailAdressActivity extends BaseActivity {
 
     @Override
     public void setContentView() {
+        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_kinderdetailadress);
     }
 
@@ -58,16 +62,14 @@ public class KinderDetailAdressActivity extends BaseActivity {
         tvRecommend.setText("保存");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
-            tempSchoolAdress = (SchoolAdress)getIntent().getExtras().getSerializable("tempSchoolAdress");
+        tempSchoolAdress = (SchoolAdress) getIntent().getExtras().getSerializable("tempSchoolAdress");
 
-            if (null != tempSchoolAdress) {
-                etContent.setText(tempSchoolAdress.getDetailAdress());
-                tvAddAdress.setText(tempSchoolAdress.getName());
+        if (null != tempSchoolAdress) {
+            tvAddDetailAdress.setText(tempSchoolAdress.getDetailAdress());
+            tvAddAdress.setText(tempSchoolAdress.getName());
 
-            }
         }
-
-
+    }
 
 
     @Override
@@ -77,7 +79,21 @@ public class KinderDetailAdressActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.back, R.id.tv_recommend,R.id.tv_addAdress})
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void bean(SchoolAdress schoolAdress) {
+        tempSchoolAdress=schoolAdress;
+        tvAddDetailAdress.setText(tempSchoolAdress.getDetailAdress());
+
+    }
+    @OnClick({R.id.back, R.id.tv_recommend, R.id.tv_addAdress,R.id.tv_addDetailAdress})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -86,16 +102,25 @@ public class KinderDetailAdressActivity extends BaseActivity {
             case R.id.tv_recommend:
                 SchoolAdress schoolAdress = new SchoolAdress();
                 schoolAdress.setName(tvAddAdress.getText().toString().trim());
-                schoolAdress.setDetailAdress(etContent.getText().toString().trim());
+                schoolAdress.setDetailAdress(tempSchoolAdress.getDetailAdress());
+                schoolAdress.setLat(tempSchoolAdress.getLat());
+                schoolAdress.setLon(tempSchoolAdress.getLon());
                 EventBus.getDefault().post(schoolAdress);
                 finish();
                 break;
             case R.id.tv_addAdress:
                 showOptions();
                 break;
+            case R.id.tv_addDetailAdress:
+                Intent intent=new Intent();
+                intent.setClass(KinderDetailAdressActivity.this,PoiSearchActivity.class);
+                startActivity(intent);
+                break;
+
 
         }
     }
+
     private void showOptions() {
         //选项选择器
         pvOptions = new OptionsPickerView(this);
@@ -118,6 +143,7 @@ public class KinderDetailAdressActivity extends BaseActivity {
         pvOptions.show();
 
     }
+
     private void initJsonData() {   //解析数据
 
         /**

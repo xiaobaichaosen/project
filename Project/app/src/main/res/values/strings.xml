@@ -59,6 +59,7 @@
     <string name="performance">业绩考核</string>
     <string name="leave">请销假</string>
     <string name="visit">访评</string>
+    <string name="location">学生签到</string>
 
     <string name="showContent">全文</string>
     <string name="hiden">收起</string>

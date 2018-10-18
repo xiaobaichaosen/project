@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,9 +34,13 @@ import com.yijie.com.studentapp.utils.LogUtil;
 import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,12 +87,31 @@ public class HonoraryCcertificateActivity extends BaseActivity implements ImageP
 
     @Override
     public void init() {
+        String userId = (String) SharedPreferencesUtils.getParam(this, "id", "");
+        Bundle extras = getIntent().getExtras();
+        selImageList = new ArrayList<>();
+        if (null!=extras){
+            String img = extras.getString("honorary");
+            if (!"".equals(img)&&null!=img){
+                String[] split = img.split(";");
+                List<String> strings = Arrays.asList(split);
+                ArrayList<ImageItem> imageItems = new ArrayList<>();
+                for (int i = 0; i < strings.size(); i++) {
+                    ImageItem imageItem = new ImageItem();
+                    imageItem.path=Constant.infoUrl+userId+"/certificate/"+strings.get(i);
+                    imageItems.add(imageItem);
+                }
+                selImageList.addAll(imageItems);
+            }
+
+        }
+
+
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         title.setText("荣誉证书");
         tvRecommend.setVisibility(View.VISIBLE);
         tvRecommend.setText("保存");
-        selImageList = new ArrayList<>();
         adapter = new ImagePickerAdapter(this, selImageList, maxImgCount);
         adapter.setOnItemClickListener(this);
 
@@ -113,39 +137,49 @@ public class HonoraryCcertificateActivity extends BaseActivity implements ImageP
             case R.id.tv_recommend:
                 //上传图片
                 List<File> files=new ArrayList<>();
-                for (int i = 0; i < selImageList.size(); i++) {
-                    String path = selImageList.get(i).path;
-                    File file = new File(path);
-                    files.add(file);
-                }
                 Map map = new HashMap();
-                Integer id = (Integer) SharedPreferencesUtils.getParam(this, "user_id", 0);
-                map.put("id", String.valueOf(id));
-                LogUtil.e("====id"+id);
-                HttpUtils.getinstance().uploadFiles(Constant.honoraryCcertificateUploadUrl, map, files, new BaseCallback<String>() {
+                String userId = (String) SharedPreferencesUtils.getParam(this, "id", "");
+                map.put("studentUserId",userId);
+                //TODO 以前的图片怎么处理呢？
+                String sb="";
+                for (ImageItem slist:selImageList) {
+                    //网络来得图片
+                    if (slist.path.startsWith("http")){
+                        String fileName = slist.path.substring(slist.path.lastIndexOf("/")+1);
+                        sb+=fileName+";";
+                    }else{
+                        String path = slist.path;
+                        File file = new File(path);
+                        files.add(file);
+                    }
+                }
+                if (!TextUtils.isEmpty(sb)){
+                    map.put("imagePath",sb);
+                }
+                HttpUtils.getinstance(this).uploadFiles("certificate",Constant.CERTIFICATEUPLOADAPP, map, files, new BaseCallback<String>() {
                     @Override
                     public void onRequestBefore() {
-
+                        commonDialog.show();
                     }
 
                     @Override
                     public void onFailure(Request request, Exception e) {
-
+                        commonDialog.dismiss();
                     }
 
                     @Override
-                    public void onSuccess(Response response, String o) {
-                        ShowToastUtils.showToastMsg(HonoraryCcertificateActivity.this, "上传图像成功");
-                                        EventBus.getDefault().post("honoraryccertificate");
-                finish();
-//                Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
-//                ivHeadImage.setImageBitmap(bitMap);
-//                //更新本地存储
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                bitMap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//                byte[] datas = baos.toByteArray();
-//                String decode = Base64.encodeToString(datas, Base64.DEFAULT);
-//                SharedPreferencesUtils.setParam(mActivity, "image", decode);
+                    public void onSuccess(Response response, String s) {
+                        commonDialog.dismiss();
+                        LogUtil.e(s);
+                        try {
+                            JSONObject jsonObject = new JSONObject(s);
+                            ShowToastUtils.showToastMsg(HonoraryCcertificateActivity.this, jsonObject.getString("resMessage"));
+                            if (jsonObject.getString("rescode").equals("200")) {
+                                finish();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

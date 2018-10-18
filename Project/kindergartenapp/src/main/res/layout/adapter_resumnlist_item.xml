@@ -8,14 +8,16 @@
     android:paddingTop="@dimen/base_dimen_20"
     android:paddingBottom="@dimen/base_dimen_20"
     android:layout_height="wrap_content">
-<ImageView
+<com.yijie.com.kindergartenapp.view.CircleImageView
+    android:layout_centerVertical="true"
     android:id="@+id/iv_head"
-    android:src="@mipmap/head"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_width="@dimen/base_dimen_80"
+    android:layout_height="@dimen/base_dimen_80" />
     <LinearLayout
         android:layout_toRightOf="@+id/iv_head"
         android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_toLeftOf="@+id/ll"
+        android:layout_marginRight="@dimen/base_dimen_40"
         android:orientation="vertical"
          android:layout_centerVertical="true"
         android:layout_width="wrap_content"
@@ -33,15 +35,29 @@
         <TextView
             android:id="@+id/tv_nb"
             android:text="特长: 唱歌 钢琴"
+            android:layout_marginRight="@dimen/base_dimen_60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:orientation="vertical"  android:layout_marginRight="@dimen/base_dimen_30"
+        android:layout_alignParentRight="true"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:text="14:13"
+        android:id="@+id/tv_createtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tv_status"
         android:text="代选"
-        android:layout_marginRight="@dimen/base_dimen_30"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/base_dimen_20"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>

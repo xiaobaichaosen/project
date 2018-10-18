@@ -20,7 +20,8 @@
             android:textSize="@dimen/base_dimen_32" />
 
         <EditText
-            android:id="@+id/tv_newEducation"
+            android:id="@+id/et_name"
+            android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -44,32 +45,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
-        android:id="@+id/rl_registeredPermanent"
+        android:id="@+id/rl_startTime"
         android:layout_height="@dimen/base_dimen_86">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="时间:"
+            android:text="开始时间:"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
         <TextView
+            android:id="@+id/tv_startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_28"
             android:layout_centerVertical="true"
             android:textColor="#808080"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -79,7 +78,41 @@
             />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/rl_endTime"
+        android:layout_height="@dimen/base_dimen_86">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="结束时间:"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_endTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_wx"
         android:layout_width="match_parent"
@@ -94,7 +127,7 @@
             android:textSize="@dimen/base_dimen_32" />
 
         <EditText
-
+            android:id="@+id/et_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -102,7 +135,7 @@
             android:layout_marginRight="@dimen/base_dimen_22"
             android:background="@null"
             android:hint="请输入职务"
-
+            android:gravity="right"
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
 
@@ -130,6 +163,7 @@
             android:textSize="@dimen/base_dimen_32" />
 
         <EditText
+            android:id="@+id/et_postContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -137,7 +171,7 @@
             android:layout_marginRight="@dimen/base_dimen_22"
             android:background="@null"
             android:hint="请输入工作描述"
-
+            android:gravity="right"
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
 

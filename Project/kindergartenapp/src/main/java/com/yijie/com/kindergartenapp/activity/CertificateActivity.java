@@ -83,6 +83,7 @@ public class CertificateActivity extends BaseActivity implements ImagePickerAdap
     private CommonBean tempCertificateCommonBean;
     CommonBean commonBean = new CommonBean();
     private String userId;
+    private String kinderId;
 
     @Override
     public void setContentView() {
@@ -91,24 +92,31 @@ public class CertificateActivity extends BaseActivity implements ImagePickerAdap
 
     @Override
     public void init() {
-       userId=(String) SharedPreferencesUtils.getParam(this, "userId","");
+        userId = (String) SharedPreferencesUtils.getParam(CertificateActivity.this, "cellphone", "");
+        kinderId = (String) SharedPreferencesUtils.getParam(CertificateActivity.this, "kinderId", "");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         title.setText("荣誉证书");
         tvRecommend.setVisibility(View.VISIBLE);
         tvRecommend.setText("保存");
         selImageList = new ArrayList<>();
+        adapter = new ImagePickerAdapter(CertificateActivity.this, selImageList, maxImgCount);
+        adapter.setOnItemClickListener(CertificateActivity.this);
+        recyclerView.setLayoutManager(new GridLayoutManager(CertificateActivity.this, 4));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
         getKenderDeail(userId);
 
     }
     /**
-     * 通过id查询园所详情
+     * 通过手机号查询园所详情
      */
     public void getKenderDeail(String kenderId) {
         final HttpUtils instance = HttpUtils.getinstance(this);
         Map map = new HashMap();
-        map.put("id", kenderId);
-        instance.post(Constant.KINDERGARTENDETAILBYID, map, new BaseCallback<String>() {
+        map.put("cellphone", kenderId);
+
+        instance.post(Constant.SELECTBYCELLPHONE, map, new BaseCallback<String>() {
             @Override
             public void onRequestBefore() {
                 commonDialog.show();
@@ -135,18 +143,15 @@ public class CertificateActivity extends BaseActivity implements ImagePickerAdap
                         ArrayList<ImageItem> imageItems = new ArrayList<>();
                         for (int i = 0; i < strings.size(); i++) {
                             ImageItem imageItem = new ImageItem();
-                            imageItem.path= Constant.certificateUrl+userId+"/certificate/"+strings.get(i);
+                            imageItem.path= Constant.certificateUrl+kinderId+"/certificate/"+strings.get(i);
                             imageItems.add(imageItem);
                         }
                         selImageList.addAll(imageItems);
+                        adapter.setImages(selImageList);
 
                     }
-                    adapter = new ImagePickerAdapter(CertificateActivity.this, selImageList, maxImgCount);
-                    adapter.setOnItemClickListener(CertificateActivity.this);
-                    recyclerView.setLayoutManager(new GridLayoutManager(CertificateActivity.this, 4));
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setAdapter(adapter);
 
+                    adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -293,9 +298,9 @@ public class CertificateActivity extends BaseActivity implements ImagePickerAdap
                 files.add(file);
             }
         }
-        stringStringHashMap.put("kinderId",userId);
+        stringStringHashMap.put("cellphone",userId);
         stringStringHashMap.put("imagePath",sb.toString());
-        HttpUtils.getinstance(this).uploadFiles(Constant.HONORARYCCERTIFICATEUPLOADURL,stringStringHashMap,files, new BaseCallback<String>() {
+        HttpUtils.getinstance(this).uploadFiles("headload",Constant.HONORARYCCERTIFICATEUPLOADURL,stringStringHashMap,files, new BaseCallback<String>() {
             @Override
             public void onRequestBefore() {
                 commonDialog.show();

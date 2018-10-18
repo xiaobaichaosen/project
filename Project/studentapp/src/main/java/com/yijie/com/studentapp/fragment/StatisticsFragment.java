@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.lvfq.pickerview.TimePickerView;
 import com.yijie.com.studentapp.R;
-import com.yijie.com.studentapp.activity.CalenderActivity;
 import com.yijie.com.studentapp.activity.photo.CameraActivity;
 import com.yijie.com.studentapp.base.BaseFragment;
 import com.yijie.com.studentapp.utils.ViewUtils;
@@ -32,14 +31,15 @@ public class StatisticsFragment extends BaseFragment {
     @BindView(R.id.tv_calender)
     TextView tvCalender;
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_statisitce;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override
@@ -76,7 +76,7 @@ public class StatisticsFragment extends BaseFragment {
                 break;
             case R.id.tv_calender:
                 Intent intent = new Intent();
-                intent.setClass(mActivity, CalenderActivity.class);
+//                intent.setClass(mActivity, CalenderActivity.class);
                 startActivity(intent);
                 break;
 

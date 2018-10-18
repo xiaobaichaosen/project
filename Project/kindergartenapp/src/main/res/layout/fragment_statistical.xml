@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:background="@color/colorPrimary"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:tabMode="scrollable"
+        app:tabIndicatorColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_weight="0"
+            android:drawableRight="@mipmap/arrow_down"
+            android:visibility="gone"
+            android:text="日期"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/ll_root"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_left"
+            android:drawableLeft="@mipmap/goleft"
+            android:padding="@dimen/base_dimen_20"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_mounth"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_right"
+                android:padding="@dimen/base_dimen_20"
+                android:drawableRight="@mipmap/goright"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:orientation="vertical"
+        android:id="@+id/main_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+    </FrameLayout>
+</LinearLayout>

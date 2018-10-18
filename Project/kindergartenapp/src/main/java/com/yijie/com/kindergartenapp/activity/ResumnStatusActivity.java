@@ -188,12 +188,12 @@ public class ResumnStatusActivity extends BaseActivity {
     }
 
     private void getData() {
-       String userId = (String) SharedPreferencesUtils.getParam(ResumnStatusActivity.this, "userId", "");
+       String cellphone = (String) SharedPreferencesUtils.getParam(ResumnStatusActivity.this, "cellphone", "");
         HttpUtils getinstance = HttpUtils.getinstance(this);
         HashMap<String, String> stringStringHashMap = new HashMap<>();
         stringStringHashMap.put("pageStart", currentPage + "");
         stringStringHashMap.put("pageSize", 10 + "");
-        stringStringHashMap.put("kindUserId", userId );
+        stringStringHashMap.put("cellphone", cellphone );
         if (barTitle.equals("待选")){
             stringStringHashMap.put("status", "1");
         }else if(barTitle.equals("已选")){

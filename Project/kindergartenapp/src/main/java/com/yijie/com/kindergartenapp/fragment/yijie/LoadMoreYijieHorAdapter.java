@@ -3,6 +3,7 @@ package com.yijie.com.kindergartenapp.fragment.yijie;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -12,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yijie.com.kindergartenapp.R;
+import com.yijie.com.kindergartenapp.activity.RequestDetailActivity;
 import com.yijie.com.kindergartenapp.activity.RequstActivity;
+import com.yijie.com.kindergartenapp.activity.SignActivity;
 import com.yijie.com.kindergartenapp.bean.CommonBean;
 import com.yijie.com.kindergartenapp.bean.KindergartenNeed;
 import com.yijie.com.kindergartenapp.utils.ShowToastUtils;
@@ -68,6 +71,7 @@ public class LoadMoreYijieHorAdapter extends RecyclerView.Adapter<RecyclerView.V
         CommonBean commonBean = dataList.get(position);
         recyclerViewHolder.content.setText(commonBean.getContent());
         recyclerViewHolder.ivHead.setBackgroundResource(commonBean.getType());
+
 
         recyclerViewHolder.itemView.setTag(position);
     }

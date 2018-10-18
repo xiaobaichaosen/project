@@ -30,16 +30,17 @@ public class DiscoverFragment extends BaseFragment {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void initData() {
         title.setText("发现");
         back.setVisibility(View.GONE);
     }
 
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

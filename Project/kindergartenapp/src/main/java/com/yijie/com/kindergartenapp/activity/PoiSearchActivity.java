@@ -125,7 +125,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
 
 //               view.setBackgroundColor(getResources().getColor(R.color.appBarColor));
 //
-                tvSchool.setText("所选园所:" + moreList.get(position).getName());
+                tvSchool.setText("所选园所:" + moreList.get(position).getDetailAdress());
                 schoolDatil=moreList.get(position).getDetailAdress();
                 latString=moreList.get(position).getLat();
                 lonString=moreList.get(position).getLon();
@@ -194,7 +194,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
             //设置定位参数
             mLocationClient.setLocationOption(mLocationOption);
-            mLocationClient.startLocation();
+//            mLocationClient.startLocation();
         }
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
@@ -210,7 +210,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
         aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         aMap.getUiSettings().setZoomControlsEnabled(false);//设置缩放按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-//        deepType = "科教文化服务";//设置搜索类型为学校
+        deepType = "";//设置搜索类型为学校
     }
 
     @Override
@@ -365,8 +365,8 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                 break;
             case R.id.tv_recommend:
                 SchoolAdress schoolAdress = new SchoolAdress();
-                schoolAdress.setType(2);
-                schoolAdress.setName(schoolDatil);
+//                schoolAdress.setType(2);
+                schoolAdress.setDetailAdress(schoolDatil);
                 schoolAdress.setLon(lonString);
                 schoolAdress.setLat(latString);
                 EventBus.getDefault().post(schoolAdress);
@@ -384,9 +384,10 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                 //设置第一次焦点中心
 //                LatLng    latlng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
 //                aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14), 1000, null);
-                String detail = aMapLocation.getDistrict();
+                String detail = aMapLocation.getAddress();
+                tvSchool.setText("当前位置:" + detail);
                 LogUtil.e(detail);
-                doSearchQuery(detail);
+                doSearchQuery(aMapLocation.getDistrict());
             } else {
                 String errText = "定位失败," + aMapLocation.getErrorCode() + ": " + aMapLocation.getErrorInfo();
             }

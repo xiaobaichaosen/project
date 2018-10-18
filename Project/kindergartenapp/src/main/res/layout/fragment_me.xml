@@ -6,41 +6,45 @@
     android:orientation="vertical">
 
     <include layout="@layout/app_title"
+
         />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/student_bg_bar">
+        android:background="@color/colorTheme">
 
-
+        <ImageView
+            android:id="@+id/iv_headImage"
+            android:layout_width="wrap_content"
+            android:paddingLeft="@dimen/base_dimen_30"
+            android:layout_height="wrap_content"
+        />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+           android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/head" />
-
-
             <TextView
+                android:id="@+id/tv_contactName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="已审核"
                 android:textColor="@color/colorPrimary" />
 
-
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
 
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <RelativeLayout
@@ -52,8 +56,10 @@
         android:paddingLeft="@dimen/base_dimen_22">
 
         <TextView
+            android:id="@+id/tv_warn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/arrow_down"
             android:layout_centerVertical="true"
             android:text="园所信息"
             android:textColor="#4d4d4d"

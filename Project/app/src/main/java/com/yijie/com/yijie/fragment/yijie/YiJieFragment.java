@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.activity.CalenderActivity;
 import com.yijie.com.yijie.activity.ProjectListAcitivity;
 import com.yijie.com.yijie.activity.SchoolListAcitivity;
+import com.yijie.com.yijie.activity.SchoolSignActivity;
 import com.yijie.com.yijie.activity.kendergard.KendergardStatusActivity;
 import com.yijie.com.yijie.activity.student.StudentStatusActivity;
 import com.yijie.com.yijie.base.BaseFragment;
@@ -146,6 +148,7 @@ public class YiJieFragment extends BaseFragment implements OnToolsItemClickListe
         UP.add(new GrideBean(mActivity.getString(R.string.performance), R.mipmap.yijie_performance));
         UP.add(new GrideBean(mActivity.getString(R.string.leave), R.mipmap.yijie_leave));
         UP.add(new GrideBean(mActivity.getString(R.string.visit), R.mipmap.yijie_visit));
+        UP.add(new GrideBean(mActivity.getString(R.string.location), R.mipmap.location_marker));
 
 
         holder_up = new GrideHolder(mActivity, UP, R.layout.item);
@@ -178,7 +181,16 @@ public class YiJieFragment extends BaseFragment implements OnToolsItemClickListe
 
     @Override
     public void onItemClick(int position, GrideBean item) {
-        ToastUtil.showTextToast(item.title);
+        if (position==6){
+            Intent intent=new Intent();
+//            intent.setClass(mActivity, SchoolSignActivity.class);
+            intent.setClass(mActivity, CalenderActivity.class);
+
+            startActivity(intent);
+        }else{
+            ToastUtil.showTextToast(item.title);
+
+        }
     }
 
     @Override

@@ -1,21 +1,17 @@
 package com.yijie.com.studentapp.fragment.kndergaren;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 import com.yijie.com.studentapp.R;
-import com.yijie.com.studentapp.fragment.school.StudentBean;
+import com.yijie.com.studentapp.fragment.yijie.StudentBean;
 
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**

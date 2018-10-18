@@ -34,7 +34,6 @@
             android:textSize="@dimen/base_dimen_28" />
         <TextView
             android:id="@+id/tv_num"
-            android:text="dd"
             android:padding="@dimen/base_dimen_8"
             android:layout_width="match_parent"
             android:gravity="right"

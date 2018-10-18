@@ -178,7 +178,7 @@ public class ModiKenderDetailActivity extends BaseActivity {
         tvRecommend.setText("保存");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
-        kinderId = (String) SharedPreferencesUtils.getParam(this, "userId", "");
+        kinderId = (String) SharedPreferencesUtils.getParam(ModiKenderDetailActivity.this, "cellphone", "");
         getKenderDeail(kinderId);
     }
 
@@ -194,9 +194,8 @@ public class ModiKenderDetailActivity extends BaseActivity {
     public void getKenderDeail(String kenderId) {
         final HttpUtils instance = HttpUtils.getinstance(this);
         Map map = new HashMap();
-        map.put("id", kenderId);
-
-        instance.post(Constant.KINDERGARTENDETAILBYID, map, new BaseCallback<String>() {
+        map.put("cellphone", kenderId);
+        instance.post(Constant.SELECTBYCELLPHONE, map, new BaseCallback<String>() {
 
             @Override
             public void onRequestBefore() {

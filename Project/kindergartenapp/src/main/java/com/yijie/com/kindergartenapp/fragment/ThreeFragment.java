@@ -364,9 +364,12 @@ public class ThreeFragment extends BaseFragment {
                         KindergartenDetail kindergartenDetail = new KindergartenDetail();
                         kindergartenDetail.setKindName(kendergradName);
                         kindergartenDetail.setKindAddress(tempSchoolAdress.getName());
+                        kindergartenDetail.setLatitude(tempSchoolAdress.getLat());
+                        kindergartenDetail.setLongitude(tempSchoolAdress.getLon());
                         kindergartenDetail.setKindDetailAddress(tempSchoolAdress.getDetailAdress());
                         kindergartenDetail.setStay(stayString);
-                        kindergartenDetail.setKindContact(kindergartenMember.getCellphone());
+                        kindergartenDetail.setKindContact(kindergartenMember.getMemerName());
+                        kindergartenDetail.setCellphone(kindergartenMember.getCellphone());
                         kindergartenDetail.setEat(mealString);
                         kindergartenDetail.setChildrenNum(Integer.parseInt(peopleNum));
                         kindergartenDetail.setClassNum(Integer.parseInt(classNum));

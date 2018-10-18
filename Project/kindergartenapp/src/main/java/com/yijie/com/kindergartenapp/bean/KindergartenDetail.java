@@ -19,6 +19,19 @@ public class KindergartenDetail implements Serializable {
      */
     private String kindName;
 
+    public String getHeadPic() {
+        return headPic;
+    }
+
+    public void setHeadPic(String headPic) {
+        this.headPic = headPic;
+    }
+
+    /**
+     * 园所头像
+
+     */
+    private String headPic;
     /**
      * 园所联系人
      */
@@ -38,6 +51,19 @@ public class KindergartenDetail implements Serializable {
      * 微信号
      */
     private String wechart;
+
+    public String getKinderIntegrity() {
+        return kinderIntegrity;
+    }
+
+    public void setKinderIntegrity(String kinderIntegrity) {
+        this.kinderIntegrity = kinderIntegrity;
+    }
+
+    /**
+     * 完整度
+     */
+    private String kinderIntegrity;
 
     /**
      * QQ号
@@ -82,7 +108,7 @@ public class KindergartenDetail implements Serializable {
     /**
      * 更新时间
      */
-    private Date updateTime;
+    private String updateTime;
 
     /**
      * 特色课程
@@ -130,7 +156,24 @@ public class KindergartenDetail implements Serializable {
      */
     private String attachment;
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
     /**
+
      * 创建人
      */
     private Integer createBy;
@@ -143,12 +186,21 @@ public class KindergartenDetail implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private String createTime;
 
     /**
      * 审核状态
      */
     private Integer auditStatus;
+    /**
+     * 纬度
+     */
+    private String latitude;
+
+    /**
+     * 经度
+     */
+    private String longitude;
 
     /**
      * 学校简介
@@ -273,11 +325,11 @@ public class KindergartenDetail implements Serializable {
         this.classSet = classSet;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -377,11 +429,11 @@ public class KindergartenDetail implements Serializable {
         this.gardenPic = gardenPic;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

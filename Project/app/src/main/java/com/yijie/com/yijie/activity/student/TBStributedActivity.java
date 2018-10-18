@@ -134,7 +134,8 @@ public class TBStributedActivity extends BaseActivity {
                                                           public void onItemClick(View view, int position) {
                                                               //根据状态跳转页面
                                                               Intent intent = new Intent();
-                                                              intent.setClass(TBStributedActivity.this, StudentActivity.class);
+                                                              intent.putExtra("studentUserId",dataList.get(position).getStudentUserId());
+                                                              intent.setClass(TBStributedActivity.this, TBStriDetailActivity.class);
                                                               startActivity(intent);
                                                           }
                                                       }

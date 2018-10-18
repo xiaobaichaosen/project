@@ -109,7 +109,6 @@ public class StudentStatusActivity extends BaseActivity {
                                                             //TODO 点击根据状态跳转到不同页面
                                                             Intent intent = new Intent();
                                                             int status = dataList.get(position).getStatus();
-
                                                             if (status == 1) {
                                                                 //待审核
                                                                 intent.setClass(StudentStatusActivity.this, SamplecCheckPendingActivity.class);

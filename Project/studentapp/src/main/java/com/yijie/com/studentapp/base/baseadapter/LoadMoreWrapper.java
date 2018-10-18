@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yijie.com.studentapp.R;
-import com.yijie.com.studentapp.fragment.school.LoadMoreSchoolAdapter;
 
 
 /**

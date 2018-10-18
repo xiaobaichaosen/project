@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,27 +24,39 @@ import android.widget.Toast;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.activity.SelectSchoolActivity;
 import com.yijie.com.studentapp.activity.login.modle.LoginCallBack;
 import com.yijie.com.studentapp.activity.login.modle.LoginModel;
+import com.yijie.com.studentapp.adapter.FilterAdapter;
 import com.yijie.com.studentapp.base.BaseActivity;
+import com.yijie.com.studentapp.bean.Student;
 import com.yijie.com.studentapp.utils.AppInstallUtils;
+import com.yijie.com.studentapp.utils.BaseCallback;
+import com.yijie.com.studentapp.utils.HttpUtils;
 import com.yijie.com.studentapp.utils.KeyBoardHelper;
 import com.yijie.com.studentapp.utils.LogUtil;
 import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/1/12.
@@ -180,6 +193,7 @@ public class LoginActivity extends BaseActivity {
             case R.id.rb_verificationLogin:
                 if (ischanged) {
                     tvIsVervifiorPassword.setText("验证码");
+                    etPassWord.setHint("请输入验证码");
                     btnSubmit.setText("下一步");
                     cbIsVisiable.setVisibility(View.GONE);
                     tvVerviCode.setVisibility(View.VISIBLE);
@@ -199,52 +213,151 @@ public class LoginActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btnSubmit:
                 if (btnSubmit.getText().toString().trim().equals("登陆")){
-                    loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
+                    HttpUtils getinstance = HttpUtils.getinstance(this);
+                    HashMap<String, String> stringStringHashMap = new HashMap<>();
+                    stringStringHashMap.put("cellphone", etName.getText().toString());
+                    stringStringHashMap.put("password", etPassWord.getText().toString());
+                    getinstance.post(Constant.LOGINURL, stringStringHashMap, new BaseCallback<String>() {
                         @Override
-                        public void beforLogin() {
-                            dialog.show();
+                        public void onRequestBefore() {
+                            commonDialog.show();
                         }
 
                         @Override
-                        public void onLoginSuccess(String success) {
-                            try {
-                                JSONObject jsonObject = new JSONObject(success);
-                                LogUtil.e("==="+jsonObject);
-                                String status = jsonObject.getString("status");
-                                if (status.equals("ok")) {
-                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
-                                    JSONObject jsonObject2 = jsonObject.getJSONObject("result");
-                                    String bytes = jsonObject2.getString("bytes");
-                                    String user_phone = jsonObject2.getString("user_phone");
-                                    Integer user_id = jsonObject2.getInt("id");
-                                    SharedPreferencesUtils.setParam(LoginActivity.this,"image",bytes);
-                                    SharedPreferencesUtils.setParam(LoginActivity.this,"user_phone",user_phone);
-                                    SharedPreferencesUtils.setParam(LoginActivity.this,"user_id",user_id);
-                                    Intent intent = new Intent();
-                                    intent.putExtra("image",bytes);
-                                    intent.setClass(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    dialog.dismiss();
-                                    finish();
-                                } else {
-                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
-                                    dialog.dismiss();
-                                }
+                        public void onFailure(Request request, Exception e) {
+                            commonDialog.dismiss();
+                        }
 
+                        @Override
+                        public void onSuccess(Response response, String o) {
+                            LogUtil.e(o);
+                            try {
+                                JSONObject jsonObject = new JSONObject(o)    ;
+                                String rescode = jsonObject.getString("rescode");
+                                if (rescode.equals("200")){
+                                    ShowToastUtils.showToastMsg(LoginActivity.this,jsonObject.getString("resMessage"));
+                                    JSONObject data = jsonObject.getJSONObject("data");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this, "user", data.toString());
+                                    SharedPreferencesUtils.setParam(LoginActivity.this, "schoolId", data.getInt("schoolId")+"");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this, "schoolPracticeId", data.getInt("schoolPracticeId")+"");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this, "id", data.getInt("id")+"");
+                                    Intent intent = new Intent();
+                                    intent.setClass(LoginActivity.this, MainActivity.class);
+                                    ShowToastUtils.showToastMsg(LoginActivity.this, "登录成功！");
+                                    startActivity(intent);
+                                    finish();
+
+//                                    Set<String> tags = new HashSet<String>();
+//                                    //清除tags
+//                                    tags.add("");
+//                                    JPushInterface.setAliasAndTags(LoginActivity.this, "", tags, new TagAliasCallback() {
+//                                        @Override
+//                                        public void gotResult(int i, String s, Set<String> set) {
+//                                        }
+//                                    });
+//
+//                                    JPushInterface.setAliasAndTags(LoginActivity.this, userId + "", tags, new TagAliasCallback() {
+//                                        @Override
+//                                        public void gotResult(int code, String s, Set<String> set) {
+//                                            switch (code) {
+//                                                case 0:
+//                                                    //这里可以往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
+//                                                    LogUtil.e("Set tag and alias success极光推送别名设置成功");
+//                                                    Intent intent = new Intent();
+//                                                    intent.setClass(LoginActivity.this, MainActivity.class);
+//                                                    ShowToastUtils.showToastMsg(LoginActivity.this, "登录成功！");
+//                                                    startActivity(intent);
+//                                                    finish();
+//                                                    commonDialog.dismiss();
+//                                                    break;
+//                                                case 6002:
+//                                                    //极低的可能设置失败 我设置过几百回 出现3次失败 不放心的话可以失败后继续调用上面那个方面 重连3次即可 记得return 不要进入死循环了...
+//                                                    LogUtil.e("Failed to set alias and tags due to timeout. Try again after 60s.极光推送别名设置失败，60秒后重试");
+//                                                    break;
+//                                                default:
+//                                                    LogUtil.e("极光推送设置失败，Failed with errorCode = " + code);
+//                                                    break;
+//                                            }
+//
+//                                        }
+//                                    });
+                                }else{
+                                    ShowToastUtils.showToastMsg(LoginActivity.this,jsonObject.getString("resMessage"));
+                                }
+                                commonDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+
+
                         }
 
                         @Override
-                        public void onLoginFail(Exception error) {
-                            dialog.dismiss();
-
+                        public void onError(Response response, int errorCode, Exception e) {
+                            commonDialog.dismiss();
+//                statusLayoutManager.showErrorLayout();
                         }
-
                     });
+
+//                    loginModel.login(etName.getText().toString(), etPassWord.getText().toString(), new LoginCallBack() {
+//                        @Override
+//                        public void beforLogin() {
+//                            commonDialog.show();
+//                        }
+//
+//                        @Override
+//                        public void onLoginSuccess(String success) {
+//                            try {
+//                                JSONObject jsonObject = new JSONObject(success);
+//                                LogUtil.e("==="+jsonObject);
+//                                String status = jsonObject.getString("status");
+//                                if (status.equals("ok")) {
+//                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
+//                                    JSONObject jsonObject2 = jsonObject.getJSONObject("result");
+//                                    String bytes = jsonObject2.getString("bytes");
+//                                    String user_phone = jsonObject2.getString("user_phone");
+//                                    Integer user_id = jsonObject2.getInt("id");
+//                                    SharedPreferencesUtils.setParam(LoginActivity.this,"image",bytes);
+//                                    SharedPreferencesUtils.setParam(LoginActivity.this,"user_phone",user_phone);
+//                                    SharedPreferencesUtils.setParam(LoginActivity.this,"user_id",user_id);
+//                                    Intent intent = new Intent();
+//                                    intent.putExtra("image",bytes);
+//                                    intent.setClass(LoginActivity.this, MainActivity.class);
+//                                    startActivity(intent);
+//                                    commonDialog.dismiss();
+//                                    finish();
+//                                } else {
+//                                    ShowToastUtils.showToastMsg(LoginActivity.this, jsonObject.getString("message"));
+//                                    commonDialog.dismiss();
+//                                }
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onLoginFail(Exception error) {
+//                            commonDialog.dismiss();
+//
+//                        }
+//
+//                    });
                 }else {
+                    if (TextUtils.isEmpty(etName.getText().toString())){
+                        ShowToastUtils.showToastMsg(this,"请输入手机号");
+                        return;
+                    }else if (etName.getText().toString().length()!=11){
+                        ShowToastUtils.showToastMsg(this,"手机号格式不正确");
+                        return;
+                    }
+                    else if (TextUtils.isEmpty(etPassWord.getText().toString())){
+                        ShowToastUtils.showToastMsg(this,"请输入验证码");
+                        return;
+                    }
                     Intent intent = new Intent();
+                    intent.putExtra("phoneNumber",etName.getText().toString());
+                    intent.putExtra("verifyCode",etPassWord.getText().toString());
                     intent.setClass(LoginActivity.this, PassWordActivity.class);
                     startActivity(intent);
 //                    finish();
@@ -297,9 +410,51 @@ public class LoginActivity extends BaseActivity {
 
             case  R.id.tv_verviCode:
                 //new倒计时对象,总共的时间,每隔多少秒更新一次时间
+                if (TextUtils.isEmpty(etName.getText().toString())){
+                    ShowToastUtils.showToastMsg(this,"请输入手机号");
+                }else if (etName.getText().toString().length()!=11){
+                    ShowToastUtils.showToastMsg(this,"手机号格式不正确");
+                    return;
+                }else {
+                    HttpUtils getinstance = HttpUtils.getinstance(LoginActivity.this);
+                    HashMap<String, String> stringStringHashMap = new HashMap<>();
+                    stringStringHashMap.put("cellphone",etName.getText().toString());
+                    getinstance.post(Constant.SENDSMSCODE,stringStringHashMap, new BaseCallback<String>() {
+                        @Override
+                        public void onRequestBefore() {
+                            commonDialog.show();
+                        }
 
-                myCountDownTimer = new MyCountDownTimer(15000, 1000);
-                myCountDownTimer.start();
+                        @Override
+                        public void onFailure(Request request, Exception e) {
+                            commonDialog.dismiss();
+                        }
+                        @Override
+                        public void onSuccess(Response response, String s) {
+                            commonDialog.dismiss();
+                            LogUtil.e(s);
+                            try {
+                                JSONObject jsonObject = new JSONObject(s);
+                                if (jsonObject.getString("rescode").equals("200")) {
+                                   String registCode= jsonObject.getString("data");
+                                    etPassWord.setText(registCode);
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Response response, int errorCode, Exception e) {
+
+                        }
+
+                    });
+                    myCountDownTimer = new MyCountDownTimer(15000, 1000);
+                    myCountDownTimer.start();
+                }
+
                 break;
         }
     }
@@ -352,15 +507,10 @@ public class LoginActivity extends BaseActivity {
     @OnCheckedChanged({R.id.cb_isVisiable})
     public void OnCheckedChangeListener(CheckBox view, boolean ischanged) {
         if (ischanged) {
-
             etPassWord.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-
-
         } else {
-
             etPassWord.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
-
         etPassWord.setSelection(etPassWord.getText().length());//set cursor to the end
     }
 

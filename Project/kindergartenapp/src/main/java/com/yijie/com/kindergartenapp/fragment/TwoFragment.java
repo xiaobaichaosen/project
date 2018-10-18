@@ -152,6 +152,7 @@ public class TwoFragment extends BaseFragment implements OnItemClickListener{
                     //还没注册，跳转到注册页面
                     if (onButtonClick != null) {
                         kindergartenMember.setKindName(etKinder.getText().toString().trim());
+                        kindergartenMember.setMemerName(etRealName.getText().toString().trim());
                         onButtonClick.onClick(kindergartenMember);
                     }
                 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+
+    android:background="@color/colorTheme"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="@dimen/base_dimen_80"
+        android:text="请输入所在的学校"
+        android:paddingLeft="@dimen/base_dimen_40"
+        android:paddingRight="@dimen/base_dimen_40"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+
+    <AutoCompleteTextView
+        android:paddingLeft="@dimen/base_dimen_40"
+        android:paddingRight="@dimen/base_dimen_40"
+        android:id="@+id/et_school"
+        android:background="@null"
+        android:hint="请输入所在的学校"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_24"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_80">
+        <requestFocus />
+    </AutoCompleteTextView>
+    <View
+        android:id="@+id/view_line"
+        android:layout_marginLeft="@dimen/base_dimen_40"
+        android:layout_marginRight="@dimen/base_dimen_40"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_width="match_parent"
+        android:background="@color/app_background"
+        android:layout_height="@dimen/base_dimen_2"/>
+
+    <TextView
+        android:text="请选择所在项目"
+        android:paddingLeft="@dimen/base_dimen_40"
+        android:paddingRight="@dimen/base_dimen_40"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+
+    <TextView
+        android:paddingLeft="@dimen/base_dimen_40"
+        android:paddingRight="@dimen/base_dimen_40"
+        android:id="@+id/tv_project"
+        android:background="@null"
+        android:hint="请点击选择所在项目"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_24"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_80">
+        <requestFocus />
+    </TextView>
+    <View
+        android:id="@+id/view_project"
+        android:layout_marginLeft="@dimen/base_dimen_40"
+        android:layout_marginRight="@dimen/base_dimen_40"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_width="match_parent"
+        android:background="@color/app_background"
+        android:layout_height="@dimen/base_dimen_2"/>
+    <Button
+        android:layout_marginLeft="@dimen/base_dimen_40"
+        android:layout_marginRight="@dimen/base_dimen_40"
+        android:id="@+id/btn_two"
+        android:layout_marginTop="@dimen/base_dimen_50"
+        android:background="@drawable/bg_round_ligtred"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/base_dimen_32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="下一步" />
+</LinearLayout>

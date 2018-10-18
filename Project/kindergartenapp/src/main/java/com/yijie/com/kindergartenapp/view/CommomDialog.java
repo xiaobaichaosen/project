@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yijie.com.kindergartenapp.R;
@@ -30,6 +31,8 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
     private String negativeName;
     private String title;
     private int titleColor;
+    private EditText etContentText;
+    private boolean isVisable;
 
     public CommomDialog(Context context) {
         super(context);
@@ -83,7 +86,10 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         this.negativeName = name;
         return this;
     }
-
+    public CommomDialog setNegativeButtonInV(boolean isVisable){
+        this.isVisable=isVisable;
+        return this;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +122,10 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
             titleTxt.setTextColor(titleColor);
 
         }
+        if(!isVisable){
+           cancelTxt.setVisibility(View.INVISIBLE);
+
+        }
 
     }
 
@@ -124,27 +134,27 @@ public class CommomDialog extends Dialog implements View.OnClickListener{
         switch (v.getId()){
             case R.id.cancel:
                 if(listener != null){
-                    listener.onClick(this, false);
+                    listener.onClick(this, false,"");
                 }
                 this.dismiss();
                 break;
             case R.id.submit:
                 if(listener != null){
-                    listener.onClick(this, true);
+                    listener.onClick(this, true,"");
                 }
-
                 break;
-                case R.id.content:
+            case R.id.content:
                 if(listener != null){
                     listener.onContentClick();
                 }
                 break;
-
         }
     }
 
     public interface OnCloseListener{
-        void onClick(Dialog dialog, boolean confirm);
+        void onClick(Dialog dialog, boolean confirm,String sContent);
         void onContentClick();
     }
+
+
 }

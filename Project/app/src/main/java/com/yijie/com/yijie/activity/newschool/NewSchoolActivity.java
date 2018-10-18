@@ -364,9 +364,7 @@ public class NewSchoolActivity extends BaseActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
-
                     @Override
                     public void onError(Response response, int errorCode, Exception e) {
                         commonDialog.dismiss();

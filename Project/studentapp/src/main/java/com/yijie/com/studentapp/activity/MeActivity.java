@@ -16,13 +16,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.yijie.com.studentapp.Constant;
-import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
-import com.yijie.com.studentapp.activity.login.LoginActivity;
-import com.yijie.com.studentapp.activity.login.PassWordActivity;
 import com.yijie.com.studentapp.base.BaseActivity;
-import com.yijie.com.studentapp.bean.Student;
-import com.yijie.com.studentapp.fragment.school.StudentBean;
+import com.yijie.com.studentapp.bean.StudentInfo;
+import com.yijie.com.studentapp.bean.StudentResume;
 import com.yijie.com.studentapp.niorgai.StatusBarCompat;
 import com.yijie.com.studentapp.utils.BaseCallback;
 import com.yijie.com.studentapp.utils.HttpUtils;
@@ -34,21 +31,17 @@ import com.yijie.com.studentapp.view.CircleImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/1/30.
+ * 我的
  */
 
 public class MeActivity extends BaseActivity {
@@ -86,8 +79,11 @@ public class MeActivity extends BaseActivity {
     TextView tvNewAppointmenttime;
     @BindView(R.id.iv_headImage)
     CircleImageView ivHeadImage;
-    @BindView(R.id.tv_phone)
-    TextView tvPhone;
+    @BindView(R.id.tv_stu_name)
+    TextView tvStuName;
+    @BindView(R.id.tv_status)
+    TextView tvStatus;
+
 
     @Override
     public void setContentView() {
@@ -100,7 +96,7 @@ public class MeActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.collect_position:
-                intent.setClass(this,PostCollectionActivity.class);
+                intent.setClass(this, PostCollectionActivity.class);
                 startActivity(intent);
                 break;
 
@@ -126,22 +122,11 @@ public class MeActivity extends BaseActivity {
 
     @Override
     public void init() {
+        initDatas();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("");
 
-
-        String user_phone = (String) SharedPreferencesUtils.getParam(this, "user_phone", "");
-        String image = (String) SharedPreferencesUtils.getParam(this, "image", "");
-        tvPhone.setText(user_phone);
-        if (image.equals("null")||image.equals("")) {
-            ivHeadImage.setBackgroundResource(R.mipmap.head);
-
-        }else{
-            byte[] bitmapArray = Base64.decode(image, Base64.DEFAULT);
-            Bitmap bitmap= BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
-            ivHeadImage.setImageBitmap(bitmap);
-        }
 
         StatusBarCompat.setStatusBarColorForCollapsingToolbar(this, appbar, collapsingToolbar, toolbar, getResources().getColor(R.color.colorTheme));
 
@@ -158,6 +143,75 @@ public class MeActivity extends BaseActivity {
             public void onClick(View view) {
 
                 finish();
+            }
+        });
+    }
+
+    private void initDatas() {
+
+        //获取简历详情
+        HttpUtils getinstance = HttpUtils.getinstance(this);
+        String userId = (String) SharedPreferencesUtils.getParam(this, "id", "");
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        stringStringHashMap.put("studentUserId", userId);
+        getinstance.post(Constant.STUDENTRESUMEDETAIL, stringStringHashMap, new BaseCallback<String>() {
+            @Override
+            public void onRequestBefore() {
+                commonDialog.show();
+            }
+
+            @Override
+            public void onFailure(Request request, Exception e) {
+                commonDialog.dismiss();
+            }
+
+            @Override
+            public void onSuccess(Response response, String s) {
+                LogUtil.e(s);
+                commonDialog.dismiss();
+                Gson gson = new Gson();
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    JSONObject studentInfoJson = data.getJSONObject("studentInfo");
+                    JSONObject studentResumeJson = data.getJSONObject("studentResume");
+
+                    //个人信息
+                    StudentInfo studentInfo = gson.fromJson(studentInfoJson.toString(), StudentInfo.class);
+                    //简历信息
+                    StudentResume studentResume = gson.fromJson(studentResumeJson.toString(), StudentResume.class);
+                    if (null!=studentInfo){
+                        tvStuName.setText(studentInfo.getStuName());
+                        String headPic = studentInfo.getHeadPic();
+                        if (headPic.equals(null)||headPic.equals("")) {
+                            ivHeadImage.setBackgroundResource(R.mipmap.head);
+
+                        }
+                    }
+
+                    if (null != studentResume) {
+                        Integer status = studentResume.getStatus();
+                        if (status == 0) {
+                            tvStatus.setText("未发送审核");
+                        } else if (status == 1) {
+                            tvStatus.setText("待审核");
+                        } else if (status == 2) {
+                            tvStatus.setText("通过");
+                        }
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onError(Response response, int errorCode, Exception e) {
+                commonDialog.dismiss();
+//                statusLayoutManager.showErrorLayout();
             }
         });
     }

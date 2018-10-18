@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_title"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤组名称"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <EditText
+            android:id="@+id/SignName"
+            android:hint="请填写考勤组名称"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/base_dimen_28" />
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_allPeople"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="参与人员"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:textColor="#808080"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/base_dimen_28" />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_groupManager"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤组负责人"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:textColor="#808080"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/base_dimen_28" />
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/tv_next"
+    android:text="下一步"
+    android:layout_alignParentBottom="true"
+    android:gravity="center"
+    android:textColor="@color/colorPrimary"
+    android:layout_marginLeft="@dimen/base_dimen_30"
+    android:layout_marginBottom="@dimen/base_dimen_30"
+    android:layout_marginRight="@dimen/base_dimen_30"
+    android:background="@color/colorTheme"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_90" />
+</RelativeLayout>
+</LinearLayout>

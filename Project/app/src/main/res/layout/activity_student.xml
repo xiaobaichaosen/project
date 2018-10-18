@@ -711,31 +711,14 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/base_dimen_32" />
 
-            <LinearLayout
+
+            <!--荣誉证书内容-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_honor"
+                android:paddingLeft="@dimen/base_dimen_24"
+                android:paddingRight="@dimen/base_dimen_24"
                 android:layout_width="match_parent"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="@dimen/base_dimen_18"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:padding="@dimen/base_dimen_9"
-                    android:layout_width="@dimen/base_dimen_154"
-                    android:layout_height="@dimen/base_dimen_154"
-                    android:src="@mipmap/shool_pictor" />
-
-                <ImageView
-                    android:padding="@dimen/base_dimen_9"
-                    android:layout_width="@dimen/base_dimen_154"
-                    android:layout_height="@dimen/base_dimen_154"
-                    android:src="@mipmap/shool_pictor" />
-
-                <ImageView
-                    android:padding="@dimen/base_dimen_9"
-                    android:layout_width="@dimen/base_dimen_154"
-                    android:layout_height="@dimen/base_dimen_154"
-                    android:src="@mipmap/shool_pictor" />
-            </LinearLayout>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         </LinearLayout>
         </LinearLayout>

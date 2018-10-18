@@ -189,7 +189,8 @@ public class WheelView extends View {
         //初始化显示的item的position，根据是否loop
         if (initPosition == -1) {
             if (isLoop) {
-                initPosition = (adapter.getItemsCount() + 1) / 2;
+//                initPosition = (adapter.getItemsCount() + 1) / 2;
+                initPosition = 0;
             } else {
                 initPosition = 0;
             }

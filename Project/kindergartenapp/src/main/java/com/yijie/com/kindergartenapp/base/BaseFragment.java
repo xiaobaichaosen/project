@@ -96,7 +96,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        HttpUtils.getinstance(mActivity).cancleQuest();
+//        HttpUtils.getinstance(mActivity).cancleQuest();
         unbinder.unbind();
     }
 

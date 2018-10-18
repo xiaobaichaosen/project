@@ -1,67 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
     android:id="@+id/loading"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <LinearLayout
+        android:id="@+id/ll_first"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_dimen_46"
         android:background="@color/colorTheme"
         android:fitsSystemWindows="true" />
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-<include layout="@layout/app_title"/>
+        >
 
-
-
-
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_below="@+id/app_title"
-        android:background="@color/colorPrimary"
-        android:id="@+id/swipe_refresh_layout"
-        style="@style/layout_mm"
-     >
-        <android.support.v4.widget.NestedScrollView
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            >
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:collapsedTitleTextAppearance="@style/ToolBarTitleText"
+                app:contentScrim="@color/colorTheme"
+                app:expandedTitleMarginEnd="48dp"
+                app:expandedTitleMarginStart="48dp"
+                android:fitsSystemWindows="true"
+                app:expandedTitleTextAppearance="@style/transparentText"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                <com.youth.banner.Banner
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+                <RelativeLayout
+                    android:id="@+id/head_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="pin"
+                    app:layout_collapseParallaxMultiplier="0.7">
+
+                    <TextView
+                        android:id="@+id/tv_kindName"
+                        android:text="幼儿园名称"
+                        android:textColor="#ffffff"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/horsrollRecycle"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                android:id="@+id/view_first"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:background="@color/app_background"
+                android:layout_height="@dimen/base_dimen_30"/>
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_access"
+                android:paddingLeft="@dimen/base_dimen_30"
+                android:paddingTop="@dimen/base_dimen_30"
+                android:paddingRight="@dimen/base_dimen_30"
                 android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="北京幼儿园"
+                    android:textSize="@dimen/base_dimen_32"
+                    android:textColor="@color/item_title"
+                    android:id="@+id/tv_kindNameSplsh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="您已抵达北京幼儿园"
+                    android:paddingTop="@dimen/base_dimen_20"
+                    android:id="@+id/tv_splshcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:text="去评价一下对该园所的感受吧"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="立即评价"
+                        android:padding="@dimen/base_dimen_20"
+                        android:id="@+id/tv_access"
+                        android:textColor="@color/colorTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/app_background"
+                android:layout_height="@dimen/base_dimen_30"/>
+            <LinearLayout
+
+                android:padding="@dimen/base_dimen_30"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="关于我们"
+                    android:textSize="@dimen/base_dimen_32"
+                    android:textColor="@color/item_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_kindDetail"
+                        android:layout_width="294dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="@dimen/base_dimen_170"
+                        android:layout_weight="1"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:text="熬过了多久了就噶的理解埃弗拉就拉萨附近lads房间里拉萨九点零分捡垃圾两地分居辣椒粉" />
+                    <TextView
+                        android:text="查看更多"
+                        android:layout_alignParentRight="true"
+                        android:paddingTop="@dimen/base_dimen_20"
+                        android:paddingLeft="@dimen/base_dimen_20"
+                        android:paddingRight="@dimen/base_dimen_20"
+                        android:id="@+id/tv_more"
+                        android:textColor="@color/colorTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+    <LinearLayout
+                android:id="@+id/ll_second"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:background="@color/app_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-            <TextView
-                android:text="正在招聘的园所"     android:textColor="#4d4d4d"
-                android:textSize="@dimen/base_dimen_32"
-                android:background="@color/app_background"
-                android:paddingLeft="@dimen/base_dimen_30"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/base_dimen_80" />
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_loading"
-                    style="@style/layout_mm" />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_46"
+            android:background="@color/colorTheme"
+            android:fitsSystemWindows="true" />
+                <include
+                    layout="@layout/app_title"/>
                 <TextView
-                    android:background="@color/app_background"
-                    android:paddingLeft="@dimen/base_dimen_30"
+                    android:text="往期合作园所"
                     android:gravity="center_vertical"
-                    android:textColor="#4d4d4d"
-                    android:textSize="@dimen/base_dimen_32"
-                    android:text="往前合作过的园所"
+                    android:paddingLeft="@dimen/base_dimen_30"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/base_dimen_80"/>
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view"
-                    style="@style/layout_mm" />
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+                    android:layout_height="@dimen/base_dimen_80" />
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:layout_below="@+id/app_title"
+                    android:id="@+id/swipe_refresh_layout"
+                    style="@style/layout_mm"
+                    >
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:background="@color/colorPrimary"
+                        style="@style/layout_mm" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
-    </LinearLayout>
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+            </LinearLayout>
+
 </LinearLayout>
+

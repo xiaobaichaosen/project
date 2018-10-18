@@ -124,7 +124,6 @@ public class RequestDetailFragment extends BaseFragment {
         initData();
 
     }
-
     @Override
     protected void initData() {
         if (!isPrepared || isVisible) {
@@ -266,16 +265,15 @@ public class RequestDetailFragment extends BaseFragment {
 
 
                     @Override
-                    public void onContentClick() {
-
-                    }
-
-                    @Override
-                    public void onClick(Dialog dialog, boolean confirm) {
+                    public void onClick(Dialog dialog, boolean confirm, String sContent) {
                         if(confirm){
                             call(tvPhone.getText().toString().trim());
                             dialog.dismiss();
                         }
+                    }
+
+                    @Override
+                    public void onContentClick() {
 
                     }
                 })

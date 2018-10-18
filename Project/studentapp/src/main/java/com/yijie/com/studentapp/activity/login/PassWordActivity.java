@@ -13,8 +13,10 @@ import android.widget.TextView;
 import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.activity.SelectSchoolActivity;
 import com.yijie.com.studentapp.base.BaseActivity;
 import com.yijie.com.studentapp.utils.BaseCallback;
+import com.yijie.com.studentapp.utils.CheckUserUtils;
 import com.yijie.com.studentapp.utils.HttpUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
 
@@ -43,13 +45,10 @@ public class PassWordActivity  extends BaseActivity {
     @BindView(R.id.cb_isVisiable)
     CheckBox cbIsVisiable;
 
-    @BindView(R.id.loading)
-    RelativeLayout loading;
-    @BindView(R.id.tv_toHome)
-    TextView tvToHome;
     @BindView(R.id.btn_next)
     Button btnNext;
     private String phoneNumber;
+    private String verifyCode;
 
 
     @Override
@@ -63,91 +62,36 @@ public class PassWordActivity  extends BaseActivity {
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         phoneNumber = getIntent().getStringExtra("phoneNumber");
+        verifyCode = getIntent().getStringExtra("verifyCode");
 
     }
 
-    @OnClick({R.id.tv_toHome, R.id.btn_next})
+    @OnClick({ R.id.btn_next})
     public void Click(View view) {
-
         Intent intent = new Intent();
-
         switch (view.getId()) {
-            case R.id.tv_toHome:
-//                regist(phoneNumber, null);
-
-                intent.setClass(PassWordActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-
             case R.id.btn_next:
-
                 String passWord = etPassWord.getText().toString().trim();
                 if (passWord.equals("")) {
                     ShowToastUtils.showToastMsg(PassWordActivity.this, "请输入密码!");
-                } else if (passWord.length() < 6 || passWord.length() > 20) {
-                    ShowToastUtils.showToastMsg(PassWordActivity.this, "密码长度需6-20个字符!");
+                    return;
+                } else if (!CheckUserUtils.checkString(passWord)) {
+                    ShowToastUtils.showToastMsg(PassWordActivity.this, "密码长度需8-20个字符!");
+                    return;
                 } else {
-//                    regist(phoneNumber, passWord);
-                    intent.setClass(PassWordActivity.this, MainActivity.class);
+                    intent.putExtra("password",passWord);
+                    intent.putExtra("phonenumber",phoneNumber);
+                    intent.putExtra("verifyCode",verifyCode);
+                    intent.setClass(PassWordActivity.this, SelectSchoolActivity.class);
                     startActivity(intent);
                     finish();
                 }
 
                 break;
-
-
         }
 
     }
 
-    //保存注册信息到数据库
-    public void regist(String phone, String password) {
-        //请求网络
-
-        HttpUtils instance = HttpUtils.getinstance();
-        Map map = new HashMap();
-        map.put("phone", phone);
-        map.put("password", password);
-        instance.post(Constant.registUrl, map, new BaseCallback<String>() {
-            @Override
-            public void onRequestBefore() {
-                dialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(Request request, Exception e) {
-                dialog.dismiss();
-            }
-
-            @Override
-            public void onSuccess(Response response, String s) {
-                dialog.dismiss();
-                try {
-                    JSONObject jsonObject = new JSONObject(s);
-                    if (jsonObject.getString("status").equals("ok")) {
-                        dialog.dismiss();
-                        ShowToastUtils.showToastMsg(PassWordActivity.this, jsonObject.getString("message"));
-                        Intent intent = new Intent();
-                        intent.setClass(PassWordActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(Response response, int errorCode, Exception e) {
-                dialog.dismiss();
-            }
-        });
-
-
-    }
 
     @OnCheckedChanged({R.id.cb_isVisiable})
     public void OnCheckedChangeListener(CheckBox view, boolean ischanged) {

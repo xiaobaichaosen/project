@@ -49,6 +49,9 @@ import de.greenrobot.event.EventBus;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ *  宿舍环境
+ */
 public class AttachmentActivity extends BaseActivity implements ImagePickerAdapter.OnRecyclerViewItemClickListener{
  
              public static final int IMAGE_ITEM_ADD = -1;
@@ -67,24 +70,31 @@ public class AttachmentActivity extends BaseActivity implements ImagePickerAdapt
      RecyclerView recyclerView;
      CommonBean commonBean = new CommonBean();
              private ImagePickerAdapter adapter;
-     private ArrayList<ImageItem> selImageList; //褰撳墠閫夋嫨鐨勬墍鏈夊浘鐗
-     private int maxImgCount = 8;               //鍏佽®搁€夋嫨鍥剧墖鏈€澶ф暟
+     private ArrayList<ImageItem> selImageList; //
+     private int maxImgCount = 8;
      private CommonBean tempPictureCommonBean;
      private String userId;
- 
-             @Override
+    private String kinderId;
+
+    @Override
      public void setContentView() {
                  setContentView(R.layout.activity_honorarycertificate);
              }
      @Override
      public void init() {
-                 userId=(String) SharedPreferencesUtils.getParam(this, "userId","");
+         userId = (String) SharedPreferencesUtils.getParam(AttachmentActivity.this, "cellphone", "");
+         kinderId = (String) SharedPreferencesUtils.getParam(AttachmentActivity.this, "kinderId", "");
                  setColor(this, getResources().getColor(R.color.appBarColor)); // 鏀瑰彉鐘舵€佹爮鐨勯¢滆壊
                  setTranslucent(this); // 鏀瑰彉鐘舵€佹爮鍙樻垚閫忔槑
-                 title.setText("瀹胯垗鐜¯澧");
+                 title.setText("宿舍环境");
                  tvRecommend.setVisibility(View.VISIBLE);
-                 tvRecommend.setText("淇濆瓨");
+                 tvRecommend.setText("保存");
                  selImageList = new ArrayList<>();
+                 adapter = new ImagePickerAdapter(AttachmentActivity.this, selImageList, maxImgCount);
+                 adapter.setOnItemClickListener(AttachmentActivity.this);
+                 recyclerView.setLayoutManager(new GridLayoutManager(AttachmentActivity.this, 4));
+                 recyclerView.setHasFixedSize(true);
+                 recyclerView.setAdapter(adapter);
                  getKenderDeail(userId);
          
                      }
@@ -94,9 +104,9 @@ public class AttachmentActivity extends BaseActivity implements ImagePickerAdapt
              public void getKenderDeail(String kenderId) {
                  final HttpUtils instance = HttpUtils.getinstance(this);
                  Map map = new HashMap();
-                 map.put("id", kenderId);
-         
-                         instance.post(Constant.KINDERGARTENDETAILBYID, map, new BaseCallback<String>() {
+                 map.put("cellphone", kenderId);
+
+                 instance.post(Constant.SELECTBYCELLPHONE, map, new BaseCallback<String>() {
  
                      @Override
              public void onRequestBefore() {
@@ -124,17 +134,13 @@ public class AttachmentActivity extends BaseActivity implements ImagePickerAdapt
                                                          ArrayList<ImageItem> imageItems = new ArrayList<>();
                                                          for (int i = 0; i < strings.size(); i++) {
                                                                  ImageItem imageItem = new ImageItem();
-                                                                 imageItem.path= Constant.certificateUrl+ userId +"/attachment/" +strings.get(i);
+                                                                 imageItem.path= Constant.certificateUrl+ kinderId +"/attachment/" +strings.get(i);
                                                                  imageItems.add(imageItem);
                                                              }
                                                          selImageList.addAll(imageItems);
-                                 
+                                                             adapter.setImages(selImageList);
                                                              }
-                                                 adapter = new ImagePickerAdapter(AttachmentActivity.this, selImageList, maxImgCount);
-                                                 adapter.setOnItemClickListener(AttachmentActivity.this);
-                                                 recyclerView.setLayoutManager(new GridLayoutManager(AttachmentActivity.this, 4));
-                                                 recyclerView.setHasFixedSize(true);
-                                                 recyclerView.setAdapter(adapter);
+
                              
                                                      } catch (JSONException e) {
                                                  e.printStackTrace();
@@ -283,9 +289,9 @@ public class AttachmentActivity extends BaseActivity implements ImagePickerAdapt
                                  files.add(file);
                              }
                      }
-                 stringStringHashMap.put("kinderId",userId);
+                 stringStringHashMap.put("cellphone",userId);
                  stringStringHashMap.put("imagePath",sb.toString());
-                 HttpUtils.getinstance(this).uploadFiles(Constant.ATTACHMENTUPLOAD,stringStringHashMap,files, new BaseCallback<String>() {
+                 HttpUtils.getinstance(this).uploadFiles("headload",Constant.ATTACHMENTUPLOAD,stringStringHashMap,files, new BaseCallback<String>() {
              @Override
              public void onRequestBefore() {
                                  commonDialog.show();

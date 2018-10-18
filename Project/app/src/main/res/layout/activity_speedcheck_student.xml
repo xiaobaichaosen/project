@@ -106,9 +106,14 @@
                                 android:text="姓名:"
                                 android:textColor="#999999"
                                 android:textSize="@dimen/base_dimen_28" />
-
                             <TextView
-
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="年龄:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+                            <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
@@ -147,6 +152,14 @@
                                 android:text="籍贯:"
                                 android:textColor="#999999"
                                 android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="户口所在地:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
@@ -159,7 +172,7 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="户口所在地:"
+                                android:text="身份证号:"
                                 android:textColor="#999999"
                                 android:textSize="@dimen/base_dimen_28" />
                         </LinearLayout>
@@ -175,16 +188,20 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="贺巧"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
-
+                            <TextView
+                                android:id="@+id/tv_age"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
                             <TextView
                                 android:id="@+id/tv_sex"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="女"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -193,7 +210,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="165cm"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -202,7 +218,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="50kg"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -211,7 +226,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="汉"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -220,25 +234,28 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="河北"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
-
-                            <TextView
-                                android:id="@+id/tv_birth"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="1996-6-2"
-                                android:textColor="#4d4d4d"
-                                android:textSize="@dimen/base_dimen_28" />
-
                             <TextView
                                 android:id="@+id/tv_adress"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="河北省邯郸市"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+                            <TextView
+                                android:id="@+id/tv_birth"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+
+                            <TextView
+                                android:id="@+id/tv_idcard"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -327,6 +344,20 @@
                                 android:text="邮箱地址:"
                                 android:textColor="#999999"
                                 android:textSize="@dimen/base_dimen_28" />
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="紧急联系人:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:text="手机号码:"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/base_dimen_28" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -341,7 +372,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="13854629845"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -350,7 +380,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="13854629878"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -359,7 +388,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="158462"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -368,7 +396,20 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="158462@qq.com"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+                            <TextView
+                                android:id="@+id/tv_urgentContact"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
+                                android:textColor="#4d4d4d"
+                                android:textSize="@dimen/base_dimen_28" />
+                            <TextView
+                                android:id="@+id/tv_urgentCellphone"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/base_dimen_18"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
                         </LinearLayout>
@@ -536,7 +577,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="河北冶金技术学院"
                                 android:textColor="#4d4d4d"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -545,7 +585,6 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/base_dimen_18"
-                                android:text="王颖"
                                 android:textColor="@color/blueColor"
                                 android:textSize="@dimen/base_dimen_28" />
 
@@ -574,24 +613,69 @@
                     android:background="@color/colorPrimary"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:layout_width="@dimen/base_dimen_160"
                         android:layout_height="@dimen/base_dimen_56"
-                        android:paddingTop="@dimen/base_dimen_20"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:background="#ea7e7c"
                         android:gravity="center"
                         android:text="自我评价"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/base_dimen_32" />
+
 
                     <TextView
                         android:id="@+id/tv_selfEvaluate"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/base_dimen_30"
                         android:layout_marginLeft="@dimen/base_dimen_24"
-                        android:text="本人有爱心,有耐心,具有良好的思想品质,善于与人沟通。"
-                        android:textColor="#4d4d4d"
+                        android:layout_marginTop="@dimen/base_dimen_30"
                         android:paddingBottom="@dimen/base_dimen_20"
+                        android:textColor="#4d4d4d"
+                        android:textSize="@dimen/base_dimen_28" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--特长爱好-->
+            <LinearLayout
+                android:id="@+id/tab_ll_selfNb"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="@dimen/base_dimen_166"
+                    android:layout_height="@dimen/base_dimen_8"
+                    android:layout_marginLeft="@dimen/base_dimen_24"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:background="@mipmap/student_title"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="@dimen/base_dimen_160"
+                        android:layout_height="@dimen/base_dimen_56"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:background="#ea7e7c"
+                        android:gravity="center"
+                        android:text="特长爱好"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/base_dimen_32" />
+
+
+                    <TextView
+                        android:id="@+id/tv_selfNb"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_24"
+                        android:layout_marginTop="@dimen/base_dimen_30"
+                        android:paddingBottom="@dimen/base_dimen_20"
+                        android:textColor="#4d4d4d"
                         android:textSize="@dimen/base_dimen_28" />
                 </LinearLayout>
             </LinearLayout>
@@ -627,31 +711,14 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/base_dimen_32" />
 
-                    <LinearLayout
+
+                    <!--荣誉证书内容-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view_honor"
+                        android:paddingLeft="@dimen/base_dimen_24"
+                        android:paddingRight="@dimen/base_dimen_24"
                         android:layout_width="match_parent"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/base_dimen_18"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:padding="@dimen/base_dimen_9"
-                            android:layout_width="@dimen/base_dimen_154"
-                            android:layout_height="@dimen/base_dimen_154"
-                            android:src="@mipmap/shool_pictor" />
-
-                        <ImageView
-                            android:padding="@dimen/base_dimen_9"
-                            android:layout_width="@dimen/base_dimen_154"
-                            android:layout_height="@dimen/base_dimen_154"
-                            android:src="@mipmap/shool_pictor" />
-
-                        <ImageView
-                            android:padding="@dimen/base_dimen_9"
-                            android:layout_width="@dimen/base_dimen_154"
-                            android:layout_height="@dimen/base_dimen_154"
-                            android:src="@mipmap/shool_pictor" />
-                    </LinearLayout>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

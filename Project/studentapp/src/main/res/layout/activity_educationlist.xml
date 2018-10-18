@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/app_title"/>
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="+添加教育背景"
+        android:id="@+id/tv_add"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginRight="@dimen/base_dimen_30"
+        android:background="@color/colorTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_80" />
+
+</LinearLayout>

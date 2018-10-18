@@ -9,8 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-<include
-    layout="@layout/app_title"/>
+        <include
+            layout="@layout/app_title"/>
+        <CheckBox
+            android:id="@+id/cb_selectAll"
+            android:text="全选"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_80" />
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_below="@+id/app_title"
             android:background="@color/colorPrimary"

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_title"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/base_dimen_20"
+            android:layout_centerVertical="true"
+            android:text="排班方式"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:text="每个员工考勤得时间都一样，适用于朝九晚五的固定"
+            android:layout_width="wrap_content"
+            android:paddingTop="@dimen/base_dimen_20"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
+        <View
+            android:background="@color/app_background"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_2"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+       >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤时间"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:text="A班 09:00-17:30"
+            android:id="@+id/tv_signTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:textColor="#808080"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/base_dimen_28" />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_date"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+      >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="考勤日期"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <TextView
+            android:text="每周一、二、三、四、五"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/goright"
+            android:textColor="#808080"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/base_dimen_28" />
+    </RelativeLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginRight="@dimen/base_dimen_30"
+        android:gravity="center_vertical"
+        android:text="设置符合你企业要求的考勤方式"
+        android:textColor="@color/item_content" />
+    <TextView
+        android:id="@+id/tv_newGroup"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:drawableLeft="@mipmap/yijie_normal"
+        android:text="添加办公Wi-Fi"
+        android:gravity="center_vertical"
+        android:textColor="#5666BE"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_90"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/base_dimen_30"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:background="@color/colorTheme"
+            android:gravity="center"
+            android:text="保存考勤组"
+            android:textColor="@color/colorPrimary" />
+    </RelativeLayout>
+</LinearLayout>

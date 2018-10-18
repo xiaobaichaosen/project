@@ -22,10 +22,11 @@
             android:text="河北省石家庄市"
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
-
-
-
         <TextView
+            android:paddingLeft="@dimen/base_dimen_20"
+            android:paddingRight="@dimen/base_dimen_20"
+            android:paddingTop="@dimen/base_dimen_10"
+            android:paddingBottom="@dimen/base_dimen_10"
             android:id="@+id/tv_request"
             style="@style/layout_ww"
             android:layout_alignParentRight="true"
@@ -35,7 +36,6 @@
     </RelativeLayout>
     <RelativeLayout
         android:paddingLeft="@dimen/base_dimen_30"
-        android:layout_marginTop="@dimen/base_dimen_20"
         android:orientation="horizontal"
         style="@style/layout_mw">
         <TextView
@@ -61,10 +61,6 @@
             android:layout_marginRight="@dimen/base_dimen_30"
             android:textColor="@color/item_content"
             android:textSize="@dimen/base_dimen_22"/>
-
-
-
     </RelativeLayout>
-
 
 </LinearLayout>

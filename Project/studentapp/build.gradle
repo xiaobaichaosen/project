@@ -46,7 +46,16 @@ dependencies {
     implementation rootProject.ext.dependencies.ratingbar
     implementation rootProject.ext.dependencies.eventbus
     implementation rootProject.ext.dependencies.imagepicker
+    implementation 'com.youth.banner:banner:1.4.10'  //最新版本
     implementation project(':pickerview')
-      //    compile rootProject.ext.dependencies.supportV4
+    implementation project(':library')
+    compile 'com.teprinciple:updateapputils:1.4'
+    compile 'org.kymjs.kjframe:kjframe:2.4.6.2'
+    //    compile rootProject.ext.dependencies.supportV4
     //      compile rootProject.ext.dependencies.appcompatV7
+    implementation files('libs/Amap_2DMap_V5.2.0_20170627.jar')
+    implementation files('libs/AMap_Location_V3.8.0_20180201.jar')
+    implementation files('libs/AMap_Search_V6.1.0_20180330.jar')
+    implementation files('libs/jcore-android-1.2.0.jar')
+    implementation files('libs/jpush-android-3.1.2.jar')
 }

@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:gravity="center_vertical"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
     android:layout_height="wrap_content">
-
+<ImageView
+    android:src="@mipmap/head"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_marginLeft="@dimen/base_dimen_30"
         android:layout_marginTop="@dimen/base_dimen_20"
         style="@style/layout_mw">
         <TextView
-            android:id="@+id/school_name"
+            android:id="@+id/tv_kindName"
             style="@style/layout_ww"
-
             android:text="国际幼稚园"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
@@ -24,14 +30,13 @@
             android:layout_marginRight="@dimen/base_dimen_30"
             android:id="@+id/tv_data"
             style="@style/layout_ww"
-
             android:text="2017/09/28"
             android:textColor="#999999"
             android:textSize="@dimen/base_dimen_22" />
 
     </RelativeLayout>
-
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/rb_star"
             android:progressTint="#f06764"
             android:isIndicator="true"
             android:layout_marginLeft="@dimen/base_dimen_30"
@@ -40,7 +45,5 @@
             android:numStars="5"
             android:rating="2"
             style="@style/Widget.MaterialRatingBar.RatingBar.Small" />
-
-
-
+    </LinearLayout>
 </LinearLayout>

@@ -69,6 +69,19 @@ public class StudentInfo implements Serializable {
      */
     private String address;
 
+    public Integer getStuAge() {
+        return stuAge;
+    }
+
+    public void setStuAge(Integer stuAge) {
+        this.stuAge = stuAge;
+    }
+
+    /**
+     * 学生年龄
+     */
+
+    private Integer stuAge;
     /**
      * 创建人
      */

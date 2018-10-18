@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.yijie.com.studentapp.utils.ViewUtils;
+import com.yijie.com.studentapp.view.CustomDialog;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -21,7 +24,8 @@ import butterknife.Unbinder;
 
 public abstract  class BaseActivity extends AppCompatActivity {
     Unbinder bind;
-    public Dialog dialog;
+    protected CustomDialog commonDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,9 @@ public abstract  class BaseActivity extends AppCompatActivity {
         AppManager.getAppManager().addActivity(this);
         setContentView();
         ButterKnife.bind(this);
+        commonDialog = ViewUtils.getCustomDialog(this);
+
+
         bind = ButterKnife.bind(this);
 
 

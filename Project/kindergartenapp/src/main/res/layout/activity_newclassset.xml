@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_title"
+        />
+<android.support.v4.widget.NestedScrollView
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/base_dimen_30"
+        android:layout_height="@dimen/base_dimen_86"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="班次名称"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <EditText
+            android:id="@+id/SignName"
+            android:hint="请输入班次名称"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:padding="@dimen/base_dimen_22"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/base_dimen_28" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_80"
+        android:layout_marginLeft="@dimen/base_dimen_22"
+        android:gravity="center_vertical"
+        android:text="最多6个字符(中英文或数字),首字符会显示在考勤月历中"
+        android:textColor="@color/item_content"
+        android:textSize="@dimen/base_dimen_24" />
+
+    <TextView
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_80"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:gravity="center_vertical"
+        android:text="设置该班次一天内上下班次数"
+        android:textSize="@dimen/base_dimen_24" />
+    <RadioGroup
+        android:id="@+id/main_tab_RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_96"
+        android:layout_gravity="bottom"
+        android:background="#F7F7F8"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:background="@drawable/edittext_shap"
+            android:layout_margin="@dimen/base_dimen_20"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/radio_one"
+            style="@style/main_tab"
+            android:text="1天1次上下班"
+            />
+
+        <RadioButton
+            android:background="@drawable/edittext_shap"
+            android:layout_margin="@dimen/base_dimen_20"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/radio_two"
+            style="@style/main_tab"
+            android:text="1天2次上下班"
+            />
+
+    </RadioGroup>
+<!--打卡设置-->
+
+        <RelativeLayout
+            android:id="@+id/rl_oneup"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="上班"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_oneup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_onedown"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="下班"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_onedown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_twoup"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_40"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="上班"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_twoup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_twodown"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="下班"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_twodown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_signSet"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="打卡时段设置"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/swith_timeSet"
+                android:paddingLeft="@dimen/base_dimen_20"
+                android:paddingTop="@dimen/base_dimen_8"
+                android:paddingBottom="@dimen/base_dimen_8"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/base_dimen_30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:checked="false"
+                app:kswAnimationDuration="300"
+                app:kswBackDrawable="@drawable/ios_back_drawable"
+                app:kswBackMeasureRatio="1.4"
+                app:kswThumbDrawable="@drawable/ios_thumb_selector"
+                app:kswThumbMarginBottom="-8dp"
+                app:kswThumbMarginLeft="-5dp"
+                app:kswThumbMarginRight="-5dp"
+                app:kswThumbMarginTop="-2.5dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_start"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="上班最早打卡时间"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未设置"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_end"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="下班最晚打卡时间"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未设置"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_later"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="设置严重迟到"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_later"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30分种"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_out"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/base_dimen_2"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="设置矿工"
+                android:textColor="@color/item_title"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:id="@+id/tv_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="60分钟"
+                android:drawableRight="@mipmap/goright"
+                android:textColor="@color/item_content"
+                android:padding="@dimen/base_dimen_22"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/base_dimen_28" />
+        </RelativeLayout>
+<!--打卡设置-->
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_weight="0"
+        android:text="保存"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginBottom="@dimen/base_dimen_30"
+        android:layout_marginRight="@dimen/base_dimen_30"
+        android:background="@color/colorTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+</LinearLayout>

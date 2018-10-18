@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_background"
+
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/tv_newGroup"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="@dimen/base_dimen_30"
+    android:paddingRight="@dimen/base_dimen_30"
+    android:drawableLeft="@mipmap/yijie_normal"
+    android:text="新增考勤组"
+    android:gravity="center_vertical"
+    android:textColor="#5666BE"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_90" />
+    <TextView
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:text="考勤规则相同得人设置到同一考勤组,方便统计"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></android.support.v7.widget.RecyclerView>
+</LinearLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
     android:paddingLeft="@dimen/base_dimen_30"
     android:paddingRight="@dimen/base_dimen_30"
     android:layout_height="@dimen/base_dimen_120">

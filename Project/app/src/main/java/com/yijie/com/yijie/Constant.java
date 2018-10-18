@@ -12,8 +12,12 @@ public class Constant {
     //me
 
     public static final  String baseUrl="http://192.168.0.163:8083";
+// public static final  String baseUrl="http://rm-bp154lt13smxv388yxo.mysql.rds.aliyuncs.com:3306";
     //图片服务器
    public static final  String basepicUrl="http://192.168.0.163:8089";
+   //学生图片地址
+   //个人图片
+   public static final  String  infoUrl=basepicUrl+"/yijie/upload/student/student_user_id_";
     //获取验证码接口
     public static final  String getRegistCodeUrl=baseUrl+"/getRegistCode";
     public static final  String sendSmsCode=baseUrl+"/user/sendSmsCode";

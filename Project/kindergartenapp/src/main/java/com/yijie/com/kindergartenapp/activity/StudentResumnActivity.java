@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
+import com.yijie.com.kindergartenapp.adapter.InfoCardAdapter;
 import com.yijie.com.kindergartenapp.adapter.LoadMoreEducationAdapter;
 import com.yijie.com.kindergartenapp.adapter.LoadMoreWorkAdapter;
 import com.yijie.com.kindergartenapp.base.BaseActivity;
@@ -32,11 +34,12 @@ import com.yijie.com.kindergartenapp.utils.LogUtil;
 import com.yijie.com.kindergartenapp.utils.ShowToastUtils;
 import com.yijie.com.kindergartenapp.utils.ViewUtils;
 import com.yijie.com.kindergartenapp.view.CommomDialog;
-import com.yijie.com.kindergartenapp.view.LoadingLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,13 +124,17 @@ public class StudentResumnActivity extends BaseActivity {
     int companionId;
     String stuName;
     @BindView(R.id.loading)
-    RelativeLayout loading;
+    LinearLayout loading;
     @BindView(R.id.tv_urgentcontact)
     TextView tvUrgentcontact;
     @BindView(R.id.tv_urgentphone)
     TextView tvUrgentphone;
+    @BindView(R.id.recycler_view_honor)
+    RecyclerView recyclerViewHonor;
     private StatusLayoutManager statusLayoutManager;
     private int kinderId;
+    private ArrayList<String> infoList = new ArrayList<>();
+    private ArrayList<String> honorList = new ArrayList<>();
 
     @Override
     public void setContentView() {
@@ -140,7 +147,7 @@ public class StudentResumnActivity extends BaseActivity {
         statusLayoutManager = new StatusLayoutManager.Builder(loading)
                 .setOnStatusChildClickListener(new OnStatusChildClickListener() {
                     @Override
-                    public void onEmptyChildClick (View view) {
+                    public void onEmptyChildClick(View view) {
                         statusLayoutManager.showLoadingLayout();
                         getResumnDetail(studentUserId);
                     }
@@ -160,11 +167,25 @@ public class StudentResumnActivity extends BaseActivity {
                 .build();
         studentUserId = getIntent().getExtras().getInt("studentUserId");
         kinderNeedId = getIntent().getExtras().getInt("kinderNeedId");
+        boolean isHideen = getIntent().getBooleanExtra("isHideen", false);
+        if (isHideen){
+            llCommit.setVisibility(View.GONE);
+        }else {
+            llCommit.setVisibility(View.VISIBLE);
+        }
         kinderId = getIntent().getExtras().getInt("kinderId");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         title.setText("简历");
         getResumnDetail(studentUserId);
+        //设置布局管理器
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        LinearLayoutManager horlinearLayoutManager = new LinearLayoutManager(this);
+        horlinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewHonor.setLayoutManager(horlinearLayoutManager);
     }
 
     /**
@@ -172,7 +193,7 @@ public class StudentResumnActivity extends BaseActivity {
      *
      * @param id
      */
-    private void getResumnDetail(int id) {
+    private void getResumnDetail(final  int id) {
         final HttpUtils instance = HttpUtils.getinstance(StudentResumnActivity.this);
         Map map = new HashMap();
         map.put("studentUserId", id + "");
@@ -187,7 +208,7 @@ public class StudentResumnActivity extends BaseActivity {
             @Override
             public void onFailure(Request request, Exception e) {
                 commonDialog.dismiss();
-               statusLayoutManager.showErrorLayout();
+                statusLayoutManager.showErrorLayout();
             }
 
             @Override
@@ -206,7 +227,7 @@ public class StudentResumnActivity extends BaseActivity {
                     tvAge.setText(studentInfo.getStuAge() + "");
                     tvSex.setText(studentInfo.getSex());
                     tvHeight.setText(studentInfo.getHeight() + "");
-                    tvWeight.setText(studentInfo.getWeight() + "");
+                    tvWeight.setText(Math.round(studentInfo.getWeight()) + "");
                     tvNation.setText(studentInfo.getNation());
                     tvPlace.setText(studentInfo.getPlace());
                     tvLocation.setText(studentInfo.getAddress());
@@ -239,16 +260,32 @@ public class StudentResumnActivity extends BaseActivity {
                     //相关意向
                     StudentResume studentResume = studentResumeDetail.getStudentResume();
                     tvExpectWorkPlace.setText(studentResume.getExpectWorkPlace());
-
                     expectPartener = studentResume.getExpectPartener();
-
                     companionId = studentResume.getCompanionId();
                     tvCompanionName.setText(expectPartener);
                     //自我评价
                     tvSelfEvaluate.setText(studentResume.getSelfEvaluate());
                     //荣誉证书
-                    //TODO===============
-
+                    String img = studentInfo.getPic();
+                    if (!"".equals(img) && null != img) {
+                        String[] split = img.split(";");
+                        List<String> strings = Arrays.asList(split);
+                        for (int i = 0; i < strings.size(); i++) {
+                            infoList.add(strings.get(i));
+                        }
+                        recyclerView.setAdapter(new InfoCardAdapter(StudentResumnActivity.this, infoList, id + "", "info", "info"));
+                    }
+                    if (!TextUtils.isEmpty(studentResume.getCertificate())) {
+                        String img1 = studentResume.getCertificate();
+                        if (!"".equals(img1) && null != img1) {
+                            String[] split = img1.split(";");
+                            List<String> strings = Arrays.asList(split);
+                            for (int i = 0; i < strings.size(); i++) {
+                                honorList.add(strings.get(i));
+                            }
+                        }
+                        recyclerViewHonor.setAdapter(new InfoCardAdapter(StudentResumnActivity.this, honorList, id + "", "certificate", "certificate"));
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -275,9 +312,10 @@ public class StudentResumnActivity extends BaseActivity {
         Map map = new HashMap();
         map.put("studentUserId", studentUserId + "");
         map.put("kinderNeedId", kinderNeedId + "");
+        map.put("kinderId", kinderId+"" );
         map.put("companionId", companionId + "");
         map.put("state", state + "");
-        map.put("alias", kinderId+"");
+        map.put("alias", kinderId + "");
         instance.post(Constant.RESUMESTATEUPDATE, map, new BaseCallback<String>() {
 
             @Override
@@ -337,8 +375,9 @@ public class StudentResumnActivity extends BaseActivity {
                 if (null != expectPartener) {
                     String str = " 需要同<font color='#FF0000'>" + expectPartener + "</font>一同放弃";
                     new CommomDialog(StudentResumnActivity.this, R.style.dialog, str, new CommomDialog.OnCloseListener() {
+
                         @Override
-                        public void onClick(Dialog dialog, boolean confirm) {
+                        public void onClick(Dialog dialog, boolean confirm, String sContent) {
                             if (confirm) {
                                 updateResumnStatus(studentUserId, kinderNeedId, companionId, 3);
                                 dialog.dismiss();
@@ -362,8 +401,10 @@ public class StudentResumnActivity extends BaseActivity {
                 if (null != expectPartener) {
                     String str = " 需要同<font color='#FF0000'>" + expectPartener + "</font>一同接收";
                     new CommomDialog(StudentResumnActivity.this, R.style.dialog, str, new CommomDialog.OnCloseListener() {
+
+
                         @Override
-                        public void onClick(Dialog dialog, boolean confirm) {
+                        public void onClick(Dialog dialog, boolean confirm, String sContent) {
                             if (confirm) {
                                 updateResumnStatus(studentUserId, kinderNeedId, companionId, 2);
                                 dialog.dismiss();
@@ -382,7 +423,7 @@ public class StudentResumnActivity extends BaseActivity {
                     })
                             .setTitle("选择【" + stuName + "】的同时").setTitleColor(getResources().getColor(R.color.item_title)).show();
                 } else {
-                    updateResumnStatus(studentUserId, kinderNeedId, 0, 2);
+                    updateResumnStatus(studentUserId, kinderNeedId, Integer.MAX_VALUE, 2);
                 }
                 break;
             case R.id.tv_companionName:

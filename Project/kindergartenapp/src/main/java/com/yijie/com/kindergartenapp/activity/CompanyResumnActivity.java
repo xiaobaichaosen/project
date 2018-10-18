@@ -299,8 +299,9 @@ public class CompanyResumnActivity extends BaseActivity {
                 if (null != expectPartener) {
                     String str = " 需要同<font color='#FF0000'>" + expectPartener + "</font>一同放弃";
                     new CommomDialog(CompanyResumnActivity.this, R.style.dialog, str, new CommomDialog.OnCloseListener() {
+
                         @Override
-                        public void onClick(Dialog dialog, boolean confirm) {
+                        public void onClick(Dialog dialog, boolean confirm, String sContent) {
                             if (confirm) {
                                 updateResumnStatus(studentUserId, kinderNeedId, companionId, 3);
                                 dialog.dismiss();
@@ -322,8 +323,9 @@ public class CompanyResumnActivity extends BaseActivity {
                 if (null != expectPartener) {
                     String str = " 需要同<font color='#FF0000'>" + expectPartener + "</font>一同接收";
                     new CommomDialog(CompanyResumnActivity.this, R.style.dialog, str, new CommomDialog.OnCloseListener() {
+
                         @Override
-                        public void onClick(Dialog dialog, boolean confirm) {
+                        public void onClick(Dialog dialog, boolean confirm, String sContent) {
                             if (confirm) {
                                 updateResumnStatus(studentUserId, kinderNeedId, companionId, 2);
                                 dialog.dismiss();

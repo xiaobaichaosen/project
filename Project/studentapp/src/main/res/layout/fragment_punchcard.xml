@@ -2,11 +2,13 @@
 <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:android="http://schemas.android.com/apk/res/android" >
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent">
       <LinearLayout
           android:paddingLeft="@dimen/base_dimen_30"
@@ -63,32 +65,5 @@
     android:paddingRight="@dimen/base_dimen_30"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
-
-     <com.yijie.com.studentapp.view.CircleRelativeLayout
-         android:id="@+id/rl_punchcard"
-         android:layout_gravity="center_horizontal"
-         app:background_color="@color/colorTheme"
-         android:orientation="vertical"
-         android:layout_width="@dimen/base_dimen_200"
-         android:gravity="center"
-         android:layout_height="@dimen/base_dimen_200">
-
-         <TextView
-             android:text="上班打卡"
-             android:textColor="@color/colorPrimary"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content" />
-         <TextView
-             android:text="14:14"
-             android:textColor="@color/colorPrimary"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content" />
-     </com.yijie.com.studentapp.view.CircleRelativeLayout>
-    <TextView
-        android:text="已进入Wi-Fi考勤范围:YJ"
-        android:layout_marginTop="@dimen/base_dimen_40"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -6,12 +6,16 @@ import android.view.View;
 
 import com.lvfq.pickerview.TimePickerView;
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.view.CustomDialog;
+import com.yijie.com.studentapp.view.MyPopuList;
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ViewUtils {
+
     /**
      * 获取控件的高度
      */
@@ -38,7 +42,19 @@ public class ViewUtils {
         view.measure(w, h);
     }
 
+    /**
+     * 弹出底部滚轮选择
+     *
+     * @param context
+     * @param list
+     * @param click
+     */
+    public static void alertBottomWheelOption(final Context context, ArrayList<?> list, final OnWheelViewClick click) {
+        MyPopuList myPopuList = new MyPopuList(context, (ArrayList<String>) list,click);
+        myPopuList.show();
 
+
+    }
 
     /**
      * 弹出时间选择
@@ -88,5 +104,8 @@ public class ViewUtils {
         progressDialog.setMessage("拼命加载中，请稍后。。。");
         return progressDialog;
     }
-
+    public static CustomDialog getCustomDialog (Context context){
+        CustomDialog progressDialog=new CustomDialog(context, R.style.CustomDialog);
+        return progressDialog;
+    }
 }

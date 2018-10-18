@@ -22,19 +22,11 @@ import android.widget.Toast;
 
 import com.lvfq.pickerview.TimePickerView;
 import com.yijie.com.studentapp.R;
-import com.yijie.com.studentapp.activity.photo.CameraActivity;
 import com.yijie.com.studentapp.adapter.LoadMorePunchAdapter;
 import com.yijie.com.studentapp.base.BaseFragment;
-import com.yijie.com.studentapp.fragment.school.StudentBean;
-import com.yijie.com.studentapp.utils.BaseCallback;
-import com.yijie.com.studentapp.utils.HttpUtils;
-import com.yijie.com.studentapp.utils.LogUtil;
+import com.yijie.com.studentapp.fragment.yijie.StudentBean;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
 import com.yijie.com.studentapp.utils.ViewUtils;
-import com.yijie.com.studentapp.view.CircleRelativeLayout;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +35,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * 打卡碎片
@@ -52,8 +42,7 @@ import okhttp3.Response;
 public class PunchCardFragment extends BaseFragment {
     @BindView(R.id.tv_date)
     TextView tvDate;
-    @BindView(R.id.rl_punchcard)
-    CircleRelativeLayout rlPunchcard;
+
     Unbinder unbinder;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -64,10 +53,6 @@ public class PunchCardFragment extends BaseFragment {
     private List<StudentBean> dataList = new ArrayList<>();
     private String city;
     private String district;
-    @Override
-    protected void lazyLoad() {
-
-    }
 
     @Override
     protected int getLayoutId() {
@@ -77,12 +62,17 @@ public class PunchCardFragment extends BaseFragment {
     private void getData() {
         //String.valueOf(letter)
         char letter = 'A';
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
 
             dataList.add(new StudentBean(1, String.valueOf(letter)));
 
             letter++;
         }
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override
@@ -157,42 +147,42 @@ public class PunchCardFragment extends BaseFragment {
         String latitude = location.getLatitude() + "";
         String longitude = location.getLongitude() + "";
         String url = "http://api.map.baidu.com/geocoder/v2/?ak=jx1GmOGTvg7au8tzR7gtKI2HpPmxgdrK&callback=renderReverse&location=" + latitude + "," + longitude + "&output=json&pois=0";
-        HttpUtils instance = HttpUtils.getinstance();
-        instance.get(url, new BaseCallback<String>(
-
-        ) {
-            @Override
-            public void onRequestBefore() {
-
-            }
-
-            @Override
-            public void onFailure(Request request, Exception e) {
-
-            }
-
-            @Override
-            public void onSuccess(Response response, String str) {
-                try {
-                    LogUtil.e(str);
-                    str = str.replace("renderReverse&&renderReverse", "");
-                    str = str.replace("(", "");
-                    str = str.replace(")", "");
-                    JSONObject jsonObject = new JSONObject(str);
-                    JSONObject address = jsonObject.getJSONObject("result");
-
-                    city = address.getString("formatted_address");
-                    district = address.getString("sematic_description");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(Response response, int errorCode, Exception e) {
-
-            }
-        });
+//        HttpUtils instance = HttpUtils.getinstance();
+//        instance.get(url, new BaseCallback<String>(
+//
+//        ) {
+//            @Override
+//            public void onRequestBefore() {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Request request, Exception e) {
+//
+//            }
+//
+//            @Override
+//            public void onSuccess(Response response, String str) {
+//                try {
+//                    LogUtil.e(str);
+//                    str = str.replace("renderReverse&&renderReverse", "");
+//                    str = str.replace("(", "");
+//                    str = str.replace(")", "");
+//                    JSONObject jsonObject = new JSONObject(str);
+//                    JSONObject address = jsonObject.getJSONObject("result");
+//
+//                    city = address.getString("formatted_address");
+//                    district = address.getString("sematic_description");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Response response, int errorCode, Exception e) {
+//
+//            }
+//        });
 
     }
 
@@ -227,7 +217,7 @@ public class PunchCardFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_date, R.id.rl_punchcard})
+    @OnClick({R.id.tv_date})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_date:
@@ -240,12 +230,12 @@ public class PunchCardFragment extends BaseFragment {
                     }
                 });
                 break;
-            case R.id.rl_punchcard:
-                Intent intent = new Intent();
-                intent.putExtra("adress",city+district);
-                intent.setClass(mActivity, CameraActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.rl_punchcard:
+//                Intent intent = new Intent();
+//                intent.putExtra("adress",city+district);
+//                intent.setClass(mActivity, CameraActivity.class);
+//                startActivity(intent);
+//                break;
         }
     }
 }

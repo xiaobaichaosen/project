@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         setTranslucent(this); // 改变状态栏变成透明
         InitViewPager();
         mainTabRadioGroup.setOnCheckedChangeListener(this);
-        mainTabRadioGroup.check(R.id.radio_discover);
+        mainTabRadioGroup.check(R.id.radio_yijie);
 //        radioDiscover.setBadgeNumber(2);
 
 

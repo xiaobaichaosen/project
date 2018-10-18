@@ -32,6 +32,11 @@ private String image;
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void initData() {
         isPrepared = true;
         final StudentFragment studentFragment = new StudentFragment();
@@ -59,13 +64,6 @@ private String image;
     }
 
 
-    @Override
-    protected void lazyLoad() {
-//        if (!isPrepared || !isVisible)
-//            return;
-//        //填充各控件的数据
-//        ShowToastUtils.showToastMsg(mActivity,"提示信息");
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

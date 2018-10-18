@@ -52,6 +52,7 @@ public class CameraPreview extends ViewGroup implements SurfaceHolder.Callback, 
 		mContext = context;
 		mSurfaceView = sv;
 		mHolder = mSurfaceView.getHolder();
+
 		mHolder.addCallback(this);
 		mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 		mHolder.setKeepScreenOn(true);

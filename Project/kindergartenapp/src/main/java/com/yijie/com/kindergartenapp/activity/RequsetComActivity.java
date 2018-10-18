@@ -1,5 +1,6 @@
 package com.yijie.com.kindergartenapp.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -154,11 +155,11 @@ public class RequsetComActivity extends BaseActivity {
                 //发布需求
                 final HttpUtils instance = HttpUtils.getinstance(RequsetComActivity.this);
                 KindergartenNeed kindergartenNeed = new KindergartenNeed();
-                String userId = (String) SharedPreferencesUtils.getParam(RequsetComActivity.this, "userId", "");
+                String kinderId = (String) SharedPreferencesUtils.getParam(RequsetComActivity.this, "kinderId", "");
                 if (kenderNeedId != 0) {
                     kindergartenNeed.setId(kenderNeedId);
                 }
-                kindergartenNeed.setKinderId(Integer.parseInt(userId));
+                kindergartenNeed.setKinderId(Integer.parseInt(kinderId));
                 kindergartenNeed.setSchoolId(schoolId);
                 kindergartenNeed.setSchoolPracticeId(projectId);
                 //园所设定工资
@@ -199,9 +200,16 @@ public class RequsetComActivity extends BaseActivity {
                             String resode = jsonObject.getString("rescode");
                             if (resode.equals("200")) {
                                 ShowToastUtils.showToastMsg(RequsetComActivity.this, "发布成功!");
-                                RequstActivity.instance.finish();
-                                RequestDetailActivity.instance.finish();
+                                Activity instance1 = RequstActivity.instance;
+                                if (null!=instance1){
+                                    instance1.finish();
+                                }
+                                Activity instance2 = RequestDetailActivity.instance;
+                                if (null!=instance2){
+                                    instance2.finish();
+                                }
                                 finish();
+
                             } else if (resode.equals("500")) {
                                 ShowToastUtils.showToastMsg(RequsetComActivity.this, "请完善信息后提需求!");
 

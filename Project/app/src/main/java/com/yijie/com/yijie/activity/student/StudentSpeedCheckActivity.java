@@ -4,18 +4,17 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -24,6 +23,7 @@ import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.recommend.RecommendActivity;
 import com.yijie.com.yijie.activity.student.adapter.GalleryAdapter;
+import com.yijie.com.yijie.adapter.InfoCardAdapter;
 import com.yijie.com.yijie.adapter.LoadMoreEducationAdapter;
 import com.yijie.com.yijie.adapter.LoadMoreWorkAdapter;
 import com.yijie.com.yijie.base.BaseActivity;
@@ -37,7 +37,6 @@ import com.yijie.com.yijie.bean.StudentWorkDue;
 import com.yijie.com.yijie.utils.BaseCallback;
 import com.yijie.com.yijie.utils.HttpUtils;
 import com.yijie.com.yijie.utils.LogUtil;
-import com.yijie.com.yijie.utils.PhotoActivityForHor;
 import com.yijie.com.yijie.utils.ShowToastUtils;
 import com.yijie.com.yijie.utils.UIUtils;
 import com.yijie.com.yijie.utils.ViewUtils;
@@ -60,6 +59,7 @@ import okhttp3.Response;
 
 /**
  * Created by 奕杰平台 on 2018/5/3.
+ * 快速审核
  */
 
 public class StudentSpeedCheckActivity extends BaseActivity
@@ -144,6 +144,20 @@ public class StudentSpeedCheckActivity extends BaseActivity
     LinearLayout tabLlIntent;
     @BindView(R.id.tv_selfEvaluate)
     TextView tvSelfEvaluate;
+    @BindView(R.id.tv_age)
+    TextView tvAge;
+    @BindView(R.id.recycler_view_honor)
+    RecyclerView recyclerViewHonor;
+    @BindView(R.id.tv_idcard)
+    TextView tvIdcard;
+    @BindView(R.id.tv_urgentContact)
+    TextView tvUrgentContact;
+    @BindView(R.id.tv_urgentCellphone)
+    TextView tvUrgentCellphone;
+    @BindView(R.id.tv_selfNb)
+    TextView tvSelfNb;
+    @BindView(R.id.tab_ll_selfNb)
+    LinearLayout tabLlSelfNb;
     private GalleryAdapter mAdapter;
     private int currentIndex = 0;
     private List<String> mDatas;
@@ -164,21 +178,16 @@ public class StudentSpeedCheckActivity extends BaseActivity
      */
     private boolean content2NavigateFlagInnerLock = false;
     // 头部导航标签
-    private String[] navigationTag = {"个人信息", "联系方式", "教育背景", "工作经历", "相关意向", "自我评价", "荣誉证书"};
-    private String[] mUrls = new String[]{
+    private List<String> navigationTag = new ArrayList<>();
 
-            "http://d.hiphotos.baidu.com/image/h%3D200/sign=201258cbcd80653864eaa313a7dca115/ca1349540923dd54e54f7aedd609b3de9c824873.jpg",
-            "http://img5.imgtn.bdimg.com/it/u=2437456944,1135705439&fm=21&gp=0.jpg",
-            "http://img2.imgtn.bdimg.com/it/u=3251359643,4211266111&fm=21&gp=0.jpg",
-            "http://img4.duitang.com/uploads/item/201506/11/20150611000809_yFe5Z.jpeg",
-            "http://img5.imgtn.bdimg.com/it/u=1717647885,4193212272&fm=21&gp=0.jpg",
-    };
-    private  List<Integer> idList;
+    private List<Integer> idList;
     private StudentResume studentResume;
+    private ArrayList<String> infoList = new ArrayList<>();
+    private ArrayList<String> honorList = new ArrayList<>();
+
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_speedcheck_student);
-
     }
 
     @Override
@@ -189,7 +198,6 @@ public class StudentSpeedCheckActivity extends BaseActivity
         actionItem.setVisibility(View.VISIBLE);
         ivSee.setVisibility(View.VISIBLE);
         ivSee.setBackgroundResource(R.mipmap.setting);
-
         idList = (List<Integer>) getIntent().getIntegerArrayListExtra("idList");
         LogUtil.e("idList====================" + idList);
         getResumnDetail(idList.get(currentIndex));
@@ -199,35 +207,24 @@ public class StudentSpeedCheckActivity extends BaseActivity
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-        //设置适配器
-        mAdapter = new GalleryAdapter(this, mDatas);
-        mRecyclerView.setAdapter(mAdapter);
 
+        LinearLayoutManager horlinearLayoutManager = new LinearLayoutManager(this);
+        horlinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewHonor.setLayoutManager(horlinearLayoutManager);
         WindowManager manager = this.getWindowManager();
         DisplayMetrics outMetrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(outMetrics);
         final int width = outMetrics.widthPixels;
         final int height = outMetrics.heightPixels;
-        mAdapter.setOnItemClickListener(new GalleryAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(StudentSpeedCheckActivity.this, PhotoActivityForHor.class);
-                ArrayList<Rect> rects = new ArrayList<>();
-                Rect rect = new Rect();
-                view.getGlobalVisibleRect(rect);
-                intent.putExtra("imgUrl", mUrls[position]);
-                intent.putExtra("startBounds", rect);
-                startActivity(intent);
 
-            }
-        });
     }
+
     /**
      * 查询简历
      *
      * @param id
      */
-    private void getResumnDetail(int id) {
+    private void getResumnDetail(final int id) {
         final HttpUtils instance = HttpUtils.getinstance(StudentSpeedCheckActivity.this);
         final ProgressDialog progressDialog = ViewUtils.getProgressDialog(StudentSpeedCheckActivity.this);
         Map map = new HashMap();
@@ -255,51 +252,124 @@ public class StudentSpeedCheckActivity extends BaseActivity
                     StudentResumeDetail studentResumeDetail = gson.fromJson(data.toString(), StudentResumeDetail.class);
                     //个人信息
                     StudentInfo studentInfo = studentResumeDetail.getStudentInfo();
-                    tvStuName.setText(studentInfo.getStuName());
-                    tvSex.setText(studentInfo.getSex());
-                    tvHeight.setText(studentInfo.getHeight() + "");
-                    tvWeight.setText(studentInfo.getWeight() + "");
-                    tvNation.setText(studentInfo.getNation());
-                    tvPlace.setText(studentInfo.getPlace());
-                    tvBirth.setText(studentInfo.getBirth() + "");
+                    if (null != studentInfo) {
+                        tvStuName.setText(studentInfo.getStuName());
+                        tvSex.setText(studentInfo.getSex());
+                        tvHeight.setText(studentInfo.getHeight() + "");
+                        tvWeight.setText(Math.round(studentInfo.getWeight()) + "");
+                        tvNation.setText(studentInfo.getNation());
+                        tvPlace.setText(studentInfo.getPlace());
+                        tvAge.setText(studentInfo.getStuAge() + "");
+                        tvBirth.setText(studentInfo.getBirth() + "");
+                        tvAdress.setText(studentInfo.getAddress());
+                        tvIdcard.setText(studentInfo.getIdCard());
+                        navigationTag.add("个人信息");
+                    } else {
+                        tabLlPersonalInformation.setVisibility(View.GONE);
+                    }
                     //联系方式
                     StudentContact studentContact = studentResumeDetail.getStudentContact();
-                    tvCellphone.setText(studentContact.getCellphone());
-                    tvWechat.setText(studentContact.getWechat());
-                    tvQq.setText(studentContact.getQq());
-                    tvEmail.setText(studentContact.getEmail());
+                    if (null != studentContact) {
+                        tvCellphone.setText(studentContact.getCellphone());
+                        tvWechat.setText(studentContact.getWechat());
+                        tvQq.setText(studentContact.getQq());
+                        tvEmail.setText(studentContact.getEmail());
+                        tvUrgentContact.setText(studentContact.getUrgentContact());
+                        tvUrgentCellphone.setText(studentContact.getUrgentCellphone());
+                        navigationTag.add("联系方式");
+                    } else {
+                        tabLlContact.setVisibility(View.GONE);
+                    }
+
                     //教育经历
                     List<StudentEducation> studentEducation = studentResumeDetail.getStudentEducation();
-                    LoadMoreEducationAdapter loadMoreEducationAdapter = new LoadMoreEducationAdapter(studentEducation);
-                    educationRecyclerView.addItemDecoration(new DividerItemDecoration(StudentSpeedCheckActivity.this, LinearLayoutManager.VERTICAL));
-                    LinearLayoutManager educationManager = new LinearLayoutManager(StudentSpeedCheckActivity.this);
-                    educationRecyclerView.setLayoutManager(educationManager);
-                    educationRecyclerView.setNestedScrollingEnabled(false);
-                    educationRecyclerView.setAdapter(loadMoreEducationAdapter);
+                    if (studentEducation.size() > 0) {
+                        LoadMoreEducationAdapter loadMoreEducationAdapter = new LoadMoreEducationAdapter(studentEducation);
+                        educationRecyclerView.addItemDecoration(new DividerItemDecoration(StudentSpeedCheckActivity.this, LinearLayoutManager.VERTICAL));
+                        LinearLayoutManager educationManager = new LinearLayoutManager(StudentSpeedCheckActivity.this);
+                        educationRecyclerView.setLayoutManager(educationManager);
+                        educationRecyclerView.setNestedScrollingEnabled(false);
+                        educationRecyclerView.setAdapter(loadMoreEducationAdapter);
+                        navigationTag.add("教育背景");
+                    } else {
+                        tabLlDucationBackground.setVisibility(View.GONE);
+                    }
+
                     //工作经历
                     List<StudentWorkDue> studentWorkDue = studentResumeDetail.getStudentWorkDue();
-                    LoadMoreWorkAdapter loadMoreWorkAdapter = new LoadMoreWorkAdapter(studentWorkDue);
-                    workRecyclerView.addItemDecoration(new DividerItemDecoration(StudentSpeedCheckActivity.this, LinearLayoutManager.VERTICAL));
-                    LinearLayoutManager workManager = new LinearLayoutManager(StudentSpeedCheckActivity.this);
-                    workRecyclerView.setLayoutManager(workManager);
-                    workRecyclerView.setNestedScrollingEnabled(false);
-                    workRecyclerView.setAdapter(loadMoreWorkAdapter);
-                    //相关意向
-
+                    if (studentWorkDue.size() > 0) {
+                        LoadMoreWorkAdapter loadMoreWorkAdapter = new LoadMoreWorkAdapter(studentWorkDue);
+                        workRecyclerView.addItemDecoration(new DividerItemDecoration(StudentSpeedCheckActivity.this, LinearLayoutManager.VERTICAL));
+                        LinearLayoutManager workManager = new LinearLayoutManager(StudentSpeedCheckActivity.this);
+                        workRecyclerView.setLayoutManager(workManager);
+                        workRecyclerView.setNestedScrollingEnabled(false);
+                        workRecyclerView.setAdapter(loadMoreWorkAdapter);
+                        navigationTag.add("工作经历");
+                    } else {
+                        tabLlWorkExprice.setVisibility(View.GONE);
+                    }
                     studentResume = studentResumeDetail.getStudentResume();
-                    tvExpectWorkPlace.setText(studentResume.getExpectWorkPlace());
+                    if (null != studentResume) {
+                        //相关意向
+                        tvExpectWorkPlace.setText(studentResume.getExpectWorkPlace());
+                        String expectPartener = studentResume.getExpectPartener();
+                        tvCompanionName.setText(expectPartener);
+                        if (!TextUtils.isEmpty(studentResume.getExpectWorkPlace()) || !TextUtils.isEmpty(expectPartener)) {
+                            navigationTag.add("相关意向");
+                        } else {
+                            tabLlIntent.setVisibility(View.GONE);
+                        }
+                        //自我评价
+                        tvSelfEvaluate.setText(studentResume.getSelfEvaluate());
+                        if (!TextUtils.isEmpty(studentResume.getSelfEvaluate())) {
+                            navigationTag.add("自我评价");
+                        } else {
 
-                    String expectPartener = studentResume.getExpectPartener();
-                    tvCompanionName.setText(expectPartener);
-                    //自我评价
-                    tvSelfEvaluate.setText(studentResume.getSelfEvaluate());
-                    //荣誉证书
-                    //TODO===============
+                            tabLlElfAssessment.setVisibility(View.GONE);
+                        }
+                        //特长爱好
+                        tvSelfNb.setText(studentResume.getHobby());
+                        if (!TextUtils.isEmpty(studentResume.getHobby())) {
+                            navigationTag.add("特长爱好");
+                        } else {
+                            tabLlSelfNb.setVisibility(View.GONE);
+                        }
+                        //荣誉证书
+                        //TODO===============
+                        String img = studentInfo.getPic();
+                        if (!"".equals(img) && null != img) {
+                            String[] split = img.split(";");
+                            List<String> strings = Arrays.asList(split);
+                            for (int i = 0; i < strings.size(); i++) {
+                                infoList.add(strings.get(i));
+                            }
+
+                            mRecyclerView.setAdapter(new InfoCardAdapter(StudentSpeedCheckActivity.this, infoList, id + "", "info", "info"));
+                        }
+                        if (!TextUtils.isEmpty(studentResume.getCertificate())) {
+                            String img1 = studentResume.getCertificate();
+                            if (!"".equals(img1) && null != img1) {
+                                String[] split = img1.split(";");
+                                List<String> strings = Arrays.asList(split);
+                                for (int i = 0; i < strings.size(); i++) {
+                                    honorList.add(strings.get(i));
+                                }
+                            }
+                            recyclerViewHonor.setAdapter(new InfoCardAdapter(StudentSpeedCheckActivity.this, honorList, id + "", "certificate", "certificate"));
+                            navigationTag.add("荣誉证书");
+                        } else {
+                            tabLlHonoraryCertificate.setVisibility(View.GONE);
+                        }
+                    }
+                    //添加页面到导航标签
+                    for (String item : navigationTag) {
+                        anchorTagContainer.addTab(anchorTagContainer.newTab().setText(item));
+
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 progressDialog.dismiss();
             }
 
@@ -310,6 +380,7 @@ public class StudentSpeedCheckActivity extends BaseActivity
         });
 
     }
+
     //监听scrollview滚动事件
     private void initListener() {
         anchorBodyContainer.setOnTouchListener(new View.OnTouchListener() {
@@ -440,8 +511,6 @@ public class StudentSpeedCheckActivity extends BaseActivity
 
 
     private void initDatas() {
-
-        mDatas = Arrays.asList(mUrls);
         //添加页面到导航标签
         for (String item : navigationTag) {
             anchorTagContainer.addTab(anchorTagContainer.newTab().setText(item));
@@ -449,31 +518,32 @@ public class StudentSpeedCheckActivity extends BaseActivity
         }
 
     }
+
     /**
      * 简历审核
+     *
      * @param state
      * @param rejectReason
      */
-    private void sendResumeAudit(Integer state,String rejectReason){
+    private void sendResumeAudit(Integer state, String rejectReason) {
         final HttpUtils instance = HttpUtils.getinstance(StudentSpeedCheckActivity.this);
-        final ProgressDialog progressDialog = ViewUtils.getProgressDialog(StudentSpeedCheckActivity.this);
         Map map = new HashMap();
-        map.put("state", state+"");
-        map.put("studentUserId",studentResume.getStudentUserId()+"");
-        map.put("rejectReason",rejectReason);
+        map.put("state", state + "");
+        map.put("studentUserId", studentResume.getStudentUserId() + "");
+        map.put("rejectReason", rejectReason);
 //        map.put("formId",studentResume.getFormId());
-        map.put("code","");
-        map.put("formId","ddd");
+        map.put("code", "");
+        map.put("formId", "ddd");
         instance.post(Constant.SENDRESUMEAUDIT, map, new BaseCallback<String>() {
 
             @Override
             public void onRequestBefore() {
-                progressDialog.show();
+                commonDialog.show();
             }
 
             @Override
             public void onFailure(Request request, Exception e) {
-                progressDialog.dismiss();
+                commonDialog.dismiss();
             }
 
             @Override
@@ -481,29 +551,32 @@ public class StudentSpeedCheckActivity extends BaseActivity
                 LogUtil.e(s);
                 try {
                     JSONObject jsonObject = new JSONObject(s);
-//                    JSONObject data = jsonObject.getJSONObject("data");
-//                    Gson gson = new Gson();
-
-
+                    String rescode = jsonObject.getString("rescode");
+                    String resMessage = jsonObject.getString("resMessage");
+                    if (rescode.equals("200")) {
+                        finish();
+                    }
+                    ShowToastUtils.showToastMsg(StudentSpeedCheckActivity.this, resMessage);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                progressDialog.dismiss();
+                commonDialog.dismiss();
             }
 
             @Override
             public void onError(Response response, int errorCode, Exception e) {
-                progressDialog.dismiss();
+                commonDialog.dismiss();
             }
         });
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    @OnClick({R.id.back, R.id.tv_recommend, R.id.tv_companionName, R.id.tv_next,R.id.tv_yes,R.id.tv_no,R.id.iv_see})
+    @OnClick({R.id.back, R.id.tv_recommend, R.id.tv_companionName, R.id.tv_next, R.id.tv_yes, R.id.tv_no, R.id.iv_see})
     public void click(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
@@ -516,10 +589,10 @@ public class StudentSpeedCheckActivity extends BaseActivity
                 break;
             case R.id.tv_next:
                 currentIndex++;
-                if (currentIndex<=idList.size()-1){
+                if (currentIndex <= idList.size() - 1) {
                     getResumnDetail(idList.get(currentIndex));
-                }else{
-                    ShowToastUtils.showToastMsg(StudentSpeedCheckActivity.this,"已经没有待审核的简历了");
+                } else {
+                    ShowToastUtils.showToastMsg(StudentSpeedCheckActivity.this, "已经没有待审核的简历了");
                 }
 
                 break;
@@ -529,44 +602,44 @@ public class StudentSpeedCheckActivity extends BaseActivity
                 startActivity(intent);
                 break;
             case R.id.tv_no:
-                new CommomDialog(StudentSpeedCheckActivity.this, R.style.dialog,"" , new CommomDialog.OnCloseListener() {
+                new CommomDialog(StudentSpeedCheckActivity.this, R.style.dialog, "", new CommomDialog.OnCloseListener() {
                     @Override
                     public void onClick(Dialog dialog, boolean confirm, String reason) {
                         if (confirm) {
-                            sendResumeAudit(3,reason);
+                            sendResumeAudit(3, reason);
                             dialog.dismiss();
                         }
                     }
 
 
-                }) .setTitle("提示").show();
+                }).setTitle("提示").show();
                 break;
             case R.id.tv_yes:
-                new CommomDialog(StudentSpeedCheckActivity.this, R.style.dialog,"审核通过" , new CommomDialog.OnCloseListener() {
+                new CommomDialog(StudentSpeedCheckActivity.this, R.style.dialog, "审核通过", new CommomDialog.OnCloseListener() {
                     @Override
-                    public void onClick(Dialog dialog, boolean confirm,String reason) {
+                    public void onClick(Dialog dialog, boolean confirm, String reason) {
                         if (confirm) {
-                            sendResumeAudit(2,"通过");
+                            sendResumeAudit(2, "通过");
                             dialog.dismiss();
                         }
                     }
 
 
-                }) .setTitle("提示").show();
+                }).setTitle("提示").show();
                 break;
             case R.id.iv_see:
                 //分享简历连接到微信
                 boolean weixinAvilible = UIUtils.isWeixinAvilible(StudentSpeedCheckActivity.this);
-                if (weixinAvilible){
+                if (weixinAvilible) {
                     ComponentName comp = new ComponentName("com.tencent.mm",
                             "com.tencent.mm.ui.tools.ShareImgUI");
                     intent.setComponent(comp);
                     intent.setAction("android.intent.action.SEND");
                     intent.setType("text/*");
-                    intent.putExtra(Intent.EXTRA_TEXT,Constant.GETSTUDENTRESUMEHTML+"?studentId="+studentResume.getStudentUserId());
+                    intent.putExtra(Intent.EXTRA_TEXT, Constant.GETSTUDENTRESUMEHTML + "?studentId=" + studentResume.getStudentUserId());
                     startActivity(intent);
-                }else {
-                    ShowToastUtils.showToastMsg(StudentSpeedCheckActivity.this,"请先安装微信!");
+                } else {
+                    ShowToastUtils.showToastMsg(StudentSpeedCheckActivity.this, "请先安装微信!");
                 }
 
                 break;

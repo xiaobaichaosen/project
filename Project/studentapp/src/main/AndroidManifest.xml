@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yijie.com.studentapp">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <!--友盟需要的权限-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -18,12 +19,35 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取WIFI信息状态的权限 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取网络状态改变的权限 -->
+    >
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="com.yijie.com.kindergartenapp.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
+    <!-- Optional for location -->
+    <!--加这个条件有得手机会报错-->
+    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> &lt;!&ndash; 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 &ndash;&gt;-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <application
         android:allowBackup="true"
         android:name=".base.APPApplication"
@@ -32,7 +56,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        /*高德地图key*/
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="ad1ccd7a7d75df010dea6e2231867f8b" />
+        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
+        <service android:name="com.amap.api.location.APSService"></service>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="yijie.fileProvider"
@@ -42,7 +71,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.SplashActivity">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,18 +110,27 @@
                 <!--         <data android:scheme="tencent100424468"/>-->
             </intent-filter>
         </activity>
-
-        <activity android:name=".base.PermissionsActivity"/>
+        <activity android:name=".base.PermissionsActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+        <activity android:name=".MainActivity"/>
         <activity android:name=".activity.login.LoginActivity"/>
+
         <activity android:name=".activity.login.PassWordActivity"/>
         <activity android:name=".activity.MeActivity"/>
         <activity android:name=".activity.SettingActivity"/>
        <activity android:name=".headportrait.ClipImageActivity"/>
         <activity android:name=".activity.kndergard.KndergardAcitivity"/>
-        <activity android:name=".activity.PersonalInformationActivity"/>
+        <activity android:name=".activity.PersonalInformationActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            />
         <activity android:name=".activity.ResumepreviewActivity"/>
         <activity android:name=".activity.ContactWayActivity"/>
         <activity android:name=".activity.PhotoActivityForHor"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
+
+        <activity android:name=".activity.kndergard.PhotoActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
         <activity android:name=".activity.EducationBackgroundActivity"/>
@@ -105,10 +145,32 @@
         <activity android:name=".activity.PostCollectionActivity"/>
         <activity android:name=".activity.AttendanceActivity"/>
         <activity android:name=".activity.CalenderActivity"/>
+        <activity android:name=".activity.SelectSchoolActivity"/>
+        <activity android:name=".activity.EducationListActivity"/>
+        <activity android:name=".activity.WorkListActivity"/>
+        <activity android:name=".activity.CompanyActivity"/>
+        <activity android:name=".activity.FeatureActivity"/>
+        <activity android:name=".activity.SchoolSignActivity"/>
+        <activity android:name=".activity.MySampleActivity"/>
+        <activity android:name=".activity.WebViewActivity"/>
+        <activity android:name=".activity.MySendActivity"/>
+        <activity android:name=".activity.PushAccessActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            />
+        <activity android:name=".activity.SchoolCalenderActivity"/>
+        <activity android:name=".activity.PushAccessDetailActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            />
+        <activity android:name=".activity.Kend2MeAccActivity"
+            />
+        <activity android:name=".activity.FootBrowActivity"
+            />
+        <activity android:name=".activity.StudentNumActivity"
+            />
+
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
             android:theme="@style/ImagePickerThemeFullScreen"/>
-        
     </application>
 
 </manifest>

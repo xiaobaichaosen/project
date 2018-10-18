@@ -85,7 +85,7 @@ public class StudentStatusAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
         StudentResume studentResume = dataList.get(position);
-        recyclerViewHolder.iv_head.setBackgroundResource(R.mipmap.head);
+//        recyclerViewHolder.iv_head.setBackgroundResource(R.mipmap.head);
         recyclerViewHolder.tv_title.setText(studentResume.getStuHomePageTitle());
         recyclerViewHolder.badgeView.showBadge(studentResume.getStuResumeCountNum()+"");
         recyclerViewHolder.tv_time.setText(studentResume.getUpdateTime());

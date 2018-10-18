@@ -5,12 +5,12 @@
                 android:layout_height="match_parent"
     >
 
-    <com.yijie.com.yijie.view.PhotoViewPager
+    <com.yijie.com.studentapp.view.PhotoViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.yijie.com.yijie.view.PhotoViewPager>
+        android:layout_height="match_parent"></com.yijie.com.studentapp.view.PhotoViewPager>
 
-    <com.yijie.com.yijie.view.ViewPagerIndicator
+    <com.yijie.com.studentapp.view.ViewPagerIndicator
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/app_title"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<CheckBox
+    android:id="@+id/cb_all"
+    android:text="全选"
+    android:layout_marginLeft="@dimen/base_dimen_30"
+    android:paddingRight="@dimen/base_dimen_30"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_dimen_90" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_weight="1"
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:paddingTop="@dimen/base_dimen_20"
+        android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90">
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_weight="0"
+        android:textColor="@color/colorPrimary"
+        android:text="确定(0/500)"
+        android:background="@color/colorTheme"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/base_dimen_30"
+        android:layout_width="wrap_content"
+        android:padding="@dimen/base_dimen_8"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

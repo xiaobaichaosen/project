@@ -135,6 +135,7 @@ public class RequstActivity extends BaseActivity {
 
     @Override
     public void init() {
+        instance=this;
         SoftKeyBoardListener.setListener(RequstActivity.this, new SoftKeyBoardListener.OnSoftKeyBoardChangeListener() {
             @Override
             public void keyBoardShow(int height) {
@@ -146,7 +147,7 @@ public class RequstActivity extends BaseActivity {
                 llCommit.setVisibility(View.VISIBLE);
             }
         });
-        instance=this;
+
         // 设置重试事件监听器
         statusLayoutManager = new StatusLayoutManager.Builder(llRoot)
                 .setOnStatusChildClickListener(new OnStatusChildClickListener() {
@@ -412,6 +413,7 @@ public class RequstActivity extends BaseActivity {
                     intent.putExtra("kindpeoNumSet", kindpeoNumSet);
                     intent.putExtra("kenderNeedId", kenderNeedId);
                     intent.putExtra("projectId", projectId);
+                    intent.putExtra("schoolId",schoolId);
 
                     intent.setClass(RequstActivity.this, RequsetComActivity.class);
                     startActivity(intent);
@@ -468,7 +470,7 @@ public class RequstActivity extends BaseActivity {
                             String resode = jsonObject.getString("rescode");
                             if (resode.equals("200")) {
                                 ShowToastUtils.showToastMsg(RequstActivity.this, "发布成功!");
-                                finish();
+//                                finish();
                             } else if (resode.equals("500")) {
                                 ShowToastUtils.showToastMsg(RequstActivity.this, "请完善信息后提需求!");
 

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_title"
+        />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <CheckBox
+                android:id="@+id/cb_one"
+                android:text="每周一"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <CheckBox
+                android:id="@+id/cb_two"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:text="每周二"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <CheckBox
+                android:id="@+id/cb_three"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:text="每周三"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <CheckBox
+                android:id="@+id/cb_four"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:text="每周四"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <CheckBox
+                android:id="@+id/cb_five"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:text="每周五"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <CheckBox
+                android:id="@+id/cb_six"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:text="每周六"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <CheckBox
+                android:id="@+id/cb_seven"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:text="每周日"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <RelativeLayout
+                android:id="@+id/rl_signSet"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_height="@dimen/base_dimen_86"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="@dimen/base_dimen_22">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="法定节假日自动排休"
+                    android:textColor="@color/item_title"
+                    android:textSize="@dimen/base_dimen_32" />
+                <com.kyleduo.switchbutton.SwitchButton
+                    android:id="@+id/swith_timeSet"
+                    android:paddingLeft="@dimen/base_dimen_20"
+                    android:paddingTop="@dimen/base_dimen_8"
+                    android:paddingBottom="@dimen/base_dimen_8"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/base_dimen_30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:checked="false"
+                    app:kswAnimationDuration="300"
+                    app:kswBackDrawable="@drawable/ios_back_drawable"
+                    app:kswBackMeasureRatio="1.4"
+                    app:kswThumbDrawable="@drawable/ios_thumb_selector"
+                    app:kswThumbMarginBottom="-8dp"
+                    app:kswThumbMarginLeft="-5dp"
+                    app:kswThumbMarginRight="-5dp"
+                    app:kswThumbMarginTop="-2.5dp" />
+            </RelativeLayout>
+
+            <!--打卡设置-->
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_weight="0"
+        android:text="确定"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="@dimen/base_dimen_30"
+        android:layout_marginBottom="@dimen/base_dimen_30"
+        android:layout_marginRight="@dimen/base_dimen_30"
+        android:background="@color/colorTheme"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+</LinearLayout>

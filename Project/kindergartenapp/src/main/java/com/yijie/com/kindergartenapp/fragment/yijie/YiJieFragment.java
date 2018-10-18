@@ -8,6 +8,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,8 +28,11 @@ import com.google.gson.Gson;
 import com.yijie.com.kindergartenapp.BuildConfig;
 import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
+import com.yijie.com.kindergartenapp.activity.AccessActivity;
+import com.yijie.com.kindergartenapp.activity.ModiKenderDetailActivity;
 import com.yijie.com.kindergartenapp.activity.RequestDetailActivity;
 import com.yijie.com.kindergartenapp.activity.ResumnStatusActivity;
+import com.yijie.com.kindergartenapp.activity.SignActivity;
 import com.yijie.com.kindergartenapp.activity.WebViewActivity;
 import com.yijie.com.kindergartenapp.base.BaseFragment;
 import com.yijie.com.kindergartenapp.base.baseadapter.DividerItemDecoration;
@@ -117,6 +121,8 @@ public class YiJieFragment extends BaseFragment {
     private Integer enrollTotal;
     private ArrayList<CommonBean> horList = new ArrayList<>();
     private StatusLayoutManager statusLayoutManager;
+    private boolean isRequst;
+    private String kinderId;
 
     @Override
     protected int getLayoutId() {
@@ -131,14 +137,16 @@ public class YiJieFragment extends BaseFragment {
                     public void onEmptyChildClick(View view) {
                         dataList.clear();
                         currentPage = 1;
-                        getData();
+                        isRequest();
+
                     }
 
                     @Override
                     public void onErrorChildClick(View view) {
                         dataList.clear();
                         currentPage = 1;
-                        getData();
+                        isRequest();
+
                     }
 
                     @Override
@@ -149,11 +157,13 @@ public class YiJieFragment extends BaseFragment {
                 })
                 .build();
         horList.add(new CommonBean(R.mipmap.head, "来学生啦"));
-        horList.add(new CommonBean(R.mipmap.head, "在岗学生"));
-        horList.add(new CommonBean(R.mipmap.head, "考勤"));
-        horList.add(new CommonBean(R.mipmap.head, "问题提交"));
+        horList.add(new CommonBean(R.mipmap.head, "学生管理"));
+        horList.add(new CommonBean(R.mipmap.head, "考勤管理"));
         horList.add(new CommonBean(R.mipmap.head, "评价"));
-        horList.add(new CommonBean(R.mipmap.head, "学生分享"));
+        horList.add(new CommonBean(R.mipmap.head, "问题反馈"));
+        horList.add(new CommonBean(R.mipmap.head, "分享"));
+        horList.add(new CommonBean(R.mipmap.head, "通知"));
+        horList.add(new CommonBean(R.mipmap.head, "更多"));
         ((AppCompatActivity) mActivity).setSupportActionBar(toolbar);
         collapsingToolbarLayout.setCollapsedTitleGravity(Gravity.CENTER);//设置收缩后标题的位置
         collapsingToolbarLayout.setExpandedTitleGravity(Gravity.CENTER);////设置展开后标题的位置
@@ -176,42 +186,29 @@ public class YiJieFragment extends BaseFragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
         recyclerView.setLayoutManager(mLayoutManager);
-        //设置适配器
-        LoadMoreYijieAdapter loadMoreWrapperAdapter = new LoadMoreYijieAdapter(schoolPracticeList, dataList, R.layout.yijie_adapter_item);
-        loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
-        recyclerView.setAdapter(loadMoreWrapper);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        GridLayoutManager linearLayoutManager = new GridLayoutManager(mActivity,4);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         horsrollRecycle.setLayoutManager(linearLayoutManager);
         //设置适配器
         LoadMoreYijieHorAdapter loadMoreYijieHorAdapter = new LoadMoreYijieHorAdapter(horList, R.layout.yijie_horsrcoll_item);
         horsrollRecycle.setAdapter(loadMoreYijieHorAdapter);
-        //提完需求就可以查看详细了
-        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreYijieAdapter.OnItemClickListener(
-//                tempMealCommonBean = (CommonBean) getIntent().getExtras().getSerializable("tempMealCommonBean");
-                                                      ) {
-                                                          @Override
-                                                          public void onItemClick(View view, int position) {
-                                                              if (null != dataList.get(position).getDemandNum()) {
-                                                                  Intent intent = new Intent();
-                                                                  intent.putExtra("id", dataList.get(position).getId());
-                                                                  intent.putExtra("projectName", dataList.get(position).getProjectName());
-                                                                  intent.putExtra("schoolName", dataList.get(position).getSchoolName());
-                                                                  intent.putExtra("schoolId", dataList.get(position).getSchoolId());
-                                                                  intent.putExtra("kinderId", dataList.get(position).getKinderId());
-                                                                  intent.putExtra("projectId", dataList.get(position).getSchoolPracticeId());
-                                                                  Bundle mBundle = new Bundle();
-                                                                  mBundle.putSerializable("SchoolPractice", schoolPracticeList.get(position));
-                                                                  intent.putExtras(mBundle);
-                                                                  intent.setClass(mActivity, RequestDetailActivity.class);
-                                                                  startActivity(intent);
-                                                              }
+        loadMoreYijieHorAdapter.setOnItemClickListener(new LoadMoreYijieHorAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                        if (position==2){
+                            Intent intent = new Intent();
+                            intent.setClass(mActivity, SignActivity.class);
+                            mActivity. startActivity(intent);
+                        }else if(position==3){
+                            Intent intent = new Intent();
+                            intent.setClass(mActivity, AccessActivity.class);
+                            mActivity. startActivity(intent);
 
+                        }
+                    }
+        });
 
-//
-                                                          }
-                                                      }
-        );
         // 设置下拉刷新
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -219,7 +216,7 @@ public class YiJieFragment extends BaseFragment {
                 // 刷新数据
                 dataList.clear();
                 currentPage = 1;
-                getData();
+                isRequest();
 
                 // 延时1s关闭下拉刷新
                 swipeRefreshLayout.postDelayed(new Runnable() {
@@ -314,7 +311,8 @@ public class YiJieFragment extends BaseFragment {
         if (!isPrepared || !isVisible) {
             return;
         }
-        getData();
+        isRequest();
+
         //开始轮播
         banner.startAutoPlay();
 
@@ -366,12 +364,12 @@ public class YiJieFragment extends BaseFragment {
      * 获取需求列表
      */
     private void getData() {
-       String userId= (String) SharedPreferencesUtils.getParam(mActivity, "userId", "");
+        kinderId = (String) SharedPreferencesUtils.getParam(mActivity, "cellphone", "");
         HttpUtils getinstance = HttpUtils.getinstance(mActivity);
         HashMap<String, String> stringStringHashMap = new HashMap<>();
         stringStringHashMap.put("pageStart", currentPage + "");
         stringStringHashMap.put("pageSize", 10 + "");
-        stringStringHashMap.put("kinderId", userId);
+        stringStringHashMap.put("cellphone", kinderId);
 
         getinstance.post(Constant.SELECTDEMANDLIST, stringStringHashMap, new BaseCallback<String>() {
             @Override
@@ -438,7 +436,82 @@ public class YiJieFragment extends BaseFragment {
         });
 
     }
+    /**
+     * 是否可以提需求
+     */
+    private void isRequest () {
+        HttpUtils getinstance = HttpUtils.getinstance(mActivity);
+        KindergartenNeed kindergartenNeed = new KindergartenNeed();
+        kinderId = (String) SharedPreferencesUtils.getParam(mActivity, "cellphone", "");
+        kindergartenNeed.setCellphone((kinderId));
+        getinstance.postJson(Constant.ISSENDREQUEST, kindergartenNeed, new BaseCallback<String>() {
+            @Override
+            public void onRequestBefore() {
 
+            }
+
+            @Override
+            public void onFailure(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onSuccess(Response response, String o) {
+                LogUtil.e(o);
+                Gson gson = new Gson();
+                try {
+                    JSONObject jsonObject = new JSONObject(o);
+                    String rescode = jsonObject.getString("rescode");
+                    if (rescode.equals("200")){
+                        isRequst=true;
+                    }else {
+                        isRequst=false;
+                    }
+                    currentPage=1;
+                    dataList.clear();
+                    getData();
+                    //设置适配器
+                    LoadMoreYijieAdapter loadMoreWrapperAdapter = new LoadMoreYijieAdapter(schoolPracticeList, dataList, R.layout.yijie_adapter_item,isRequst);
+                    loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
+                    recyclerView.setAdapter(loadMoreWrapper);
+                    //提完需求就可以查看详细了
+                    loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreYijieAdapter.OnItemClickListener() {
+                      @Override
+                      public void onItemClick(View view, int position) {
+                          if (null != dataList.get(position).getDemandNum()) {
+                              Intent intent = new Intent();
+                              intent.putExtra("id", dataList.get(position).getId());
+                              intent.putExtra("projectName", dataList.get(position).getProjectName());
+                              intent.putExtra("schoolName", dataList.get(position).getSchoolName());
+                              intent.putExtra("schoolId", dataList.get(position).getSchoolId());
+                              intent.putExtra("kinderId", dataList.get(position).getKinderId());
+                              intent.putExtra("projectId", dataList.get(position).getSchoolPracticeId());
+                              Bundle mBundle = new Bundle();
+                              mBundle.putSerializable("SchoolPractice", schoolPracticeList.get(position));
+                              intent.putExtras(mBundle);
+                              intent.setClass(mActivity, RequestDetailActivity.class);
+                              startActivity(intent);
+                          }
+                      }
+                      }
+                    );
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onError(Response response, int errorCode, Exception e) {
+
+//                statusLayoutManager.showErrorLayout();
+            }
+        });
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view

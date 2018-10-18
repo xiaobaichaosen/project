@@ -33,6 +33,16 @@ public class StudentuserKinderneed extends StudentuserKinderneedKey implements S
      * 体重
      */
     private Double weight;
+    private String createTime;
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
     /**
      * 学生特长
      */

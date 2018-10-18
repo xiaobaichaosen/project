@@ -111,19 +111,21 @@ public class ResumnListFragment extends BaseFragment {
                                                       ) {
                                                           @Override
                                                           public void onItemClick(View view, int position) {
+                                                              Intent intent = new Intent();
                                                               if (dataList.get(position).getStatus() == 0) {
-                                                                  StudentuserKinderneed studentuserKinderneed = dataList.get(position);
-                                                                  Integer studentUserId = studentuserKinderneed.getStudentUserId();
-                                                                  Integer kinderNeedId = studentuserKinderneed.getKinderNeedId();
-                                                                  Intent intent = new Intent();
+                                                                  intent.putExtra("isHideen",false);
+                                                              }else {
+                                                                  intent.putExtra("isHideen",true);
 
-                                                                  intent.putExtra("kinderId", kinderId);
-                                                                  intent.putExtra("studentUserId", studentUserId);
-                                                                  intent.putExtra("kinderNeedId", kinderNeedId);
-                                                                  intent.setClass(mActivity, StudentResumnActivity.class);
-                                                                  startActivity(intent);
                                                               }
-
+                                                              StudentuserKinderneed studentuserKinderneed = dataList.get(position);
+                                                              Integer studentUserId = studentuserKinderneed.getStudentUserId();
+                                                              Integer kinderNeedId = studentuserKinderneed.getKinderNeedId();
+                                                              intent.putExtra("kinderId", kinderId);
+                                                              intent.putExtra("studentUserId", studentUserId);
+                                                              intent.putExtra("kinderNeedId", kinderNeedId);
+                                                              intent.setClass(mActivity, StudentResumnActivity.class);
+                                                              startActivity(intent);
                                                           }
                                                       }
         );

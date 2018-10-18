@@ -12,7 +12,6 @@
         android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/base_dimen_26"
-
         android:layout_centerVertical="true"
         android:drawableLeft="@mipmap/arrow_back"
         android:text="返回"

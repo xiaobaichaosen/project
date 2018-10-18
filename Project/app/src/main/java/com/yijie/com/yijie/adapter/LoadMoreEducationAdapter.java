@@ -83,7 +83,6 @@ public class LoadMoreEducationAdapter extends RecyclerView.Adapter<RecyclerView.
         recyclerViewHolder.tvEducation.setText(dataList.get(position).getEducation());
         recyclerViewHolder.tvStartTime.setText(dataList.get(position).getStartTime());
         recyclerViewHolder.tvGradTime.setText(dataList.get(position).getGraduateTime());
-        recyclerViewHolder.tvHobby.setText(dataList.get(position).getHobby());
         recyclerViewHolder.itemView.setTag(position);
     }
 
@@ -104,8 +103,6 @@ public class LoadMoreEducationAdapter extends RecyclerView.Adapter<RecyclerView.
         TextView tvStartTime;
         @BindView(R.id.tv_gradTime)
         TextView tvGradTime;
-        @BindView(R.id.tv_hobby)
-        TextView tvHobby;
         RecyclerViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

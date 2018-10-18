@@ -16,8 +16,8 @@ import com.yijie.com.studentapp.base.BaseActivity;
 import com.yijie.com.studentapp.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.studentapp.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.studentapp.base.baseadapter.LoadMoreWrapper;
-import com.yijie.com.studentapp.fragment.school.LoadMoreSchoolAdapter;
-import com.yijie.com.studentapp.fragment.school.StudentBean;
+import com.yijie.com.studentapp.fragment.yijie.LoadMoreSchoolAdapter;
+import com.yijie.com.studentapp.fragment.yijie.StudentBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,21 +63,21 @@ public class PracticeDetailsActivity extends BaseActivity {
         getData();
 
 
-        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList, R.layout.kendergard_adapter_practice_item);
-        loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
+//        LoadMoreSchoolAdapter loadMoreWrapperAdapter = new LoadMoreSchoolAdapter(dataList, R.layout.kendergard_adapter_practice_item);
+//        loadMoreWrapper = new LoadMoreWrapper(loadMoreWrapperAdapter);
 
         recyclerView.setAdapter(loadMoreWrapper);
-        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreSchoolAdapter.OnItemClickListener(
-
-                                                      ) {
-                                                          @Override
-                                                          public void onItemClick(View view, int position) {
-                                                              Intent intent = new Intent();
-                                                              intent.setClass(PracticeDetailsActivity.this, KndergardAcitivity.class);
-                                                              startActivity(intent);
-                                                          }
-                                                      }
-        );
+//        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreSchoolAdapter.OnItemClickListener(
+//
+//                                                      ) {
+//                                                          @Override
+//                                                          public void onItemClick(View view, int position) {
+//                                                              Intent intent = new Intent();
+//                                                              intent.setClass(PracticeDetailsActivity.this, KndergardAcitivity.class);
+//                                                              startActivity(intent);
+//                                                          }
+//                                                      }
+//        );
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         // 设置下拉刷新
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

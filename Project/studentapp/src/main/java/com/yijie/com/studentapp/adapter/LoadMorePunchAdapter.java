@@ -3,7 +3,6 @@ package com.yijie.com.studentapp.adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
@@ -11,16 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.R;
 import com.yijie.com.studentapp.activity.PhotoActivityForHor;
-import com.yijie.com.studentapp.fragment.school.StudentBean;
+import com.yijie.com.studentapp.activity.photo.CameraActivity;
+import com.yijie.com.studentapp.fragment.yijie.StudentBean;
 import com.yijie.com.studentapp.utils.ImageLoaderUtil;
+import com.yijie.com.studentapp.view.CircleRelativeLayout;
 
 import java.util.List;
 
@@ -97,6 +95,8 @@ public class LoadMorePunchAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((Activity)mContext).overridePendingTransition(0, 0);
             }
         });
+
+
         btn_sure.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -110,6 +110,15 @@ public class LoadMorePunchAdapter extends RecyclerView.Adapter<RecyclerView.View
         RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
 //        recyclerViewHolder.tvItem.setText(dataList.get(position).getName());
         recyclerViewHolder.imagePoint.setImageResource(R.drawable.shap_ovel);
+        recyclerViewHolder.rlPunchcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+//                intent.putExtra("adress",city+district);
+                intent.setClass(mContext, CameraActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
 
         if (position==dataList.size()-1){
             recyclerViewHolder.viewLine.setVisibility(View.GONE);
@@ -146,6 +155,8 @@ public class LoadMorePunchAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView tvMenery;
         @BindView(R.id.imagePoint)
         ImageView imagePoint;
+        @BindView(R.id.rl_punchcard)
+        CircleRelativeLayout rlPunchcard;
 
         RecyclerViewHolder(View itemView) {
             super(itemView);

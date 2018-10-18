@@ -205,7 +205,7 @@
 
                 <ImageView
                     android:id="@+id/iv_qq_login"
-
+android:visibility="gone"
                     android:layout_marginRight="@dimen/base_dimen_6"
                     android:padding="@dimen/base_dimen_18"
                     android:src="@mipmap/iv_qq"
@@ -214,6 +214,7 @@
                 <ImageView
                     android:id="@+id/iv_wx_login"
                     android:padding="@dimen/base_dimen_18"
+                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/base_dimen_6"
                     android:src="@mipmap/iv_wx"
                     android:layout_width="wrap_content"

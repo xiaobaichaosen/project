@@ -2,7 +2,6 @@ package com.yijie.com.studentapp;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,8 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -21,10 +18,8 @@ import com.yijie.com.studentapp.base.PermissionsActivity;
 import com.yijie.com.studentapp.base.PermissionsChecker;
 import com.yijie.com.studentapp.fragment.discover.DiscoverFragment;
 import com.yijie.com.studentapp.fragment.kndergaren.KndergartenFragment;
-import com.yijie.com.studentapp.fragment.school.SchoolFragment;
+import com.yijie.com.studentapp.fragment.yijie.YiJieFragment;
 import com.yijie.com.studentapp.fragment.student.StudentMoreFragment;
-import com.yijie.com.studentapp.fragment.student.StudentlBaseFragment;
-import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
 import com.yijie.com.studentapp.view.BadgeRadioButton;
 
@@ -33,8 +28,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
-import de.greenrobot.event.ThreadMode;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -93,9 +86,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     public void init() {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
-//        setTranslucent(this); // 改变状态栏变成透明
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         InitViewPager();
         mainTabRadioGroup.setOnCheckedChangeListener(this);
         mainTabRadioGroup.check(R.id.radio_student);
@@ -151,7 +142,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
         fragmentList.add(new DiscoverFragment());
         fragmentList.add(new KndergartenFragment());
-        fragmentList.add(new SchoolFragment());
+        fragmentList.add(new YiJieFragment());
         fragmentList.add(new StudentMoreFragment());
         // 设置ViewPager的设配器`
 

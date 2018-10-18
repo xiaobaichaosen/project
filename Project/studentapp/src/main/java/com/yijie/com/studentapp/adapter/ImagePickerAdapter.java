@@ -14,6 +14,7 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
 import com.yijie.com.studentapp.activity.HonoraryCcertificateActivity;
+import com.yijie.com.studentapp.utils.ImageLoaderUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,8 +97,12 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
                 clickPosition = HonoraryCcertificateActivity.IMAGE_ITEM_ADD;
             } else {
                 //加载网络图片
-                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
-//                iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
+                if (item.path.startsWith("http:")){
+                    ImageLoaderUtil.getImageLoader(mContext).displayImage(item.path, iv_img, ImageLoaderUtil.getPhotoImageOption());
+                }else{
+                    iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
+                }
+
                 clickPosition = position;
             }
         }

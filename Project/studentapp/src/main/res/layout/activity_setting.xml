@@ -112,7 +112,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/base_dimen_4"
                 android:layout_alignParentBottom="true"
-
                 android:background="@color/app_background" />
 
         </RelativeLayout>
@@ -129,6 +128,36 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="清除缓存"
+                android:textColor="#4d4d4d"
+                android:textSize="@dimen/base_dimen_32" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawableRight="@mipmap/goright"
+                android:paddingRight="@dimen/base_dimen_22"
+                android:textColor="#808080"
+                android:textSize="@dimen/base_dimen_28" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_4"
+                android:layout_alignParentBottom="true"
+                android:background="@color/app_background" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_86"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/base_dimen_22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="版本更新"
                 android:textColor="#4d4d4d"
                 android:textSize="@dimen/base_dimen_32" />
 

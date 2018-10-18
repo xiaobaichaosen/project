@@ -36,6 +36,15 @@
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
                     android:layout_height="200dp" />
+
+                <TextView
+                    android:text="客服"
+                    android:layout_marginLeft="@dimen/base_dimen_60"
+                    android:layout_marginTop="@dimen/base_dimen_30"
+                    android:background="@drawable/button_selecter_bg"
+                    android:padding="@dimen/base_dimen_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <!--<ImageView-->
                     <!--android:id="@+id/backdrop"-->
                     <!--android:tag="overScroll"-->

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include
+        layout="@layout/app_title"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:padding="@dimen/base_dimen_30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.yijie.com.studentapp.view.CircleImageView
+                    android:id="@+id/iv_head"
+                    android:paddingLeft="@dimen/base_dimen_20"
+                    android:paddingRight="@dimen/base_dimen_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/head" />
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_stuName"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+
+                            <TextView
+                                android:id="@+id/tv_month"
+                                android:textColor="#768797"
+                                android:textSize="16sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_kindName"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_stuNumber"
+                        android:text="080304"
+                        android:paddingTop="@dimen/base_dimen_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <com.yijie.com.studentapp.view.schoolcalender.CalendarView
+                android:id="@+id/calendar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_500" />
+            <TextView
+                android:text="签到时间 18:00-22:00"
+                android:paddingLeft="@dimen/base_dimen_30"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+            <LinearLayout
+                android:id="@+id/ll_root"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_signTimes"
+                android:paddingLeft="@dimen/base_dimen_30"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_80" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:paddingLeft="@dimen/base_dimen_20"
+                android:paddingRight="@dimen/base_dimen_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

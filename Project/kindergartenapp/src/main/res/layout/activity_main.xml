@@ -49,8 +49,6 @@
             android:text="我的"
             />
 
-
-
     </RadioGroup>
 
     <View

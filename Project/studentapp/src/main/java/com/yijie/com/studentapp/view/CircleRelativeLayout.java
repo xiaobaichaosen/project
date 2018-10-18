@@ -38,7 +38,8 @@ public class CircleRelativeLayout extends LinearLayout {
     protected void onDraw(Canvas canvas) { //构建圆形
         int width = getMeasuredWidth();
         Paint mPaint = new Paint();
-        mPaint.setARGB(alpha,colors[0],colors[1],colors[2]);
+//        mPaint.setARGB(alpha,colors[0],colors[1],colors[2]);
+        mPaint.setColor(color);
         mPaint.setAntiAlias(true);
         float cirX = width / 2;
         float cirY = width / 2;

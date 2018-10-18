@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yijie.com.studentapp.fragment.school.StudentBean;
+import com.yijie.com.studentapp.fragment.yijie.StudentBean;
 
 import java.util.List;
 

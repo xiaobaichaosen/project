@@ -14,8 +14,16 @@
         android:paddingLeft="@dimen/base_dimen_20"
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_dimen_90" />
+    <TextView
+        android:id="@+id/tv_addDetailAdress"
+        android:hint="点击此处添加详细地址"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/base_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
     <LinearLayout
         android:layout_margin="@dimen/base_dimen_10"
+        android:visibility="gone"
         android:orientation="vertical"
         android:background="@color/app_background"
         android:layout_below="@+id/app_title"

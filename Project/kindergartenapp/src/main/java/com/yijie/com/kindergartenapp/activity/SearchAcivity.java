@@ -28,6 +28,8 @@ public class SearchAcivity extends BaseActivity {
 
     @Override
     public void init() {
+        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        setTranslucent(this); // 改变状态栏变成透明
         // 参数 = 搜索框输入的内容
         searchView.setOnClickSearch(new ICallBack() {
             @Override

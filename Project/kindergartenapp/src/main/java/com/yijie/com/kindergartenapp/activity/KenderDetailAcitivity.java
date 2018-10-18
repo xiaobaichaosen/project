@@ -108,6 +108,7 @@ public class KenderDetailAcitivity extends BaseActivity {
     @BindView(R.id.tv_qq)
     TextView tvQq;
     private String kinderId;
+    private String userId;
 
     @Override
     public void setContentView() {
@@ -121,7 +122,8 @@ public class KenderDetailAcitivity extends BaseActivity {
         tvRecommend.setText("编辑");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
-        kinderId = (String) SharedPreferencesUtils.getParam(KenderDetailAcitivity.this, "userId", "");
+        kinderId = (String) SharedPreferencesUtils.getParam(KenderDetailAcitivity.this, "cellphone", "");
+        userId = (String) SharedPreferencesUtils.getParam(KenderDetailAcitivity.this, "kinderId", "");
         //保证图片在手机屏幕中间显示
         LinearSnapHelper mLinearySnapHelper = new LinearSnapHelper();
         LinearLayoutManager certificateLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -171,16 +173,15 @@ public class KenderDetailAcitivity extends BaseActivity {
                 break;
         }
     }
-
     /**
      * 通过id查询园所详情
      */
     public void getKenderDeail(String kenderId) {
         final HttpUtils instance = HttpUtils.getinstance(KenderDetailAcitivity.this);
         Map map = new HashMap();
-        map.put("id", kenderId);
+        map.put("cellphone", kenderId);
 
-        instance.post(Constant.KINDERGARTENDETAILBYID, map, new BaseCallback<String>() {
+        instance.post(Constant.SELECTBYCELLPHONE, map, new BaseCallback<String>() {
 
             @Override
             public void onRequestBefore() {
@@ -238,22 +239,22 @@ public class KenderDetailAcitivity extends BaseActivity {
                     if (!TextUtils.isEmpty(certificate)) {
                         String[] split = certificate.split(";");
                         List<String> strings = Arrays.asList(split);
-                        recyclerViewCertificate.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, kinderId, "certificate"));
+                        recyclerViewCertificate.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, userId, "certificate"));
                     }
                     if (!TextUtils.isEmpty(businessLicence)) {
                         String[] split = businessLicence.split(";");
                         List<String> strings = Arrays.asList(split);
-                        recyclerViewLicense.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, kinderId, "license"));
+                        recyclerViewLicense.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, userId, "license"));
                     }
                     if (!TextUtils.isEmpty(environment)) {
                         String[] split = environment.split(";");
                         List<String> strings = Arrays.asList(split);
-                        recyclerViewPictrue.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, kinderId, "environment"));
+                        recyclerViewPictrue.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, userId, "environment"));
                     }
                     if (!TextUtils.isEmpty(attachment)) {
                         String[] split = attachment.split(";");
                         List<String> strings = Arrays.asList(split);
-                        recyclerViewAttachment.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, kinderId, "attachment"));
+                        recyclerViewAttachment.setAdapter(new CardAdapter(KenderDetailAcitivity.this, strings, userId, "attachment"));
                     }
 
                 } catch (JSONException e) {

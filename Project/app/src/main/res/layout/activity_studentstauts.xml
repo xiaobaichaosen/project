@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     android:orientation="vertical">
 
 <include
     layout="@layout/app_title"/>
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_below="@+id/app_title"
-            android:layout_marginTop="@dimen/base_dimen_20"
             android:id="@+id/swipe_refresh_layout"
             style="@style/layout_mm"
             >

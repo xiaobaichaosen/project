@@ -79,6 +79,7 @@ public class LicenseActivity extends BaseActivity implements ImagePickerAdapter.
     private CommonBean tempLicenseCommonBean;
     CommonBean commonBean = new CommonBean();
     private String userId;
+    private String kinderId;
 
     @Override
     public void setContentView() {
@@ -87,13 +88,19 @@ public class LicenseActivity extends BaseActivity implements ImagePickerAdapter.
 
     @Override
     public void init() {
-        userId=(String) SharedPreferencesUtils.getParam(this, "userId","");
+        userId = (String) SharedPreferencesUtils.getParam(LicenseActivity.this, "cellphone", "");
+        kinderId = (String) SharedPreferencesUtils.getParam(LicenseActivity.this, "kinderId", "");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         title.setText("营业执照");
         tvRecommend.setVisibility(View.VISIBLE);
         tvRecommend.setText("保存");
         selImageList = new ArrayList<>();
+        adapter = new ImagePickerAdapter(LicenseActivity.this, selImageList, maxImgCount);
+        adapter.setOnItemClickListener(LicenseActivity.this);
+        recyclerView.setLayoutManager(new GridLayoutManager(LicenseActivity.this, 4));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
         getKenderDeail(userId);
 
     }
@@ -103,9 +110,9 @@ public class LicenseActivity extends BaseActivity implements ImagePickerAdapter.
     public void getKenderDeail(String kenderId) {
         final HttpUtils instance = HttpUtils.getinstance(this);
         Map map = new HashMap();
-        map.put("id", kenderId);
+        map.put("cellphone", kenderId);
 
-        instance.post(Constant.KINDERGARTENDETAILBYID, map, new BaseCallback<String>() {
+        instance.post(Constant.SELECTBYCELLPHONE, map, new BaseCallback<String>() {
 
             @Override
             public void onRequestBefore() {
@@ -133,17 +140,13 @@ public class LicenseActivity extends BaseActivity implements ImagePickerAdapter.
                         ArrayList<ImageItem> imageItems = new ArrayList<>();
                         for (int i = 0; i < strings.size(); i++) {
                             ImageItem imageItem = new ImageItem();
-                            imageItem.path= Constant.certificateUrl+userId+"/license/"+strings.get(i);
+                            imageItem.path= Constant.certificateUrl+kinderId+"/license/"+strings.get(i);
                             imageItems.add(imageItem);
                         }
                         selImageList.addAll(imageItems);
-
+                        adapter.setImages(selImageList);
                     }
-                    adapter = new ImagePickerAdapter(LicenseActivity.this, selImageList, maxImgCount);
-                    adapter.setOnItemClickListener(LicenseActivity.this);
-                    recyclerView.setLayoutManager(new GridLayoutManager(LicenseActivity.this, 4));
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setAdapter(adapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -290,9 +293,9 @@ public class LicenseActivity extends BaseActivity implements ImagePickerAdapter.
                 files.add(file);
             }
         }
-        stringStringHashMap.put("kinderId",userId);
+        stringStringHashMap.put("cellphone",userId);
         stringStringHashMap.put("imagePath",sb.toString());
-        HttpUtils.getinstance(this).uploadFiles(Constant.LICENSEUPLOAD,stringStringHashMap,files, new BaseCallback<String>() {
+        HttpUtils.getinstance(this).uploadFiles("headload",Constant.LICENSEUPLOAD,stringStringHashMap,files, new BaseCallback<String>() {
             @Override
             public void onRequestBefore() {
                 commonDialog.show();

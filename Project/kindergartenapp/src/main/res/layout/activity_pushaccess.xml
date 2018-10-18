@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/app_background"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/app_title"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_kinderName"
+                android:text="国际幼稚园"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_adress"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:text="国际幼稚园"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:paddingRight="@dimen/base_dimen_30"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:layout_marginBottom="@dimen/base_dimen_30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:text="学生情况" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/base_dimen_40"
+                        android:text="个人卫生" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/base_dimen_40"
+                        android:layout_marginTop="@dimen/base_dimen_10"
+                        android:text="工作能力" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/base_dimen_40"
+                        android:layout_marginTop="@dimen/base_dimen_10"
+                        android:text="学习态度" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/rb_crowdingDegree"
+                        android:progressTint="#f06764"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/base_dimen_40"
+                        android:numStars="5"
+                       android:rating="2" android:stepSize="1"
+                        style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/rb_hygieneStatus"
+                        android:progressTint="#f06764"
+                        android:layout_marginTop="@dimen/base_dimen_10"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/base_dimen_40"
+                        android:numStars="5"
+                       android:rating="2" android:stepSize="1"
+                        style="@style/Widget.MaterialRatingBar.RatingBar" />
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/rb_startEndWork"
+                        android:progressTint="#f06764"
+                        android:layout_marginTop="@dimen/base_dimen_10"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/base_dimen_40"
+                        android:numStars="5"
+                       android:rating="2" android:stepSize="1"
+                        style="@style/Widget.MaterialRatingBar.RatingBar" />
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:progressTint="#f06764"
+
+                        android:layout_marginTop="@dimen/base_dimen_10"
+                        android:layout_marginLeft="@dimen/base_dimen_30"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_height="@dimen/base_dimen_40"
+                        android:numStars="5"
+                       android:rating="2" android:stepSize="1"
+                        style="@style/Widget.MaterialRatingBar.RatingBar" />
+                </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/et_content"
+        android:hint="学生在幼儿园得表现情况"
+        android:textColorHint="@color/item_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_marginTop="@dimen/base_dimen_30"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="singleChoice"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbarStyle="outsideOverlay"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            app:spanCount="4"
+            tools:listitem="@layout/list_item_image" />
+
+    </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

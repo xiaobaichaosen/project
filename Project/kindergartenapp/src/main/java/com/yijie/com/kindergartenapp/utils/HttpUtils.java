@@ -1,7 +1,6 @@
 package com.yijie.com.kindergartenapp.utils;
 
 import android.content.Context;
-import android.database.Observable;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -9,29 +8,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 
-
-
-
 import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
-
 import java.util.concurrent.TimeUnit;
-
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -50,7 +37,6 @@ public class HttpUtils {
     private Gson mGson;
     private static HttpUtils mOkHttpUtilsInstance;
     private static Context mContext;
-    Thread thread;
     public   MediaType JSON= MediaType.parse("application/json; charset=utf-8");
     /**
      * 获取实例
@@ -71,11 +57,8 @@ public class HttpUtils {
         }        return mOkHttpUtilsInstance;
     }
     private HttpUtils() {
-        try {
-            HttpsUtils.SSLParams sslParams3 = HttpsUtils.getSslSocketFactory(mContext.getAssets().open("tomcat.keystore"));
             mClientInstance = new OkHttpClient.Builder()
-//                         .sslSocketFactory(sslParams3.sSLSocketFactory, sslParams3.trustManager)
-//                         .hostnameVerifier(new SafeHostnameVerifier())
+
                     .readTimeout(10, TimeUnit.SECONDS)
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
@@ -84,9 +67,7 @@ public class HttpUtils {
             mGson=new Gson();
 
             mHandler = new Handler(Looper.getMainLooper());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
 
@@ -113,16 +94,12 @@ public class HttpUtils {
      */
     public void post(String url, Map<String, String> params, BaseCallback callback) {
         Request request = new Request.Builder()
-                .header("cookie", "JSESSIONID="+(String)(SharedPreferencesUtils.getParam(mContext,"cookie","")))
+                .header("cookie", "JSESSIONID=" + (String) (SharedPreferencesUtils.getParam(mContext, "cookie", "")))
                 .post(buildRequestBody(params))
                 .url(url)
                 .build();
-        //调用方法把回调存入CallBackTask中并获取到String类型的key
-        CallBackTask.create().add(callback);
         request(request, callback);
-    }
-    public void cancleQuest(){
-        mClientInstance.dispatcher().cancelAll();
+
     }
 
     /**
@@ -156,13 +133,13 @@ public class HttpUtils {
      * @param parames
      * @param files
      */
-    public void uploadFiles(String resUrl, Map<String,String> parames, List<File> files,BaseCallback callback)
+    public void uploadFiles(String picName,String resUrl, Map<String,String> parames, List<File> files,BaseCallback callback)
     {
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         if (parames==null){
             for (File file:files){
                 if (file.exists()){
-                    builder.addFormDataPart("headload",file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
+                    builder.addFormDataPart(picName,file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
                 }
             }
         }else {
@@ -171,7 +148,7 @@ public class HttpUtils {
             }
             for (File file:files){
                 if (file.exists()){
-                    builder.addFormDataPart("headload",file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
+                    builder.addFormDataPart(picName,file.getName(), RequestBody.create(MediaType.parse("image/*"),file));
                 }
             }
         }
@@ -225,43 +202,37 @@ public class HttpUtils {
      * 封装reques方法
      */
     public void request(final Request request,final  BaseCallback callback){
-//        callback.onRequestBefore();
-      if (NetWorkUtils.isNetworkConnected(mContext)) {
-        callbackBefore(callback);
-        mClientInstance.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                callbackFailure(request,callback,e);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()){
-                    String string = response.body().string();
-                    if (callback.mType==String.class){
-                        //如果我们需要返回String l类型
-                        callbackSuccess(response,string,callback);
-                    }else {
-                        //如果返回的是其他类型，则利用Gson去解析
-                        try {
-                            Object o = mGson.fromJson(string, callback.mType);
-                            callbackSuccess(response, o, callback);
-                        } catch (JsonParseException e) {
-                            e.printStackTrace();
-                            callbackError(response, callback, e);
-                        }
-                    }
-
-//                    CallBackTask.create().remove(callback);//调用过后可以移除该key
-                }else{
-                    //返回错误
-
-                    callbackError(response,callback,null);
-
+        if (NetWorkUtils.isNetworkConnected(mContext)) {
+            callback.onRequestBefore();
+            mClientInstance.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    callbackFailure(request,callback,e);
                 }
 
-            }
-        });
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()){
+                        String string = response.body().string();
+                        if (callback.mType==String.class){
+                            //如果我们需要返回String l类型
+                            callbackSuccess(response,string,callback);
+                        }else {
+                            //如果返回的是其他类型，则利用Gson去解析
+                            try {
+                                Object o = mGson.fromJson(string, callback.mType);
+                                callbackSuccess(response, o, callback);
+                            } catch (JsonParseException e) {
+                                e.printStackTrace();
+                                callbackError(response, callback, e);
+                            }
+                        }
+                    }else{
+                        //返回错误
+                        callbackError(response,callback,null);
+                    }
+                }
+            });
         }else{
             ShowToastUtils.showToastMsg(mContext,"请检测网络是否可用");
         }
@@ -271,7 +242,7 @@ public class HttpUtils {
 
     /* 在主线程中执行的回调
      *
-             * @param response
+     * @param response
      * @param resString
      * @param callback
      */
@@ -312,21 +283,6 @@ public class HttpUtils {
                 callback.onFailure(request, e);
             }
         });
-    }
-
-    /**
-     * 子线程执行
-     * @param callback
-     */
-    private void callbackBefore(final BaseCallback callback) {
-
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                callback.onRequestBefore();
-            }
-        });
-
     }
     //https需要加
 //    private class SafeTrustManager implements X509TrustManager {

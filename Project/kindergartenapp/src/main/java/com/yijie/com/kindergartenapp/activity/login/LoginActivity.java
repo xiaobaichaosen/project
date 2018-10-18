@@ -214,7 +214,13 @@ public class LoginActivity extends BaseActivity {
 
                                 if (success){
                                     int userId = jsonObject.getJSONObject("data").getInt("id");
+                                    int kinderId = jsonObject.getJSONObject("data").getInt("kinderId");
+                                    String cellphone = jsonObject.getJSONObject("data").getString("cellphone");
                                     SharedPreferencesUtils.setParam(LoginActivity.this, "userId",userId+"");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this, "kinderId",kinderId+"");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this, "cellphone",cellphone);
+
+
                                     Set<String> tags = new HashSet<String>();
                                     JPushInterface.setAliasAndTags(LoginActivity.this, "",tags, new TagAliasCallback() {
                                         @Override

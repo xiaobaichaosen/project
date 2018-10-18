@@ -6,8 +6,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:layout_height="match_parent">
-    <include layout="@layout/app_title"/>
-
+    <include layout="@layout/app_title"
+        />
+    <android.support.v4.widget.NestedScrollView
+        android:scrollbars="none"
+        android:id="@+id/ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/ll_name"
         android:layout_width="match_parent"
@@ -17,19 +27,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="姓名:"
+            android:text="姓名*"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
         <EditText
-            android:id="@+id/tv_newEducation"
+            android:id="@+id/et_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:background="@null"
-            android:hint="请输入名称"
+            android:hint="请输入姓名"
 
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
@@ -55,12 +66,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="性别："
+            android:text="性别*"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
         <TextView
-            android:id="@+id/tv_newSchoolAdress"
+            android:id="@+id/tv_gender"
 
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
@@ -77,7 +88,6 @@
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_height="@dimen/base_dimen_4"
-
             android:background="@color/app_background"
             />
 
@@ -100,38 +110,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="身高:"
+                android:text="身高*"
                 android:textColor="#4d4d4d"
                 android:textSize="@dimen/base_dimen_32" />
 
-            <TextView
-                android:id="@+id/tv_newType"
-
+            <EditText
+                android:id="@+id/et_height"
+                android:hint="请输入身高(cm)"
                 android:layout_width="wrap_content"
+                android:gravity="right"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/to_newContact"
+                android:drawableRight="@mipmap/goright"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:paddingRight="@dimen/base_dimen_22"
                 android:textColor="#808080"
                 android:textSize="@dimen/base_dimen_28" />
 
-            <ImageView
-                android:id="@+id/to_newContact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:padding="@dimen/base_dimen_22"
-                android:layout_centerVertical="true"
-
-                android:src="@mipmap/goright" />
-
-
         </RelativeLayout>
-        <android.support.v7.widget.RecyclerView
-            android:visibility="gone"
-
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
 
         <View
@@ -154,20 +151,24 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="11dp"
-            android:text="体重:"
+            android:text="体重*"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
 
-        <TextView
-            android:id="@+id/tv_newSchoolSample"
+        <EditText
+            android:id="@+id/tv_weight"
+            android:hint="请输入体重(kg)"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_28"
-            android:layout_alignParentRight="true"
+            android:gravity="right"
             android:layout_centerVertical="true"
             android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:paddingRight="@dimen/base_dimen_22"
+            android:textColor="#808080"
+            android:textSize="@dimen/base_dimen_28" />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -179,7 +180,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/tv_national"
+        android:id="@+id/rl_national"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
 
@@ -194,23 +195,18 @@
             android:textSize="@dimen/base_dimen_32" />
 
         <TextView
-            android:id="@+id/tv_mode"
+            android:id="@+id/tv_national"
             android:textSize="@dimen/base_dimen_28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newSchoolPicture"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
             android:textColor="#808080"
             />
 
-        <TextView
-            android:id="@+id/to_newSchoolPicture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
+
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -235,11 +231,14 @@
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
-        <TextView
+        <EditText
             android:drawableRight="@mipmap/goright"
             android:layout_alignParentRight="true"
+            android:hint="请输入籍贯"
+            android:background="@null"
+            android:gravity="right"
             android:paddingRight="@dimen/base_dimen_22"
-            android:id="@+id/tv_newAppointmenttime"
+            android:id="@+id/et_nativePlace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_28"
@@ -257,46 +256,7 @@
             />
 
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:paddingLeft="@dimen/base_dimen_22"
-        android:id="@+id/rl_dataofbirth"
-        android:layout_height="@dimen/base_dimen_86">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="出生日期:"
-            android:textColor="#4d4d4d"
-            android:textSize="@dimen/base_dimen_32" />
-
-        <TextView
-            android:id="@+id/tv_newNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_28"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newNodetal"
-            android:textColor="#808080"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="@dimen/base_dimen_4"
-
-            android:background="@color/app_background"
-            />
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -312,23 +272,21 @@
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
-        <TextView
+        <EditText
+            android:id="@+id/et_registeredPermanent"
             android:layout_width="wrap_content"
+            android:hint="请输入户口所在地"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:background="@null"
             android:textSize="@dimen/base_dimen_28"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_newNodetal1"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
             android:textColor="#808080"
             />
 
-        <TextView
-            android:id="@+id/to_newNodetal1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableRight="@mipmap/goright"
-            android:paddingRight="@dimen/base_dimen_22" />
         <View
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
@@ -338,7 +296,42 @@
             />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/base_dimen_22"
+        android:id="@+id/rl_cardnumber"
+        android:layout_height="@dimen/base_dimen_86">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="身份证号码*"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_32" />
+
+        <EditText
+            android:id="@+id/et_cardnumber"
+            android:hint="请输入身份号"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
+            android:background="@null"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
+            android:textColor="#808080"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/base_dimen_4"
+            android:background="@color/app_background"
+            />
+
+    </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_addPhoto"
@@ -353,6 +346,7 @@
             app:spanCount="4"
             tools:listitem="@layout/list_item_image" />
 
-
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

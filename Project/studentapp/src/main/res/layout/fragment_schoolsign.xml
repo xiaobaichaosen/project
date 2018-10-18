@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/tv_signDuring"
+        android:gravity="center_vertical"
+        android:background="@color/app_background"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:text="要求签到时间 18:00-22:00"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/base_dimen_200" />
+    <TextView
+        android:id="@+id/tv_warn"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:gravity="center_vertical"
+        android:text="安全管理提示:"
+        android:background="@color/app_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90" />
+
+<com.yijie.com.studentapp.view.CircleRelativeLayout
+    android:id="@+id/cr_sign"
+    android:layout_width="@dimen/base_dimen_280"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/base_dimen_20"
+    app:background_color="@color/colorTheme"
+    android:layout_height="@dimen/base_dimen_320">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+    <TextView
+        android:text="签到"
+        android:textSize="@dimen/base_dimen_36"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Chronometer
+        android:id="@+id/tv_signTime"
+        android:textSize="@dimen/base_dimen_36"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</com.yijie.com.studentapp.view.CircleRelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_signTimes"
+        android:text="今天还未签到"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:layout_marginBottom="@dimen/base_dimen_140"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+</android.support.v4.widget.NestedScrollView>
