@@ -64,7 +64,6 @@ public class KinderNeedFragment  extends BaseFragment {
     private int currentPage = 1;
     private int totalPage;
     private int loadingTotal;
-    private List<SchoolSimple> dataList;
     private String schoolId;
     private StatusLayoutManager statusLayoutManager;
     private List<List<KindergartenNeed>> loadingList = new ArrayList<>();
@@ -78,8 +77,7 @@ public class KinderNeedFragment  extends BaseFragment {
     @Override
     public void onResume() {
         isPrepared = true;
-        dataList.clear();
-        currentPage = 1;
+
         initData();
         super.onResume();
     }
@@ -93,14 +91,14 @@ public class KinderNeedFragment  extends BaseFragment {
                     @Override
                     public void onEmptyChildClick(View view) {
                         currentPage = 1;
-                        dataList.clear();
+                        loadingList.clear();
                         getLoadingData();
                     }
 
                     @Override
                     public void onErrorChildClick(View view) {
                         currentPage = 1;
-                        dataList.clear();
+                        loadingList.clear();
                         getLoadingData();
                     }
 
@@ -111,7 +109,7 @@ public class KinderNeedFragment  extends BaseFragment {
 
                 })
                 .build();
-        dataList = new ArrayList<>();
+
 
         // 设置刷新控件颜色
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorTheme));
@@ -136,7 +134,7 @@ public class KinderNeedFragment  extends BaseFragment {
             @Override
             public void onRefresh() {
                 // 刷新数据
-                dataList.clear();
+                loadingList.clear();
                 currentPage = 1;
                 getLoadingData();
 
@@ -158,7 +156,7 @@ public class KinderNeedFragment  extends BaseFragment {
             public void onLoadMore() {
                 loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
 
-                if (dataList.size() < loadingTotal) {
+                if (loadingList.size() < loadingTotal) {
                     // 模拟获取网络数据，延时1s
                     new Timer().schedule(new TimerTask() {
                         @Override
@@ -185,9 +183,8 @@ public class KinderNeedFragment  extends BaseFragment {
         if (!isPrepared || isVisible) {
             return;
         }
-        //获取父activity中得学校id
-        TempActivity tempActivity = (TempActivity) mActivity;
-        schoolId = tempActivity.schoolId;
+        loadingList.clear();
+        currentPage = 1;
         getLoadingData();
 
     }

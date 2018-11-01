@@ -49,6 +49,7 @@
 
                             <TextView
                                 android:id="@+id/tv_month"
+                                android:drawableRight="@mipmap/arrow_down"
                                 android:textColor="#768797"
                                 android:textSize="16sp"
                                 android:layout_width="wrap_content"

@@ -6,8 +6,8 @@ android {
         applicationId "com.yijie.com.yijie"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,6 +31,7 @@ dependencies {
     //    compile project(':photoview')
     //    compile project(':pickerview')
     compile 'com.squareup.picasso:picasso:2.5.2'
+//    implementation rootProject.ext.dependencies.constraintlayout
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     implementation files('libs/umeng_social_net.jar')
     implementation files('libs/SocialSDK_WeChat_Simplify.jar')
@@ -48,6 +49,7 @@ dependencies {
     compile rootProject.ext.dependencies.imagepicker
     implementation project(':pickerview')
     implementation project(':library')
+    implementation project(':cretinautoupdatelibrary')
     //    implementation project(':allrecycleview')
     compile rootProject.ext.dependencies.imagepicker
     compile 'com.kyleduo.switchbutton:library:1.4.1'

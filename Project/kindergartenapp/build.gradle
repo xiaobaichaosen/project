@@ -7,10 +7,10 @@ android {
 
     defaultConfig {
         applicationId "com.yijie.com.kindergartenapp"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -37,7 +37,8 @@ dependencies {
     implementation project(':searchview')
     implementation project(':pickerview')
     implementation project(':library')
-    implementation rootProject.ext.dependencies.constraintlayout
+    implementation project(':cretinautoupdatelibrary')
+//    implementation rootProject.ext.dependencies.constraintlayout
     compile rootProject.ext.dependencies.butterknife
     annotationProcessor rootProject.ext.dependencies.butterknifeCompiler
     compile rootProject.ext.dependencies.okhttp
@@ -48,6 +49,7 @@ dependencies {
     compile rootProject.ext.dependencies.ratingbar
     compile rootProject.ext.dependencies.eventbus
     compile rootProject.ext.dependencies.imagepicker
+
     compile 'com.kyleduo.switchbutton:library:1.4.1'
     implementation files('libs/SocialSDK_QQ_Simplify.jar')
     implementation files('libs/jcore-android-1.2.0.jar')

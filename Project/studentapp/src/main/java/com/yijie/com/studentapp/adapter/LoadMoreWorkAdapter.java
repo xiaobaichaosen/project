@@ -2,6 +2,7 @@ package com.yijie.com.studentapp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +80,13 @@ public class LoadMoreWorkAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
         //将position保存在itemView的Tag中，以便点击时进行获取
         recyclerViewHolder.tvCompanyName.setText(dataList.get(position).getCompanyName());
-        recyclerViewHolder.tvWorkDue.setText(dataList.get(position).getWorkDue());
+        String workDue = dataList.get(position).getWorkDue();
+        if (!TextUtils.isEmpty(workDue)){
+            String[] split = workDue.split("-");
+            recyclerViewHolder.tvStartTime.setText(split[0]);
+            recyclerViewHolder.tvEndTime.setText(split[1]);
+        }
+
         recyclerViewHolder.tvPost.setText(dataList.get(position).getPost());
         recyclerViewHolder.tvDescription.setText(dataList.get(position).getDescription());
         recyclerViewHolder.itemView.setTag(position);
@@ -93,8 +100,10 @@ public class LoadMoreWorkAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_companyName)
         TextView tvCompanyName;
-        @BindView(R.id.tv_workDue)
-        TextView tvWorkDue;
+        @BindView(R.id.tv_startTime)
+        TextView tvStartTime;
+        @BindView(R.id.tv_endTime)
+        TextView tvEndTime;
         @BindView(R.id.tv_post)
         TextView tvPost;
         @BindView(R.id.tv_description)

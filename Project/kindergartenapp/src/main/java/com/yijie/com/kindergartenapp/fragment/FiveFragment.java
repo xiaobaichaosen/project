@@ -83,7 +83,7 @@ public class FiveFragment extends BaseFragment {
     @Override
     protected void initView() {
         tempActivity = (RegistKindActivity) getActivity();
-        tvMessage.setText("向" + '"' + kindergartenMember.getKindName() + '"');
+        tvMessage.setText("向" +  kindergartenMember.getKindName() );
         tvText.setText("发送加入申请");
     }
 
@@ -147,13 +147,18 @@ public class FiveFragment extends BaseFragment {
                     String rescode= jsonObject.getString("rescode");
                     String resMessage= jsonObject.getString("resMessage");
                     ShowToastUtils.showToastMsg(mActivity,resMessage);
+
                     if (rescode.equals("200")){
                         tempActivity.stepView.setStep(4);
                         if (onButtonClick != null) {
-
                             onButtonClick.onClick("发送成功");
                         }
-                        SharedPreferencesUtils.setParam(mActivity,"userId",jsonObject.getInt("data")+"");
+                        int userId = jsonObject.getJSONObject("data").getInt("id");
+                        int kinderId = jsonObject.getJSONObject("data").getInt("kinderId");
+                        String cellphone = jsonObject.getJSONObject("data").getString("cellphone");
+                        SharedPreferencesUtils.setParam(mActivity, "userId",userId+"");
+                        SharedPreferencesUtils.setParam(mActivity, "kinderId",kinderId+"");
+                        SharedPreferencesUtils.setParam(mActivity, "cellphone",cellphone);;
                     }
 
                 } catch (JSONException e) {

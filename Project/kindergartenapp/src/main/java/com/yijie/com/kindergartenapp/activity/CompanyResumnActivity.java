@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,11 +15,11 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
+import com.yijie.com.kindergartenapp.adapter.InfoCardAdapter;
 import com.yijie.com.kindergartenapp.adapter.LoadMoreEducationAdapter;
 import com.yijie.com.kindergartenapp.adapter.LoadMoreWorkAdapter;
 import com.yijie.com.kindergartenapp.base.BaseActivity;
 import com.yijie.com.kindergartenapp.base.baseadapter.DividerItemDecoration;
-import com.yijie.com.kindergartenapp.bean.StudentContact;
 import com.yijie.com.kindergartenapp.bean.StudentEducation;
 import com.yijie.com.kindergartenapp.bean.StudentInfo;
 import com.yijie.com.kindergartenapp.bean.StudentResume;
@@ -35,6 +36,8 @@ import com.yijie.com.kindergartenapp.view.LoadingLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,16 +83,7 @@ public class CompanyResumnActivity extends BaseActivity {
     @BindView(R.id.tv_birth)
     TextView tvBirth;
 
-    @BindView(R.id.tv_cellphone)
-    TextView tvCellphone;
-    @BindView(R.id.tv_wechat)
-    TextView tvWechat;
-    @BindView(R.id.tv_qq)
-    TextView tvQq;
-    @BindView(R.id.tv_email)
-    TextView tvEmail;
-    @BindView(R.id.linearLayout)
-    LinearLayout linearLayout;
+
     @BindView(R.id.education_recyclerView)
     RecyclerView educationRecyclerView;
     @BindView(R.id.work_recyclerView)
@@ -110,18 +104,29 @@ public class CompanyResumnActivity extends BaseActivity {
     TextView tvAge;
     @BindView(R.id.tv_location)
     TextView tvLocation;
-    @BindView(R.id.tv_idcard)
-    TextView tvIdcard;
+
     int studentUserId;
     int kinderNeedId;
     int companionId;
     String stuName;
     @BindView(R.id.loading)
     LoadingLayout loading;
-    @BindView(R.id.tv_urgentcontact)
-    TextView tvUrgentcontact;
-    @BindView(R.id.tv_urgentphone)
-    TextView tvUrgentphone;
+    @BindView(R.id.ll_workExperience)
+    LinearLayout llWorkExperience;
+    @BindView(R.id.ll_relatedIntention)
+    LinearLayout llRelatedIntention;
+    @BindView(R.id.ll_selfAssessment)
+    LinearLayout llSelfAssessment;
+    @BindView(R.id.tv_nb)
+    TextView tvNb;
+    @BindView(R.id.ll_nb)
+    LinearLayout llNb;
+    @BindView(R.id.recycler_view_honor)
+    RecyclerView recyclerViewHonor;
+    @BindView(R.id.ll_honoraryCcertificate)
+    LinearLayout llHonoraryCcertificate;
+    private ArrayList<String> infoList = new ArrayList<>();
+    private ArrayList<String> honorList = new ArrayList<>();
 
     @Override
     public void setContentView() {
@@ -143,7 +148,7 @@ public class CompanyResumnActivity extends BaseActivity {
      *
      * @param id
      */
-    private void getResumnDetail(int id) {
+    private void getResumnDetail(final int id) {
         final HttpUtils instance = HttpUtils.getinstance(CompanyResumnActivity.this);
         final ProgressDialog progressDialog = ViewUtils.getProgressDialog(CompanyResumnActivity.this);
         Map map = new HashMap();
@@ -181,15 +186,7 @@ public class CompanyResumnActivity extends BaseActivity {
                     tvPlace.setText(studentInfo.getPlace());
                     tvLocation.setText(studentInfo.getAddress());
                     tvBirth.setText(studentInfo.getBirth() + "");
-                    tvIdcard.setText(studentInfo.getIdCard());
-                    //联系方式
-                    StudentContact studentContact = studentResumeDetail.getStudentContact();
-                    tvCellphone.setText(studentContact.getCellphone());
-                    tvWechat.setText(studentContact.getWechat());
-                    tvQq.setText(studentContact.getQq());
-                    tvEmail.setText(studentContact.getEmail());
-                    tvUrgentcontact.setText(studentContact.getUrgentContact());
-                    tvUrgentphone.setText(studentContact.getUrgentCellphone());
+
                     //教育经历
                     List<StudentEducation> studentEducation = studentResumeDetail.getStudentEducation();
                     LoadMoreEducationAdapter loadMoreEducationAdapter = new LoadMoreEducationAdapter(studentEducation);
@@ -200,23 +197,68 @@ public class CompanyResumnActivity extends BaseActivity {
                     educationRecyclerView.setAdapter(loadMoreEducationAdapter);
                     //工作经历
                     List<StudentWorkDue> studentWorkDue = studentResumeDetail.getStudentWorkDue();
-                    LoadMoreWorkAdapter loadMoreWorkAdapter = new LoadMoreWorkAdapter(studentWorkDue);
-                    workRecyclerView.addItemDecoration(new DividerItemDecoration(CompanyResumnActivity.this, LinearLayoutManager.VERTICAL));
-                    LinearLayoutManager workManager = new LinearLayoutManager(CompanyResumnActivity.this);
-                    workRecyclerView.setLayoutManager(workManager);
-                    workRecyclerView.setNestedScrollingEnabled(false);
-                    workRecyclerView.setAdapter(loadMoreWorkAdapter);
+                    if (studentWorkDue.size() > 0) {
+                        LoadMoreWorkAdapter loadMoreWorkAdapter = new LoadMoreWorkAdapter(studentWorkDue);
+                        workRecyclerView.addItemDecoration(new DividerItemDecoration(CompanyResumnActivity.this, LinearLayoutManager.VERTICAL));
+                        LinearLayoutManager workManager = new LinearLayoutManager(CompanyResumnActivity.this);
+                        workRecyclerView.setLayoutManager(workManager);
+                        workRecyclerView.setNestedScrollingEnabled(false);
+                        workRecyclerView.setAdapter(loadMoreWorkAdapter);
+                    } else {
+                        llWorkExperience.setVisibility(View.GONE);
+                    }
+
                     //相关意向
                     StudentResume studentResume = studentResumeDetail.getStudentResume();
-                    tvExpectWorkPlace.setText(studentResume.getExpectWorkPlace());
+                    if (null != studentResume) {
+                        expectPartener = studentResume.getExpectPartener();
+                        String expectWorkPlace = studentResume.getExpectWorkPlace();
+                        companionId = studentResume.getCompanionId();
+                        if (TextUtils.isEmpty(expectWorkPlace) && TextUtils.isEmpty(expectPartener)) {
+                            llRelatedIntention.setVisibility(View.GONE);
+                        } else {
+                            tvCompanionName.setText(expectPartener);
+                            tvExpectWorkPlace.setText(expectWorkPlace);
+                        }
+                        //自我评价
+                        if (TextUtils.isEmpty(studentResume.getSelfEvaluate())) {
+                            llSelfAssessment.setVisibility(View.GONE);
+                        } else {
+                            tvSelfEvaluate.setText(studentResume.getSelfEvaluate());
 
-                    expectPartener = studentResume.getExpectPartener();
-                    companionId = studentResume.getCompanionId();
-                    tvCompanionName.setText(expectPartener);
-                    //自我评价
-                    tvSelfEvaluate.setText(studentResume.getSelfEvaluate());
-                    //荣誉证书
-                    //TODO===============
+                        }
+                        //荣誉证书
+                        if (!TextUtils.isEmpty(studentResume.getCertificate())) {
+                            String img1 = studentResume.getCertificate();
+                            if (!"".equals(img1) && null != img1) {
+                                String[] split = img1.split(";");
+                                List<String> strings = Arrays.asList(split);
+                                for (int i = 0; i < strings.size(); i++) {
+                                    honorList.add(strings.get(i));
+                                }
+                            }
+                            recyclerViewHonor.setAdapter(new InfoCardAdapter(CompanyResumnActivity.this, honorList, id + "", "certificate", "certificate"));
+                        } else {
+                            llHonoraryCcertificate.setVisibility(View.GONE);
+                        }
+                        String hobby = studentResume.getHobby();
+                        if (TextUtils.isEmpty(hobby)) {
+                            llNb.setVisibility(View.GONE);
+                        } else {
+                            tvNb.setText(hobby);
+                        }
+                    }
+
+
+                    String img = studentInfo.getPic();
+                    if (!"".equals(img) && null != img) {
+                        String[] split = img.split(";");
+                        List<String> strings = Arrays.asList(split);
+                        for (int i = 0; i < strings.size(); i++) {
+                            infoList.add(strings.get(i));
+                        }
+                        recyclerView.setAdapter(new InfoCardAdapter(CompanyResumnActivity.this, infoList, id + "", "info", "info"));
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -261,7 +303,7 @@ public class CompanyResumnActivity extends BaseActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     String rescode = jsonObject.getString("rescode");
-                    if (rescode.equals("200")){
+                    if (rescode.equals("200")) {
                         ShowToastUtils.showToastMsg(CompanyResumnActivity.this, "选择成功!");
                         finish();
                     }

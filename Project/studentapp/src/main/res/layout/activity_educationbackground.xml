@@ -45,7 +45,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_wx"
+        android:id="@+id/rl_major"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
@@ -58,18 +58,18 @@
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
-        <EditText
+
+        <TextView
             android:id="@+id/et_major"
-            android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
             android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
-            android:background="@null"
-            android:hint="请输入专业"
             android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_28" />
+            />
 
         <View
             android:layout_width="match_parent"
@@ -82,7 +82,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/ll_name"
+        android:id="@+id/rl_educationBackground"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/base_dimen_22"
@@ -91,22 +91,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="学历/学位:"
+            android:text="学历:"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
-        <EditText
+
+        <TextView
             android:id="@+id/et_education"
-            android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_28"
             android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/goright"
+            android:paddingRight="@dimen/base_dimen_22"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/base_dimen_22"
-            android:background="@null"
-            android:hint="请输入学历/学位"
             android:textColor="#808080"
-            android:textSize="@dimen/base_dimen_28" />
+            />
 
         <View
             android:layout_width="match_parent"

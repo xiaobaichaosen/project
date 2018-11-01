@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<paths>
+    <external-path path="Android/data/com.yijie.com.kindergartenapp/"    name="files_root" />
+    <external-path name="cretin_install" path="."/>
+</paths>
+</resources>

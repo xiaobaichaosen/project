@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yijie.com.kindergartenapp">
-    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <!--友盟需要的权限-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_LOGS"
+   />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"
+   />
+  <!--  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+      />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 >
@@ -28,17 +29,18 @@
 
 
     <!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="com.yijie.com.kindergartenapp.permission.JPUSH_MESSAGE" />
+
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+ />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+   />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-
+<!--没有权限不能安装安装包
+-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <!-- Optional for location -->
     <!--加这个条件有得手机会报错-->
@@ -59,6 +61,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+
+
         /*支付宝需要的*/
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -81,6 +87,9 @@
             android:value="bad09a5d8462fda475ba79590bba7a4b" />
         <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService"></service>
+        /*下载框架要加的服务*/
+        <service android:name="com.cretin.www.cretinautoupdatelibrary.utils.DownloadService"/>
+
         <!-- Rich push 核心功能 since 2.0.6-->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
@@ -119,7 +128,15 @@
             android:name="cn.jpush.android.service.DataProvider"
             android:exported="false"
             />
-
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.yijie.com.kindergartenapp.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/install_file" />
+        </provider>
         <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
         <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
         <service
@@ -222,8 +239,10 @@
         <activity android:name=".activity.RecruitmentActivity"/>
         <activity android:name=".activity.ResumnStatusActivity"/>
         <activity android:name=".activity.KinderSimple"/>
+        <activity android:name=".activity.ProtactActivity"/>
         <activity android:name=".activity.sendlocation.SearchActivity"/>
         <activity android:name=".activity.WebViewActivity"/>
+
         <activity android:name=".activity.regist.RegistKindActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             />
@@ -251,6 +270,9 @@
         <activity android:name=".utils.PhotoActivityForHor"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
+        <activity android:name=".activity.PhotoActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
         <activity android:name=".activity.AttachmentActivity"
             />
         <activity android:name=".activity.SignActivity"
@@ -268,6 +290,14 @@
         <activity android:name=".activity.SignDateActivity"
             />
         <activity android:name=".activity.AccessActivity"
+            />
+        <activity android:name=".activity.ModiPhoneActivity"
+            />
+        <activity android:name=".activity.ModityPwdAcitivity"
+            />
+
+
+        <activity android:name="com.yijie.com.kindergartenapp.headportrait.ClipImageActivity"
             />
 
     </application>

@@ -18,7 +18,7 @@ import java.util.Date;
  */
 public class TimePickerView extends BasePickerView implements View.OnClickListener {
     public enum Type {
-        ALL, YEAR_MONTH_DAY , YEAR_MONTH_DAY_HOUR , HOURS_MINS, MONTH_DAY_HOUR_MIN , YEAR_MONTH,YEAR
+        ALL, YEAR_MONTH_DAY , YEAR_MONTH_DAY_HOUR , HOURS_MINS, MONTH_DAY_HOUR_MIN , YEAR_MONTH,YEAR,YEAR_MPMTH_DAY_H//年月日
     }// 选择模式，年月日时分，年月日，年月日时 , 时分，月日时分 ,年月
 
     WheelTime wheelTime;
@@ -44,7 +44,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         // ----时间转轮
         final View timepickerview = findViewById(R.id.timepicker);
         wheelTime = new WheelTime(timepickerview, type);
-
+        setRange(1970,2021);
         //默认选中当前时间
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -54,9 +54,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
         wheelTime.setPicker(year, month, day, hours, minute);
-
     }
-
     /**
      * 设置可以选择的时间范围
      *

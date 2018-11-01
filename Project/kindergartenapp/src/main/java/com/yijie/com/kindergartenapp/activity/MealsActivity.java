@@ -2,13 +2,11 @@ package com.yijie.com.kindergartenapp.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijie.com.kindergartenapp.R;
@@ -51,6 +49,8 @@ public class MealsActivity extends BaseActivity {
     CommonBean commonBean = new CommonBean();
     @BindView(R.id.rp_all)
     RadioGroup rpAll;
+    @BindView(R.id.cb_wu)
+    RadioButton cbWu;
     private CommonBean tempMealCommonBean;
 
     @Override
@@ -74,7 +74,9 @@ public class MealsActivity extends BaseActivity {
                 rbTwomeals.setChecked(true);
             } else if ("全补".equals(tempMealCommonBean.getRbString())) {
                 rbAllmeal.setChecked(true);
-            }else {
+            }else if ("无".equals(tempMealCommonBean.getRbString())) {
+                cbWu.setChecked(true);
+            } else {
                 cbOther.setChecked(true);
                 etContent.setText(tempMealCommonBean.getRbString());
             }
@@ -90,9 +92,17 @@ public class MealsActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnCheckedChanged({R.id.rb_threemeals, R.id.rb_twomeals, R.id.rb_allmeal, R.id.cb_other})
+    @OnCheckedChanged({R.id.cb_wu, R.id.rb_threemeals, R.id.rb_twomeals, R.id.rb_allmeal, R.id.cb_other})
     public void OnCheckedChangeListener(CompoundButton view, boolean ischanged) {
         switch (view.getId()) {
+
+            case R.id.cb_wu:
+                if (ischanged) {
+                    rpAll.clearCheck();
+                    cbOther.setChecked(false);
+                    commonBean.setRbString("无");
+                }
+                break;
             case R.id.cb_other:
                 if (ischanged) {
                     rpAll.clearCheck();
@@ -108,18 +118,21 @@ public class MealsActivity extends BaseActivity {
             case R.id.rb_threemeals:
                 if (ischanged) {
                     cbOther.setChecked(false);
+                    cbWu.setChecked(false);
                     commonBean.setRbString("园内三餐");
                 }
                 break;
             case R.id.rb_twomeals:
                 if (ischanged) {
                     cbOther.setChecked(false);
+                    cbWu.setChecked(false);
                     commonBean.setRbString("两餐一补");
                 }
                 break;
             case R.id.rb_allmeal:
                 if (ischanged) {
                     cbOther.setChecked(false);
+                    cbWu.setChecked(false);
                     commonBean.setRbString("全补");
                 }
                 break;
@@ -135,10 +148,10 @@ public class MealsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_recommend:
-                if (!etContent.getText().toString().trim().equals("")){
+                if (!etContent.getText().toString().trim().equals("")) {
                     commonBean.setRbString(etContent.getText().toString().trim());
                 }
-                commonBean.setType(10);
+                commonBean.setType(4);
                 EventBus.getDefault().post(commonBean);
 
                 finish();

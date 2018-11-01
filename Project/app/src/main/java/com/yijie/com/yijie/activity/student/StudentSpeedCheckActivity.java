@@ -19,6 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.recommend.RecommendActivity;
@@ -248,6 +249,7 @@ public class StudentSpeedCheckActivity extends BaseActivity
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONObject data = jsonObject.getJSONObject("data");
+
                     Gson gson = new Gson();
                     StudentResumeDetail studentResumeDetail = gson.fromJson(data.toString(), StudentResumeDetail.class);
                     //个人信息

@@ -15,6 +15,7 @@ public class StayBean implements Serializable {
     private String eighttwelveString="";
     private String twoString="";
     private String threeString="";
+    private String wuString="";
     public String getFoureightString() {
         return foureightString;
     }
@@ -25,6 +26,14 @@ public class StayBean implements Serializable {
 
     public String getEighttwelveString() {
         return eighttwelveString;
+    }
+
+    public String getWuString() {
+        return wuString;
+    }
+
+    public void setWuString(String wuString) {
+        this.wuString = wuString;
     }
 
     public void setEighttwelveString(String eighttwelveString) {
@@ -71,7 +80,7 @@ public class StayBean implements Serializable {
 
     @Override
     public String toString() {
-        return upString +"、" + downString+"、" + outString+"、" + otherString+"、" + foureightString+"、" + eighttwelveString+"、" + twoString+"、" + threeString;
+        return upString +"、" + downString+"、" + outString+"、" + otherString+"、" + foureightString+"、" + eighttwelveString+"、" + twoString+"、" + threeString+"、" + wuString;
 
     }
 

@@ -16,8 +16,8 @@ import com.google.gson.Gson;
 import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
 import com.yijie.com.kindergartenapp.activity.MealsActivity;
+import com.yijie.com.kindergartenapp.activity.PoiSearchActivity;
 import com.yijie.com.kindergartenapp.activity.StayActivity;
-import com.yijie.com.kindergartenapp.activity.sendlocation.SendLocationActivity;
 import com.yijie.com.kindergartenapp.base.BaseActivity;
 import com.yijie.com.kindergartenapp.base.JsonBean;
 import com.yijie.com.kindergartenapp.base.JsonFileReader;
@@ -179,9 +179,9 @@ public class RegistDetailActivity extends BaseActivity {
         Bundle mBundle = new Bundle();
         switch (view.getId()) {
             case R.id.rl_detailAdress:
+//                intent.putExtra("kindName",kindName);
 //              intent.setClass(RegistDetailActivity.this, PoiSearchActivity.class);
-                intent.setClass(RegistDetailActivity.this, SendLocationActivity.class);
-                startActivity(intent);
+//                startActivity(intent);
                 break;
 
             case R.id.rl_gradStay:

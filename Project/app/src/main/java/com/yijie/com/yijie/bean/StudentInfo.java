@@ -12,16 +12,16 @@ public class StudentInfo implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private int id;
     /**
      * 学生用户id
      */
-    private Integer studentUserId;
+    private int studentUserId;
 
     /**
      * 简历id
      */
-    private Integer resumeId;
+    private int resumeId;
 
     /**
      * 姓名
@@ -36,7 +36,7 @@ public class StudentInfo implements Serializable {
     /**
      * 身高
      */
-    private Integer height;
+    private int height;
 
     /**
      * 体重
@@ -69,11 +69,11 @@ public class StudentInfo implements Serializable {
      */
     private String address;
 
-    public Integer getStuAge() {
+    public int getStuAge() {
         return stuAge;
     }
 
-    public void setStuAge(Integer stuAge) {
+    public void setStuAge(int stuAge) {
         this.stuAge = stuAge;
     }
 
@@ -81,11 +81,11 @@ public class StudentInfo implements Serializable {
      * 学生年龄
      */
 
-    private Integer stuAge;
+    private int stuAge;
     /**
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 创建时间
@@ -111,19 +111,19 @@ public class StudentInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getResumeId() {
+    public int getResumeId() {
         return resumeId;
     }
 
-    public void setResumeId(Integer resumeId) {
+    public void setResumeId(int resumeId) {
         this.resumeId = resumeId;
     }
 
@@ -143,11 +143,11 @@ public class StudentInfo implements Serializable {
         this.sex = sex;
     }
 
-    public Integer getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -199,11 +199,11 @@ public class StudentInfo implements Serializable {
         this.address = address;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
@@ -223,11 +223,11 @@ public class StudentInfo implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getStudentUserId() {
+    public int getStudentUserId() {
         return studentUserId;
     }
 
-    public void setStudentUserId(Integer studentUserId) {
+    public void setStudentUserId(int studentUserId) {
         this.studentUserId = studentUserId;
     }
 

@@ -2,6 +2,7 @@ package com.yijie.com.yijie.base;
 
 import android.app.Application;
 
+import com.cretin.www.cretinautoupdatelibrary.utils.CretinAutoUpdateUtils;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -9,6 +10,9 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
+import com.yijie.com.yijie.Constant;
+import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.bean.VersionUpdate;
 import com.yijie.com.yijie.util.MyImageLoader;
 import com.yijie.com.yijie.utils.ImageLoaderUpload;
 
@@ -58,7 +62,23 @@ public class APPApplication extends Application {
 //
 //            }
 //        });
-
+        CretinAutoUpdateUtils.Builder builder =
+                new CretinAutoUpdateUtils.Builder()
+                        //设置更新api
+                        .setBaseUrl(Constant.GETVERSIONUPDATE+"?appType=2")
+                        //设置是否显示忽略此版本
+                        .setIgnoreThisVersion(true)
+                        .setRequestMethod(CretinAutoUpdateUtils.Builder.METHOD_GET)
+                        //设置自定义的Model类
+                        .setTransition(new VersionUpdate())
+                        //设置下载显示形式 对话框或者通知栏显示 二选一
+                        .setShowType(CretinAutoUpdateUtils.Builder.TYPE_DIALOG)
+                        //设置下载时展示的图标
+                        .setIconRes(R.mipmap.ic_launcher)
+                        //设置下载时展示的应用名称
+                        .setAppName("测试应用")
+                        .build();
+        CretinAutoUpdateUtils.init(builder);
     }
     //各个平台的配置，建议放在全局Application或者程序入口
     {

@@ -11,14 +11,14 @@ public class SelfDiscovery implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private int id;
 
-    private Integer discoveryId;
+    private int discoveryId;
 
     /**
      * 发现类型:0:新增待培训 1：待审核 2：新邮件查看 3:群聊
      */
-    private Integer discoveryType;
+    private int discoveryType;
     /**
      * 发现中图片
      */
@@ -34,11 +34,11 @@ public class SelfDiscovery implements Serializable {
     /**
      * 未读数量
      */
-    private Integer unreadCount;
+    private int unreadCount;
     /**
      * 推送消息数量
      */
-     private Integer pushCount;
+     private int pushCount;
 
     /**
      * 创建时间
@@ -53,27 +53,27 @@ public class SelfDiscovery implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getDiscoveryId() {
+    public int getDiscoveryId() {
         return discoveryId;
     }
 
-    public void setDiscoveryId(Integer discoveryId) {
+    public void setDiscoveryId(int discoveryId) {
         this.discoveryId = discoveryId;
     }
 
-    public Integer getDiscoveryType() {
+    public int getDiscoveryType() {
         return discoveryType;
     }
 
-    public void setDiscoveryType(Integer discoveryType) {
+    public void setDiscoveryType(int discoveryType) {
         this.discoveryType = discoveryType;
     }
 
@@ -101,11 +101,11 @@ public class SelfDiscovery implements Serializable {
         this.discoveryContent = discoveryContent;
     }
 
-    public Integer getUnreadCount() {
+    public int getUnreadCount() {
         return unreadCount;
     }
 
-    public void setUnreadCount(Integer unreadCount) {
+    public void setUnreadCount(int unreadCount) {
         this.unreadCount = unreadCount;
     }
 
@@ -125,11 +125,11 @@ public class SelfDiscovery implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getPushCount() {
+    public int getPushCount() {
         return pushCount;
     }
 
-    public void setPushCount(Integer pushCount) {
+    public void setPushCount(int pushCount) {
         this.pushCount = pushCount;
     }
 

@@ -1,91 +1,40 @@
 package com.yijie.com.yijie.activity.kendergard;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
-import com.lzy.imagepicker.ui.ImageGridActivity;
-import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
-import com.yijie.com.yijie.activity.ProjectActivity;
-import com.yijie.com.yijie.activity.ReNameSchoolAcitivty;
-import com.yijie.com.yijie.activity.TempActivity;
-import com.yijie.com.yijie.activity.school.SchoolActivity;
-import com.yijie.com.yijie.activity.school.StudentBean;
-import com.yijie.com.yijie.activity.school.adapter.SchoolContactAdapterRecyclerView;
-import com.yijie.com.yijie.activity.school.adapter.SchoolMemeryAdapterRecyclerView;
+import com.yijie.com.yijie.adapter.LoadMorePopuAdapter;
 import com.yijie.com.yijie.base.BaseActivity;
-import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
-import com.yijie.com.yijie.base.baseadapter.LoadMoreWrapper;
-import com.yijie.com.yijie.bean.bean.KindergartenNeed;
-import com.yijie.com.yijie.bean.school.School;
 import com.yijie.com.yijie.fragment.CompayKinderFragment;
 import com.yijie.com.yijie.fragment.CompayedKinderFragment;
 import com.yijie.com.yijie.fragment.KinderNeedFragment;
 import com.yijie.com.yijie.fragment.NewKinderFragment;
-import com.yijie.com.yijie.fragment.SchoolDetailFragment;
-import com.yijie.com.yijie.fragment.SchoolMemeryFragment;
-import com.yijie.com.yijie.fragment.kndergaren.KndergartenFragment;
-import com.yijie.com.yijie.fragment.kndergaren.LoadMoreCompanyKndergrtenAdapter;
-import com.yijie.com.yijie.fragment.kndergaren.LoadMoreKndergrtenAdapter;
-import com.yijie.com.yijie.fragment.kndergaren.LoadMoreLoadingKndergrtenAdapter;
-import com.yijie.com.yijie.fragment.school.ProjectListFragment;
-import com.yijie.com.yijie.utils.BaseCallback;
-import com.yijie.com.yijie.utils.HttpUtils;
-import com.yijie.com.yijie.utils.ImageLoaderUtil;
-import com.yijie.com.yijie.utils.LogUtil;
+import com.yijie.com.yijie.utils.AnimationUtil;
 import com.yijie.com.yijie.utils.ShowToastUtils;
 import com.yijie.com.yijie.utils.ViewUtils;
-import com.yijie.com.yijie.view.CircleImageView;
-import com.yijie.com.yijie.view.CommomDialog;
-import com.yijie.com.yijie.view.LoadingLayout;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
-import me.bakumon.statuslayoutmanager.library.OnStatusChildClickListener;
-import me.bakumon.statuslayoutmanager.library.StatusLayoutManager;
-import okhttp3.Request;
-import okhttp3.Response;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by 奕杰平台 on 2018/6/28.
@@ -101,36 +50,14 @@ public class KendergardStatusActivity extends BaseActivity {
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
 
-    @BindView(R.id.collapse_toolbar)
-    CollapsingToolbarLayout collapseToolbar;
-    @BindView(R.id.appBarLayout)
-    AppBarLayout appBarLayout;
-
-    private int maxImgCount = 1;               //允许选择图片最大数
     @BindView(R.id.back)
     TextView back;
     @BindView(R.id.tv_recommend)
     TextView tvRecommend;
     @BindView(R.id.main_frame_layout)
     FrameLayout mainFrameLayout;
-    @BindView(R.id.iv_schoolPic)
-    CircleImageView ivSchoolPic;
-    @BindView(R.id.tv_schoolName)
-    TextView tvSchoolName;
-    @BindView(R.id.tv_contact)
-    TextView tvContact;
-    @BindView(R.id.tv_schoolName_edit)
-    TextView tvSchoolNameEdit;
 
 
-
-    //用来判断   actionItem是哪个图片，来触发点击事件 1==项目，2==备忘录
-    private int current;
-    public String schoolId;
-    //是编辑还是完成
-    public boolean changeText;
-    //学校详情中联系人的编辑按钮
-    TextView tvContactEdit;
     public String schoolName;
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
@@ -140,40 +67,96 @@ public class KendergardStatusActivity extends BaseActivity {
     private KinderNeedFragment kinderNeedFragment;
     private CompayedKinderFragment compayedKinderFragment;
     private CompayKinderFragment compayKinderFragment;
+    private ArrayList<String > statusList=new ArrayList<>();
+    private LoadMorePopuAdapter loadMoreWrapperAdapter;
+    private int fromYDelta;
+    private   PopupWindow mPopupWindow;
+    private boolean isPopWindowShowing=false;
+    private   TextView textView;
+    private int current;
+    private TextView tvName;
+    public String textString;
 
     @Override
     public void setContentView() {
-        setContentView(R.layout.activity_temp);
+        setContentView(R.layout.activity_kendstatus);
+
     }
+
 
     @Override
     public void init() {
 
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
-        tvRecommend.setText("编辑");
+        title.setVisibility(View.GONE);
+        tvRecommend.setVisibility(View.GONE);
+        actionItem.setVisibility(View.VISIBLE);
+        actionItem.setImageResource(R.mipmap.search);
         selImageList = new ArrayList<>();
+        //添加状态
+        statusList.add("全部");
+        statusList.add("待审核");
+        statusList.add("已通过");
+        statusList.add("未通过");
+        statusList.add("注册中");
         //添加标签
         tabLayout.addTab(tabLayout.newTab().setText("园所需求"));
-        tabLayout.addTab(tabLayout.newTab().setText("新园所"));
+        View view = tab_icon("新园所", R.mipmap.arrow_down);
+        tabLayout.addTab(tabLayout.newTab().setCustomView(view));
         tabLayout.addTab(tabLayout.newTab().setText("合作园所"));
-        tabLayout.addTab(tabLayout.newTab().setText("往期合作园所"));
+        tabLayout.addTab(tabLayout.newTab().setText("往期园所"));
+        TabLayout.Tab tabAt = tabLayout.getTabAt(1);
+        textString="新园所";
+        textView = view.findViewById(R.id.tv_icon);
+        tvName = view.findViewById(R.id.tv_title);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (current==1){
+                    if (!isPopWindowShowing){
+                        showPopupWindow();
+                    }else {
+                        mPopupWindow.dismiss();
+                    }
+                }
+
+            }
+        });
+        initKinderNeedFragment();
         //绑定tab点击事件
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 if (position == 0) {
+                    if (isPopWindowShowing){
+                        mPopupWindow.dismiss();
+                    }
                     initKinderNeedFragment();
+                    tvName.setTextColor(Color.parseColor("#737373"));
+                    current=0;
                 } else if (position == 1) {
                     initNewKinderFragment();
+                    tvName.setTextColor(getResources().getColor(R.color.black));
+                    current=1;
                 } else if (position == 2) {
+                    current=2;
                     initCompayFragment();
-
-                } else if (position == 2) {
-                initCompayedFragment();
-
-            }
+                    if (isPopWindowShowing){
+                        mPopupWindow.dismiss();
+                    }
+                    tvName.setTextColor(Color.parseColor("#737373"));
+                } else if (position == 3) {
+                    current=3;
+                    initCompayedFragment();
+                    if (isPopWindowShowing){
+                        mPopupWindow.dismiss();
+                    }
+                    tvName.setTextColor(Color.parseColor("#737373"));
+                }
             }
 
             @Override
@@ -187,12 +170,13 @@ public class KendergardStatusActivity extends BaseActivity {
             }
         });
     }
+
     //园所需求
     private void initKinderNeedFragment() {
         //开启事务，fragment的控制是由事务来实现的
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (kinderNeedFragment == null) {
-            kinderNeedFragment= new KinderNeedFragment();
+            kinderNeedFragment = new KinderNeedFragment();
         }
         transaction.replace(R.id.main_frame_layout, kinderNeedFragment);
         //提交事务
@@ -218,6 +202,7 @@ public class KendergardStatusActivity extends BaseActivity {
         transaction.replace(R.id.main_frame_layout, compayKinderFragment);
         transaction.commit();
     }
+
     //往期合作园所
     private void initCompayedFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -227,6 +212,7 @@ public class KendergardStatusActivity extends BaseActivity {
         transaction.replace(R.id.main_frame_layout, compayedKinderFragment);
         transaction.commit();
     }
+
     /**
      * 设置自定义的tabitem
      *
@@ -252,4 +238,62 @@ public class KendergardStatusActivity extends BaseActivity {
 
 
 
+
+    @OnClick({R.id.back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+
+        }
+    }
+
+    private void showPopupWindow() {
+        //andorid 7.0如果内容超过屏幕showasdropdown 将会失效需要适配
+        final View contentView = LayoutInflater.from(this).inflate(R.layout.selectlist2, null);
+        RecyclerView recyclerView = contentView.findViewById(R.id.recycler_view);
+        GridLayoutManager linearLayoutManager = new GridLayoutManager(this,5);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        //设置适配器
+        loadMoreWrapperAdapter = new LoadMorePopuAdapter(statusList, R.layout.adapter_popu_item);
+        recyclerView.setAdapter(loadMoreWrapperAdapter);
+
+        mPopupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+        //将这两个属性设置为false，使点击popupwindow外面其他地方不会消失
+//        mPopupWindow.setOutsideTouchable(false);
+//        mPopupWindow.setFocusable(false);
+        //获取popupwindow高度确定动画开始位置
+        int contentHeight = ViewUtils.getViewMeasuredHeight(contentView);
+        fromYDelta = -contentHeight - 50;
+        ViewUtils.showAsDropDown(mPopupWindow,textView,0,0);
+//        mPopupWindow.getContentView().startAnimation(AnimationUtil.createInAnimation(this, fromYDelta));
+//        tvDown.startAnimation(AnimationUtil.createRotateupAnimation());
+        loadMoreWrapperAdapter.setOnItemClickListener(new LoadMorePopuAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String statusString = statusList.get(position);
+                TabLayout.Tab tabAt = tabLayout.getTabAt(1);
+               TextView textView= tabAt.getCustomView().findViewById(R.id.tv_title);
+               if (statusString.equals("全部")){
+                   textView.setText("新园所");
+               }else{
+                   textView.setText(statusString);
+               }
+               textString=statusString;
+                EventBus.getDefault().post(statusString);
+                mPopupWindow.dismiss();
+            }
+        });
+        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                isPopWindowShowing = false;
+            }
+        });
+        isPopWindowShowing = true;
+    }
 }

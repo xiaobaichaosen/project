@@ -44,12 +44,12 @@ public class KindergartenDiscovery implements Serializable {
     /**
      * 推送数量
      */
-    private Integer pushCount;
+    private int pushCount;
 
     /**
      * 未读数量
      */
-    private Integer unreadCount;
+    private int unreadCount;
 
     /**
      * 创建时间
@@ -63,7 +63,7 @@ public class KindergartenDiscovery implements Serializable {
     /**
      * 园所需求id
      */
-    private Integer kinderNeedId;
+    private int kinderNeedId;
     /**
      * 实习项目名称
      */
@@ -76,7 +76,7 @@ public class KindergartenDiscovery implements Serializable {
     /**
      * 学生人数要求(招聘人数）
      */
-    private Integer studentNum;
+    private int studentNum;
     /**
      * 舞蹈
      */
@@ -114,27 +114,27 @@ public class KindergartenDiscovery implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getKinderId() {
+    public int getKinderId() {
         return kinderId;
     }
 
-    public void setKinderId(Integer kinderId) {
+    public void setKinderId(int kinderId) {
         this.kinderId = kinderId;
     }
 
-    public Integer getDiscoveryType() {
+    public int getDiscoveryType() {
         return discoveryType;
     }
 
-    public void setDiscoveryType(Integer discoveryType) {
+    public void setDiscoveryType(int discoveryType) {
         this.discoveryType = discoveryType;
     }
 
@@ -162,19 +162,19 @@ public class KindergartenDiscovery implements Serializable {
         this.discoveryContent = discoveryContent;
     }
 
-    public Integer getPushCount() {
+    public int getPushCount() {
         return pushCount;
     }
 
-    public void setPushCount(Integer pushCount) {
+    public void setPushCount(int pushCount) {
         this.pushCount = pushCount;
     }
 
-    public Integer getUnreadCount() {
+    public int getUnreadCount() {
         return unreadCount;
     }
 
-    public void setUnreadCount(Integer unreadCount) {
+    public void setUnreadCount(int unreadCount) {
         this.unreadCount = unreadCount;
     }
 
@@ -194,11 +194,11 @@ public class KindergartenDiscovery implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getKinderNeedId() {
+    public int getKinderNeedId() {
         return kinderNeedId;
     }
 
-    public void setKinderNeedId(Integer kinderNeedId) {
+    public void setKinderNeedId(int kinderNeedId) {
         this.kinderNeedId = kinderNeedId;
     }
 
@@ -218,11 +218,11 @@ public class KindergartenDiscovery implements Serializable {
         this.location = location;
     }
 
-    public Integer getStudentNum() {
+    public int getStudentNum() {
         return studentNum;
     }
 
-    public void setStudentNum(Integer studentNum) {
+    public void setStudentNum(int studentNum) {
         this.studentNum = studentNum;
     }
 

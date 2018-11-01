@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.cretin.www.cretinautoupdatelibrary.utils.CretinAutoUpdateUtils;
 import com.yijie.com.kindergartenapp.base.AppManager;
 import com.yijie.com.kindergartenapp.base.BaseActivity;
 import com.yijie.com.kindergartenapp.base.PermissionsActivity;
@@ -49,16 +50,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     LinearLayout activityMain;
     // 类型为Fragment的动态数组
     private ArrayList<Fragment> fragmentList;
-//    // 所需的全部权限
-    static final String[] PERMISSIONS = new String[]{
-            Manifest.permission.CALL_PHONE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION,
-    };
+
     //记录用户首次点击返回键的时间
     private long firstTime = 0;
-    private static final int REQUEST_CODE = 0; // 请求码
+
 
     @Override
     public void onDestroy() {
@@ -90,7 +85,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         mainTabRadioGroup.setOnCheckedChangeListener(this);
         mainTabRadioGroup.check(R.id.radio_yijie);
 //        radioDiscover.setBadgeNumber(2);
-
+        //检查升级
+        CretinAutoUpdateUtils.getInstance(this).check();
 
 //
     }
@@ -113,16 +109,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
-        if (requestCode == REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
-            finish();
-        } else {
 
-        }
-    }
 
 
     public void InitViewPager() {

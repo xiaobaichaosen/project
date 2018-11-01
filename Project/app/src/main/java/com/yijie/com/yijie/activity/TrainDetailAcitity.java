@@ -265,12 +265,12 @@ public class TrainDetailAcitity extends BaseActivity {
                 break;
             case R.id.rl_time:
                 TimePickerView.Type typeTime = TimePickerView.Type.YEAR_MONTH_DAY;
-                String formatDate = "yyyy-MM-dd HH:mm";
+                String formatDate = "yyyy-MM-dd";
                 ViewUtils.alertTimerPicker(this, typeTime, formatDate, new ViewUtils.TimerPickerCallBack() {
                     @Override
                     public void onTimeSelect(String date) {
 
-                        if (TimeUtil.compare_date("yyyy-MM-dd HH:mm",date,TimeUtil.getCurrentDate("yyyy-MM-dd HH:mm"))==1){
+                        if (TimeUtil.compare_date("yyyy-MM-dd",date,TimeUtil.getCurrentDate("yyyy-MM-dd"))==1){
                             tvTime.setText(date);
                         }else {
                             ShowToastUtils.showToastMsg(TrainDetailAcitity.this,"选择的当前日期之前的日期");

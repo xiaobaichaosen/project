@@ -7,12 +7,12 @@ public class KindergartenMember implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private int id;
 
     /**
      * 园所id
      */
-    private Integer kinderId;
+    private int kinderId;
 
     /**
      * 园所成员手机号
@@ -48,7 +48,7 @@ public class KindergartenMember implements Serializable {
     /**
      * 园所成员审核状态:0:审核未通过 1：审核已通过
      */
-    private Integer auditStatus;
+    private int auditStatus;
 
     /**
      * 创建时间
@@ -61,19 +61,19 @@ public class KindergartenMember implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getKinderId() {
+    public int getKinderId() {
         return kinderId;
     }
 
-    public void setKinderId(Integer kinderId) {
+    public void setKinderId(int kinderId) {
         this.kinderId = kinderId;
     }
 
@@ -101,11 +101,11 @@ public class KindergartenMember implements Serializable {
         this.memerName = memerName;
     }
 
-    public Integer getAuditStatus() {
+    public int getAuditStatus() {
         return auditStatus;
     }
 
-    public void setAuditStatus(Integer auditStatus) {
+    public void setAuditStatus(int auditStatus) {
         this.auditStatus = auditStatus;
     }
 

@@ -358,6 +358,7 @@ public class NewSchoolActivity extends BaseActivity {
                             if (rescode.equals("200")){
                                 ShowToastUtils.showToastMsg(NewSchoolActivity.this, resMessage);
                             }else{
+                                intent.putExtra("schoolName",tvNewEducation.getText().toString().trim());
                                 intent.setClass(NewSchoolActivity.this, PoiSearchActivity.class);
                                 startActivity(intent);
                             }
@@ -718,7 +719,7 @@ public class NewSchoolActivity extends BaseActivity {
     public void handleSomethingElse(SchoolAdress schoolAdress) {
         int type = schoolAdress.getType();
         if (type == 2) {
-            etDetalAdress.setText(schoolAdress.getName());
+            etDetalAdress.setText(schoolAdress.getDetailAdress());
             mSchoolAdress = schoolAdress;
         }
 

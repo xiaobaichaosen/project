@@ -1,5 +1,6 @@
 package com.yijie.com.kindergartenapp.activity;
 
+import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +26,7 @@ import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.CameraPosition;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
@@ -31,6 +34,10 @@ import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.core.SuggestionCity;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.yijie.com.kindergartenapp.R;
@@ -40,8 +47,10 @@ import com.yijie.com.kindergartenapp.base.baseadapter.DividerItemDecoration;
 import com.yijie.com.kindergartenapp.base.baseadapter.EndlessRecyclerOnScrollListener;
 import com.yijie.com.kindergartenapp.base.baseadapter.LoadMoreWrapper;
 import com.yijie.com.kindergartenapp.bean.SchoolAdress;
+import com.yijie.com.kindergartenapp.utils.DataConversionUtils;
 import com.yijie.com.kindergartenapp.utils.LogUtil;
 import com.yijie.com.kindergartenapp.utils.ShowToastUtils;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +59,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
+
+/**
+ * Created by 奕杰平台 on 2018/4/19.
+ */
 
 public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiSearch.OnPoiSearchListener, AMapLocationListener, LocationSource {
     @BindView(R.id.back)
@@ -65,10 +78,15 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
     EditText keyWord;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
+
     @BindView(R.id.tv_school)
     TextView tvSchool;
+
+    @BindView(R.id.map)
+    MapView map;
+
+    @BindView(R.id.iv_center_location)
+    ImageView ivCenterLocation;
     private String schoolDatil;
     private String latString;
     private String lonString;
@@ -89,7 +107,11 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
     private AMapLocationClient mLocationClient;
     private OnLocationChangedListener mListener;
     private MapView mapView;
-
+    private ObjectAnimator mTransAnimator;//地图中心标志动态
+    private boolean isSearchData;
+    private GeocodeSearch.OnGeocodeSearchListener mOnGeocodeSearchListener;
+    private PoiItem userSelectPoiItem;
+    private String kindName;
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_poisearch);
@@ -98,14 +120,15 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
     @Override
     public void init() {
         // 设置刷新控件颜色
-        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         title.setText("园所地址");
         tvRecommend.setVisibility(View.VISIBLE);
         tvRecommend.setText("确定");
         mapView = (MapView) findViewById(R.id.map);
-
+        kindName = getIntent().getStringExtra("kindName");
+        isSearchData=false;
+        keyWord.setText(kindName);
 
         if (aMap == null) {
             aMap = mapView.getMap();
@@ -126,9 +149,9 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
 //               view.setBackgroundColor(getResources().getColor(R.color.appBarColor));
 //
                 tvSchool.setText("所选园所:" + moreList.get(position).getDetailAdress());
-                schoolDatil=moreList.get(position).getDetailAdress();
-                latString=moreList.get(position).getLat();
-                lonString=moreList.get(position).getLon();
+                schoolDatil = moreList.get(position).getDetailAdress();
+                latString = moreList.get(position).getLat();
+                lonString = moreList.get(position).getLon();
 //                loadMoreWrapperAdapter.notifyDataSetChanged();
                 //设置点击的标记
                 setMarkerOptions(moreList.get(position).getName(), Double.parseDouble(moreList.get(position).getLat()), Double.parseDouble(moreList.get(position).getLon()));
@@ -137,25 +160,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
         });
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         // 设置下拉刷新
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // 刷新数据
-                moreList.clear();
-                doSearchQuery(keyWord.getText().toString().trim());
 
-
-                // 延时1s关闭下拉刷新
-                swipeRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                    }
-                }, 1000);
-            }
-        });
 
         // 设置加载更多监听
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
@@ -180,10 +185,90 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                 }
             }
         });
+        mTransAnimator = ObjectAnimator.ofFloat(ivCenterLocation, "translationY", 0f, -80f, 0f);
+        mTransAnimator.setDuration(800);
+        //监测地图画面的移动
+        aMap.setOnCameraChangeListener(new AMap.OnCameraChangeListener() {
+            @Override
+            public void onCameraChangeFinish(CameraPosition cameraPosition) {
+                if (null != mLocationClient && null != cameraPosition&& isSearchData) {
+                    getAddressInfoByLatLong(cameraPosition.target.latitude, cameraPosition.target.longitude);
+                    startTransAnimator();
+//                    doSearchQuery(true, "", location.getCity(), new LatLonPoint(cameraPosition.target.latitude, cameraPosition.target.longitude));
+                }
+//                if (!isSearchData) {
+//                    isSearchData = true;
+//                }
+            }
+
+            @Override
+            public void onCameraChange(CameraPosition cameraPosition) {
+
+            }
+        });
+
+        //设置触摸地图监听器
+        aMap.setOnMapTouchListener(new AMap.OnMapTouchListener() {
+
+            @Override
+            public void onTouch(MotionEvent motionEvent) {
+                isSearchData = true;
+            }
+        });
+
+
+        //逆地址搜索监听器
+        mOnGeocodeSearchListener = new GeocodeSearch.OnGeocodeSearchListener() {
+            @Override
+            public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+                if (i == 1000&&isSearchData) {
+                    if (regeocodeResult != null) {
+                        userSelectPoiItem = DataConversionUtils.changeToPoiItem(regeocodeResult);
+                        if (null != moreList) {
+                            moreList.clear();
+                        }
+                        List<PoiItem> poiItems = regeocodeResult.getRegeocodeAddress().getPois();
+                        for (int j = 0; j < poiItems.size(); j++) {
+                            SchoolAdress schoolAdress = new SchoolAdress();
+                            LatLonPoint latLonPoint = poiItems.get(j).getLatLonPoint();
+                            String snippet = poiItems.get(j).getSnippet();
+                            double latitude = latLonPoint.getLatitude();
+                            double longitude = latLonPoint.getLongitude();
+                            //TODO 等待验证
+                            if (latitude != 0.0 && longitude != 0.0 && !snippet.equals("") && !snippet.equals(null)) {
+                                schoolAdress.setName(poiItems.get(j).getTitle());
+                                schoolAdress.setLat(latitude + "");
+                                schoolAdress.setLon(longitude + "");
+                                schoolAdress.setDetailAdress(snippet);
+                                schoolAdress.setType(1);
+                                moreList.add(schoolAdress);
+                            }
+                        }
+
+                        loadMoreWrapper.notifyDataSetChanged();
+                        recyclerView.smoothScrollToPosition(0);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+            }
+        };
+    }
+
+    /**
+     * 移动动画
+     */
+    private void startTransAnimator() {
+        if (null != mTransAnimator && !mTransAnimator.isRunning()) {
+            mTransAnimator.start();
+        }
     }
 
     private void setUpMap() {
-
         if (mLocationClient == null) {
             mLocationClient = new AMapLocationClient(getApplicationContext());
             AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
@@ -194,7 +279,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
             //设置定位参数
             mLocationClient.setLocationOption(mLocationOption);
-//            mLocationClient.startLocation();
+            mLocationClient.startLocation();
         }
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
@@ -212,6 +297,8 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         deepType = "";//设置搜索类型为学校
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,7 +337,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
      * poi搜索
      */
     private void doSearchQuery(String newText) {
-        showProgressDialog();// 显示进度框
+//        showProgressDialog();// 显示进度框
         currentPage = 0;
         query = new PoiSearch.Query(newText, deepType, "");// 第一个参数表示搜索字符串，第二个参数表示poi搜索类型，第三个参数表示poi搜索区域（空字符串代表全国）
 
@@ -298,8 +385,11 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                         String snippet = poiItems.get(i).getSnippet();
                         double latitude = latLonPoint.getLatitude();
                         double longitude = latLonPoint.getLongitude();
+                        if (i==0){
+                            setMarkerOptions("",latitude,longitude);
+                        }
                         //TODO 等待验证
-                        if (latitude != 0.0 && longitude != 0.0&&!snippet.equals("")&&!snippet.equals(null)) {
+                        if (latitude != 0.0 && longitude != 0.0 && !snippet.equals("") && !snippet.equals(null)) {
                             schoolAdress.setName(poiItems.get(i).getTitle());
                             schoolAdress.setLat(latitude + "");
                             schoolAdress.setLon(longitude + "");
@@ -311,7 +401,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                     moreList.addAll(dataList);
                     loadMoreWrapper.notifyDataSetChanged();
 
-                }else {
+                } else {
                     ShowToastUtils.showToastMsg(PoiSearchActivity.this,
                             "未搜到结果");
                 }
@@ -331,7 +421,6 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
     public void onPoiItemSearched(PoiItem poiItem, int i) {
 
     }
-
 
 
     /**
@@ -356,7 +445,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
         }
     }
 
-    @OnClick({R.id.back,R.id.tv_recommend})
+    @OnClick({R.id.back, R.id.tv_recommend})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -365,7 +454,7 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                 break;
             case R.id.tv_recommend:
                 SchoolAdress schoolAdress = new SchoolAdress();
-//                schoolAdress.setType(2);
+                schoolAdress.setType(2);
                 schoolAdress.setDetailAdress(schoolDatil);
                 schoolAdress.setLon(lonString);
                 schoolAdress.setLat(latString);
@@ -373,6 +462,23 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                 finish();
                 break;
         }
+    }
+    /**
+     * 通过经纬度获取当前地址详细信息，逆地址编码
+     *
+     * @param latitude
+     * @param longitude
+     */
+    private void getAddressInfoByLatLong(double latitude, double longitude) {
+        GeocodeSearch geocodeSearch = new GeocodeSearch(this);
+        /*
+        point - 要进行逆地理编码的地理坐标点。
+        radius - 查找范围。默认值为1000，取值范围1-3000，单位米。
+        latLonType - 输入参数坐标类型。包含GPS坐标和高德坐标。 可以参考RegeocodeQuery.setLatLonType(String)
+        */
+        RegeocodeQuery query = new RegeocodeQuery(new LatLonPoint(latitude, longitude), 3000, GeocodeSearch.AMAP);
+        geocodeSearch.getFromLocationAsyn(query);
+        geocodeSearch.setOnGeocodeSearchListener(mOnGeocodeSearchListener);
     }
 
     @Override
@@ -384,10 +490,10 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
                 //设置第一次焦点中心
 //                LatLng    latlng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
 //                aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14), 1000, null);
-                String detail = aMapLocation.getAddress();
-                tvSchool.setText("当前位置:" + detail);
+                String detail = aMapLocation.getDistrict();
                 LogUtil.e(detail);
-                doSearchQuery(aMapLocation.getDistrict());
+                doSearchQuery(kindName);
+
             } else {
                 String errText = "定位失败," + aMapLocation.getErrorCode() + ": " + aMapLocation.getErrorInfo();
             }
@@ -402,31 +508,11 @@ public class PoiSearchActivity extends BaseActivity implements TextWatcher, PoiS
      * @param longitude 经度
      */
     private void setMarkerOptions(String name, double latitude, double longitude) {
-        //在地图上添加一个marker，并将地图中移动至此处
-        MarkerOptions mk = new MarkerOptions();
-        //设置定位的图片 (默认)
-        //本地图片BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable
-        // .location_marker))
-        mk.icon(BitmapDescriptorFactory.defaultMarker());
-        //设置点击的名称
-        mk.title(name);
-        //点标记的内容
-        mk.snippet(name);
-        //点标记是否可拖拽
-        //mk.draggable(true);
-        //点标记的锚点
-        mk.anchor(1.5f, 3.5f);
-        //点的透明度
-        //mk.alpha(0.7f);
-        //设置纬度和经度
         LatLng ll = new LatLng(latitude, longitude);
-        mk.position(ll);
-        //清除所有marker等，保留自身
         aMap.clear();
         CameraUpdate cu = CameraUpdateFactory.newLatLng(ll);
         aMap.animateCamera(cu);
         aMap.moveCamera(CameraUpdateFactory.zoomBy(12));
-        aMap.addMarker(mk);
     }
 
     /**

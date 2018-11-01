@@ -45,19 +45,19 @@ public class SchoolSalaryInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getSchoolPracticeId() {
+    public int getSchoolPracticeId() {
         return schoolPracticeId;
     }
 
-    public void setSchoolPracticeId(Integer schoolPracticeId) {
+    public void setSchoolPracticeId(int schoolPracticeId) {
         this.schoolPracticeId = schoolPracticeId;
     }
 
@@ -109,59 +109,5 @@ public class SchoolSalaryInfo implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        SchoolSalaryInfo other = (SchoolSalaryInfo) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getSchoolPracticeId() == null ? other.getSchoolPracticeId() == null : this.getSchoolPracticeId().equals(other.getSchoolPracticeId()))
-            && (this.getPeriod() == null ? other.getPeriod() == null : this.getPeriod().equals(other.getPeriod()))
-            && (this.getSalary() == null ? other.getSalary() == null : this.getSalary().equals(other.getSalary()))
-            && (this.getOtherFee() == null ? other.getOtherFee() == null : this.getOtherFee().equals(other.getOtherFee()))
-            && (this.getManageFee() == null ? other.getManageFee() == null : this.getManageFee().equals(other.getManageFee()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
-    }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getSchoolPracticeId() == null) ? 0 : getSchoolPracticeId().hashCode());
-        result = prime * result + ((getPeriod() == null) ? 0 : getPeriod().hashCode());
-        result = prime * result + ((getSalary() == null) ? 0 : getSalary().hashCode());
-        result = prime * result + ((getOtherFee() == null) ? 0 : getOtherFee().hashCode());
-        result = prime * result + ((getManageFee() == null) ? 0 : getManageFee().hashCode());
-        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", schoolPracticeId=").append(schoolPracticeId);
-        sb.append(", period=").append(period);
-        sb.append(", salary=").append(salary);
-        sb.append(", otherFee=").append(otherFee);
-        sb.append(", manageFee=").append(manageFee);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
 }

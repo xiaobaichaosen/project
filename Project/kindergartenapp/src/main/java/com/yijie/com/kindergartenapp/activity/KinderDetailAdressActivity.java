@@ -2,6 +2,7 @@ package com.yijie.com.kindergartenapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import com.yijie.com.kindergartenapp.base.JsonBean;
 import com.yijie.com.kindergartenapp.base.JsonFileReader;
 import com.yijie.com.kindergartenapp.bean.CommonBean;
 import com.yijie.com.kindergartenapp.bean.SchoolAdress;
+import com.yijie.com.kindergartenapp.utils.ShowToastUtils;
 import com.yijie.com.kindergartenapp.view.OptionsPickerView;
 
 import org.json.JSONArray;
@@ -47,6 +49,7 @@ public class KinderDetailAdressActivity extends BaseActivity {
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<ArrayList<String>>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<ArrayList<ArrayList<String>>>();
     private SchoolAdress tempSchoolAdress;
+    private String kindName;
 
     @Override
     public void setContentView() {
@@ -63,7 +66,7 @@ public class KinderDetailAdressActivity extends BaseActivity {
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         tempSchoolAdress = (SchoolAdress) getIntent().getExtras().getSerializable("tempSchoolAdress");
-
+        kindName = getIntent().getStringExtra("kindName");
         if (null != tempSchoolAdress) {
             tvAddDetailAdress.setText(tempSchoolAdress.getDetailAdress());
             tvAddAdress.setText(tempSchoolAdress.getName());
@@ -101,8 +104,19 @@ public class KinderDetailAdressActivity extends BaseActivity {
                 break;
             case R.id.tv_recommend:
                 SchoolAdress schoolAdress = new SchoolAdress();
-                schoolAdress.setName(tvAddAdress.getText().toString().trim());
-                schoolAdress.setDetailAdress(tempSchoolAdress.getDetailAdress());
+                if (TextUtils.isEmpty(tvAddAdress.getText().toString().trim())){
+                    ShowToastUtils.showToastMsg(this,"请选择地址");
+                    return;
+                }else {
+                    schoolAdress.setName(tvAddAdress.getText().toString().trim());
+                }
+                if (null==tempSchoolAdress){
+                    ShowToastUtils.showToastMsg(this,"请选择详细地址");
+                    return;
+                }else {
+                    schoolAdress.setDetailAdress(tempSchoolAdress.getDetailAdress());
+                }
+
                 schoolAdress.setLat(tempSchoolAdress.getLat());
                 schoolAdress.setLon(tempSchoolAdress.getLon());
                 EventBus.getDefault().post(schoolAdress);
@@ -113,6 +127,7 @@ public class KinderDetailAdressActivity extends BaseActivity {
                 break;
             case R.id.tv_addDetailAdress:
                 Intent intent=new Intent();
+                intent.putExtra("kindName",kindName);
                 intent.setClass(KinderDetailAdressActivity.this,PoiSearchActivity.class);
                 startActivity(intent);
                 break;

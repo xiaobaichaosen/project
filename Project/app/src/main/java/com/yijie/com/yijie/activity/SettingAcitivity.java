@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cretin.www.cretinautoupdatelibrary.utils.CretinAutoUpdateUtils;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.login.LoginActivity;
 import com.yijie.com.yijie.base.AppManager;
@@ -50,7 +51,7 @@ public class SettingAcitivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.back, R.id.rl_exit,R.id.rl_moditypwd})
+    @OnClick({R.id.back, R.id.rl_exit,R.id.rl_moditypwd, R.id.rl_update})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -62,11 +63,13 @@ public class SettingAcitivity extends BaseActivity {
                 finish();
                 break;
             case R.id.rl_exit:
-
                 intent.setClass(SettingAcitivity.this, LoginActivity.class);
-                startActivity(intent);
                 SharedPreferencesUtils.setParam(SettingAcitivity.this, "user", "");
                 AppManager.getAppManager().AppExit(this);
+                startActivity(intent);
+                break;
+            case R.id.rl_update:
+                CretinAutoUpdateUtils.getInstance(SettingAcitivity.this).check();
                 break;
         }
     }

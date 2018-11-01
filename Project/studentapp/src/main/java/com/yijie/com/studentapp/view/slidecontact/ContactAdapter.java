@@ -21,7 +21,10 @@ import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.utils.ImageLoaderUtil;
+import com.yijie.com.studentapp.utils.LogUtil;
 import com.yijie.com.studentapp.view.slidecontact.bean.Contact;
 
 
@@ -63,9 +66,11 @@ public class ContactAdapter extends KJAdapter<Contact> implements SectionIndexer
         holder.setText(R.id.contact_title, item.getName());
         ImageView headImg = holder.getView(R.id.contact_head);
         if (isScrolling) {
-            kjb.displayCacheOrDefult(headImg, "http://imgsrc.baidu.com/imgad/pic/item/c83d70cf3bc79f3d5f29c12eb0a1cd11738b29e7.jpg", R.drawable.default_head_rect);
-        } else {
             kjb.displayWithLoadBitmap(headImg, "http://imgsrc.baidu.com/imgad/pic/item/c83d70cf3bc79f3d5f29c12eb0a1cd11738b29e7.jpg", R.drawable.default_head_rect);
+        } else {
+//            kjb.displayCacheOrDefult(headImg, Constant.infoUrl+datas.get(position).getId()+"/head_pic_/"+datas.get(position).getUrl(), R.drawable.default_head_rect);
+            ImageLoaderUtil.getImageLoader(mCxt).displayImage(Constant.infoUrl+datas.get(position).getId()+"/head_pic_/"+datas.get(position).getUrl(), headImg, ImageLoaderUtil.getPhotoImageOption());
+            LogUtil.e("headUrl=="+Constant.infoUrl+datas.get(position).getId()+"/head_pic_/"+datas.get(position).getUrl());
         }
 
         TextView tvLetter = holder.getView(R.id.contact_catalog);

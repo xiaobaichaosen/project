@@ -186,7 +186,7 @@ public class SchoolMemeryFragment extends BaseFragment {
                         myPopuWindow.setOnClick(new MyPopuWindow.onConfirm() {
                             @Override
                             public void onClick() {
-                                delectMemory(mList.get(position).getId().toString());
+                                delectMemory(mList.get(position).getId()+"");
                             }
                         });
 
@@ -223,7 +223,7 @@ public class SchoolMemeryFragment extends BaseFragment {
                                 public void onClick(View view, int i) {
 //                                ShowToastUtils.showToastMsg(mActivity);
                                     if (null == mList.get(position).getProjectName()) {
-                                        associatePractice(mList.get(position).getId().toString(), dataList.get(i).id);
+                                        associatePractice(mList.get(position).getId()+"", dataList.get(i).id);
                                     } else {
                                         ShowToastUtils.showToastMsg(mActivity, "已经关联的项目不能重新关联");
                                     }

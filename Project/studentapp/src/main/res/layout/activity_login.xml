@@ -191,9 +191,10 @@
                 android:id="@+id/tv_fogetPassWord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/base_dimen_26"
-                android:text="忘记密码"
+                android:text="注册"
+                android:padding="@dimen/base_dimen_20"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/base_dimen_28" />
             <LinearLayout

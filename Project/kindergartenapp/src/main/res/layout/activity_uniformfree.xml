@@ -39,6 +39,7 @@
             <EditText
                 android:id="@+id/et_yesContent"
                 android:focusable="false"
+                android:inputType="number"
                 android:focusableInTouchMode="false"
                 android:layout_marginLeft="@dimen/base_dimen_20"
                 android:hint="/元"

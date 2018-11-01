@@ -69,9 +69,11 @@ public class CompanyActivity extends BaseActivity implements SideBar
     private void parser() {
         HttpUtils getinstance = HttpUtils.getinstance(this);
         String schoolPracticeId = (String) SharedPreferencesUtils.getParam(this, "schoolPracticeId", "");
+        String studentUserId = (String) SharedPreferencesUtils.getParam(this, "id", "");
         HashMap<String, String> stringStringHashMap = new HashMap<>();
         stringStringHashMap.put("schoolPracticeId",schoolPracticeId);
-        getinstance.post(Constant.SELECTBYSCHOOLID, stringStringHashMap, new BaseCallback<String>() {
+        stringStringHashMap.put("studentUserId",studentUserId);
+        getinstance.post(Constant.SELECTBYSCHOOLPRACTICEID, stringStringHashMap, new BaseCallback<String>() {
             @Override
             public void onRequestBefore() {
                 commonDialog.show();
@@ -93,7 +95,7 @@ public class CompanyActivity extends BaseActivity implements SideBar
                         for (int i = 0; i < data.length(); i++) {
                             JSONObject jsonObject1 = data.getJSONObject(i);
                             Contact contact = new Contact();
-                            contact.setName(jsonObject1.getString("studentName"));
+                            contact.setName(jsonObject1.getString("stuName"));
                             contact.setId(jsonObject1.getInt("id"));
                             contact.setUrl(jsonObject1.getString("headPic"));
                             contact.setPinyin(HanziToPinyin.getPinYin(contact.getName()));
@@ -183,8 +185,11 @@ public class CompanyActivity extends BaseActivity implements SideBar
         schoolFriendMember.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                EventBus.getDefault().post(datas.get(i));
-                finish();
+                if (i<datas.size()){
+                    EventBus.getDefault().post(datas.get(i));
+                    finish();
+                }
+
             }
         });
     }

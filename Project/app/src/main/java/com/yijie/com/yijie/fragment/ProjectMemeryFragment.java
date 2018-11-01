@@ -195,7 +195,7 @@ public class ProjectMemeryFragment extends BaseFragment {
                         myPopuWindow.setOnClick(new MyPopuWindow.onConfirm() {
                             @Override
                             public void onClick() {
-                                delectMemory(mList.get(position).getId().toString());
+                                delectMemory(mList.get(position).getId()+"");
                             }
                         });
 

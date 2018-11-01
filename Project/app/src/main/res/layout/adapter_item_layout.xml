@@ -6,6 +6,7 @@
     android:id="@+id/tv_name"
     android:gravity="center"
     android:text="dsfa"
+    android:textColor="@color/item_content"
     android:layout_marginLeft="@dimen/base_dimen_30"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/base_dimen_60" />
@@ -13,6 +14,7 @@
     <TextView
         android:id="@+id/tv_detail"
         android:gravity="center"
+        android:textColor="@color/item_title"
         android:text="dsfa"
         android:layout_marginLeft="@dimen/base_dimen_30"
         android:layout_width="wrap_content"

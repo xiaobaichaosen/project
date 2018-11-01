@@ -80,40 +80,45 @@ public class FourFragment extends BaseFragment {
     public void onViewClicked() {
         commonDialog.show();
         String  userId = (String) SharedPreferencesUtils.getParam(mActivity, "userId", "");
-        Set<String> tags = new HashSet<String>();
-        JPushInterface.setAliasAndTags(mActivity, "", tags, new TagAliasCallback() {
-            @Override
-            public void gotResult(int i, String s, Set<String> set) {
-            }
-        });
-        //重新设置推送tags
-        tags.clear();
-        JPushInterface.setAliasAndTags(mActivity, userId + "", tags, new TagAliasCallback() {
-            @Override
-            public void gotResult(int code, String s, Set<String> set) {
-                switch (code) {
-                    case 0:
-                        //这里可以往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
-                        LogUtil.e("Set tag and alias success极光推送别名设置成功");
-                        commonDialog.dismiss();
-                        Intent intent = new Intent();
-                        intent.setClass(mActivity, MainActivity.class);
-                        startActivity(intent);
-                        mActivity.finish();
-                        break;
-                    case 6002:
-                        //极低的可能设置失败 我设置过几百回 出现3次失败 不放心的话可以失败后继续调用上面那个方面 重连3次即可 记得return 不要进入死循环了...
-                        LogUtil.e("Failed to set alias and tags due to timeout. Try again after 60s.极光推送别名设置失败，60秒后重试");
-                        commonDialog.dismiss();
-                        break;
-                    default:
-                        LogUtil.e("极光推送设置失败，Failed with errorCode = " + code);
-                        commonDialog.dismiss();
-                        break;
-                }
+        Intent intent = new Intent();
+        intent.setClass(mActivity, MainActivity.class);
+        startActivity(intent);
+        mActivity.finish();
 
-            }
-        });
+//        Set<String> tags = new HashSet<String>();
+//        JPushInterface.setAliasAndTags(mActivity, "", tags, new TagAliasCallback() {
+//            @Override
+//            public void gotResult(int i, String s, Set<String> set) {
+//            }
+//        });
+//        //重新设置推送tags
+//        tags.clear();
+//        JPushInterface.setAliasAndTags(mActivity, userId + "", tags, new TagAliasCallback() {
+//            @Override
+//            public void gotResult(int code, String s, Set<String> set) {
+//                switch (code) {
+//                    case 0:
+//                        //这里可以往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
+//                        LogUtil.e("Set tag and alias success极光推送别名设置成功");
+//                        commonDialog.dismiss();
+//                        Intent intent = new Intent();
+//                        intent.setClass(mActivity, MainActivity.class);
+//                        startActivity(intent);
+//                        mActivity.finish();
+//                        break;
+//                    case 6002:
+//                        //极低的可能设置失败 我设置过几百回 出现3次失败 不放心的话可以失败后继续调用上面那个方面 重连3次即可 记得return 不要进入死循环了...
+//                        LogUtil.e("Failed to set alias and tags due to timeout. Try again after 60s.极光推送别名设置失败，60秒后重试");
+//                        commonDialog.dismiss();
+//                        break;
+//                    default:
+//                        LogUtil.e("极光推送设置失败，Failed with errorCode = " + code);
+//                        commonDialog.dismiss();
+//                        break;
+//                }
+//
+//            }
+//        });
 
 
     }

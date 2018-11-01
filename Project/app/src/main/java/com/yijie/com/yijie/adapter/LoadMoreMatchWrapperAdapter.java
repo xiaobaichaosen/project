@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lzy.imagepicker.ImagePicker;
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.bean.bean.StudentuserKinderneed;
+import com.yijie.com.yijie.utils.ImageLoaderUtil;
 
 import java.util.List;
 
@@ -82,11 +84,13 @@ public class LoadMoreMatchWrapperAdapter extends RecyclerView.Adapter<RecyclerVi
         //将position保存在itemView的Tag中，以便点击时进行获取
         StudentuserKinderneed studentuserKinderneed = dataList.get(position);
         String headPic = studentuserKinderneed.getHeadPic();
-        if (null!=headPic){
-            //加载网络图片
-            ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, headPic, recyclerViewHolder.ivHead, 0, 0);
-        }else{
-            recyclerViewHolder.ivHead.setBackgroundResource(R.mipmap.shool_pictor);
+
+        if (headPic==null||headPic.equals("")) {
+            recyclerViewHolder.ivHead.setBackgroundResource(R.mipmap.head);
+
+        }else {
+
+            ImageLoaderUtil.getImageLoader((Activity) mContext).displayImage(Constant.infoUrl+studentuserKinderneed.getStudentUserId()+"/head_pic_/"+headPic, recyclerViewHolder.ivHead, ImageLoaderUtil.getPhotoImageOption());
         }
         recyclerViewHolder.tvName.setText(studentuserKinderneed.getStuName());
         recyclerViewHolder.tvInform.setText(studentuserKinderneed.getStuAge()+"岁 "+studentuserKinderneed.getHeight()+"cm "+studentuserKinderneed.getWeight()+"kg");

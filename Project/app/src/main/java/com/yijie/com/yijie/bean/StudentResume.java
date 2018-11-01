@@ -12,7 +12,7 @@ public class StudentResume implements Serializable {
     /**
      * 主键id
      */
-    private int id;
+    private Integer id;
 
     /**
      * 微信账号id

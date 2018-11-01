@@ -10,13 +10,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.lvfq.pickerview.TimePickerView;
 import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
-import com.yijie.com.kindergartenapp.activity.sendlocation.SendLocationActivity;
 import com.yijie.com.kindergartenapp.base.BaseActivity;
 import com.yijie.com.kindergartenapp.bean.CommonBean;
 import com.yijie.com.kindergartenapp.bean.CourseBean;
 import com.yijie.com.kindergartenapp.bean.KindergartenDetail;
+import com.yijie.com.kindergartenapp.bean.ProtectBean;
 import com.yijie.com.kindergartenapp.bean.SchoolAdress;
 import com.yijie.com.kindergartenapp.bean.StayBean;
 import com.yijie.com.kindergartenapp.utils.BaseCallback;
@@ -25,6 +26,9 @@ import com.yijie.com.kindergartenapp.utils.HttpUtils;
 import com.yijie.com.kindergartenapp.utils.LogUtil;
 import com.yijie.com.kindergartenapp.utils.SharedPreferencesUtils;
 import com.yijie.com.kindergartenapp.utils.ShowToastUtils;
+import com.yijie.com.kindergartenapp.utils.TimeUtil;
+import com.yijie.com.kindergartenapp.utils.UIUtils;
+import com.yijie.com.kindergartenapp.utils.ViewUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,12 +68,11 @@ public class ModiKenderDetailActivity extends BaseActivity {
     TextView tvAdress;
     @BindView(R.id.rl_gradAdress)
     RelativeLayout rlGradAdress;
-    @BindView(R.id.et_detailAdress)
-    TextView etDetailAdress;
+
     @BindView(R.id.et_contact)
     EditText etContact;
     @BindView(R.id.et_phone)
-    EditText etPhone;
+    TextView etPhone;
     @BindView(R.id.et_email)
     EditText etEmail;
     @BindView(R.id.et_wachat)
@@ -125,8 +128,7 @@ public class ModiKenderDetailActivity extends BaseActivity {
     RelativeLayout rlUniform;
     @BindView(R.id.rl_kenderSimple)
     RelativeLayout rlKenderSimple;
-    @BindView(R.id.rl_detailAdress)
-    RelativeLayout rlDetailAdress;
+
     @BindView(R.id.rl_license)
     RelativeLayout rlLicense;
     @BindView(R.id.rl_certificate)
@@ -135,7 +137,29 @@ public class ModiKenderDetailActivity extends BaseActivity {
     RelativeLayout rlPicture;
     @BindView(R.id.rl_envierphone)
     RelativeLayout rlEnvierphone;
+    @BindView(R.id.tv_kindCreateTime)
+    TextView tvKindCreateTime;
+    @BindView(R.id.rl_kindCreateTime)
+    RelativeLayout rlKindCreateTime;
+    @BindView(R.id.et_payKind)
+    EditText etPayKind;
+    @BindView(R.id.et_kinderNum)
+    EditText etKinderNum;
+    @BindView(R.id.rl_kinderNum)
+    RelativeLayout rlKinderNum;
+    @BindView(R.id.et_paymoney)
+    TextView etPaymoney;
+
+    @BindView(R.id.tv)
+    TextView tv;
+    @BindView(R.id.tv_protection)
+    TextView tvProtection;
+    @BindView(R.id.rl_protection)
+    RelativeLayout rlProtection;
+    @BindView(R.id.rl_paymoney)
+    RelativeLayout rlPaymoney;
     private KindergartenDetail modityKindergartenDetail;
+    private SchoolAdress tempSchoolAdress=new SchoolAdress();
     private String eat;
     private String stay;
     //特色课程
@@ -159,7 +183,10 @@ public class ModiKenderDetailActivity extends BaseActivity {
     private String environment;
     private String kinderId;
     private String attachment;
-
+    private String stayString;
+    private ArrayList<String> dayList = new ArrayList<String>();
+    private String protectString;
+    private  String kindName;
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
@@ -177,6 +204,9 @@ public class ModiKenderDetailActivity extends BaseActivity {
         title.setText("园所注册信息");
         tvRecommend.setText("保存");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
+        for (int i = 1; i < 32; i++) {
+            dayList.add(i+"号");
+        }
         setTranslucent(this); // 改变状态栏变成透明
         kinderId = (String) SharedPreferencesUtils.getParam(ModiKenderDetailActivity.this, "cellphone", "");
         getKenderDeail(kinderId);
@@ -215,14 +245,20 @@ public class ModiKenderDetailActivity extends BaseActivity {
                     JSONObject data = jsonObject.getJSONObject("data");
                     Gson gson = new Gson();
                     modityKindergartenDetail = gson.fromJson(data.toString(), KindergartenDetail.class);
-                    kenderName.setText(modityKindergartenDetail.getKindName());
+
+                    kindName = modityKindergartenDetail.getKindName();
+                    kenderName.setText(kindName);
                     etContact.setText(modityKindergartenDetail.getKindContact());
                     etPhone.setText(modityKindergartenDetail.getCellphone());
                     etWachat.setText(modityKindergartenDetail.getWechart());
                     etEmail.setText(modityKindergartenDetail.getEmail());
                     etQq.setText(modityKindergartenDetail.getQq());
-                    tvAdress.setText(modityKindergartenDetail.getKindAddress());
-                    etDetailAdress.setText(modityKindergartenDetail.getKindDetailAddress());
+                    tvAdress.setText(modityKindergartenDetail.getKindAddress()+modityKindergartenDetail.getKindDetailAddress());
+//                    etDetailAdress.setText(modityKindergartenDetail.getKindDetailAddress());
+                    tempSchoolAdress.setDetailAdress(modityKindergartenDetail.getKindDetailAddress());
+                    tempSchoolAdress.setName(modityKindergartenDetail.getKindAddress());
+                    tempSchoolAdress.setLon(modityKindergartenDetail.getLongitude());
+                    tempSchoolAdress.setLat(modityKindergartenDetail.getLatitude());
                     stay = modityKindergartenDetail.getStay();
                     tvStay.setText(stay);
                     etArea.setText(modityKindergartenDetail.getArea());
@@ -256,6 +292,30 @@ public class ModiKenderDetailActivity extends BaseActivity {
                     environment = modityKindergartenDetail.getEnvironment();
                     attachment = modityKindergartenDetail.getAttachment();
                     summary = modityKindergartenDetail.getSummary();
+                    //建园日期
+                    tvKindCreateTime.setText(modityKindergartenDetail.getBuildGardenDate());
+                    //职工人数
+                    Integer teacherNum = modityKindergartenDetail.getTeacherNum();
+                    if (null==teacherNum){
+                        etKinderNum.setText("");
+                    }else {
+                        etKinderNum.setText(teacherNum+"");
+                    }
+
+                    //托费
+                    Integer nuseryFee = modityKindergartenDetail.getNuseryFee();
+                    if (null==nuseryFee){
+                        etPayKind.setText("");
+                    }else{
+                        etPayKind.setText(modityKindergartenDetail.getNuseryFee()+"");
+                    }
+
+                    //薪资发放日
+                    etPaymoney.setText(modityKindergartenDetail.getSalaryGrantDate());
+                     //保险
+                    protectString = modityKindergartenDetail.getFormalWelfare();
+                    tvProtection.setText(protectString);
+
                     if (!TextUtils.isEmpty(summary)) {
                         tvKenderSimple.setText("已填写");
                     }
@@ -294,38 +354,49 @@ public class ModiKenderDetailActivity extends BaseActivity {
     }
 
 
-
-
     @Subscribe(threadMode = ThreadMode.MainThread)
-    public void stay(StayBean tempStayBean) {
-        ArrayList<String> strings = new ArrayList<>();
-        strings.clear();
-        StringBuilder stringBuilder = new StringBuilder();
-        String otherString = tempStayBean.getOtherString();
-        String downString = tempStayBean.getDownString();
-        String outString = tempStayBean.getOutString();
-        String upString = tempStayBean.getUpString();
-        if (!otherString.equals("") && null != otherString) {
-            strings.add(otherString);
+    public void stay(StayBean stayBean) {
+        //初始化
+        stayString = "";
+        String upString = stayBean.getUpString();
+        String downString = stayBean.getDownString();
+        String outString = stayBean.getOutString();
+        String foureightString = stayBean.getFoureightString();
+        String eighttwelveString = stayBean.getEighttwelveString();
+        String twoString = stayBean.getTwoString();
+        String threeString = stayBean.getThreeString();
+        String otherString = stayBean.getOtherString();
+        String wuString = stayBean.getWuString();
+        if (!upString.isEmpty()) {
+            stayString += upString + "、";
         }
-        if (null != downString) {
-            strings.add(downString);
+        if (!downString.isEmpty()) {
+            stayString += downString + "、";
         }
-        if (null != outString) {
-            strings.add(outString);
+        if (!outString.isEmpty()) {
+            stayString += outString + "、";
         }
-        if (null != upString) {
-            strings.add(upString);
+        if (!foureightString.isEmpty()) {
+            stayString += foureightString + "、";
         }
-        for (int i = 0; i < strings.size(); i++) {
-            if (i == strings.size() - 1) {
-                stringBuilder.append(strings.get(i));
-            } else {
-                stringBuilder.append(strings.get(i) + "、");
-            }
+        if (!eighttwelveString.isEmpty()) {
+            stayString += eighttwelveString + "、";
         }
-        stay = stringBuilder.toString();
-        tvStay.setText(stay);
+        if (!twoString.isEmpty()) {
+            stayString += twoString + "、";
+        }
+        if (!threeString.isEmpty()) {
+            stayString += threeString + "、";
+        }
+        if (!wuString.isEmpty()) {
+            stayString += wuString + "、";
+        }if (!otherString.isEmpty()) {
+            stayString += otherString + "、";
+        }
+
+        stayString = stayString.substring(0, stayString.length() - 1);
+        tvStay.setText(stayString);
+
     }
 
     @Subscribe(threadMode = ThreadMode.MainThread)
@@ -368,7 +439,38 @@ public class ModiKenderDetailActivity extends BaseActivity {
         tvSpecCourses.setText(curseString);
 
     }
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void protectBean(ProtectBean modiftyProtectBean) {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.clear();
+        StringBuilder stringBuilder = new StringBuilder();
+        if (null != modiftyProtectBean) {
+            if (null != modiftyProtectBean.getFiveInsurance()) {
+                strings.add(modiftyProtectBean.getFiveInsurance());
+            }
+            if (null != modiftyProtectBean.getProvidentFund()) {
+                strings.add(modiftyProtectBean.getProvidentFund());
+            }
+            if (null != modiftyProtectBean.getSuppMedInsurance()) {
+                strings.add( modiftyProtectBean.getSuppMedInsurance());
+            }
 
+            if (null != modiftyProtectBean.getOther() && !modiftyProtectBean.getOther().equals("")) {
+                strings.add(modiftyProtectBean.getOther());
+            }
+
+        }
+        for (int i = 0; i < strings.size(); i++) {
+            if (i == strings.size() - 1) {
+                stringBuilder.append(strings.get(i));
+            } else {
+                stringBuilder.append(strings.get(i) + "、");
+            }
+        }
+       protectString = stringBuilder.toString();
+        tvProtection.setText(protectString);
+
+    }
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void bean(CommonBean commonBean) {
         if (commonBean.getType() == 4) {
@@ -389,7 +491,13 @@ public class ModiKenderDetailActivity extends BaseActivity {
             tvConfiguration.setText(kindType);
         } else if (commonBean.getType() == 3) {
             //工服押金
-            clothDeposit = commonBean.getRbString();
+            String rbString = commonBean.getRbString();
+            String cbString = commonBean.getCbString();
+            if (TextUtils.isEmpty(rbString)){
+                clothDeposit=cbString;
+            }else {
+                clothDeposit=rbString;
+            }
             tvUniform.setText(clothDeposit);
         } else if (commonBean.getType() == 9) {
             //首年体检费
@@ -402,13 +510,13 @@ public class ModiKenderDetailActivity extends BaseActivity {
         } else if (commonBean.getType() == 100) {
             summary = commonBean.getContent();
             tvKenderSimple.setText("已填写");
-        }else if (commonBean.getType() == 10){
+        } else if (commonBean.getType() == 10) {
             tvCertificate.setText("已填写");
-        }else if (commonBean.getType() == 11){
+        } else if (commonBean.getType() == 11) {
             tvLicense.setText("已填写");
-        }else if (commonBean.getType() == 12){
+        } else if (commonBean.getType() == 12) {
             tvKenderphone.setText("已填写");
-        }else if (commonBean.getType() == 13){
+        } else if (commonBean.getType() == 13) {
             tvEnvierphone.setText("已填写");
         }
 // else if (commonBean.getType() == 3) {
@@ -462,6 +570,7 @@ public class ModiKenderDetailActivity extends BaseActivity {
                     String resMessage = jsonObject.getString("resMessage");
                     if (rescode.equals("200")) {
                         ShowToastUtils.showToastMsg(ModiKenderDetailActivity.this, resMessage);
+                        EventBus.getDefault().post("refrsh");
                         finish();
                     } else if (rescode.equals("500")) {
                         ShowToastUtils.showToastMsg(ModiKenderDetailActivity.this, resMessage);
@@ -487,17 +596,34 @@ public class ModiKenderDetailActivity extends BaseActivity {
 
     }
 
-    @Subscribe(threadMode = ThreadMode.MainThread)
-    public void handleSomethingElse(SchoolAdress schoolAdress) {
-        etDetailAdress.setText(schoolAdress.getName());
-    }
 
-    @OnClick({R.id.rl_detailAdress, R.id.rl_kenderSimple, R.id.tv_classset, R.id.tv_recommend, R.id.rl_gradStay, R.id.rl_meal, R.id.back, R.id.rl_SpecCourses, R.id.rl_envierphone,R.id.rl_certificate, R.id.rl_license, R.id.rl_picture, R.id.rl_level, R.id.rl_configuration, R.id.rl_checkmoney, R.id.rl_uniform})
+        @Subscribe(threadMode = ThreadMode.MainThread)
+        public void SchoolAdress(SchoolAdress schoolAdress) {
+            tempSchoolAdress=schoolAdress;
+            tvAdress.setText(tempSchoolAdress.getName()+tempSchoolAdress.getDetailAdress());
+
+        }
+    @OnClick({R.id.et_phone,R.id.rl_kindCreateTime, R.id.rl_protection,R.id.rl_paymoney,R.id.rl_gradAdress, R.id.rl_kenderSimple, R.id.tv_classset, R.id.tv_recommend, R.id.rl_gradStay, R.id.rl_meal, R.id.back, R.id.rl_SpecCourses, R.id.rl_envierphone, R.id.rl_certificate, R.id.rl_license, R.id.rl_picture, R.id.rl_level, R.id.rl_configuration, R.id.rl_checkmoney, R.id.rl_uniform})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         Bundle mBundle = new Bundle();
         switch (view.getId()) {
+            //点击手机号码修改绑定手机
+            case R.id.et_phone:
+                intent.putExtra("phoneNumber",etPhone.getText().toString().trim());
+                intent.setClass(this, ModiPhoneActivity.class);
+                startActivity(intent);
+                break;
 
+            case  R.id.rl_gradAdress:
+                if (null != tempSchoolAdress) {
+                    mBundle.putSerializable("tempSchoolAdress", tempSchoolAdress);
+                }
+                intent.putExtras(mBundle);
+                intent.putExtra("kindName",kindName);
+                intent.setClass(this, KinderDetailAdressActivity.class);
+                startActivity(intent);
+                break;
             case R.id.rl_certificate:
                 //跳转到荣誉证书
 //                intent.putExtra("certificate", certificate);
@@ -524,7 +650,8 @@ public class ModiKenderDetailActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.rl_detailAdress:
-                intent.setClass(ModiKenderDetailActivity.this, SendLocationActivity.class);
+                intent.putExtra("kindName",kindName);
+                intent.setClass(ModiKenderDetailActivity.this, PoiSearchActivity.class);
                 startActivity(intent);
                 break;
 
@@ -543,9 +670,9 @@ public class ModiKenderDetailActivity extends BaseActivity {
                 //园所全称
                 kindergartenDetail.setKindName(kenderName.getText().toString().trim());
                 //园所地址
-                kindergartenDetail.setKindAddress(tvAdress.getText().toString().trim());
+                kindergartenDetail.setKindAddress(tempSchoolAdress.getName());
                 //园所详细地址
-                kindergartenDetail.setKindDetailAddress(etDetailAdress.getText().toString().trim());
+                kindergartenDetail.setKindDetailAddress(tempSchoolAdress.getDetailAdress());
                 //园所联系人
                 kindergartenDetail.setKindContact(etContact.getText().toString().trim());
                 //园所联系人电话
@@ -556,12 +683,17 @@ public class ModiKenderDetailActivity extends BaseActivity {
                 kindergartenDetail.setWechart(etWachat.getText().toString().trim());
                 //QQ号
                 kindergartenDetail.setQq(etQq.getText().toString().trim());
-                //占地面积
-                kindergartenDetail.setArea(etArea.getText().toString().trim());
-                //园所类别
-                kindergartenDetail.setKindType(tvConfiguration.getText().toString().trim());
-                //园所级别
-                kindergartenDetail.setKindLevel(tvLevel.getText().toString().trim());
+                kindergartenDetail.setLongitude(tempSchoolAdress.getLon());
+                kindergartenDetail.setLatitude(tempSchoolAdress.getLat());
+
+//                if (TextUtils.isEmpty(tvConfiguration.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写园所类别");
+//                    return;
+//                }if (TextUtils.isEmpty(etArea.getText().toString().trim())){
+//                        ShowToastUtils.showToastMsg(this,"请添写占地面积");
+//                        return;
+//                    }
+
                 //幼儿园人数
                 if (!"null".equals(etPhonenum.getText().toString().trim()) && !"".equals(etPhonenum.getText().toString().trim())) {
                     String trim = etPhonenum.getText().toString().trim();
@@ -585,6 +717,82 @@ public class ModiKenderDetailActivity extends BaseActivity {
                     }
 
                 }
+//                if (TextUtils.isEmpty(kenderName.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写园所全称");
+//                    return;
+//                }if (TextUtils.isEmpty(tvAdress.getText().toString().trim())){
+//                ShowToastUtils.showToastMsg(this,"请添写园所地址");
+//                return;
+//            }
+//                if (TextUtils.isEmpty(etDetailAdress.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写园所详细地址");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(etContact.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写园所联系人");
+//                    return;
+//                } if (TextUtils.isEmpty(etPhone.getText().toString().trim())){
+//                ShowToastUtils.showToastMsg(this,"请添写园所联系人电话");
+//                return;
+//            }
+//                if (TextUtils.isEmpty(tvClassset.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写班级配置");
+//                    return;
+//                }
+//              if (TextUtils.isEmpty(etKinderNum.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写职工人数");
+//                    return;
+//                    }
+//                if (TextUtils.isEmpty(tvStay.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写住宿安排");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(tvMeal.getText().toString().trim())){
+//                ShowToastUtils.showToastMsg(this,"请添写三餐安排");
+//                return;
+//                } if (TextUtils.isEmpty(tvUniform.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写工服押金");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(tvCheckmoney.getText().toString().trim())){
+//                    ShowToastUtils.showToastMsg(this,"请添写首年体检费");
+//                    return;
+//                }
+//                if (!tvLicense.getText().toString().trim().equals("已填写")){
+//                    ShowToastUtils.showToastMsg(this,"请添写营业执照");
+//                    return;
+//                }if (!tvKenderphone.getText().toString().trim().equals("已填写")){
+//                ShowToastUtils.showToastMsg(this,"请添写园所照片");
+//                return;
+//                }if (!tvEnvierphone.getText().toString().trim().equals("已填写")){
+//                    ShowToastUtils.showToastMsg(this,"请添写宿舍环境");
+//                    return;
+//                }
+                //占地面积
+                kindergartenDetail.setArea(etArea.getText().toString().trim());
+                //园所类别
+                kindergartenDetail.setKindType(tvConfiguration.getText().toString().trim());
+                //园所级别
+                kindergartenDetail.setKindLevel(tvLevel.getText().toString().trim());
+                //建园日期
+                kindergartenDetail.setBuildGardenDate(tvKindCreateTime.getText().toString().trim());
+                //托费
+                String trim = etPayKind.getText().toString().trim();
+                if (!TextUtils.isEmpty(trim)&&!trim.equals("null")){
+                    kindergartenDetail.setNuseryFee(Integer.parseInt(trim));
+
+                }
+                String trim1 = etKinderNum.getText().toString().trim();
+                if (!TextUtils.isEmpty(trim1)&&!trim1.equals("null")){
+                    kindergartenDetail.setTeacherNum(Integer.parseInt(trim1));
+                    //职工人数
+//                    kindergartenDetail.setTeacherNum(Integer.parseInt(etKinderNum.getText().toString().trim()));
+                }
+
+                //薪资发放日
+                kindergartenDetail.setSalaryGrantDate(etPaymoney.getText().toString().trim());
+                //保险
+                kindergartenDetail.setFormalWelfare(tvProtection.getText().toString().trim());
                 //班级配置
                 kindergartenDetail.setClassSet(tvClassset.getText().toString().trim());
                 //特色课程
@@ -619,6 +827,16 @@ public class ModiKenderDetailActivity extends BaseActivity {
                             stayBean.setDownString("园内地下");
                         } else if (list.get(i).equals("园外")) {
                             stayBean.setOutString("园外");
+                        } else if (list.get(i).equals("4-8人")) {
+                            stayBean.setFoureightString("4-8人");
+                        } else if (list.get(i).equals("8-12人")) {
+                            stayBean.setEighttwelveString("8-12人");
+                        } else if (list.get(i).equals("两居")) {
+                            stayBean.setTwoString("两居");
+                        } else if (list.get(i).equals("三居")) {
+                            stayBean.setThreeString("三居");
+                        } else if (list.get(i).equals("无")) {
+                            stayBean.setWuString("无");
                         } else {
                             stayBean.setOtherString(list.get(i));
                         }
@@ -669,7 +887,13 @@ public class ModiKenderDetailActivity extends BaseActivity {
             case R.id.rl_uniform:
                 //跳转到工服押金
                 CommonBean tempUniformCommonBean = new CommonBean();
-                tempUniformCommonBean.setRbString(clothDeposit);
+                if (UIUtils.isNumeric(clothDeposit)){
+                    tempUniformCommonBean.setRbString(clothDeposit);
+                }else if (clothDeposit.equals("无")){
+                    tempUniformCommonBean.setRbString(clothDeposit);
+                }else {
+                    tempUniformCommonBean.setCbString(clothDeposit);
+                }
                 mBundle.putSerializable("tempUniformCommonBean", tempUniformCommonBean);
                 intent.putExtras(mBundle);
                 intent.setClass(ModiKenderDetailActivity.this, UniformFreeActivity.class);
@@ -727,6 +951,63 @@ public class ModiKenderDetailActivity extends BaseActivity {
                 intent.setClass(ModiKenderDetailActivity.this, ConfigurationActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.rl_kindCreateTime:
+                //建园时间
+                TimePickerView.Type type = TimePickerView.Type.YEAR_MONTH_DAY;
+                String format = "yyyy年MM月dd日";
+                ViewUtils.alertTimerPicker(this, type, format, new ViewUtils.TimerPickerCallBack() {
+                    @Override
+                    public void onTimeSelect(String date) {
+                            tvKindCreateTime.setText(date);
+
+                    }
+                });
+                break;
+
+
+                //薪资发放日
+            case R.id.rl_paymoney:
+                ViewUtils.alertBottomWheelOption(ModiKenderDetailActivity.this, dayList, new ViewUtils.OnWheelViewClick() {
+                    @Override
+                    public void onClick(View view, int postion) {
+                        etPaymoney.setText(dayList.get(postion));
+                    }
+
+                });
+                break;
+            //保险
+            case R.id.rl_protection:
+                //跳转到特色课程
+                ProtectBean protectBean = null;
+                if (null != protectString) {
+                    String[] split1 = protectString.split("、");
+                    List<String> list1 = Arrays.asList(split1);
+                    protectBean = new ProtectBean();
+                    for (int i = 0; i < list1.size(); i++) {
+                        if (list1.get(i).equals("五险")) {
+                            protectBean.setFiveInsurance("五险");
+                        } else if (list1.get(i).equals("公积金")) {
+                            protectBean.setProvidentFund("公积金");
+                        } else if (list1.get(i).equals("补充医疗")) {
+                            protectBean.setSuppMedInsurance("补充医疗");
+                        }else {
+                            protectBean.setOther(list1.get(i));
+                        }
+                    }
+
+                } else {
+                    protectBean = new ProtectBean();
+                }
+
+                mBundle.putSerializable("tempProtectBean", protectBean);
+                intent.putExtras(mBundle);
+                intent.setClass(ModiKenderDetailActivity.this, ProtactActivity.class);
+                startActivity(intent);
+                break;
         }
+
+
     }
+
+
 }

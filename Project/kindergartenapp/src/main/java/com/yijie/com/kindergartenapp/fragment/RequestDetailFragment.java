@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
 import com.yijie.com.kindergartenapp.activity.RequestDetailActivity;
-import com.yijie.com.kindergartenapp.activity.RequstActivity;
 import com.yijie.com.kindergartenapp.base.BaseFragment;
 import com.yijie.com.kindergartenapp.utils.BaseCallback;
 import com.yijie.com.kindergartenapp.utils.HttpUtils;
@@ -52,13 +52,10 @@ public class RequestDetailFragment extends BaseFragment {
     TextView tvRequestnum;
     @BindView(R.id.tv_nb)
     TextView tvNb;
-    @BindView(R.id.tv_creattime)
-    TextView tvCreattime;
-    @BindView(R.id.tv_updatatime)
-    TextView tvUpdatatime;
+
     Unbinder unbinder;
     @BindView(R.id.loading)
-    RelativeLayout llRoot;
+    LinearLayout llRoot;
     @BindView(R.id.tv_type)
     TextView tvType;
     @BindView(R.id.tv_education)
@@ -77,10 +74,21 @@ public class RequestDetailFragment extends BaseFragment {
     TextView tvTotalFree;
     @BindView(R.id.tv_cancle)
     TextView tvCancle;
+    @BindView(R.id.tv_ordernum)
+    TextView tvOrdernum;
+    @BindView(R.id.tv_payway)
+    TextView tvPayway;
+    @BindView(R.id.tv_createtime)
+    TextView tvCreatetime;
+    @BindView(R.id.tv_firstpay)
+    TextView tvFirstpay;
+    @BindView(R.id.tv_status)
+    TextView tvStatus;
     private int kenderNeedId;
     private StatusLayoutManager statusLayoutManager;
     //取消招聘
     private ArrayList<String> cancleList = new ArrayList<String>();
+
     @Override
     protected void initView() {
 
@@ -124,6 +132,7 @@ public class RequestDetailFragment extends BaseFragment {
         initData();
 
     }
+
     @Override
     protected void initData() {
         if (!isPrepared || isVisible) {
@@ -172,10 +181,18 @@ public class RequestDetailFragment extends BaseFragment {
                     tvEducation.setText(data.getString("education"));
                     tvGetTime.setText(data.getString("toBeijingTime"));
                     tvMode.setText(data.getString("manageModel"));
-                    tvSalery.setText(data.getString("salary"));
-                    tvManageFree.setText(data.getString("manageFee"));
-                    tvTotalFree.setText("￥"+data.getString("amout"));
+                    tvSalery.setText(data.getString("kinderSalarySet") + "/月");
+                    tvManageFree.setText(data.getString("manageFee") + "/人");
+                    tvTotalFree.setText("￥" + data.getString("amout"));
                     tvRequestnum.setText(data.getString("studentNum"));
+                    tvFirstpay.setText(data.getInt("firstPayMonth")+"");
+                    int status = data.getInt("status");
+                    if (status==0){
+                        tvStatus.setText("匹配中");
+                    }else if (status==1){
+                        tvStatus.setText("匹配成功");
+                    }
+                    tvOrdernum.setText(data.getString("orderId"));
 
                     List<String> strings = new ArrayList<>();
                     String dance = data.getString("dance");
@@ -218,9 +235,7 @@ public class RequestDetailFragment extends BaseFragment {
                         }
                     }
                     tvNb.setText(stringBuilder.toString());
-                    tvCreattime.setText(data.getString("createTime"));
-                    tvUpdatatime.setText(data.getString("updateTime"));
-//
+                    tvCreatetime.setText(data.getString("createTime"));
                     statusLayoutManager.showSuccessLayout();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -257,7 +272,7 @@ public class RequestDetailFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_cancle,R.id.tv_phone})
+    @OnClick({R.id.tv_cancle, R.id.tv_phone})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_phone:
@@ -266,7 +281,7 @@ public class RequestDetailFragment extends BaseFragment {
 
                     @Override
                     public void onClick(Dialog dialog, boolean confirm, String sContent) {
-                        if(confirm){
+                        if (confirm) {
                             call(tvPhone.getText().toString().trim());
                             dialog.dismiss();
                         }
@@ -283,7 +298,7 @@ public class RequestDetailFragment extends BaseFragment {
                 ViewUtils.alertBottomWheelOption(mActivity, cancleList, new ViewUtils.OnWheelViewClick() {
                     @Override
                     public void onClick(View view, int postion) {
-                        ShowToastUtils.showToastMsg(mActivity,cancleList.get(postion));
+                        ShowToastUtils.showToastMsg(mActivity, cancleList.get(postion));
                     }
 
                 });
@@ -292,12 +307,14 @@ public class RequestDetailFragment extends BaseFragment {
         }
 
     }
+
     /**
      * 调用拨号界面
+     *
      * @param phone 电话号码
      */
     private void call(String phone) {
-        Intent intent=new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phone));
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone));
         startActivity(intent);
     }
 }

@@ -177,9 +177,14 @@ public class TBStriDetailActivity extends BaseActivity {
     @Override
     public void init() {
         studentUserId = getIntent().getIntExtra("studentUserId", 0);
+        boolean isShowMove = getIntent().getBooleanExtra("isShowMove", false);
+          if (isShowMove){
+              title.setText("学生简历");
+          }else{
+              title.setText("待分配");
+          }
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
-        title.setText("待分配");
         actionItem.setVisibility(View.INVISIBLE);
         getResumnDetail(studentUserId);
 

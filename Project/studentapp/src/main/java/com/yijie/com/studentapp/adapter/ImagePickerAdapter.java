@@ -100,7 +100,8 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
                 if (item.path.startsWith("http:")){
                     ImageLoaderUtil.getImageLoader(mContext).displayImage(item.path, iv_img, ImageLoaderUtil.getPhotoImageOption());
                 }else{
-                    iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
+//                    iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
+                    ImageLoaderUtil.getImageLoader(mContext).displayImage(item.path, iv_img, ImageLoaderUtil.getPhotoImageOption());
                 }
 
                 clickPosition = position;

@@ -12,6 +12,7 @@ import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
 import com.yijie.com.kindergartenapp.bean.StudentuserKinderneed;
 import com.yijie.com.kindergartenapp.utils.ImageLoaderUtil;
+import com.yijie.com.kindergartenapp.utils.TimeUtil;
 import com.yijie.com.kindergartenapp.view.CircleImageView;
 
 import java.util.List;
@@ -90,7 +91,10 @@ public class LoadMoreResumnListAdapter extends RecyclerView.Adapter<RecyclerView
             ImageLoaderUtil.getImageLoader(mContext).displayImage(Constant.infoUrl+dataList.get(position).getStudentUserId()+"/head_pic_/"+headPic, recyclerViewHolder.ivHead, ImageLoaderUtil.getPhotoImageOption());
         }
         recyclerViewHolder.tvName.setText(dataList.get(position).getStuName());
-        recyclerViewHolder.tvCreatetime.setText(dataList.get(position).getCreateTime());
+        String createTime = dataList.get(position).getCreateTime();
+        if (null!=createTime){
+            recyclerViewHolder.tvCreatetime.setText(TimeUtil.DateformatTime(TimeUtil.strToDateLong(createTime)));
+        }
         Integer status = dataList.get(position).getStatus();
         if (status==0){
             recyclerViewHolder.tvStatus.setVisibility(View.GONE);
@@ -111,9 +115,9 @@ public class LoadMoreResumnListAdapter extends RecyclerView.Adapter<RecyclerView
             recyclerViewHolder.tvYearheightwight.setText("简历已退回");
             recyclerViewHolder.tvStatus.setText("放弃");
         }else if (status==4){
-            recyclerViewHolder.tvStatus.setVisibility(View.VISIBLE);
+            recyclerViewHolder.tvStatus.setVisibility(View.GONE);
             recyclerViewHolder.tvYearheightwight.setText("已关闭");
-            recyclerViewHolder.tvStatus.setText("由于您长期未审核简历,该简历已被退回简历库");
+            recyclerViewHolder.tvNb.setText("由于您长期未审核简历,该简历已被退回简历库");
         }
 
 

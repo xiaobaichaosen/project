@@ -1,5 +1,6 @@
 package com.yijie.com.kindergartenapp.activity.login;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import com.yijie.com.kindergartenapp.activity.regist.RegistActivity;
 import com.yijie.com.kindergartenapp.activity.regist.RegistDetailActivity;
 import com.yijie.com.kindergartenapp.activity.regist.RegistKindActivity;
 import com.yijie.com.kindergartenapp.base.BaseActivity;
+import com.yijie.com.kindergartenapp.base.PermissionsActivity;
+import com.yijie.com.kindergartenapp.base.PermissionsChecker;
 import com.yijie.com.kindergartenapp.utils.AppInstallUtils;
 import com.yijie.com.kindergartenapp.utils.BaseCallback;
 import com.yijie.com.kindergartenapp.utils.HttpUtils;
@@ -95,18 +98,40 @@ public class LoginActivity extends BaseActivity {
 
     private KeyBoardHelper boardHelper;
     private int bottomHeight;
-
+    private static final int REQUEST_CODE = 0; // 请求码
+    //    // 所需的全部权限
+    static final String[] PERMISSIONS = new String[]{
+            Manifest.permission.CALL_PHONE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_PHONE_STATE,
+    };
 
     @Override
     public void setContentView() {
+                PermissionsChecker mPermissionsChecker = new PermissionsChecker(this);
+        if (mPermissionsChecker.lacksPermissions(PERMISSIONS)) {
+            PermissionsActivity.startActivityForResult(this, 0, PERMISSIONS);
+        }
         setContentView(R.layout.activity_login);
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
+        if (requestCode == REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
+            finish();
+        } else {
 
+        }
+    }
     @Override
     public void init() {
-
-
 
         setColor(LoginActivity.this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(LoginActivity.this); // 改变状态栏变成透明
@@ -219,43 +244,48 @@ public class LoginActivity extends BaseActivity {
                                     SharedPreferencesUtils.setParam(LoginActivity.this, "userId",userId+"");
                                     SharedPreferencesUtils.setParam(LoginActivity.this, "kinderId",kinderId+"");
                                     SharedPreferencesUtils.setParam(LoginActivity.this, "cellphone",cellphone);
+                                    ShowToastUtils.showToastMsg(LoginActivity.this,resMessage);
+                                    Intent intent = new Intent();
+                                    intent.setClass(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    commonDialog.dismiss();
 
-
-                                    Set<String> tags = new HashSet<String>();
-                                    JPushInterface.setAliasAndTags(LoginActivity.this, "",tags, new TagAliasCallback() {
-                                        @Override
-                                        public void gotResult(int i, String s, Set<String> set) {
-                                        }
-                                    });
-                                    //重新设置推送tags
-                                    tags.clear();
-                                    JPushInterface.setAliasAndTags(LoginActivity.this, userId+"",tags, new TagAliasCallback() {
-                                        @Override
-                                        public void gotResult(int code, String s, Set<String> set) {
-                                            switch (code) {
-                                                case 0:
-                                                    //这里可以往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
-                                                    LogUtil.e("Set tag and alias success极光推送别名设置成功");
-                                                    ShowToastUtils.showToastMsg(LoginActivity.this,resMessage);
-                                                    Intent intent = new Intent();
-                                                    intent.setClass(LoginActivity.this, MainActivity.class);
-                                                    startActivity(intent);
-                                                    finish();
-                                                    commonDialog.dismiss();
-                                                    break;
-                                                case 6002:
-                                                    //极低的可能设置失败 我设置过几百回 出现3次失败 不放心的话可以失败后继续调用上面那个方面 重连3次即可 记得return 不要进入死循环了...
-                                                    LogUtil.e("Failed to set alias and tags due to timeout. Try again after 60s.极光推送别名设置失败，60秒后重试");
-                                                    commonDialog.dismiss();
-                                                    break;
-                                                default:
-                                                    LogUtil.e("极光推送设置失败，Failed with errorCode = " + code);
-                                                    commonDialog.dismiss();
-                                                    break;
-                                            }
-
-                                        }
-                                    });
+//                                    Set<String> tags = new HashSet<String>();
+//                                    JPushInterface.setAliasAndTags(LoginActivity.this, "",tags, new TagAliasCallback() {
+//                                        @Override
+//                                        public void gotResult(int i, String s, Set<String> set) {
+//                                        }
+//                                    });
+//                                    //重新设置推送tags
+//                                    tags.clear();
+//                                    JPushInterface.setAliasAndTags(LoginActivity.this, userId+"",tags, new TagAliasCallback() {
+//                                        @Override
+//                                        public void gotResult(int code, String s, Set<String> set) {
+//                                            switch (code) {
+//                                                case 0:
+//                                                    //这里可以往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
+//                                                    LogUtil.e("Set tag and alias success极光推送别名设置成功");
+//                                                    ShowToastUtils.showToastMsg(LoginActivity.this,resMessage);
+//                                                    Intent intent = new Intent();
+//                                                    intent.setClass(LoginActivity.this, MainActivity.class);
+//                                                    startActivity(intent);
+//                                                    finish();
+//                                                    commonDialog.dismiss();
+//                                                    break;
+//                                                case 6002:
+//                                                    //极低的可能设置失败 我设置过几百回 出现3次失败 不放心的话可以失败后继续调用上面那个方面 重连3次即可 记得return 不要进入死循环了...
+//                                                    LogUtil.e("Failed to set alias and tags due to timeout. Try again after 60s.极光推送别名设置失败，60秒后重试");
+//                                                    commonDialog.dismiss();
+//                                                    break;
+//                                                default:
+//                                                    LogUtil.e("极光推送设置失败，Failed with errorCode = " + code);
+//                                                    commonDialog.dismiss();
+//                                                    break;
+//                                            }
+//
+//                                        }
+//                                    });
 
                                 }else{
                                     ShowToastUtils.showToastMsg(LoginActivity.this,resMessage);
@@ -373,11 +403,7 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-    }
+
 
 
     @OnCheckedChanged({R.id.cb_isVisiable})

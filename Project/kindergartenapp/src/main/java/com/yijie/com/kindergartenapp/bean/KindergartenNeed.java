@@ -15,30 +15,30 @@ public class KindergartenNeed implements Serializable {
     /**
      * 主键
      */
-    private Integer id;
+    private int id;
 
     /**
      * 园所id
      */
-    private Integer kinderId;
+    private int kinderId;
     /**
      * 园所用户id
      */
-    private Integer kindUserId;
+    private int kindUserId;
     /**
      * 学校id
      */
-    private Integer schoolId;
+    private int schoolId;
     /**
      * 实习项目
      */
-    private Integer schoolPracticeId;
+    private int schoolPracticeId;
 
 
     /**
      * 实习薪资id
      */
-    private Integer schoolSalaryInfoId;
+    private int schoolSalaryInfoId;
 
     public String getAmout() {
         return amout;
@@ -55,7 +55,7 @@ public class KindergartenNeed implements Serializable {
     /**
      * 首次支付费月数
      */
-    private Integer firstPayMonth;
+    private int firstPayMonth;
 
     /**
      * 园所薪资设定
@@ -94,7 +94,7 @@ public class KindergartenNeed implements Serializable {
     /**
      * 园所匹配状态 0：默认未匹配成功 1：匹配成功
      */
-    private Integer status;
+    private int status;
 
     /**
      * 学校名称
@@ -122,40 +122,40 @@ public class KindergartenNeed implements Serializable {
     /**
      * 学生人数要求(招聘人数）
      */
-    private Integer studentNum;
+    private int studentNum;
     /**
      * 园所接收人数
      */
-    private Integer receiveNum;
+    private int receiveNum;
 
     /**
      * 统计学生报名人数
      */
-    private Integer countRecruit;
+    private int countRecruit;
     /**
      * 统计园所接收人数
      */
-    private Integer countReceive;
+    private int countReceive;
     /**
      * 统计园所剩余学生名额
      */
-    private Integer countSurplus;
+    private int countSurplus;
     /**
      * 园所收到简历
      */
-    private Integer receiveResume;
+    private int receiveResume;
     /**
      * 园所需求人数
      */
-    private Integer demandNum;
+    private int demandNum;
     /**
      * 园所需求总和
      */
-    private Integer demandTotal;
+    private int demandTotal;
     /**
      * 园所报名总数
      */
-    private Integer enrollTotal;
+    private int enrollTotal;
 
     /**
      * 园所名称
@@ -198,7 +198,7 @@ public class KindergartenNeed implements Serializable {
     /**
      * 园所发布需求是否读：0：默认未读 1：已读
      */
-    private Integer isRead;
+    private int isRead;
 
     /**
      * 创建时间
@@ -213,15 +213,15 @@ public class KindergartenNeed implements Serializable {
     /**
      * 奕杰app 园所主页园所需求中已报名人数统计
      */
-    private Integer count;
+    private int count;
     /**
      * 奕杰app 园所主页园所需求中已接受人数统计
      */
-    private Integer count2;
+    private int count2;
     /**
      * 奕杰app 园所主页园所需求中已放弃人数统计
      */
-    private Integer count3;
+    private int count3;
     /**
      * 奕杰app中园所头像
      */
@@ -229,39 +229,39 @@ public class KindergartenNeed implements Serializable {
     /**
      * 园所需求id studentuser_kinderneed中间表中的
      */
-    private Integer kindNeedId;
+    private int kindNeedId;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getKinderId() {
+    public int getKinderId() {
         return kinderId;
     }
 
-    public void setKinderId(Integer kinderId) {
+    public void setKinderId(int kinderId) {
         this.kinderId = kinderId;
     }
 
-    public Integer getSchoolId() {
+    public int getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(Integer schoolId) {
+    public void setSchoolId(int schoolId) {
         this.schoolId = schoolId;
     }
 
-    public Integer getSchoolPracticeId() {
+    public int getSchoolPracticeId() {
         return schoolPracticeId;
     }
 
-    public void setSchoolPracticeId(Integer schoolPracticeId) {
+    public void setSchoolPracticeId(int schoolPracticeId) {
         this.schoolPracticeId = schoolPracticeId;
     }
 
@@ -297,76 +297,76 @@ public class KindergartenNeed implements Serializable {
         this.location = location;
     }
 
-    public Integer getStudentNum() {
+    public int getStudentNum() {
         return studentNum;
     }
 
-    public void setStudentNum(Integer studentNum) {
+    public void setStudentNum(int studentNum) {
         this.studentNum = studentNum;
     }
 
-    public Integer getReceiveNum() {
+    public int getReceiveNum() {
         return receiveNum;
     }
 
-    public void setReceiveNum(Integer receiveNum) {
+    public void setReceiveNum(int receiveNum) {
         this.receiveNum = receiveNum;
     }
 
-    public Integer getCountRecruit() {
+    public int getCountRecruit() {
         return countRecruit;
     }
 
-    public void setCountRecruit(Integer countRecruit) {
+    public void setCountRecruit(int countRecruit) {
         this.countRecruit = countRecruit;
     }
 
-    public Integer getCountReceive() {
+    public int getCountReceive() {
         return countReceive;
     }
 
-    public void setCountReceive(Integer countReceive) {
+    public void setCountReceive(int countReceive) {
         this.countReceive = countReceive;
     }
 
-    public Integer getCountSurplus() {
+    public int getCountSurplus() {
         return countSurplus;
     }
 
-    public void setCountSurplus(Integer countSurplus) {
+    public void setCountSurplus(int countSurplus) {
         this.countSurplus = countSurplus;
     }
 
-    public Integer getReceiveResume() {
+    public int getReceiveResume() {
         return receiveResume;
     }
 
-    public void setReceiveResume(Integer receiveResume) {
+    public void setReceiveResume(int receiveResume) {
         this.receiveResume = receiveResume;
     }
 
-    public Integer getDemandNum() {
+    public int getDemandNum() {
         return demandNum;
     }
 
-    public void setDemandNum(Integer demandNum) {
+    public void setDemandNum(int demandNum) {
         this.demandNum = demandNum;
     }
 
-    public Integer getDemandTotal() {
+    public int getDemandTotal() {
         return demandTotal;
     }
 
-    public void setDemandTotal(Integer demandTotal) {
+    public void setDemandTotal(int demandTotal) {
         this.demandTotal = demandTotal;
     }
 
 
-    public Integer getEnrollTotal() {
+    public int getEnrollTotal() {
         return enrollTotal;
     }
 
-    public void setEnrollTotal(Integer enrollTotal) {
+    public void setEnrollTotal(int enrollTotal) {
         this.enrollTotal = enrollTotal;
     }
 
@@ -446,43 +446,43 @@ public class KindergartenNeed implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getKindUserId() {
+    public int getKindUserId() {
         return kindUserId;
     }
 
-    public void setKindUserId(Integer kindUserId) {
+    public void setKindUserId(int kindUserId) {
         this.kindUserId = kindUserId;
     }
 
-    public Integer getIsRead() {
+    public int getIsRead() {
         return isRead;
     }
 
-    public void setIsRead(Integer isRead) {
+    public void setIsRead(int isRead) {
         this.isRead = isRead;
     }
 
-    public Integer getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
-    public Integer getCount2() {
+    public int getCount2() {
         return count2;
     }
 
-    public void setCount2(Integer count2) {
+    public void setCount2(int count2) {
         this.count2 = count2;
     }
 
-    public Integer getCount3() {
+    public int getCount3() {
         return count3;
     }
 
-    public void setCount3(Integer count3) {
+    public void setCount3(int count3) {
         this.count3 = count3;
     }
 
@@ -494,11 +494,11 @@ public class KindergartenNeed implements Serializable {
         this.headPic = headPic;
     }
 
-    public Integer getKindNeedId() {
+    public int getKindNeedId() {
         return kindNeedId;
     }
 
-    public void setKindNeedId(Integer kindNeedId) {
+    public void setKindNeedId(int kindNeedId) {
         this.kindNeedId = kindNeedId;
     }
 
@@ -514,20 +514,20 @@ public class KindergartenNeed implements Serializable {
         this.schoolName = schoolName;
     }
 
-    public Integer getSchoolSalaryInfoId() {
+    public int getSchoolSalaryInfoId() {
         return schoolSalaryInfoId;
     }
 
-    public void setSchoolSalaryInfoId(Integer schoolSalaryInfoId) {
+    public void setSchoolSalaryInfoId(int schoolSalaryInfoId) {
         this.schoolSalaryInfoId = schoolSalaryInfoId;
     }
 
 
-    public Integer getFirstPayMonth() {
+    public int getFirstPayMonth() {
         return firstPayMonth;
     }
 
-    public void setFirstPayMonth(Integer firstPayMonth) {
+    public void setFirstPayMonth(int firstPayMonth) {
         this.firstPayMonth = firstPayMonth;
     }
 
@@ -590,11 +590,11 @@ public class KindergartenNeed implements Serializable {
         this.manageFee = manageFee;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

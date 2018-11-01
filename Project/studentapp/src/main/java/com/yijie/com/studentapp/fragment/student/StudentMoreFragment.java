@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.icu.text.TimeZoneFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,7 +37,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.GalleryAdapter;
 import com.yijie.com.studentapp.R;
@@ -81,10 +87,17 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -494,13 +507,23 @@ public class StudentMoreFragment extends BaseFragment {
     }
 
 
-
+    public class DateAdapter implements JsonDeserializer<Date> {
+        private final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        public Date deserialize(JsonElement arg0, Type arg1,
+                                JsonDeserializationContext arg2) throws JsonParseException {
+            try {
+                return df.parse(arg0.getAsString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
     private void initDatas() {
 
         //获取简历详情
         HttpUtils getinstance = HttpUtils.getinstance(mActivity);
-
         HashMap<String, String> stringStringHashMap = new HashMap<>();
         stringStringHashMap.put("studentUserId", userId);
         getinstance.post(Constant.STUDENTRESUMEDETAIL, stringStringHashMap, new BaseCallback<String>() {
@@ -518,7 +541,13 @@ public class StudentMoreFragment extends BaseFragment {
             public void onSuccess(Response response, String s) {
                 LogUtil.e(s);
                 commonDialog.dismiss();
-                Gson gson = new Gson();
+//                Gson gson = new Gson();
+
+                Gson gson = null;
+                GsonBuilder builder = new GsonBuilder();
+                builder.registerTypeAdapter(Date.class, new DateAdapter());
+                builder.setDateFormat("yyyy-MM-dd HH:mm");
+                gson = builder.create();
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONObject data = jsonObject.getJSONObject("data");
@@ -585,6 +614,12 @@ public class StudentMoreFragment extends BaseFragment {
                     if (null != studentInfo) {
 //                        llPersonalInformation.setVisibility(View.VISIBLE);
 //                        tvPersonalInformation.setCompoundDrawables(null, null, null, null);
+                        headPic = studentInfo.getHeadPic();
+                        if (headPic==null||headPic.equals("")) {
+                            ivHeadImage.setBackgroundResource(R.mipmap.head);
+                        }else {
+                            ImageLoaderUtil.getImageLoader(mActivity).displayImage(Constant.infoUrl+userId+"/head_pic_/"+headPic, ivHeadImage, ImageLoaderUtil.getPhotoImageOption());
+                        }
                         tvStuName.setText(studentInfo.getStuName());
                         tvStuName.setText(studentInfo.getStuName());
                         if (!TextUtils.isEmpty(studentInfo.getStuName())
@@ -640,7 +675,7 @@ public class StudentMoreFragment extends BaseFragment {
                             toolbarTitle.setText("我的简历");
                             llSendCheck.setVisibility(View.GONE);
                             llSample.setVisibility(View.VISIBLE);
-                            tvSetting.setVisibility(View.INVISIBLE);
+                            tvSetting.setVisibility(View.VISIBLE);
                         } else {
                             llSample.setVisibility(View.GONE);
                             llSendCheck.setVisibility(View.VISIBLE);
@@ -649,14 +684,7 @@ public class StudentMoreFragment extends BaseFragment {
                             tvSetting.setVisibility(View.VISIBLE);
 
                         }
-                        headPic = studentInfo.getHeadPic();
-                        if (headPic==null||headPic.equals("")) {
-                            ivHeadImage.setBackgroundResource(R.mipmap.head);
 
-                        }else {
-
-                            ImageLoaderUtil.getImageLoader(mActivity).displayImage(Constant.infoUrl+userId+"/head_pic_/"+headPic, ivHeadImage, ImageLoaderUtil.getPhotoImageOption());
-                        }
                         if (!TextUtils.isEmpty(studentResume.getCertificate())) {
                             tvHonoraryCertificate.setText("完善");
                             tvHonoraryCertificate.setTextColor(getResources().getColor(R.color.colorTheme));
@@ -688,7 +716,7 @@ public class StudentMoreFragment extends BaseFragment {
                         toolbarTitle.setText("我的简历");
                         llSendCheck.setVisibility(View.GONE);
                         llSample.setVisibility(View.VISIBLE);
-                        tvSetting.setVisibility(View.INVISIBLE);
+                        tvSetting.setVisibility(View.VISIBLE);
                         tvRelateIntention.setText("待完善");
                         tvRelateIntention.setTextColor(getResources().getColor(R.color.colorTheme));
                         tvSelfAssessment.setText("待完善");
@@ -697,6 +725,16 @@ public class StudentMoreFragment extends BaseFragment {
                         tvHonoraryCertificate.setTextColor(getResources().getColor(R.color.colorTheme));
                         tvNb.setText("待完善");
                         tvNb.setTextColor(getResources().getColor(R.color.colorTheme));
+
+                        String json = (String) SharedPreferencesUtils.getParam(mActivity, "user", "");
+                        try {
+                            JSONObject jsonObject1 = new JSONObject(json);
+                            String stuName = jsonObject1.getString("studentName");
+                            tvStuName.setText(stuName);
+                            tvStatus.setText("简历待完善");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 } catch (JSONException e) {

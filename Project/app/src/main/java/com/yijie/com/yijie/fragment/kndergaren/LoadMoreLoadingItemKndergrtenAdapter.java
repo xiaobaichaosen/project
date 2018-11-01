@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
+import com.yijie.com.yijie.activity.kendergard.Kndergard2KeedAcitivity;
 import com.yijie.com.yijie.activity.kendergard.KndergardAcitivity;
 import com.yijie.com.yijie.activity.school.StudentBean;
 import com.yijie.com.yijie.bean.bean.KindergartenNeed;
+import com.yijie.com.yijie.utils.ImageLoaderUtil;
 
 import java.util.List;
 
@@ -85,15 +88,30 @@ public class LoadMoreLoadingItemKndergrtenAdapter extends RecyclerView.Adapter<R
         //给内容的recycle设置数据
         if (dataList.size()>1){
             if (0==position){
-                recyclerViewHolder.ivKendegard.setBackgroundResource(R.mipmap.shool_pictor);
+                if ( null==dataList.get(position).getHeadPic()) {
+                    recyclerViewHolder.ivKendegard.setBackgroundResource(R.mipmap.head);
+                } else {
+                    //加载网络图片
+                    ImageLoaderUtil.getImageLoader(mContext).displayImage(Constant.kinderUrl+dataList.get(position).getKinderId() + "/head_pic_/" +dataList.get(position).getHeadPic(), recyclerViewHolder.ivKendegard, ImageLoaderUtil.getPhotoImageOption());
+                }
+                recyclerViewHolder.kendegardName.setVisibility(View.VISIBLE);
+                recyclerViewHolder.kendegardName.setText(dataList.get(position).getKindName());
             }else{
                 recyclerViewHolder.ivKendegard.setBackgroundResource(0);
+                recyclerViewHolder.kendegardName.setVisibility(View.GONE);
             }
 
         }else{
-            recyclerViewHolder.ivKendegard.setBackgroundResource(R.mipmap.shool_pictor);
+            if ( null==dataList.get(position).getHeadPic()) {
+                recyclerViewHolder.ivKendegard.setBackgroundResource(R.mipmap.head);
+            } else {
+                //加载网络图片
+                ImageLoaderUtil.getImageLoader(mContext).displayImage(Constant.kinderUrl+dataList.get(position).getKinderId() + "/head_pic_/" +dataList.get(position).getHeadPic(), recyclerViewHolder.ivKendegard, ImageLoaderUtil.getPhotoImageOption());
+            }
+            recyclerViewHolder.kendegardName.setVisibility(View.VISIBLE);
+            recyclerViewHolder.kendegardName.setText(dataList.get(position).getKindName());
         }
-         recyclerViewHolder.kendegardName.setText(dataList.get(position).getKindName());
+
          recyclerViewHolder.schoolTitle.setText(dataList.get(position).getProjectName());
          recyclerViewHolder.tvData.setText(dataList.get(position).getUpStringTime());
          recyclerViewHolder.schoolName.setText(dataList.get(position).getSchoolName());
@@ -109,6 +127,7 @@ public class LoadMoreLoadingItemKndergrtenAdapter extends RecyclerView.Adapter<R
         if (receiveNum==studentNum){
            recyclerViewHolder.tvPeople.setTextColor(Color.parseColor("#FF5F00"));
            recyclerViewHolder.tvPeople.setText("匹配成功");
+            recyclerViewHolder.studentNumber.setText("待付款");
        }else {
            //有人报名，没有处理,
            if (receiveResume>0&&receiveNum==0&&noPass==0){
@@ -126,14 +145,16 @@ public class LoadMoreLoadingItemKndergrtenAdapter extends RecyclerView.Adapter<R
                //提完需求没人报名
                recyclerViewHolder.tvPeople.setVisibility(View.GONE);
            }
+            recyclerViewHolder.studentNumber.setText("需求:"+studentNum);
        }
-       recyclerViewHolder.studentNumber.setText("需求:"+studentNum);
+
         recyclerViewHolder.kendegardName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.putExtra("kinderName",dataList.get(position).getKindName());
-                intent.setClass(mContext, KndergardAcitivity.class);
+                intent.putExtra("kinderId",dataList.get(position).getKinderId()+"");
+                intent.setClass(mContext, Kndergard2KeedAcitivity.class);
                 mContext.startActivity(intent);
             }
         });

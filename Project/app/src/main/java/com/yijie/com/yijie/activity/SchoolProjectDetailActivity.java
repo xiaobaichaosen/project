@@ -75,7 +75,7 @@ public class SchoolProjectDetailActivity extends BaseActivity {
         schoolId = getIntent().getStringExtra("schoolId");
         status = getIntent().getStringExtra("status");
         title.setText(projectName);
-        title.setTextSize(ViewUtils.dp2px(this, 5));
+        title.setTextSize(ViewUtils.dp2px(this, 12));
 //        setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
 //        setTranslucent(this); // 改变状态栏变成透明
         initProjectDetailFragment();

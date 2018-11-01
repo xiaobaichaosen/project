@@ -1,8 +1,6 @@
 package com.yijie.com.studentapp.activity;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yijie.com.studentapp.Constant;
-import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
 import com.yijie.com.studentapp.adapter.CardAdapter;
 import com.yijie.com.studentapp.adapter.HonorCardAdapter;
@@ -28,13 +26,13 @@ import com.yijie.com.studentapp.bean.StudentContact;
 import com.yijie.com.studentapp.bean.StudentEducation;
 import com.yijie.com.studentapp.bean.StudentInfo;
 import com.yijie.com.studentapp.bean.StudentResume;
+import com.yijie.com.studentapp.bean.StudentResumeDetail;
 import com.yijie.com.studentapp.bean.StudentWorkDue;
 import com.yijie.com.studentapp.utils.BaseCallback;
 import com.yijie.com.studentapp.utils.HttpUtils;
 import com.yijie.com.studentapp.utils.LogUtil;
 import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
-import com.yijie.com.studentapp.view.CommomDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +46,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -144,6 +141,14 @@ public class ResumepreviewActivity extends BaseActivity {
     TextView tvNb;
     @BindView(R.id.ll_nb)
     LinearLayout llNb;
+    @BindView(R.id.tv_wecat)
+    TextView tvWecat;
+    @BindView(R.id.tv_qqq)
+    TextView tvQqq;
+    @BindView(R.id.tv_email)
+    TextView tvEmail;
+    @BindView(R.id.tv_stuNumber)
+    TextView tvStuNumber;
     private ArrayList<String> infoList = new ArrayList<>();
     private ArrayList<String> honorList = new ArrayList<>();
     private ArrayList<StudentEducation> educationList = new ArrayList<>();
@@ -184,7 +189,7 @@ public class ResumepreviewActivity extends BaseActivity {
 
     private void initDatas() {
         //获取简历详情
-        HttpUtils getinstance = HttpUtils.getinstance(this);
+        final HttpUtils getinstance = HttpUtils.getinstance(this);
 
         userId = (String) SharedPreferencesUtils.getParam(this, "id", "");
         HashMap<String, String> stringStringHashMap = new HashMap<>();
@@ -204,13 +209,13 @@ public class ResumepreviewActivity extends BaseActivity {
             public void onSuccess(Response response, String s) {
                 LogUtil.e(s);
                 commonDialog.dismiss();
-                Gson gson = new Gson();
+                GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls();
+                Gson gson = gsonBuilder.create();
+
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONObject data = jsonObject.getJSONObject("data");
-                    JSONObject studentInfoJson = data.getJSONObject("studentInfo");
-                    JSONObject studentContactJson = data.getJSONObject("studentContact");
-                    JSONObject studentResumeJson = data.getJSONObject("studentResume");
+                    StudentResumeDetail studentResumeDetail = gson.fromJson(data.toString(), StudentResumeDetail.class);
 
                     //教育背景
                     JSONArray studentEducationJson = data.getJSONArray("studentEducation");
@@ -219,11 +224,11 @@ public class ResumepreviewActivity extends BaseActivity {
 
                     //个人信息
 
-                    StudentInfo studentInfo = gson.fromJson(studentInfoJson.toString(), StudentInfo.class);
+                    StudentInfo studentInfo = studentResumeDetail.getStudentInfo();
                     //联系人
-                    StudentContact studentContact = gson.fromJson(studentContactJson.toString(), StudentContact.class);
+                    StudentContact studentContact = studentResumeDetail.getStudentContact();
                     //简历信息
-                    StudentResume studentResume = gson.fromJson(studentResumeJson.toString(), StudentResume.class);
+                    StudentResume studentResume =studentResumeDetail.getStudentResume();
                     if (studentEducationJson.length() > 0) {
                         llEducationBackground.setVisibility(View.VISIBLE);
                         for (int i = 0; i < studentEducationJson.length(); i++) {
@@ -244,10 +249,15 @@ public class ResumepreviewActivity extends BaseActivity {
                     if (null != studentInfo) {
                         llPersonalInformation.setVisibility(View.VISIBLE);
                         tvStuName.setText(studentInfo.getStuName());
-                        tvAge.setText(studentInfo.getStuAge().toString());
+                        tvAge.setText(studentInfo.getStuAge() + "岁");
                         tvSex.setText(studentInfo.getSex());
-                        tvHeight.setText(studentInfo.getHeight().toString());
-                        tvWeight.setText(studentInfo.getWeight().toString());
+                        if (0!=studentInfo.getHeight()){
+                            tvHeight.setText(studentInfo.getHeight()+ "cm");
+                        }
+                        if (null!=studentInfo.getWeight()||0!=studentInfo.getWeight()){
+                            tvWeight.setText(Math.round(studentInfo.getWeight()) + "kg");
+                        }
+                        tvStuNumber.setText(studentInfo.getStuNumber());
                         tvNational.setText(studentInfo.getNation());
                         tvPlace.setText(studentInfo.getPlace());
                         tvAdress.setText(studentInfo.getAddress());
@@ -261,14 +271,31 @@ public class ResumepreviewActivity extends BaseActivity {
                                 infoList.add(strings.get(i));
                             }
                         }
-                        recyclerViewInfo.setAdapter(new CardAdapter(ResumepreviewActivity.this, infoList, userId, "info","info"));
+                        recyclerViewInfo.setAdapter(new CardAdapter(ResumepreviewActivity.this, infoList, userId, "info", "info"));
                     }
                     if (null != studentContact) {
                         llContactWay.setVisibility(View.VISIBLE);
                         tvCellphone.setText(studentContact.getCellphone());
-                        tvWx.setText(studentContact.getWechat());
-                        tvQq.setText(studentContact.getQq());
-                        tvMail.setText(studentContact.getEmail());
+                        if (TextUtils.isEmpty(studentContact.getQq())) {
+                            tvQqq.setVisibility(View.GONE);
+                            tvQq.setVisibility(View.GONE);
+                        } else {
+                            tvQq.setText(studentContact.getQq());
+                        }
+                        if (TextUtils.isEmpty(studentContact.getWechat())) {
+                            tvWecat.setVisibility(View.GONE);
+                            tvWx.setVisibility(View.GONE);
+                        } else {
+                            tvWx.setText(studentContact.getWechat());
+
+                        }
+                        if (TextUtils.isEmpty(studentContact.getEmail())) {
+                            tvEmail.setVisibility(View.GONE);
+                            tvMail.setVisibility(View.GONE);
+                        } else {
+                            tvMail.setText(studentContact.getEmail());
+                        }
+                        ;
                         tvUrgentCellphone.setText(studentContact.getUrgentCellphone());
                         tvUrgentContact.setText(studentContact.getUrgentContact());
                     }
@@ -292,7 +319,12 @@ public class ResumepreviewActivity extends BaseActivity {
                         if (!TextUtils.isEmpty(studentResume.getExpectWorkPlace()) || !TextUtils.isEmpty(studentResume.getExpectPartener())) {
                             llRelatedIntention.setVisibility(View.VISIBLE);
                             tvWorkplace.setText(studentResume.getExpectWorkPlace());
-                            tvCompanionName.setText(studentResume.getExpectPartener());
+                            if (TextUtils.isEmpty(studentResume.getExpectPartener())) {
+                                tvCompanionName.setText("无");
+                            } else {
+                                tvCompanionName.setText(studentResume.getExpectPartener());
+                            }
+
                         }
                         if (!TextUtils.isEmpty(studentResume.getHobby())) {
                             llNb.setVisibility(View.VISIBLE);
@@ -350,15 +382,14 @@ public class ResumepreviewActivity extends BaseActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(s);
                             String rescode = jsonObject.getString("rescode");
-                            if (rescode.equals("200")){
-                                final AlertDialog.Builder  normalDialog = new AlertDialog.Builder(ResumepreviewActivity.this);
+                            if (rescode.equals("200")) {
+                                final AlertDialog.Builder normalDialog = new AlertDialog.Builder(ResumepreviewActivity.this);
                                 normalDialog.setTitle("发送成功");
                                 normalDialog.setMessage("等待审核");
                                 normalDialog.setPositiveButton("确定",
-                                        new DialogInterface.OnClickListener()
-                                        {
+                                        new DialogInterface.OnClickListener() {
                                             @Override
-                                            public void onClick(DialogInterface   dialog, int which)
+                                            public void onClick(DialogInterface dialog, int which)
 
                                             {
                                                 SharedPreferencesUtils.setParam(ResumepreviewActivity.this, "sendCheck", true);
@@ -368,8 +399,8 @@ public class ResumepreviewActivity extends BaseActivity {
                                         });
 
                                 normalDialog.show();
-                            }else{
-                                ShowToastUtils.showToastMsg(ResumepreviewActivity.this,jsonObject.getString("resMessage"));
+                            } else {
+                                ShowToastUtils.showToastMsg(ResumepreviewActivity.this, jsonObject.getString("resMessage"));
                             }
 
 

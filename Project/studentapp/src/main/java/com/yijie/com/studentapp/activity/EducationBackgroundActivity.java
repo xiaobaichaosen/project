@@ -18,6 +18,7 @@ import com.yijie.com.studentapp.utils.HttpUtils;
 import com.yijie.com.studentapp.utils.LogUtil;
 import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
+import com.yijie.com.studentapp.utils.TimeUtils;
 import com.yijie.com.studentapp.utils.ViewUtils;
 
 import org.json.JSONException;
@@ -51,14 +52,16 @@ public class EducationBackgroundActivity extends BaseActivity {
     @BindView(R.id.et_college)
     EditText etCollege;
     @BindView(R.id.et_major)
-    EditText etMajor;
+    TextView etMajor;
     @BindView(R.id.et_education)
-    EditText etEducation;
+    TextView etEducation;
     @BindView(R.id.tv_startTime)
     TextView tvStartTime;
     @BindView(R.id.tv_endTime)
     TextView tvEndTime;
     private StudentEducation studentEducation;
+    private ArrayList<String> majorList=new ArrayList<>();
+    private ArrayList<String> edcationList=new ArrayList<>();
 
     @Override
     public void setContentView() {
@@ -81,6 +84,10 @@ public class EducationBackgroundActivity extends BaseActivity {
         title.setText("教育背景");
         tvRecommend.setVisibility(View.VISIBLE);
         tvRecommend.setText("保存");
+        edcationList.add("中专");
+        edcationList.add("大专");
+        edcationList.add("本科");
+        majorList.add("学前教育");
     }
 
     @Override
@@ -90,7 +97,7 @@ public class EducationBackgroundActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.back, R.id.tv_recommend,R.id.rl_startTime, R.id.rl_endTime})
+    @OnClick({R.id.back, R.id.tv_recommend,R.id.rl_startTime, R.id.rl_endTime,R.id.rl_educationBackground,R.id.rl_major})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -104,7 +111,15 @@ public class EducationBackgroundActivity extends BaseActivity {
                 String s = tvStartTime.getText().toString();
                 String s1 = tvEndTime.getText().toString();
                 if (TextUtils.isEmpty(etCollege.getText().toString())){
-                    ShowToastUtils.showToastMsg(this,"请填写学校名称");
+                    ShowToastUtils.showToastMsg(this,"请填写毕业院校");
+                    return;
+                }
+                if (TextUtils.isEmpty(etMajor.getText().toString())){
+                    ShowToastUtils.showToastMsg(this,"请填写专业");
+                    return;
+                }
+                if (TextUtils.isEmpty(etEducation.getText().toString())){
+                    ShowToastUtils.showToastMsg(this,"请填写学历");
                     return;
                 }
                 if (TextUtils.isEmpty(s)){
@@ -113,6 +128,12 @@ public class EducationBackgroundActivity extends BaseActivity {
                 }if (TextUtils.isEmpty(s1)){
                     ShowToastUtils.showToastMsg(this,"请填写毕业时间");
                     return;
+                }
+                String endTime = s1.replaceAll("/", "-");
+                String startTime = s.replaceAll("/", "-");
+                 if (TimeUtils.compare_date("yyyy-MM",startTime,endTime)==1){
+                           ShowToastUtils.showToastMsg(EducationBackgroundActivity.this,"毕业时间不能早于入学时间");
+                           return;
                 }
                 HashMap<String, String> requestData = new HashMap<>();
                 if (null!=studentEducation){
@@ -123,8 +144,7 @@ public class EducationBackgroundActivity extends BaseActivity {
                  stringStringHashMap.put("college", etCollege.getText().toString());
                  stringStringHashMap.put("major", etMajor.getText().toString());
                  stringStringHashMap.put("education", etEducation.getText().toString());
-                String endTime = s1.replaceAll("/", "-");
-                String startTime = s.replaceAll("/", "-");
+
                 stringStringHashMap.put("startTime",startTime );
                 stringStringHashMap.put("graduateTime",endTime );
                 requestData.put("requestData", new JSONObject(stringStringHashMap).toString());
@@ -165,7 +185,28 @@ public class EducationBackgroundActivity extends BaseActivity {
                     }
                 });
                 break;
+            case R.id.rl_major:
+                ViewUtils.hideSoftInputMethod(this);
+                ViewUtils.alertBottomWheelOption(this, majorList, new ViewUtils.OnWheelViewClick() {
+                    @Override
+                    public void onClick(View view, int postion) {
+                        etMajor.setText(majorList.get(postion));
+                    }
+
+                });
+                break;
+            case R.id.rl_educationBackground:
+                ViewUtils.hideSoftInputMethod(this);
+                ViewUtils.alertBottomWheelOption(this, edcationList, new ViewUtils.OnWheelViewClick() {
+                    @Override
+                    public void onClick(View view, int postion) {
+                        etEducation.setText(edcationList.get(postion));
+                    }
+
+                });
+                break;
             case R.id.rl_startTime:
+                ViewUtils.hideSoftInputMethod(this);
                 TimePickerView.Type yearType = TimePickerView.Type.YEAR_MONTH_DAY_HOUR;
                 String yearFormat = "yyyy-MM";
                 ViewUtils.alertTimerPicker(this, yearType, yearFormat, new ViewUtils.TimerPickerCallBack() {
@@ -176,6 +217,7 @@ public class EducationBackgroundActivity extends BaseActivity {
                 });
                 break;
             case R.id.rl_endTime:
+                ViewUtils.hideSoftInputMethod(this);
                 TimePickerView.Type endyearType = TimePickerView.Type.YEAR_MONTH_DAY_HOUR;
                 String endyearFormat = "yyyy-MM";
                 ViewUtils.alertTimerPicker(this, endyearType, endyearFormat, new ViewUtils.TimerPickerCallBack() {

@@ -84,8 +84,11 @@ public class SmoothImageView extends PhotoView {
 		if (getDrawable() == null) {
 			return;
 		}
-
-		if (mStatus == Status.STATE_OUT || mStatus == Status.STATE_IN) {
+/**
+ * TODO
+ * &&null!=thumbRect，否则，点击超出屏幕的view的时候会报null指针
+ */
+		if ((mStatus == Status.STATE_OUT || mStatus == Status.STATE_IN)&&null!=thumbRect) {
 			if (startTransform == null || endTransform == null || animTransform == null) {
 				initTransform();
 			}
@@ -113,6 +116,7 @@ public class SmoothImageView extends PhotoView {
 				startTransform();
 			}
 		} else {
+
 			mPaint.setAlpha(255);
 			canvas.drawPaint(mPaint);
 			super.onDraw(canvas);

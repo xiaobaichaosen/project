@@ -13,7 +13,7 @@ public class StudentResume implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private int id;
 
     /**
      * 微信账号id
@@ -28,22 +28,22 @@ public class StudentResume implements Serializable {
     /**
      * 期望同伴id
      */
-    private Integer companionId;
+    private int companionId;
 
     /**
      * 学生个人信息id
      */
-    private Integer studentInfoId;
+    private int studentInfoId;
 
     /**
      * 学生用户id
      */
-    private Integer studentUserId;
+    private int studentUserId;
 
     /**
      * 审核人id（培训老师id)
      */
-    private Integer auditorId;
+    private int auditorId;
 
     /**
      * 期望工作地点
@@ -68,12 +68,12 @@ public class StudentResume implements Serializable {
     /**
      * 简历状态（0：待审核：通过1（待分配），2：未通过，3已分配）
      */
-    private Integer status;
+    private int status;
 
     /**
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 更新时间
@@ -83,7 +83,7 @@ public class StudentResume implements Serializable {
     /**
      * 简历投递次数
      */
-    private Integer resumeCount;
+    private int resumeCount;
 
     /**
      * 简历退回原因
@@ -111,18 +111,32 @@ public class StudentResume implements Serializable {
      * 学校名称
      */
     private String name;
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
     /**
      * 未统计简历数量
      */
-    private Integer unResumeCountNum;
+
+    private int unResumeCountNum;
+    /**
+     * 爱好特长
+     */
+    private String hobby;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -142,35 +156,35 @@ public class StudentResume implements Serializable {
         this.formId = formId;
     }
 
-    public Integer getCompanionId() {
+    public int getCompanionId() {
         return companionId;
     }
 
-    public void setCompanionId(Integer companionId) {
+    public void setCompanionId(int companionId) {
         this.companionId = companionId;
     }
 
-    public Integer getStudentInfoId() {
+    public int getStudentInfoId() {
         return studentInfoId;
     }
 
-    public void setStudentInfoId(Integer studentInfoId) {
+    public void setStudentInfoId(int studentInfoId) {
         this.studentInfoId = studentInfoId;
     }
 
-    public Integer getStudentUserId() {
+    public int getStudentUserId() {
         return studentUserId;
     }
 
-    public void setStudentUserId(Integer studentUserId) {
+    public void setStudentUserId(int studentUserId) {
         this.studentUserId = studentUserId;
     }
 
-    public Integer getAuditorId() {
+    public int getAuditorId() {
         return auditorId;
     }
 
-    public void setAuditorId(Integer auditorId) {
+    public void setAuditorId(int auditorId) {
         this.auditorId = auditorId;
     }
 
@@ -204,19 +218,19 @@ public class StudentResume implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
     public String getUpdateTime() {
@@ -226,11 +240,11 @@ public class StudentResume implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getResumeCount() {
+    public int getResumeCount() {
         return resumeCount;
     }
 
-    public void setResumeCount(Integer resumeCount) {
+    public void setResumeCount(int resumeCount) {
         this.resumeCount = resumeCount;
     }
 
@@ -282,11 +296,11 @@ public class StudentResume implements Serializable {
         this.name = name;
     }
 
-    public Integer getUnResumeCountNum() {
+    public int getUnResumeCountNum() {
         return unResumeCountNum;
     }
 
-    public void setUnResumeCountNum(Integer unResumeCountNum) {
+    public void setUnResumeCountNum(int unResumeCountNum) {
         this.unResumeCountNum = unResumeCountNum;
     }
 

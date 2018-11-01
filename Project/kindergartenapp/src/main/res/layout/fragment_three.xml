@@ -117,6 +117,7 @@
                 android:layout_height="@dimen/base_dimen_90">
 
                 <TextView
+                    android:id="@+id/tv_6"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,6 +125,9 @@
                     android:paddingLeft="@dimen/base_dimen_30"
                     android:text="班级数量" />
                 <EditText
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_toRightOf="@+id/tv_6"
                     android:id="@+id/et_classnum"
                     android:background="@null"
                     android:layout_alignParentRight="true"
@@ -147,6 +151,7 @@
                 android:layout_height="@dimen/base_dimen_90">
 
                 <TextView
+                    android:id="@+id/tv_5"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -154,6 +159,9 @@
                     android:paddingLeft="@dimen/base_dimen_30"
                     android:text="班级配置" />
                 <TextView
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_toRightOf="@+id/tv_5"
                     android:id="@+id/tv_configuration"
                     android:background="@null"
                     android:layout_alignParentRight="true"
@@ -176,6 +184,7 @@
                 android:layout_height="@dimen/base_dimen_90">
 
                 <TextView
+                    android:id="@+id/tv_4"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -184,6 +193,9 @@
                     android:text="住宿安排" />
 
                 <TextView
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_toRightOf="@+id/tv_4"
                     android:id="@+id/tv_stay"
                     android:maxLength="14"
                     android:layout_width="wrap_content"
@@ -206,6 +218,7 @@
                 android:layout_height="@dimen/base_dimen_90">
 
                 <TextView
+                    android:id="@+id/tv_3"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -213,6 +226,9 @@
                     android:paddingLeft="@dimen/base_dimen_30"
                     android:text="三餐安排" />
                 <TextView
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_toRightOf="@+id/tv_3"
                     android:id="@+id/tv_meal"
                     android:background="@null"
                     android:layout_alignParentRight="true"
@@ -235,6 +251,7 @@
                 android:layout_height="@dimen/base_dimen_90">
 
                 <TextView
+                    android:id="@+id/tv_2"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -242,6 +259,9 @@
                     android:paddingLeft="@dimen/base_dimen_30"
                     android:text="工服押金" />
                 <TextView
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_toRightOf="@+id/tv_2"
                     android:id="@+id/tv_uniform"
                     android:layout_alignParentRight="true"
                     android:paddingRight="@dimen/base_dimen_20"
@@ -265,6 +285,7 @@
                 android:gravity="center_vertical">
 
                 <TextView
+                    android:id="@+id/tv_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -273,6 +294,9 @@
                     android:text="首年体检费" />
 
                 <TextView
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/base_dimen_30"
+                    android:layout_toRightOf="@+id/tv_1"
                     android:id="@+id/tv_examinationFee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -283,6 +307,11 @@
                     android:hint="请输入体检费用"
                     android:paddingRight="@dimen/base_dimen_20"
                     android:textSize="@dimen/base_dimen_24" />
+
+
+
+
+
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

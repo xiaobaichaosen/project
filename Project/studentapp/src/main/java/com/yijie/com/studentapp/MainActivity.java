@@ -12,10 +12,13 @@ import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.cretin.www.cretinautoupdatelibrary.utils.CretinAutoUpdateUtils;
+import com.yijie.com.studentapp.activity.SettingActivity;
 import com.yijie.com.studentapp.base.AppManager;
 import com.yijie.com.studentapp.base.BaseActivity;
 import com.yijie.com.studentapp.base.PermissionsActivity;
 import com.yijie.com.studentapp.base.PermissionsChecker;
+import com.yijie.com.studentapp.bean.VersionUpdate;
 import com.yijie.com.studentapp.fragment.discover.DiscoverFragment;
 import com.yijie.com.studentapp.fragment.kndergaren.KndergartenFragment;
 import com.yijie.com.studentapp.fragment.yijie.YiJieFragment;
@@ -91,7 +94,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         mainTabRadioGroup.setOnCheckedChangeListener(this);
         mainTabRadioGroup.check(R.id.radio_student);
         radioKindergarten.setBadgeNumber(2);
-
+        //第一种形式 自定义参数
+        //检查升级
+        CretinAutoUpdateUtils.getInstance(this).check();
 
 //
     }

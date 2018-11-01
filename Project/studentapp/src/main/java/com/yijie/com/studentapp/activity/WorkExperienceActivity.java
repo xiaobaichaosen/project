@@ -19,6 +19,7 @@ import com.yijie.com.studentapp.utils.HttpUtils;
 import com.yijie.com.studentapp.utils.LogUtil;
 import com.yijie.com.studentapp.utils.SharedPreferencesUtils;
 import com.yijie.com.studentapp.utils.ShowToastUtils;
+import com.yijie.com.studentapp.utils.TimeUtils;
 import com.yijie.com.studentapp.utils.ViewUtils;
 
 import org.json.JSONException;
@@ -114,16 +115,23 @@ public class WorkExperienceActivity extends BaseActivity {
                     ShowToastUtils.showToastMsg(this, "请填写公司名称");
                     return;
                 }
+                if (TextUtils.isEmpty(s)) {
+                    ShowToastUtils.showToastMsg(this, "请填写开始时间");
+                    return;
+                }
+                if (TextUtils.isEmpty(s1)) {
+                    ShowToastUtils.showToastMsg(this, "请填写结束时间");
+                    return;
+                }
                 if (TextUtils.isEmpty(etPostContent.getText().toString())) {
                     ShowToastUtils.showToastMsg(this, "请填写工作描述");
                     return;
                 }
-                if (TextUtils.isEmpty(s)) {
-                    ShowToastUtils.showToastMsg(this, "请填写入学时间");
-                    return;
-                }
-                if (TextUtils.isEmpty(s1)) {
-                    ShowToastUtils.showToastMsg(this, "请填写毕业时间");
+
+                String endTime = s1.replaceAll("/", "-");
+                String startTime = s.replaceAll("/", "-");
+                if (TimeUtils.compare_date("yyyy-MM",startTime,endTime)==1){
+                    ShowToastUtils.showToastMsg(WorkExperienceActivity.this,"结束不能早于开始时间");
                     return;
                 }
                 HashMap<String, String> requestData = new HashMap<>();
@@ -134,8 +142,7 @@ public class WorkExperienceActivity extends BaseActivity {
                 stringStringHashMap.put("resumeId", userId);
                 stringStringHashMap.put("companyName", etName.getText().toString());
 
-                String endTime = s1.replaceAll("-", "/");
-                String startTime = s.replaceAll("-", "/");
+
                 stringStringHashMap.put("workDue",startTime+"-"+endTime);
                 stringStringHashMap.put("post", etPost.getText().toString());
                 stringStringHashMap.put("description", etPostContent.getText().toString());

@@ -17,17 +17,17 @@ public class StudentWorkDue implements Serializable {
     /**
      * 学生信息id
      */
-    private Integer studentInfoId;
+    private int studentInfoId;
 
     /**
      * 学生用户
      */
-     private Integer studentUserId;
+     private int studentUserId;
 
     /**
      * 简历id
      */
-    private Integer resumeId;
+    private int resumeId;
 
     /**
      * 公司名称
@@ -47,7 +47,7 @@ public class StudentWorkDue implements Serializable {
     /**
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 创建时间
@@ -68,19 +68,19 @@ public class StudentWorkDue implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getResumeId() {
+    public int getResumeId() {
         return resumeId;
     }
 
-    public void setResumeId(Integer resumeId) {
+    public void setResumeId(int resumeId) {
         this.resumeId = resumeId;
     }
 
@@ -108,11 +108,11 @@ public class StudentWorkDue implements Serializable {
         this.post = post;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
@@ -140,19 +140,19 @@ public class StudentWorkDue implements Serializable {
         this.description = description;
     }
 
-    public Integer getStudentInfoId() {
+    public int getStudentInfoId() {
         return studentInfoId;
     }
 
-    public void setStudentInfoId(Integer studentInfoId) {
+    public void setStudentInfoId(int studentInfoId) {
         this.studentInfoId = studentInfoId;
     }
 
-    public Integer getStudentUserId() {
+    public int getStudentUserId() {
         return studentUserId;
     }
 
-    public void setStudentUserId(Integer studentUserId) {
+    public void setStudentUserId(int studentUserId) {
         this.studentUserId = studentUserId;
     }
 

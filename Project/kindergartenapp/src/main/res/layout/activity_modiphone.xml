@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include
+        layout="@layout/app_title"/>
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/base_dimen_70"
+        android:paddingRight="@dimen/base_dimen_70"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/base_dimen_210"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="更换后,需使用新手机号重新登录"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="当前手机号"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:id="@+id/tv_currPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="请输入新手机号并验证"
+                android:layout_marginTop="@dimen/base_dimen_40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_marginTop="@dimen/base_dimen_40"
+                android:textSize="@dimen/base_dimen_32"
+                android:background="@null"
+                android:textColorHint="@color/item_content"
+                android:hint="请输入新的手机号"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <View
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_1"
+                android:background="@color/colorPrimary"/>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <EditText
+                    android:background="@null"
+                    android:textSize="@dimen/base_dimen_32"
+                    android:textColorHint="@color/item_content"
+                    android:layout_weight="1"
+                    android:hint="请输入短信验证码"
+                    android:id="@+id/et_passWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="获取验证码"
+                    android:textColor="@color/colorPrimary"
+                    android:background="@drawable/text_background"
+                    android:id="@+id/tv_verviCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_1"
+                android:background="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_marginTop="@dimen/base_dimen_32"
+            android:background="@drawable/bg_round_ligtred"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/base_dimen_32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="立即绑定" />
+
+
+        <RelativeLayout
+            android:id="@+id/ll_bottom"
+            android:layout_marginBottom="@dimen/base_dimen_37"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

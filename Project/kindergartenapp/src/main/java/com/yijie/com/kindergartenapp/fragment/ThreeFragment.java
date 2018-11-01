@@ -21,6 +21,7 @@ import com.yijie.com.kindergartenapp.activity.MealsActivity;
 import com.yijie.com.kindergartenapp.activity.ModiKenderDetailActivity;
 import com.yijie.com.kindergartenapp.activity.StayActivity;
 import com.yijie.com.kindergartenapp.activity.UniformFreeActivity;
+import com.yijie.com.kindergartenapp.activity.login.LoginActivity;
 import com.yijie.com.kindergartenapp.activity.regist.PerfectInformationActivity;
 import com.yijie.com.kindergartenapp.activity.regist.RegistDetailActivity;
 import com.yijie.com.kindergartenapp.activity.regist.RegistKindActivity;
@@ -100,7 +101,7 @@ public class ThreeFragment extends BaseFragment {
     private CommonBean  tempConfigCommonBean,tempMealCommonBean,  tempUniformCommonBean, tempExaminationCommonBean;
     private StayBean tempStayBean;
     private SchoolAdress tempSchoolAdress;
-
+    private  String kindName;
     public KindergartenMember getKindergartenMember() {
         return kindergartenMember;
     }
@@ -138,6 +139,7 @@ public class ThreeFragment extends BaseFragment {
                     mBundle.putSerializable("tempSchoolAdress", tempSchoolAdress);
                 }
                 intent.putExtras(mBundle);
+                intent.putExtra("kindName",kindName);
                 intent.setClass(mActivity, KinderDetailAdressActivity.class);
                 startActivity(intent);
                 break;
@@ -202,7 +204,9 @@ public class ThreeFragment extends BaseFragment {
     @Override
     protected void initView() {
         tempActivity = (RegistKindActivity) getActivity();
-        kenderName.setText(kindergartenMember.getKindName());
+
+        kindName = kindergartenMember.getKindName();
+        kenderName.setText(kindName);
 
     }
 
@@ -241,7 +245,7 @@ public class ThreeFragment extends BaseFragment {
              //班级配置
             tvConfiguration.setText(commonBean.getRbString());
             tempConfigCommonBean = commonBean;
-        }else  if (commonBean.getType() == 10) {
+        }else  if (commonBean.getType() == 4) {
              //三餐安排
             tvMeal.setText(commonBean.getRbString());
             tempMealCommonBean = commonBean;
@@ -257,7 +261,8 @@ public class ThreeFragment extends BaseFragment {
     }
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void StayBean(StayBean stayBean) {
-
+        //初始化
+        stayString="";
         String upString = stayBean.getUpString();
         String downString = stayBean.getDownString();
         String outString = stayBean.getOutString();
@@ -265,6 +270,8 @@ public class ThreeFragment extends BaseFragment {
         String eighttwelveString = stayBean.getEighttwelveString();
         String twoString = stayBean.getTwoString();
         String threeString = stayBean.getThreeString();
+        String wuString = stayBean.getWuString();
+        String otherString = stayBean.getOtherString();
         if (!upString.isEmpty()){
             stayString+=upString+"、";
         }if (!downString.isEmpty()){
@@ -279,6 +286,10 @@ public class ThreeFragment extends BaseFragment {
             stayString+=twoString+"、";
         }if (!threeString.isEmpty()){
             stayString+=threeString+"、";
+        }if (!wuString.isEmpty()){
+            stayString+=wuString+"、";
+        }if (!otherString.isEmpty()){
+            stayString+=otherString+"、";
         }
 
         stayString = stayString.substring(0, stayString.length() - 1);
@@ -350,6 +361,7 @@ public class ThreeFragment extends BaseFragment {
             }
             @Override
             public void onFailure(Request request, Exception e) {
+
             }
 
             @Override
@@ -358,8 +370,12 @@ public class ThreeFragment extends BaseFragment {
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     String rescode = jsonObject.getString("rescode");
-                    int id = jsonObject.getInt("data");
-                    SharedPreferencesUtils.setParam(mActivity, "userId", id+"");
+                    int userId = jsonObject.getJSONObject("data").getInt("id");
+
+                    String cellphone = jsonObject.getJSONObject("data").getString("cellphone");
+                    SharedPreferencesUtils.setParam(mActivity, "userId",userId+"");
+
+                    SharedPreferencesUtils.setParam(mActivity, "cellphone",cellphone);;
                     if (rescode.equals("200")) {
                         KindergartenDetail kindergartenDetail = new KindergartenDetail();
                         kindergartenDetail.setKindName(kendergradName);
@@ -374,9 +390,11 @@ public class ThreeFragment extends BaseFragment {
                         kindergartenDetail.setChildrenNum(Integer.parseInt(peopleNum));
                         kindergartenDetail.setClassNum(Integer.parseInt(classNum));
                         kindergartenDetail.setClassSet(tempConfigCommonBean.getRbString());
-                        kindergartenDetail.setClothesDeposit(tempUniformCommonBean.getRbString());
+                        String rbString = tempUniformCommonBean.getRbString();
+                        String cbString = tempUniformCommonBean.getCbString();
+                        kindergartenDetail.setClothesDeposit(rbString+cbString);
                         kindergartenDetail.setFirstTestFee(tempExaminationCommonBean.getRbString());
-                        kindergartenDetail.setCreateBy(id);
+                        kindergartenDetail.setCreateBy(userId);
                         instance.postJson(Constant.KINDERGARTENDETAIL, kindergartenDetail, new BaseCallback<String>() {
                             @Override
                             public void onRequestBefore() {
@@ -391,7 +409,7 @@ public class ThreeFragment extends BaseFragment {
 
                             @Override
                             public void onSuccess(Response response, String s) {
-                                LogUtil.e(s);
+                                LogUtil.e("注册成功返回园所信息"+s);
                                 try {
                                     JSONObject jsonObject = new JSONObject(s);
                                     String rescode1 = jsonObject.getString("rescode");
@@ -401,6 +419,11 @@ public class ThreeFragment extends BaseFragment {
                                             onButtonClick.onClick("注册成功");
                                         }
                                     }
+//
+                                    int kinderId = jsonObject.getJSONObject("data").getInt("kinderId");
+                                    LogUtil.e("注册成功返回园所信息"+kinderId);
+                                    SharedPreferencesUtils.setParam(mActivity, "kinderId",kinderId+"");
+
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

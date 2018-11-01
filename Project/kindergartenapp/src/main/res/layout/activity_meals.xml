@@ -14,11 +14,31 @@
         android:gravity="center_vertical"
         android:text="三餐安排"
         />
+    <LinearLayout
+        android:layout_marginTop="@dimen/base_dimen_2"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:id="@+id/cb_wu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            />
+    </LinearLayout>
     <RadioGroup
         android:id="@+id/rp_all"
         android:background="@color/colorPrimary"
         android:paddingLeft="@dimen/base_dimen_30"
-        android:layout_marginTop="@dimen/base_dimen_2"
+
         android:padding="@dimen/base_dimen_30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

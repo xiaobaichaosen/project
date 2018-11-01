@@ -1,23 +1,35 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion  rootProject.ext.android.compileSdkVersion
-
-
-
+//    compileSdkVersion  rootProject.ext.android.compileSdkVersion
+    compileSdkVersion 26
     defaultConfig {
-        applicationId "com.yijie.com.studentapp"
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
-
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 3
+        versionName "2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //不加签名报错
-        aaptOptions.cruncherEnabled = false
-        aaptOptions.useNewCruncher = false
-
     }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE' // will not include NOTICE file
+        exclude 'META-INF/LICENSE' // will not include LICENSE file
+    }
+
+
+//    defaultConfig {
+//        applicationId "com.yijie.com.studentapp"
+//        minSdkVersion rootProject.ext.android.minSdkVersion
+//        targetSdkVersion rootProject.ext.android.targetSdkVersion
+//        versionCode rootProject.ext.android.versionCode
+//        versionName rootProject.ext.android.versionName
+//
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        //不加签名报错
+//        aaptOptions.cruncherEnabled = false
+//        aaptOptions.useNewCruncher = false
+//
+//    }
 
     buildTypes {
         release {
@@ -49,7 +61,8 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'  //最新版本
     implementation project(':pickerview')
     implementation project(':library')
-    compile 'com.teprinciple:updateapputils:1.4'
+    implementation project(':cretinautoupdatelibrary')
+
     compile 'org.kymjs.kjframe:kjframe:2.4.6.2'
     //    compile rootProject.ext.dependencies.supportV4
     //      compile rootProject.ext.dependencies.appcompatV7
@@ -58,4 +71,7 @@ dependencies {
     implementation files('libs/AMap_Search_V6.1.0_20180330.jar')
     implementation files('libs/jcore-android-1.2.0.jar')
     implementation files('libs/jpush-android-3.1.2.jar')
+
+
+
 }

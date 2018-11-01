@@ -11,10 +11,38 @@ public class StudentuserKinderneed  implements Serializable {
     /**
      * 简历状态(0：学生自己投的状态为 待选 1：培训老师推荐的状态为待选状态 2：园所同意接收简历 3：园所放弃接收)
      */
-    private Integer status;
+    private int status;
+    private int    studentUserId;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    private String  updateTime;
+    private int id;
+
+    public int getStudentUserId() {
+        return studentUserId;
+    }
+
+    public void setStudentUserId(int studentUserId) {
+        this.studentUserId = studentUserId;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
     /**
      * 学生头像
      */
+
     private String headPic;
     /**
      * 学生姓名
@@ -40,16 +68,78 @@ public class StudentuserKinderneed  implements Serializable {
     /**
      * 园所需求人数
      */
-    private Integer studentNum;
-
-    /**
-     * 学校实习项目名称
-     */
-    private String projectName;
+    private int studentNum;
     /**
      * 学校名称
      */
     private String schoolName;
+
+
+    /**
+     * 园所地址
+     */
+    private String kindAddress;
+
+    public void setStuAge(int stuAge) {
+        this.stuAge = stuAge;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public String getKindAddress() {
+        return kindAddress;
+    }
+
+    public void setKindAddress(String kindAddress) {
+        this.kindAddress = kindAddress;
+    }
+
+    public String getKindDetailAddress() {
+        return kindDetailAddress;
+    }
+
+    public void setKindDetailAddress(String kindDetailAddress) {
+        this.kindDetailAddress = kindDetailAddress;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getKindName() {
+        return kindName;
+    }
+
+    public void setKindName(String kindName) {
+        this.kindName = kindName;
+    }
+
+    /**
+
+     * 园所详细地址
+     */
+    private String kindDetailAddress;
+
+    /**
+     * 园所简介
+     */
+    private String summary;
+
+    /**
+     * 园所名称
+     */
+    private String kindName;
+    /**
+     * 学校实习项目名称
+     */
+    private String projectName;
+
 
     private static final long serialVersionUID = 1L;
 
@@ -57,7 +147,7 @@ public class StudentuserKinderneed  implements Serializable {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -77,13 +167,11 @@ public class StudentuserKinderneed  implements Serializable {
         this.stuName = stuName;
     }
 
-    public Integer getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
+
 
     public Double getWeight() {
         return weight;
@@ -94,12 +182,8 @@ public class StudentuserKinderneed  implements Serializable {
     }
 
 
-    public Integer getStuAge() {
+    public int getStuAge() {
         return stuAge;
-    }
-
-    public void setStuAge(Integer stuAge) {
-        this.stuAge = stuAge;
     }
 
     public String getHobby() {
@@ -110,11 +194,11 @@ public class StudentuserKinderneed  implements Serializable {
         this.hobby = hobby;
     }
 
-    public Integer getStudentNum() {
+    public int getStudentNum() {
         return studentNum;
     }
 
-    public void setStudentNum(Integer studentNum) {
+    public void setStudentNum(int studentNum) {
         this.studentNum = studentNum;
     }
 

@@ -12,12 +12,13 @@
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_below="@+id/app_title"
+            android:background="@color/colorPrimary"
             android:id="@+id/swipe_refresh_layout"
-            style="@style/layout_mm"
+            style="@style/layout_mw"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
-                style="@style/layout_mm" />
+                style="@style/layout_mw" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.v4.widget.NestedScrollView>

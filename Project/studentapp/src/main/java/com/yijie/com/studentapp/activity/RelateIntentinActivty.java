@@ -210,6 +210,7 @@ public class RelateIntentinActivty extends BaseActivity
 
             for (int c = 0; c < jsonBean.get(i).getCityList().size(); c++) {//遍历该省份的所有城市
                 String CityName = jsonBean.get(i).getCityList().get(c).getName();
+
                 CityList.add(CityName);//添加城市
 
                 ArrayList<String> City_AreaList = new ArrayList<>();//该城市的所有地区列表
@@ -222,7 +223,6 @@ public class RelateIntentinActivty extends BaseActivity
 
                     for (int d = 0; d < jsonBean.get(i).getCityList().get(c).getArea().size(); d++) {//该城市对应地区所有数据
                         String AreaName = jsonBean.get(i).getCityList().get(c).getArea().get(d);
-
                         City_AreaList.add(AreaName);//添加该城市所有地区数据
                     }
                 }
@@ -247,7 +247,11 @@ public class RelateIntentinActivty extends BaseActivity
             JSONArray data = new JSONArray(result);
             Gson gson = new Gson();
             for (int i = 0; i < data.length(); i++) {
-                JsonBean entity = gson.fromJson(data.optJSONObject(i).toString(), JsonBean.class);
+                JsonBean
+
+                    entity = gson.fromJson(data.optJSONObject(i).toString(), JsonBean.class);
+
+
                 detail.add(entity);
             }
         } catch (Exception e) {
@@ -279,10 +283,19 @@ public class RelateIntentinActivty extends BaseActivity
             @Override
             public void onOptionsSelect(int options1, int option2, int options3) {
                 //返回的分别是三个级别的选中位置
-                String tx = options1Items.get(options1).getPickerViewText()
-                        + options2Items.get(options1).get(option2)
-                        + options3Items.get(options1).get(option2).get(options3);
-                tvAdress.setText(tx);
+                if (options1Items.get(options1).getPickerViewText().equals("不限")&&options2Items.get(options1).get(option2).equals("不限")&&options3Items.get(options1).get(option2).get(options3).equals("不限")){
+                    String tx = options1Items.get(options1).getPickerViewText();
+                    tvAdress.setText(tx);
+                }else if (options1Items.get(options1).getPickerViewText().equals("北京市")&&options2Items.get(options1).get(option2).equals("北京市")){
+                    String tx =options3Items.get(options1).get(option2).get(options3);
+                    tvAdress.setText(tx);
+                }else {
+                    String tx = options1Items.get(options1).getPickerViewText()
+                            + options2Items.get(options1).get(option2)
+                            + options3Items.get(options1).get(option2).get(options3);
+                    tvAdress.setText(tx);
+                }
+
             }
         });
         pvOptions.show();

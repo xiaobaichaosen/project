@@ -12,13 +12,38 @@ public class KindergartenDetail implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private int id;
+    /**
+     * 奕杰app：园所中-合作园所列表-园所在职人数
+     */
+    private Integer incumbencyNum;
+
+    public Integer getIncumbencyNum() {
+        return incumbencyNum;
+    }
+
+    public void setIncumbencyNum(Integer incumbencyNum) {
+        this.incumbencyNum = incumbencyNum;
+    }
 
     /**
      * 园所全称
      */
     private String kindName;
 
+    public String getHeadPic() {
+        return headPic;
+    }
+
+    public void setHeadPic(String headPic) {
+        this.headPic = headPic;
+    }
+
+    /**
+     * 园所头像
+
+     */
+    private String headPic;
     /**
      * 园所联系人
      */
@@ -38,6 +63,19 @@ public class KindergartenDetail implements Serializable {
      * 微信号
      */
     private String wechart;
+
+    public String getKinderIntegrity() {
+        return kinderIntegrity;
+    }
+
+    public void setKinderIntegrity(String kinderIntegrity) {
+        this.kinderIntegrity = kinderIntegrity;
+    }
+
+    /**
+     * 完整度
+     */
+    private String kinderIntegrity;
 
     /**
      * QQ号
@@ -67,12 +105,12 @@ public class KindergartenDetail implements Serializable {
     /**
      * 幼儿人数
      */
-    private Integer childrenNum;
+    private int childrenNum;
 
     /**
      * 班级数量
      */
-    private Integer classNum;
+    private int classNum;
 
     /**
      * 班级配置
@@ -82,7 +120,7 @@ public class KindergartenDetail implements Serializable {
     /**
      * 更新时间
      */
-    private Date updateTime;
+    private String updateTime;
 
     /**
      * 特色课程
@@ -102,12 +140,13 @@ public class KindergartenDetail implements Serializable {
     /**
      * 工服押金
      */
-    private BigDecimal clothesDeposit;
+    private String clothesDeposit;
 
     /**
      * 首年体检费
      */
-    private BigDecimal firstTestFee;
+    private String firstTestFee;
+
 
     /**
      * 荣誉证书
@@ -129,10 +168,105 @@ public class KindergartenDetail implements Serializable {
      */
     private String attachment;
 
+    public String getWholeEvaluate() {
+        return wholeEvaluate;
+    }
+
+    public void setWholeEvaluate(String wholeEvaluate) {
+        this.wholeEvaluate = wholeEvaluate;
+    }
+
     /**
+     * 特色课程
+
+     */
+    private String wholeEvaluate;
+    public String getBuildGardenDate() {
+        return buildGardenDate;
+    }
+
+    public void setBuildGardenDate(String buildGardenDate) {
+        this.buildGardenDate = buildGardenDate;
+    }
+
+    public int getNuseryFee() {
+        return nuseryFee;
+    }
+
+    public void setNuseryFee(int nuseryFee) {
+        this.nuseryFee = nuseryFee;
+    }
+
+    public int getTeacherNum() {
+        return teacherNum;
+    }
+
+    public void setTeacherNum(int teacherNum) {
+        this.teacherNum = teacherNum;
+    }
+
+    public String getSalaryGrantDate() {
+        return salaryGrantDate;
+    }
+
+    public void setSalaryGrantDate(String salaryGrantDate) {
+        this.salaryGrantDate = salaryGrantDate;
+    }
+
+    public String getFormalWelfare() {
+        return formalWelfare;
+    }
+
+    public void setFormalWelfare(String formalWelfare) {
+        this.formalWelfare = formalWelfare;
+    }
+    /**
+     * 建园日期
+     */
+    private String buildGardenDate;
+
+    /**
+     * 托费/费
+     */
+    private int nuseryFee;
+
+    /**
+
+     * 教职工人数
+     */
+    private int teacherNum;
+
+    /**
+     * 薪资发放日
+     */
+    private String salaryGrantDate;
+
+    /**
+     * 签订正式劳动合同后福利
+     */
+    private String formalWelfare;
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    /**
+
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 园所
@@ -142,25 +276,38 @@ public class KindergartenDetail implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private String createTime;
 
     /**
      * 审核状态
      */
-    private Integer auditStatus;
+    private int auditStatus;
+    /**
+     * 纬度
+     */
+    private String latitude;
+
+    /**
+     * 经度
+     */
+    private String longitude;
 
     /**
      * 学校简介
      */
     private String summary;
+    /**
+     * 园所详细地址
+     */
+    private String kindDetailAddress;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -244,19 +391,19 @@ public class KindergartenDetail implements Serializable {
         this.kindLevel = kindLevel;
     }
 
-    public Integer getChildrenNum() {
+    public int getChildrenNum() {
         return childrenNum;
     }
 
-    public void setChildrenNum(Integer childrenNum) {
+    public void setChildrenNum(int childrenNum) {
         this.childrenNum = childrenNum;
     }
 
-    public Integer getClassNum() {
+    public int getClassNum() {
         return classNum;
     }
 
-    public void setClassNum(Integer classNum) {
+    public void setClassNum(int classNum) {
         this.classNum = classNum;
     }
 
@@ -268,11 +415,11 @@ public class KindergartenDetail implements Serializable {
         this.classSet = classSet;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -300,20 +447,28 @@ public class KindergartenDetail implements Serializable {
         this.eat = eat;
     }
 
-    public BigDecimal getClothesDeposit() {
+    public String getClothesDeposit() {
         return clothesDeposit;
     }
 
-    public void setClothesDeposit(BigDecimal clothesDeposit) {
+    public void setClothesDeposit(String clothesDeposit) {
         this.clothesDeposit = clothesDeposit;
     }
 
-    public BigDecimal getFirstTestFee() {
+    public String getFirstTestFee() {
         return firstTestFee;
     }
 
-    public void setFirstTestFee(BigDecimal firstTestFee) {
+    public void setFirstTestFee(String firstTestFee) {
         this.firstTestFee = firstTestFee;
+    }
+
+    public String getKindDetailAddress() {
+        return kindDetailAddress;
+    }
+
+    public void setKindDetailAddress(String kindDetailAddress) {
+        this.kindDetailAddress = kindDetailAddress;
     }
 
     public String getCertificate() {
@@ -348,11 +503,11 @@ public class KindergartenDetail implements Serializable {
         this.attachment = attachment;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
@@ -364,19 +519,19 @@ public class KindergartenDetail implements Serializable {
         this.gardenPic = gardenPic;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getAuditStatus() {
+    public int getAuditStatus() {
         return auditStatus;
     }
 
-    public void setAuditStatus(Integer auditStatus) {
+    public void setAuditStatus(int auditStatus) {
         this.auditStatus = auditStatus;
     }
 

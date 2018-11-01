@@ -262,9 +262,8 @@ public class SelectSchoolActivity extends BaseActivity implements AdapterView.On
         intent.putExtra("schoolId",student.getId()+"");
         intent.putExtra("schoolPracticeId",schoolPractice.getId()+"");
         intent.putExtra("verifyCode",verifyCode);
-
         intent.setClass(SelectSchoolActivity.this,StudentNumActivity.class);
-//        startActivity(intent);
+        startActivity(intent);
 ////        if (null == student) {
 ////            ShowToastUtils.showToastMsg(this, "请选择学校");
 ////        } else {
@@ -326,6 +325,11 @@ public class SelectSchoolActivity extends BaseActivity implements AdapterView.On
         //设置适配器
         loadMoreWrapperAdapter = new LoadMorePopuAdapter(projectList, R.layout.adapter_popu_item);
         recyclerView.setAdapter(loadMoreWrapperAdapter);
+        if (dataList.size()<8){
+            mPopupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        }else {
+            mPopupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, (int) getResources().getDimension(R.dimen.base_dimen_500));
+        }
 
 
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable());

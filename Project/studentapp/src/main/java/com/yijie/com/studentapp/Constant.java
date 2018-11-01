@@ -5,22 +5,39 @@ package com.yijie.com.studentapp;
  */
 
 public class Constant {
-    public static final  String baseUrl="http://192.168.0.163:8083";
-   //服务器地址
-//    public static final  String baseUrl="http://116.62.242.223:8083";
-    //本地图片服务器
-    public static final  String   basepicUrl= "http://192.168.0.163:8089";
-    //个人图片
+
+ //外网地址图片服务器
+     public static final  String baseUrl="http://116.62.242.223:8083/yijie";
+     public static final  String  basepicUrl ="http://116.62.242.223:8089";
+ //服务器地址
+//=========other======
+// public static final  String baseUrl="http://192.168.0.138:8083";
+// public static final  String   basepicUrl= "http://192.168.0.138:8089";
+ //=======================
+
+
+//===============me
+// public static final  String baseUrl="http://192.168.0.163:8083";
+// public static final  String   basepicUrl= "http://192.168.0.163:8089";
+ //================
+ //个人图片
     public static final  String  infoUrl=basepicUrl+"/yijie/upload/student/student_user_id_";
     //园所图片地址
     public static final  String kinderUrl=basepicUrl+"/yijie/upload/kinder/kinder_user_id_";
     //登陆接口
     public static final  String LOGINURL=baseUrl+"/studentUser/login";
-    public static final  String loginUrl1=baseUrl+"/getAppId";
-    //获取验证码接口
+    //验证码登录
+    public static final  String UPDATEBYCELLPHONE=baseUrl+"/studentUser/updateByCellphone";
+    //未注册用户获取验证码接口
     public static final  String SENDSMSCODE=baseUrl+"/studentUser/sendSmsCode";
+   //注册用户获取验证码接口
+   public static final  String SENDSMSCODELOGIN=baseUrl+"/studentUser/sendSmsCodeLogin";
+
     //注册接口
     public static final  String REGISTURL=baseUrl+"/studentUser/reg";
+    //更新接口
+    public static final  String GETVERSIONUPDATE=baseUrl+"/versionUpdate/getVersionUpdate";
+
     //获取注册过的学校列表
     public static final  String SCHOOLMAINRAGELIST=baseUrl+"/schoolMainRageList/select";
     //个人信息
@@ -28,7 +45,7 @@ public class Constant {
     //联系方式
     public static final  String STUDENTCONTACT=baseUrl+"/studentContact/saveOrUpdate";
     //获取同一项目通讯录
-    public static final  String SELECTBYSCHOOLID=baseUrl+"/studentUser/selectBySchoolPracticeId";
+    public static final  String SELECTBYSCHOOLPRACTICEID=baseUrl+"/studentUser/selectBySchoolPracticeId";
     //头像上传接口
     public static final  String HEADPICUPLOAD=baseUrl+"/student/headPicUpload";
     //添加自我评价，相关意向
@@ -48,7 +65,7 @@ public class Constant {
     //档案荣誉证书获取图片接口
     public static final  String honoraryCcertificateGetUrl=baseUrl+"/getPhotoList";
     //园所详情查询接口
-    public static final  String KINDERGARTENDETAILBYID=baseUrl+"/KindergartenDetail/select";
+    public static final  String KINDERGARTENDETAILBYID=baseUrl+"/KindergartenDetail/selectKindDetailByKinderId";
     //简历审核
     public static final  String STATEUPDATE=baseUrl+"/studentResume/stateUpdate";
     //学生学校考勤签到

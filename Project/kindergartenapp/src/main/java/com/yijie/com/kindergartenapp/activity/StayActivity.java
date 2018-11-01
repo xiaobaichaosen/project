@@ -1,6 +1,9 @@
 package com.yijie.com.kindergartenapp.activity;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -54,6 +57,10 @@ public class StayActivity extends BaseActivity {
     CheckBox cbTwo;
     @BindView(R.id.cb_three)
     CheckBox cbThree;
+    @BindView(R.id.cb_wu)
+    CheckBox cbWu;
+    @BindView(R.id.tv_warn)
+    TextView tvWarn;
     private StayBean modiftyStayBean;
 
     @Override
@@ -61,6 +68,7 @@ public class StayActivity extends BaseActivity {
         setContentView(R.layout.activity_stay);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void init() {
         title.setText("住宿安排");
@@ -71,13 +79,13 @@ public class StayActivity extends BaseActivity {
         modiftyStayBean = (StayBean) getIntent().getExtras().getSerializable("tempStayBean");
         //回显数据null != tempGradeCommonBean&&null!=tempGradeCommonBean.getRbString()
         if (null != modiftyStayBean) {
-            if (! modiftyStayBean.getUpString().isEmpty()) {
+            if (!modiftyStayBean.getUpString().isEmpty()) {
                 cbUp.setChecked(true);
             }
-            if (! modiftyStayBean.getDownString().isEmpty()) {
+            if (!modiftyStayBean.getDownString().isEmpty()) {
                 cbDown.setChecked(true);
             }
-            if ( !modiftyStayBean.getOutString().isEmpty()) {
+            if (!modiftyStayBean.getOutString().isEmpty()) {
                 cbOut.setChecked(true);
             }
             if (!modiftyStayBean.getFoureightString().isEmpty()) {
@@ -86,14 +94,27 @@ public class StayActivity extends BaseActivity {
             if (!modiftyStayBean.getEighttwelveString().isEmpty()) {
                 cbEighttwelve.setChecked(true);
             }
-            if (! modiftyStayBean.getTwoString().isEmpty()) {
+            if (!modiftyStayBean.getTwoString().isEmpty()) {
                 cbTwo.setChecked(true);
             }
-            if (! modiftyStayBean.getThreeString().isEmpty()) {
+            if (!modiftyStayBean.getThreeString().isEmpty()) {
                 cbThree.setChecked(true);
+            }if (!modiftyStayBean.getOtherString().isEmpty()) {
+                cbOther.setChecked(true);
             }
-
-            if (! modiftyStayBean.getOtherString().isEmpty() ) {
+            if (!modiftyStayBean.getWuString().isEmpty()) {
+                cbWu.setChecked(true);
+                setCheckboxSelect(cbUp,true);
+                setCheckboxSelect(cbDown,true);
+                setCheckboxSelect(cbThree,true);
+                setCheckboxSelect(cbTwo,true);
+                setCheckboxSelect(cbEighttwelve,true);
+                setCheckboxSelect(cbFoureight,true);
+                setCheckboxSelect(cbOther,true);
+                setCheckboxSelect(cbOut,true);
+                tvWarn.setTextColor(getResources().getColorStateList(R.color.app_background));
+            }
+            if (!modiftyStayBean.getOtherString().isEmpty()) {
                 cbOther.setChecked(true);
                 etContent.setText(modiftyStayBean.getOtherString());
             }
@@ -101,71 +122,137 @@ public class StayActivity extends BaseActivity {
         }
     }
 
-    @OnCheckedChanged({R.id.cb_other, R.id.cb_up, R.id.cb_down, R.id.cb_out,R.id.cb_foureight, R.id.cb_eighttwelve, R.id.cb_two, R.id.cb_three})
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @OnCheckedChanged({R.id.cb_wu, R.id.cb_other, R.id.cb_up, R.id.cb_down, R.id.cb_out, R.id.cb_foureight, R.id.cb_eighttwelve, R.id.cb_two, R.id.cb_three})
     public void OnCheckedChangeListener(CompoundButton view, boolean ischanged) {
         switch (view.getId()) {
-            case R.id.cb_other:
+            case R.id.cb_wu:
                 if (ischanged) {
-                    etContent.setFocusable(true);
-                    etContent.setFocusableInTouchMode(true);
+                    setCheckboxSelect(cbUp,true);
+                    setCheckboxSelect(cbDown,true);
+                    setCheckboxSelect(cbThree,true);
+                    setCheckboxSelect(cbTwo,true);
+                    setCheckboxSelect(cbEighttwelve,true);
+                    setCheckboxSelect(cbFoureight,true);
+                    setCheckboxSelect(cbOther,true);
+                    setCheckboxSelect(cbOut,true);
+                    stayBean.setWuString("无");
+
+
                 } else {
-                    etContent.setFocusable(false);
-                    etContent.setFocusableInTouchMode(false);
-                    etContent.setText("");
+                    setCheckboxSelect(cbUp,false);
+                    setCheckboxSelect(cbDown,false);
+                    setCheckboxSelect(cbThree,false);
+                    setCheckboxSelect(cbTwo,false);
+                    setCheckboxSelect(cbEighttwelve,false);
+                    setCheckboxSelect(cbFoureight,false);
+                    setCheckboxSelect(cbOther,false);
+                    setCheckboxSelect(cbOut,false);
+                    stayBean.setWuString("");
+
                 }
                 break;
+            case R.id.cb_other:
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        etContent.setFocusable(true);
+                        etContent.setFocusableInTouchMode(true);
+                    } else {
+                        etContent.setFocusable(false);
+                        etContent.setFocusableInTouchMode(false);
+                        etContent.setText("");
+                    }
+                }
+
+                break;
             case R.id.cb_up:
-                if (ischanged) {
-                    stayBean.setUpString("园内地上");
-                } else {
-                    stayBean.setUpString("");
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        stayBean.setUpString("园内地上");
+                    } else {
+                        stayBean.setUpString("");
+                    }
                 }
                 break;
             case R.id.cb_down:
-                if (ischanged) {
-                    stayBean.setDownString("园内地下");
-                } else {
-                    stayBean.setDownString("");
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        stayBean.setDownString("园内地下");
+                    } else {
+                        stayBean.setDownString("");
+                    }
                 }
                 break;
             case R.id.cb_out:
-                if (ischanged) {
-                    stayBean.setOutString("园外");
-                } else {
-                    stayBean.setOutString("");
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        stayBean.setOutString("园外");
+                    } else {
+                        stayBean.setOutString("");
+                    }
                 }
                 break;
             case R.id.cb_foureight:
-                if (ischanged) {
-                    stayBean.setFoureightString("4-8人");
-                } else {
-                    stayBean.setFoureightString("");
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        stayBean.setFoureightString("4-8人");
+                    } else {
+                        stayBean.setFoureightString("");
+                    }
                 }
                 break;
             case R.id.cb_eighttwelve:
-                if (ischanged) {
-                    stayBean.setEighttwelveString("8-12人");
-                } else {
-                    stayBean.setEighttwelveString("");
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        stayBean.setEighttwelveString("8-12人");
+                    } else {
+                        stayBean.setEighttwelveString("");
+                    }
                 }
                 break;
             case R.id.cb_two:
-                if (ischanged) {
-                    stayBean.setTwoString("两居");
-                } else {
-                    stayBean.setTwoString("");
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        stayBean.setTwoString("两居");
+                    } else {
+                        stayBean.setTwoString("");
+                    }
                 }
                 break;
             case R.id.cb_three:
-                if (ischanged) {
-                    stayBean.setThreeString("三居");
-                } else {
-                    stayBean.setThreeString("");
+                if (!cbWu.isChecked()) {
+                    if (ischanged) {
+                        stayBean.setThreeString("三居");
+                    } else {
+                        stayBean.setThreeString("");
+                    }
                 }
                 break;
 
 
         }
+    }
+    //当无是否勾选的时候 flag=true 勾选
+    @SuppressLint("ResourceType")
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setCheckboxSelect(CheckBox cb,boolean flag){
+        if (flag){
+            cb.setButtonTintList(getResources().getColorStateList(R.color.app_background));
+            cb.setTextColor(getResources().getColorStateList(R.color.app_background));
+            tvWarn.setTextColor(getResources().getColorStateList(R.color.app_background));
+            cb.setClickable(false);
+            cb.setChecked(false);
+            cb.setFocusable(false);
+            //重新赋值个空的staybean
+            stayBean=new StayBean();
+        }else {
+            cb.setButtonTintList(getResources().getColorStateList(R.drawable.checkbox_shap));
+            cb.setTextColor(getResources().getColorStateList(R.color.cb_select));
+            tvWarn.setTextColor(getResources().getColorStateList(R.color.cb_select));
+            cb.setClickable(true);
+            cb.setFocusable(true);
+        }
+
     }
 
     @Override

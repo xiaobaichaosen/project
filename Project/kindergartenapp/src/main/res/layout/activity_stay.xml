@@ -13,11 +13,30 @@
     android:layout_height="@dimen/base_dimen_100"
     android:gravity="center_vertical"
     android:text="住宿安排"
+
     />
+
     <LinearLayout
         android:background="@color/colorPrimary"
         android:paddingLeft="@dimen/base_dimen_30"
         android:layout_marginTop="@dimen/base_dimen_2"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <CheckBox
+        android:id="@+id/cb_wu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="无"
+        android:layout_weight="1"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/base_dimen_30"
+
         android:padding="@dimen/base_dimen_30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,6 +128,7 @@
         android:text="其他"
         />
     <TextView
+        android:id="@+id/tv_warn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/base_dimen_20"

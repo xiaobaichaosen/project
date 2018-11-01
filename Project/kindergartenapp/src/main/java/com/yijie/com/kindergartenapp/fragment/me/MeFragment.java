@@ -34,6 +34,8 @@ import com.yijie.com.kindergartenapp.utils.HttpUtils;
 import com.yijie.com.kindergartenapp.utils.ImageLoaderUtil;
 import com.yijie.com.kindergartenapp.utils.LogUtil;
 import com.yijie.com.kindergartenapp.utils.SharedPreferencesUtils;
+import com.yijie.com.kindergartenapp.utils.ShowToastUtils;
+import com.yijie.com.kindergartenapp.view.CircleImageView;
 import com.yijie.com.kindergartenapp.view.CommomDialog;
 
 import org.json.JSONException;
@@ -84,7 +86,7 @@ public class MeFragment extends BaseFragment {
     //请求截图
     private static final int REQUEST_CROP_PHOTO = 102;
     @BindView(R.id.iv_headImage)
-    ImageView ivHeadImage;
+    CircleImageView ivHeadImage;
     @BindView(R.id.tv_warn)
     TextView tvWarn;
     private String cropImagePath;
@@ -176,6 +178,7 @@ public class MeFragment extends BaseFragment {
             case R.id.action_item:
 
                 intent.setClass(mActivity, SettingAcitivity.class);
+//                intent.setClass(mActivity, SendLocationActivity.class);
                 mActivity.startActivity(intent);
                 break;
             case R.id.iv_headImage:
@@ -322,46 +325,49 @@ public class MeFragment extends BaseFragment {
                         stringStringHashMap.put("imagePath", headPic);
                     }
                     LogUtil.e("=====" + headPic);
+                    final String  userId = (String) SharedPreferencesUtils.getParam(mActivity, "kinderId", "");
+                    String kinderId = (String) SharedPreferencesUtils.getParam(mActivity, "cellphone", "");
+                    stringStringHashMap.put("cellphone", kinderId);
+                    HttpUtils.getinstance(mActivity).uploadFiles("headPic",Constant.headUploadUrl, stringStringHashMap, files, new BaseCallback<String>() {
+                        @Override
+                        public void onRequestBefore() {
+                            commonDialog.show();
+                        }
 
-//                    stringStringHashMap.put("studentUserId", userId);
-//                    HttpUtils.getinstance(mActivity).uploadFiles("headPic",Constant.HEADPICUPLOAD, stringStringHashMap, files, new BaseCallback<String>() {
-//                        @Override
-//                        public void onRequestBefore() {
-//
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Request request, Exception e) {
-//                            LogUtil.e("======"+e);
-//                        }
-//
-//                        @Override
-//                        public void onSuccess(Response response, String o) {
-//                            LogUtil.e("======"+o);
-//                            try {
-//                                JSONObject jsonObject = new JSONObject(o);
-//                                String rescode = jsonObject.getString("rescode");
-//                                if (rescode.equals("200")){
-//                                    JSONObject data1 = jsonObject.getJSONObject("data");
-//                                    String headPic = data1.getString("headPic");
-//                                    LogUtil.e("url==="+Constant.certificateUrl+kindergartenDetail.getId()+"/head_pic_/"+headPic);
-//                                    ImageLoaderUtil.getImageLoader(mActivity).displayImage(Constant.certificateUrl+kindergartenDetail.getId()+"/head_pic_/"+headPic, ivHeadImage, ImageLoaderUtil.getPhotoImageOption());
-//                                }
-//                                ShowToastUtils.showToastMsg(mActivity, jsonObject.getString("resMessage"));
-////                                Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
-////                                ivHeadImage.setImageBitmap(bitMap);
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//
-//                        }
-//
-//                        @Override
-//                        public void onError(Response response, int errorCode, Exception e) {
-//                            LogUtil.e("======"+e);
-//                        }
-//                    });
+                        @Override
+                        public void onFailure(Request request, Exception e) {
+                            LogUtil.e("======"+e);  commonDialog.dismiss();
+
+                        }
+
+                        @Override
+                        public void onSuccess(Response response, String o) {
+                            LogUtil.e("======"+o);
+                            try {
+                                JSONObject jsonObject = new JSONObject(o);
+                                String rescode = jsonObject.getString("rescode");
+                                if (rescode.equals("200")){
+                                    JSONObject data1 = jsonObject.getJSONObject("data");
+                                    String headPic = data1.getString("headPic");
+                                    ImageLoaderUtil.getImageLoader(mActivity).displayImage(Constant.certificateUrl+userId+"/head/"+headPic, ivHeadImage, ImageLoaderUtil.getPhotoImageOption());
+                                }
+                                commonDialog.dismiss();
+                                ShowToastUtils.showToastMsg(mActivity, jsonObject.getString("resMessage"));
+//                                Bitmap bitMap = BitmapFactory.decodeFile(cropImagePath);
+//                                ivHeadImage.setImageBitmap(bitMap);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onError(Response response, int errorCode, Exception e) {
+                            LogUtil.e("======"+e);
+                        }
+                    });
 
                 }
                 break;
@@ -414,21 +420,27 @@ public class MeFragment extends BaseFragment {
                     String replace = kinderIntegrity.replace("%", "");
                     long round = Math.round(Double.parseDouble(replace));
                     tvKendMessage.setText(round+"%");
-                    Integer auditStatus = kindergartenDetail.getAuditStatus();
-                    if (auditStatus == 1) {
+                    int auditStatus = kindergartenDetail.getAuditStatus();
+
+                    if (auditStatus == 0) {
+                        tvStatus.setText("提交审核");
+                    }else if (auditStatus==3){
+                        tvStatus.setText("待审核");
+                    }else if (auditStatus==1){
                         tvStatus.setText(kindergartenDetail.getKindName());
-                    } else {
-                        tvStatus.setText("审核中");
+                    }else if (auditStatus==2){
+                        tvStatus.setText("审核未通过");
                     }
+
                     tvContactName.setText(kindergartenDetail.getKindContact());
 
                     headPic = kindergartenDetail.getHeadPic();
                     if (headPic == null || headPic.equals("")) {
-                        ivHeadImage.setBackgroundResource(R.mipmap.head);
+                        ivHeadImage.setImageResource(R.mipmap.head);
 
                     } else {
-
-                        ImageLoaderUtil.getImageLoader(mActivity).displayImage(Constant.certificateUrl + kindergartenDetail.getId() + "/head_pic_/" + headPic, ivHeadImage, ImageLoaderUtil.getPhotoImageOption());
+                        LogUtil.e("url===="+Constant.certificateUrl + kindergartenDetail.getId() + "/head_pic_/" + headPic);
+                        ImageLoaderUtil.getImageLoader(mActivity).displayImage(Constant.certificateUrl + kindergartenDetail.getId() + "/head/" + headPic, ivHeadImage, ImageLoaderUtil.getPhotoImageOption());
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

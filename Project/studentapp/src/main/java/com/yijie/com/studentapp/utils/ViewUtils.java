@@ -1,8 +1,10 @@
 package com.yijie.com.studentapp.utils;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.lvfq.pickerview.TimePickerView;
 import com.yijie.com.studentapp.R;
@@ -86,6 +88,21 @@ public class ViewUtils {
         //弹出时间选择器
         pvTime.show();
     }
+    /**
+     * 隐藏软键盘
+     */
+    public static void hideSoftInputMethod(Activity act) {
+        View view = act.getWindow().peekDecorView();
+        if (view != null) {
+            // 隐藏虚拟键盘
+            InputMethodManager inputmanger = (InputMethodManager) act
+                    .getSystemService(act.INPUT_METHOD_SERVICE);
+            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+
+
 
     /**
      * 底部滚轮点击事件回调

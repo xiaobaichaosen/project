@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
 
-    android:background="@color/colorTheme"
     android:layout_height="match_parent">
 
     <TextView
@@ -13,16 +12,14 @@
         android:paddingLeft="@dimen/base_dimen_40"
         android:paddingRight="@dimen/base_dimen_40"
         android:text="请输入学生姓名"
-        android:textColor="@color/colorPrimary" />
+ />
 
     <EditText
         android:paddingLeft="@dimen/base_dimen_40"
         android:paddingRight="@dimen/base_dimen_40"
-        android:id="@+id/et_studentnum"
+        android:id="@+id/et_studentName"
         android:background="@null"
         android:hint="请输入学生"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
         android:textSize="@dimen/base_dimen_24"
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_dimen_80">
@@ -36,16 +33,43 @@
         android:layout_width="match_parent"
         android:background="@color/app_background"
         android:layout_height="@dimen/base_dimen_2"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_90"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/base_dimen_40"
+        android:paddingRight="@dimen/base_dimen_40"
+        android:text="请输入学生学号"
+/>
 
+    <EditText
+        android:paddingLeft="@dimen/base_dimen_40"
+        android:paddingRight="@dimen/base_dimen_40"
+        android:id="@+id/et_studentnum"
+        android:background="@null"
+        android:hint="请输入学生学号"
+        android:textSize="@dimen/base_dimen_24"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_80">
+        <requestFocus />
+    </EditText>
+    <View
+        android:layout_marginLeft="@dimen/base_dimen_40"
+        android:layout_marginRight="@dimen/base_dimen_40"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_width="match_parent"
+        android:background="@color/app_background"
+        android:layout_height="@dimen/base_dimen_2"/>
     <Button
         android:layout_marginLeft="@dimen/base_dimen_40"
         android:layout_marginRight="@dimen/base_dimen_40"
         android:id="@+id/btn_two"
         android:layout_marginTop="@dimen/base_dimen_50"
-        android:background="@drawable/bg_round_ligtred"
+        android:background="@drawable/bg_round_lightyellow"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/base_dimen_32"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="下一步" />
+        android:text="登录" />
 </LinearLayout>

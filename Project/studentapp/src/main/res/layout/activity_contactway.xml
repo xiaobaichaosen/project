@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="手机号码:"
+            android:text="手机号码*"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
@@ -121,24 +121,25 @@
         android:background="@color/colorPrimary"
         android:paddingLeft="@dimen/base_dimen_22"
         android:layout_height="@dimen/base_dimen_86">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="邮箱号码:"
+            android:text="邮箱地址"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_32" />
 
         <EditText
             android:id="@+id/et_mailnumber"
-            android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/base_dimen_22"
             android:background="@null"
-            android:hint="请输入邮箱号码"
+            android:gravity="right"
+            android:hint="请输入邮箱地址"
             android:textColor="#808080"
             android:textSize="@dimen/base_dimen_28" />
     </RelativeLayout>

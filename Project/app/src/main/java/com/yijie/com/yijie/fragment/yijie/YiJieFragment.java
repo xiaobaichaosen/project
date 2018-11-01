@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.CalenderActivity;
+import com.yijie.com.yijie.activity.GaodeBottomSheetActivity;
+
 import com.yijie.com.yijie.activity.ProjectListAcitivity;
 import com.yijie.com.yijie.activity.SchoolListAcitivity;
 import com.yijie.com.yijie.activity.SchoolSignActivity;
@@ -184,7 +186,10 @@ public class YiJieFragment extends BaseFragment implements OnToolsItemClickListe
         if (position==6){
             Intent intent=new Intent();
 //            intent.setClass(mActivity, SchoolSignActivity.class);
-            intent.setClass(mActivity, CalenderActivity.class);
+//            intent.setClass(mActivity, CalenderActivity.class);
+
+//            intent.setClass(mActivity, KinderSignActivity.class);
+            intent.setClass(mActivity, GaodeBottomSheetActivity.class);
 
             startActivity(intent);
         }else{

@@ -339,27 +339,27 @@ public class NewIntershipMoney extends BaseActivity {
                 break;
 
             case R.id.rl_start:
-                TimePickerView.Type type = TimePickerView.Type.ALL;
-                String format = "yyyy-MM-dd HH:mm";
+                TimePickerView.Type type = TimePickerView.Type.YEAR_MONTH_DAY;
+                String format = "yyyy-MM-dd";
                 ViewUtils.alertTimerPicker(this, type, format, new ViewUtils.TimerPickerCallBack() {
                     @Override
                     public void onTimeSelect(String date) {
-//                        if (TimeUtil.compare_date("yyyy-MM-dd HH:mm",date,TimeUtil.getCurrentDate("yyyy-MM-dd HH:mm"))==1){
+                        if (TimeUtil.compare_date("yyyy-MM-dd",date,TimeUtil.getCurrentDate("yyyy-MM-dd"))==1){
                             tvStartTime.setText(date);
-//                        }else {
-//                            ShowToastUtils.showToastMsg(NewIntershipMoney.this,"选择的当前日期之前的日期");
-//                        }
+                        }else {
+                            ShowToastUtils.showToastMsg(NewIntershipMoney.this,"选择的当前日期之前的日期");
+                        }
                     }
                 });
                 break;
 
             case R.id.rl_end:
-                TimePickerView.Type type2 = TimePickerView.Type.ALL;
-                String format2 = "yyyy-MM-dd HH:mm";
+                TimePickerView.Type type2 = TimePickerView.Type.YEAR_MONTH_DAY;
+                String format2 = "yyyy-MM-dd";
                 ViewUtils.alertTimerPicker(this, type2, format2, new ViewUtils.TimerPickerCallBack() {
                     @Override
                     public void onTimeSelect(String date) {
-                        if (TimeUtil.compare_date("yyyy-MM-dd HH:mm",date,TimeUtil.getCurrentDate("yyyy-MM-dd HH:mm"))==1){
+                        if (TimeUtil.compare_date("yyyy-MM-dd",date,TimeUtil.getCurrentDate("yyyy-MM-dd"))==1){
                             tvEndTime.setText(date);
                         }else {
                             ShowToastUtils.showToastMsg(NewIntershipMoney.this,"选择的当前日期之前的日期");

@@ -74,6 +74,8 @@ public class WorkListActivity extends BaseActivity implements LoadMoreWorkDueAda
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
         title.setText("工作经历");
+        tvAdd.setText("添加工作经历");
+
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         //设置布局样式

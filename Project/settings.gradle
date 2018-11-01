@@ -1,2 +1,2 @@
-include ':app', ':studentapp', ':kindergartenapp', ':switch', 'pickerview', ':searchview',':library'
-//,':allrecycleview', ':viewfractory'
+include ':app', ':studentapp', ':kindergartenapp', ':switch', 'pickerview', ':searchview',':library',':cretinautoupdatelibrary'
+//,':allrecycleview', ':viewfractory' :AutoUpdateProject-master

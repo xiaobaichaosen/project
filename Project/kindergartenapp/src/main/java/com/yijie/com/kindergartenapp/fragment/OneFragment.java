@@ -107,7 +107,11 @@ public class OneFragment extends BaseFragment {
                 if (etName.getText().toString().trim().isEmpty()) {
                     ShowToastUtils.showToastMsg(mActivity, "请填写手机号");
                     return;
-                } else {
+                } if (etName.getText().toString().length()!=11) {
+                ShowToastUtils.showToastMsg(mActivity, "手机号格式不正确");
+                return;
+            }
+                else {
 
                     map.put("cellphone", etName.getText().toString());
                     instance.post(Constant.SENDSMSCODE, map, new BaseCallback<String>() {
@@ -153,7 +157,12 @@ public class OneFragment extends BaseFragment {
                     if (etName.getText().toString().trim().isEmpty()) {
                         ShowToastUtils.showToastMsg(mActivity, "请填写手机号");
                         return;
-                    } else if (etVerviCode.getText().toString().isEmpty()) {
+                    }
+                    if (etName.getText().toString().length()!=11) {
+                        ShowToastUtils.showToastMsg(mActivity, "手机号格式有误");
+                        return;
+                    }
+                    if (etVerviCode.getText().toString().isEmpty()) {
                         ShowToastUtils.showToastMsg(mActivity, "请填写验证码");
                         return;
                     }
@@ -202,14 +211,14 @@ public class OneFragment extends BaseFragment {
                                 boolean success = jsonObject.getBoolean("success");
 
                                 if (success) {
-                                    tempActivity.stepView.setStep(2);
+
                                     KindergartenMember kindergartenMember=new KindergartenMember();
                                     kindergartenMember.setCellphone(etName.getText().toString().trim());
                                     kindergartenMember.setPassword(etPassWord.getText().toString().trim());
                                     if (onButtonClick != null) {
                                         onButtonClick.onClick(kindergartenMember);
                                     }
-
+                                    tempActivity.stepView.setStep(2);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

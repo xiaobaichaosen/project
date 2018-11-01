@@ -102,7 +102,8 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
                     //加载网络图片
                     ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
                 }else{
-                    iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
+                    ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
+//                    iv_img.setImageBitmap( BitmapFactory.decodeFile(item.path));
                 }
                 clickPosition = position;
             }

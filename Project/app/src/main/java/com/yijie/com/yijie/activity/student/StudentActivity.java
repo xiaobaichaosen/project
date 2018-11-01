@@ -186,6 +186,7 @@ public class StudentActivity extends BaseActivity {
         studentUserId = getIntent().getIntExtra("studentUserId", 0);
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
+
         title.setText("简历审核");
         actionItem.setVisibility(View.INVISIBLE);
         getResumnDetail(studentUserId);

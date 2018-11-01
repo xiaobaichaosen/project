@@ -50,7 +50,7 @@ public class SchoolMain implements Serializable {
     /**
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 创建时间
@@ -66,7 +66,7 @@ public class SchoolMain implements Serializable {
     /**
      * 是否删除
      */
-    private Integer isDel;
+    private int isDel;
 
     /**
      * 详情
@@ -89,19 +89,19 @@ public class SchoolMain implements Serializable {
     /**
      * 统计所有项目
      */
-    private Integer count;
+    private int count;
     /**
      * 统计开发项目
      */
-    private Integer count0;
+    private int count0;
     /**
      * 统计待培训项目
      */
-    private Integer count1;
+    private int count1;
     /**
      * 联系人id
      */
-    private Integer contactId;
+    private int contactId;
     /**
      * 联系人名字
      */
@@ -122,13 +122,13 @@ public class SchoolMain implements Serializable {
     /**
      * 备忘录状态 0：未删除，1：删除
      */
-    private Integer memoIsDel;
+    private int memoIsDel;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -188,30 +188,30 @@ public class SchoolMain implements Serializable {
         this.detailAddress = detailAddress;
     }
 
-    public Integer getOwner() {
+    public int getOwner() {
         return owner;
     }
 
-    public void setOwner(Integer owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
 
 
 
-    public Integer getIsDel() {
+    public int getIsDel() {
         return isDel;
     }
 
-    public void setIsDel(Integer isDel) {
+    public void setIsDel(int isDel) {
         this.isDel = isDel;
     }
 
@@ -247,35 +247,35 @@ public class SchoolMain implements Serializable {
         this.logo = logo;
     }
 
-    public Integer getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
-    public Integer getCount0() {
+    public int getCount0() {
         return count0;
     }
 
-    public void setCount0(Integer count0) {
+    public void setCount0(int count0) {
         this.count0 = count0;
     }
 
-    public Integer getCount1() {
+    public int getCount1() {
         return count1;
     }
 
-    public void setCount1(Integer count1) {
+    public void setCount1(int count1) {
         this.count1 = count1;
     }
 
-    public Integer getContactId() {
+    public int getContactId() {
         return contactId;
     }
 
-    public void setContactId(Integer contactId) {
+    public void setContactId(int contactId) {
         this.contactId = contactId;
     }
 
@@ -303,11 +303,11 @@ public class SchoolMain implements Serializable {
         this.memo_content = memo_content;
     }
 
-    public Integer getMemoIsDel() {
+    public int getMemoIsDel() {
         return memoIsDel;
     }
 
-    public void setMemoIsDel(Integer memoIsDel) {
+    public void setMemoIsDel(int memoIsDel) {
         this.memoIsDel = memoIsDel;
     }
 

@@ -31,7 +31,7 @@ public class SchoolTrainDetail implements Serializable {
     /**
      * 培训老师
      */
-    private Integer teacherId;
+    private int teacherId;
 
     /**
      * 院校联系人电话
@@ -71,7 +71,7 @@ public class SchoolTrainDetail implements Serializable {
     /**
      * 报名人数
      */
-    private Integer enrollNum;
+    private int enrollNum;
 
     /**
      * 报销路费
@@ -91,7 +91,7 @@ public class SchoolTrainDetail implements Serializable {
     /**
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 创建时间
@@ -134,47 +134,47 @@ public class SchoolTrainDetail implements Serializable {
     /**
      * 更新人
      */
-    private Integer updateBy;
+    private int updateBy;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getSchoolId() {
+    public int getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(Integer schoolId) {
+    public void setSchoolId(int schoolId) {
         this.schoolId = schoolId;
     }
 
-    public Integer getSchoolContactId() {
+    public int getSchoolContactId() {
         return schoolContactId;
     }
 
-    public void setSchoolContactId(Integer schoolContactId) {
+    public void setSchoolContactId(int schoolContactId) {
         this.schoolContactId = schoolContactId;
     }
 
-    public Integer getSchoolPracticeId() {
+    public int getSchoolPracticeId() {
         return schoolPracticeId;
     }
 
-    public void setSchoolPracticeId(Integer schoolPracticeId) {
+    public void setSchoolPracticeId(int schoolPracticeId) {
         this.schoolPracticeId = schoolPracticeId;
     }
 
-    public Integer getTeacherId() {
+    public int getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(Integer teacherId) {
+    public void setTeacherId(int teacherId) {
         this.teacherId = teacherId;
     }
 
@@ -234,11 +234,11 @@ public class SchoolTrainDetail implements Serializable {
         this.toBeijingMethod = toBeijingMethod;
     }
 
-    public Integer getEnrollNum() {
+    public int getEnrollNum() {
         return enrollNum;
     }
 
-    public void setEnrollNum(Integer enrollNum) {
+    public void setEnrollNum(int enrollNum) {
         this.enrollNum = enrollNum;
     }
 
@@ -266,11 +266,11 @@ public class SchoolTrainDetail implements Serializable {
         this.endTime = endTime;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
@@ -290,11 +290,11 @@ public class SchoolTrainDetail implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getUpdateBy() {
+    public int getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(Integer updateBy) {
+    public void setUpdateBy(int updateBy) {
         this.updateBy = updateBy;
     }
 

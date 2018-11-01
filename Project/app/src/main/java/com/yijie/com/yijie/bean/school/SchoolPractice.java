@@ -16,7 +16,7 @@ public class SchoolPractice implements Serializable {
     /**
      * 用户id
      */
-    private Integer userId;
+    private int userId;
 
     /**
      * 学校id
@@ -134,17 +134,17 @@ public class SchoolPractice implements Serializable {
     /**
      * 实习项目状态
      */
-    private Integer status;
+    private int status;
     /**
      * 备忘录
      */
     private String memoContent;
 
-    public Integer getKindpeoNumSet() {
+    public int getKindpeoNumSet() {
         return kindpeoNumSet;
     }
 
-    public void setKindpeoNumSet(Integer kindpeoNumSet) {
+    public void setKindpeoNumSet(int kindpeoNumSet) {
         this.kindpeoNumSet = kindpeoNumSet;
     }
 
@@ -152,7 +152,7 @@ public class SchoolPractice implements Serializable {
      * 园所提需求人数设定
      * @return
      */
-    private Integer kindpeoNumSet;
+    private int kindpeoNumSet;
 
     public String getMemoContent() {
         return memoContent;
@@ -162,11 +162,11 @@ public class SchoolPractice implements Serializable {
         this.memoContent = memoContent;
     }
 
-    public Integer getSchoolContactId() {
+    public int getSchoolContactId() {
         return schoolContactId;
     }
 
-    public void setSchoolContactId(Integer schoolContactId) {
+    public void setSchoolContactId(int schoolContactId) {
         this.schoolContactId = schoolContactId;
     }
 
@@ -186,19 +186,19 @@ public class SchoolPractice implements Serializable {
         this.headPic = headPic;
     }
 
-    public Integer getIsRead() {
+    public int getIsRead() {
         return isRead;
     }
 
-    public void setIsRead(Integer isRead) {
+    public void setIsRead(int isRead) {
         this.isRead = isRead;
     }
 
-    public Integer getAcceptId() {
+    public int getAcceptId() {
         return acceptId;
     }
 
-    public void setAcceptId(Integer acceptId) {
+    public void setAcceptId(int acceptId) {
         this.acceptId = acceptId;
     }
 
@@ -229,7 +229,7 @@ public class SchoolPractice implements Serializable {
     /**
      * 负责人id
      */
-    private Integer schoolContactId;
+    private int schoolContactId;
     /**
      * 负责人姓名
      */
@@ -241,9 +241,9 @@ public class SchoolPractice implements Serializable {
     /**
      * 实习项目是否读
      */
-    private Integer isRead;
+    private int isRead;
     //接收项目人id
-    private Integer acceptId;
+    private int acceptId;
     /**
      * 学校名称
      */
@@ -255,27 +255,27 @@ public class SchoolPractice implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public Integer getSchoolId() {
+    public int getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(Integer schoolId) {
+    public void setSchoolId(int schoolId) {
         this.schoolId = schoolId;
     }
 
@@ -337,11 +337,11 @@ public class SchoolPractice implements Serializable {
         this.projectName = projectName;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

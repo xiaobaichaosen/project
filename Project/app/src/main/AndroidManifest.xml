@@ -56,7 +56,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-
+    <!--没有权限不能安装安装包
+    -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <!-- Optional for location -->
     <!--加这个条件有得手机会报错-->
@@ -269,11 +271,15 @@
         <activity android:name=".activity.ResetPwdActivity"/>
         <activity android:name=".activity.SmsLoginAcitivity"/>
         <activity android:name=".activity.ModityPwdAcitivity"/>
+        <activity android:name=".activity.GaodeBottomSheetActivity"/>
 
+
+        <activity android:name=".activity.kendergard.Kndergard2KeedAcitivity"/>
         <activity android:name=".utils.PhotoActivityForHor"
 
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
+
         <activity android:name=".activity.student.studentgrounp.StundentGrounpActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             />
@@ -389,8 +395,17 @@
         <activity android:name=".activity.student.TBStriDetailActivity"
             />
 
-
-
+        /*下载框架要加的服务*/
+        <service android:name="com.cretin.www.cretinautoupdatelibrary.utils.DownloadService"/>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.yijie.com.yijie.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/install_file" />
+        </provider>
     </application>
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />

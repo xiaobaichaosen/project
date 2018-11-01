@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorTheme">
 
-        <ImageView
+        <com.yijie.com.kindergartenapp.view.CircleImageView
             android:id="@+id/iv_headImage"
             android:layout_width="wrap_content"
-            android:paddingLeft="@dimen/base_dimen_30"
+            android:padding="@dimen/base_dimen_30"
             android:layout_height="wrap_content"
         />
         <LinearLayout

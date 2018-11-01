@@ -11,7 +11,7 @@ public class StudentuserKinderneed extends StudentuserKinderneedKey implements S
     /**
      * 简历状态(0：学生自己投的状态为 待选 1：培训老师推荐的状态为待选状态 2：园所同意接收简历 3：园所放弃接收)
      */
-    private Integer status;
+    private int status;
     /**
      * 学生头像
      */
@@ -23,11 +23,11 @@ public class StudentuserKinderneed extends StudentuserKinderneedKey implements S
     /**
      * 学生年龄
      */
-    private Integer stuAge;
+    private int stuAge;
     /**
      * 身高
      */
-    private Integer height;
+    private int height;
 
     /**
      * 体重
@@ -50,11 +50,11 @@ public class StudentuserKinderneed extends StudentuserKinderneedKey implements S
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -74,11 +74,11 @@ public class StudentuserKinderneed extends StudentuserKinderneedKey implements S
         this.stuName = stuName;
     }
 
-    public Integer getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -91,11 +91,11 @@ public class StudentuserKinderneed extends StudentuserKinderneedKey implements S
     }
 
 
-    public Integer getStuAge() {
+    public int getStuAge() {
         return stuAge;
     }
 
-    public void setStuAge(Integer stuAge) {
+    public void setStuAge(int stuAge) {
         this.stuAge = stuAge;
     }
 

@@ -93,12 +93,12 @@ public class KindergartenDetail implements Serializable {
     /**
      * 幼儿人数
      */
-    private Integer childrenNum;
+    private int childrenNum;
 
     /**
      * 班级数量
      */
-    private Integer classNum;
+    private int classNum;
 
     /**
      * 班级配置
@@ -156,6 +156,71 @@ public class KindergartenDetail implements Serializable {
      */
     private String attachment;
 
+    public String getBuildGardenDate() {
+        return buildGardenDate;
+    }
+
+    public void setBuildGardenDate(String buildGardenDate) {
+        this.buildGardenDate = buildGardenDate;
+    }
+
+    public int getNuseryFee() {
+        return nuseryFee;
+    }
+
+    public void setNuseryFee(int nuseryFee) {
+        this.nuseryFee = nuseryFee;
+    }
+
+    public int getTeacherNum() {
+        return teacherNum;
+    }
+
+    public void setTeacherNum(int teacherNum) {
+        this.teacherNum = teacherNum;
+    }
+
+    public String getSalaryGrantDate() {
+        return salaryGrantDate;
+    }
+
+    public void setSalaryGrantDate(String salaryGrantDate) {
+        this.salaryGrantDate = salaryGrantDate;
+    }
+
+    public String getFormalWelfare() {
+        return formalWelfare;
+    }
+
+    public void setFormalWelfare(String formalWelfare) {
+        this.formalWelfare = formalWelfare;
+    }
+    /**
+     * 建园日期
+     */
+    private String buildGardenDate;
+
+    /**
+     * 托费/费
+     */
+    private int nuseryFee;
+
+    /**
+
+     * 教职工人数
+     */
+    private int teacherNum;
+
+    /**
+     * 薪资发放日
+     */
+    private String salaryGrantDate;
+
+    /**
+     * 签订正式劳动合同后福利
+     */
+    private String formalWelfare;
+
     public String getLatitude() {
         return latitude;
     }
@@ -176,7 +241,7 @@ public class KindergartenDetail implements Serializable {
 
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 园所
@@ -191,7 +256,7 @@ public class KindergartenDetail implements Serializable {
     /**
      * 审核状态
      */
-    private Integer auditStatus;
+    private int auditStatus;
     /**
      * 纬度
      */
@@ -213,11 +278,11 @@ public class KindergartenDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -301,19 +366,19 @@ public class KindergartenDetail implements Serializable {
         this.kindLevel = kindLevel;
     }
 
-    public Integer getChildrenNum() {
+    public int getChildrenNum() {
         return childrenNum;
     }
 
-    public void setChildrenNum(Integer childrenNum) {
+    public void setChildrenNum(int childrenNum) {
         this.childrenNum = childrenNum;
     }
 
-    public Integer getClassNum() {
+    public int getClassNum() {
         return classNum;
     }
 
-    public void setClassNum(Integer classNum) {
+    public void setClassNum(int classNum) {
         this.classNum = classNum;
     }
 
@@ -413,11 +478,11 @@ public class KindergartenDetail implements Serializable {
         this.attachment = attachment;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
@@ -437,11 +502,11 @@ public class KindergartenDetail implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getAuditStatus() {
+    public int getAuditStatus() {
         return auditStatus;
     }
 
-    public void setAuditStatus(Integer auditStatus) {
+    public void setAuditStatus(int auditStatus) {
         this.auditStatus = auditStatus;
     }
 

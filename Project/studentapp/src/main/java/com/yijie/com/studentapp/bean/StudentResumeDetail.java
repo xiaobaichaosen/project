@@ -17,7 +17,7 @@ public class StudentResumeDetail implements Serializable{
     /**
      * 奕杰app 学生首页-> 已分配列表中> 已分配简历详情中 学生已投递园所
      */
-    private StudentResumeAlreadyDelivery studentResumeAlreadyDelivery;
+    private List<StudentResumeAlreadyDelivery> studentResumeAlreadyDelivery;
 
     /**
      * 学生个人信息
@@ -98,16 +98,18 @@ public class StudentResumeDetail implements Serializable{
         return studentResumeMatchDetail;
     }
 
+    public List<StudentResumeAlreadyDelivery> getStudentResumeAlreadyDelivery() {
+        return studentResumeAlreadyDelivery;
+    }
+
+    public void setStudentResumeAlreadyDelivery(List<StudentResumeAlreadyDelivery> studentResumeAlreadyDelivery) {
+        this.studentResumeAlreadyDelivery = studentResumeAlreadyDelivery;
+    }
+
     public void setStudentResumeMatchDetail(StudentResumeMatchDetail studentResumeMatchDetail) {
         this.studentResumeMatchDetail = studentResumeMatchDetail;
     }
 
-    public StudentResumeAlreadyDelivery getStudentResumeAlreadyDelivery() {
-        return studentResumeAlreadyDelivery;
-    }
 
-    public void setStudentResumeAlreadyDelivery(StudentResumeAlreadyDelivery studentResumeAlreadyDelivery) {
-        this.studentResumeAlreadyDelivery = studentResumeAlreadyDelivery;
-    }
 
 }

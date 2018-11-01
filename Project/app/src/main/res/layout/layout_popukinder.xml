@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/base_dimen_30"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_kindName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="宏景幼儿园"
+         />
+
+    <TextView
+        android:paddingTop="@dimen/base_dimen_10"
+        android:id="@+id/tv_kindDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="朝阳酒仙桥"
+ />
+
+
+    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+        android:paddingTop="@dimen/base_dimen_10"
+        android:id="@+id/mrb_star"
+        android:progressTint="#f06764"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        style="@style/Widget.MaterialRatingBar.RatingBar.Small" />
+
+    <View
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/base_dimen_10"
+        android:layout_height="1px"
+        android:background="#C9C9CB" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_stuNumber"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6人"
+            />
+
+        <TextView
+            android:layout_weight="0"
+            android:id="@+id/tv_detail"
+            android:padding="@dimen/base_dimen_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看详情"
+            />
+
+    </LinearLayout>
+</LinearLayout>

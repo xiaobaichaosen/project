@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.yijie.com.yijie.Constant;
 import com.yijie.com.yijie.R;
 import com.yijie.com.yijie.activity.student.StudentActivity;
+import com.yijie.com.yijie.activity.student.TBStriDetailActivity;
 import com.yijie.com.yijie.adapter.LoadMoreMatchWrapperAdapter;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.baseadapter.DividerItemDecoration;
@@ -122,7 +123,6 @@ public class KendergardMachDetailAcitivty extends BaseActivity {
         // 设置刷新控件颜色
         swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#f66168"));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        title.setText("国际幼儿园");
         actionItem.setVisibility(View.GONE);
         actionItem.setBackgroundResource(R.mipmap.search);
         // 模拟获取数据
@@ -136,8 +136,10 @@ public class KendergardMachDetailAcitivty extends BaseActivity {
                                                           @Override
                                                           public void onItemClick(View view, int position) {
                                                               Intent intent = new Intent();
-                                                              intent.setClass(KendergardMachDetailAcitivty.this, StudentActivity.class);
+                                                              intent.setClass(KendergardMachDetailAcitivty.this, TBStriDetailActivity.class);
+
                                                               intent.putExtra("isShowMove", true);
+                                                              intent.putExtra("studentUserId", dataList.get(position).getStudentUserId());
                                                               startActivity(intent);
                                                           }
                                                       }

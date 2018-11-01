@@ -30,7 +30,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_dimen_18"
-            android:text="时间:"
+            android:text="开始时间:"
+            android:textColor="#999999"
+            android:textSize="@dimen/base_dimen_28" />
+        <TextView
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_18"
+            android:text="结束时间:"
             android:textColor="#999999"
             android:textSize="@dimen/base_dimen_28" />
 
@@ -39,8 +47,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_dimen_18"
-            android:text="职务:"
+            android:text="岗位名称:"
             android:textColor="#999999"
+            android:textSize="@dimen/base_dimen_28" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_marginTop="@dimen/base_dimen_18"
+            android:layout_height="wrap_content"
+            android:text="工作描述:"
             android:textSize="@dimen/base_dimen_28" />
     </LinearLayout>
 
@@ -61,7 +76,15 @@
             android:textSize="@dimen/base_dimen_28" />
 
         <TextView
-            android:id="@+id/tv_workDue"
+            android:id="@+id/tv_startTime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_18"
+            android:text="2011/6-2013/9"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_28" />
+        <TextView
+            android:id="@+id/tv_endTime"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_dimen_18"
@@ -77,20 +100,17 @@
             android:text="三班教师"
             android:textColor="#4d4d4d"
             android:textSize="@dimen/base_dimen_28" />
-    </LinearLayout>
-</LinearLayout>
-        <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="工作描述:"
-        android:textSize="@dimen/base_dimen_28" />
-
         <TextView
             android:id="@+id/tv_description"
+            android:layout_marginTop="@dimen/base_dimen_18"
             android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base_dimen_18"
-        android:text="我曾在广州天河庄幼儿园担任教师一职,和小朋友和教师有良好的沟通。"
-        android:textColor="#4d4d4d"
-        android:textSize="@dimen/base_dimen_28" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="我曾在广州天河庄幼儿园担任教师一职,和小朋友和教师有良好的沟通。"
+            android:textColor="#4d4d4d"
+            android:textSize="@dimen/base_dimen_28" />
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>
+
+
+

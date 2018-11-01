@@ -21,7 +21,7 @@ public class SchoolMemoInfo implements Serializable {
     /**
      * 学校实习详情id
      */
-    private int schoolPracticeId;
+    private Integer schoolPracticeId;
 
     /**
      * 创建人
@@ -54,35 +54,35 @@ public class SchoolMemoInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getSchoolId() {
+    public int getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(Integer schoolId) {
+    public void setSchoolId(int schoolId) {
         this.schoolId = schoolId;
     }
 
-    public Integer getSchoolPracticeId() {
+    public int getSchoolPracticeId() {
         return schoolPracticeId;
     }
 
-    public void setSchoolPracticeId(Integer schoolPracticeId) {
+    public void setSchoolPracticeId(int schoolPracticeId) {
         this.schoolPracticeId = schoolPracticeId;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
@@ -122,7 +122,7 @@ public class SchoolMemoInfo implements Serializable {
         return isDel;
     }
 
-    public void setIsDel(Integer isDel) {
+    public void setIsDel(int isDel) {
         this.isDel = isDel;
     }
 

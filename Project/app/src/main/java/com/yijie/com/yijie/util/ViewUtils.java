@@ -41,7 +41,17 @@ public class ViewUtils {
     public static int sp2px(Context context, float spValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, context.getApplicationContext().getResources().getDisplayMetrics());
     }
+    /** px转换dip */
+    public static int px2dip(Context context,int px) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (px / scale + 0.5f);
+    }
+    /** px转换sp */
+    public static int px2sp(Context context,int pxValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
 
+    }
     public static int getStatusBarHeight(View view) {
         Rect rectangle = new Rect();
         view.getRootView().getWindowVisibleDisplayFrame(rectangle);

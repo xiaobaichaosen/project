@@ -252,7 +252,11 @@ public class HttpUtils {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                callback.onSuccess(response,o);
+                try {
+                    callback.onSuccess(response,o);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }    /**

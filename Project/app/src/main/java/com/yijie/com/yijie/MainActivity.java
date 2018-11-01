@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.cretin.www.cretinautoupdatelibrary.utils.CretinAutoUpdateUtils;
 import com.yijie.com.yijie.base.AppManager;
 import com.yijie.com.yijie.base.BaseActivity;
 import com.yijie.com.yijie.base.BaseFragment2;
@@ -100,6 +101,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         InitViewPager();
         mainTabRadioGroup.setOnCheckedChangeListener(this);
         mainTabRadioGroup.check(R.id.radio_logo);
+        //检查升级
+        CretinAutoUpdateUtils.getInstance(this).check();
 //
     }
 

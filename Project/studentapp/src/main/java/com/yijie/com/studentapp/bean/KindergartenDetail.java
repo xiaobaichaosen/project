@@ -68,11 +68,86 @@ public class KindergartenDetail implements Serializable {
      */
     private Integer childrenNum;
 
+    public String getWholeEvaluate() {
+        return wholeEvaluate;
+    }
+
+    public void setWholeEvaluate(String wholeEvaluate) {
+        this.wholeEvaluate = wholeEvaluate;
+    }
+
+    private String wholeEvaluate;
     /**
      * 班级数量
      */
     private Integer classNum;
 
+    public String getBuildGardenDate() {
+        return buildGardenDate;
+    }
+
+    public void setBuildGardenDate(String buildGardenDate) {
+        this.buildGardenDate = buildGardenDate;
+    }
+
+    public int getNuseryFee() {
+        return nuseryFee;
+    }
+
+    public void setNuseryFee(int nuseryFee) {
+        this.nuseryFee = nuseryFee;
+    }
+
+    public int getTeacherNum() {
+        return teacherNum;
+    }
+
+    public void setTeacherNum(int teacherNum) {
+        this.teacherNum = teacherNum;
+    }
+
+    public String getSalaryGrantDate() {
+        return salaryGrantDate;
+    }
+
+    public void setSalaryGrantDate(String salaryGrantDate) {
+        this.salaryGrantDate = salaryGrantDate;
+    }
+
+    public String getFormalWelfare() {
+        return formalWelfare;
+    }
+
+    public void setFormalWelfare(String formalWelfare) {
+        this.formalWelfare = formalWelfare;
+    }
+
+    /**
+     * 建园日期
+     */
+
+    private String buildGardenDate;
+
+    /**
+     * 托费/费
+     */
+    private int nuseryFee;
+
+    /**
+
+     * 教职工人数
+     */
+    private int teacherNum;
+
+    /**
+     * 薪资发放日
+     */
+    private String salaryGrantDate;
+
+    /**
+     * 签订正式劳动合同后福利
+     */
+    private String formalWelfare;
     /**
      * 班级配置
      */

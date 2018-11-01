@@ -58,7 +58,7 @@ public class User implements Serializable {
     /**
      * 添加该用户的用户id
      */
-    private Integer insertUid;
+    private int insertUid;
 
     /**
      * 注册时间
@@ -93,7 +93,7 @@ public class User implements Serializable {
     /**
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 创建时间
@@ -103,7 +103,7 @@ public class User implements Serializable {
     /**
      * 部门id
      */
-    private Integer orgid;
+    private int orgid;
 
     /**
      * cookie
@@ -138,11 +138,11 @@ public class User implements Serializable {
         this.cookieString = cookieString;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -210,11 +210,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getInsertUid() {
+    public int getInsertUid() {
         return insertUid;
     }
 
-    public void setInsertUid(Integer insertUid) {
+    public void setInsertUid(int insertUid) {
         this.insertUid = insertUid;
     }
 
@@ -266,11 +266,11 @@ public class User implements Serializable {
         this.sendTime = sendTime;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
@@ -282,11 +282,11 @@ public class User implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getOrgid() {
+    public int getOrgid() {
         return orgid;
     }
 
-    public void setOrgid(Integer orgid) {
+    public void setOrgid(int orgid) {
         this.orgid = orgid;
     }
 
@@ -364,7 +364,7 @@ public class User implements Serializable {
     //    /**
 //     * 主键id
 //     */
-//    private Integer id;
+//    private int id;
 //
 //    /**
 //     * 用户名
@@ -409,7 +409,7 @@ public class User implements Serializable {
 //    /**
 //     * 添加该用户的用户id
 //     */
-//    private Integer insertUid;
+//    private int insertUid;
 //
 //    /**
 //     * 注册时间
@@ -444,7 +444,7 @@ public class User implements Serializable {
 //    /**
 //     * 创建人
 //     */
-//    private Integer createBy;
+//    private int createBy;
 //
 //    /**
 //     * 创建时间
@@ -454,7 +454,7 @@ public class User implements Serializable {
 //    /**
 //     * 部门id
 //     */
-//    private Integer orgid;
+//    private int orgid;
 //
 //    /**
 //     * 部门名称
@@ -463,11 +463,11 @@ public class User implements Serializable {
 //
 //    private static final long serialVersionUID = 1L;
 //
-//    public Integer getId() {
+//    public int getId() {
 //        return id;
 //    }
 //
-//    public void setId(Integer id) {
+//    public void setId(int id) {
 //        this.id = id;
 //    }
 //
@@ -535,11 +535,11 @@ public class User implements Serializable {
 //        this.password = password;
 //    }
 //
-//    public Integer getInsertUid() {
+//    public int getInsertUid() {
 //        return insertUid;
 //    }
 //
-//    public void setInsertUid(Integer insertUid) {
+//    public void setInsertUid(int insertUid) {
 //        this.insertUid = insertUid;
 //    }
 //
@@ -591,11 +591,11 @@ public class User implements Serializable {
 //        this.sendTime = sendTime;
 //    }
 //
-//    public Integer getCreateBy() {
+//    public int getCreateBy() {
 //        return createBy;
 //    }
 //
-//    public void setCreateBy(Integer createBy) {
+//    public void setCreateBy(int createBy) {
 //        this.createBy = createBy;
 //    }
 //
@@ -607,11 +607,11 @@ public class User implements Serializable {
 //        this.createTime = createTime;
 //    }
 //
-//    public Integer getOrgid() {
+//    public int getOrgid() {
 //        return orgid;
 //    }
 //
-//    public void setOrgid(Integer orgid) {
+//    public void setOrgid(int orgid) {
 //        this.orgid = orgid;
 //    }
 //

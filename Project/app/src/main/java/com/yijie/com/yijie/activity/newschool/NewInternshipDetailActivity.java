@@ -344,8 +344,8 @@ public class NewInternshipDetailActivity extends BaseActivity {
                 break;
 
             case R.id.to_newAppointmenttime:
-                TimePickerView.Type yearType = TimePickerView.Type.ALL;
-                String yearFormat = "yyyy-MM-dd HH:mm";
+                TimePickerView.Type yearType = TimePickerView.Type.YEAR_MPMTH_DAY_H;
+                String yearFormat = "yyyy-MM-dd HH";
                 ViewUtils.alertTimerPicker(this, yearType, yearFormat, new ViewUtils.TimerPickerCallBack() {
                     @Override
                     public void onTimeSelect(String date) {

@@ -114,7 +114,7 @@ public class ProjectDetailActivity extends BaseActivity {
 //            actionItem.setBackgroundResource(R.mipmap.setting);
 //        }
         title.setText(projectName);
-        title.setTextSize(ViewUtils.dp2px(this, 5));
+        title.setTextSize(ViewUtils.dp2px(this, 12));
         String schoolContact = getIntent().getStringExtra("schoolContact");
         String schoolContactPhone = getIntent().getStringExtra("schoolContactPhone");
         String logoPath = getIntent().getStringExtra("logo");

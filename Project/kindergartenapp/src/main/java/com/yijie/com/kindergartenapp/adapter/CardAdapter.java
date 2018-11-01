@@ -13,8 +13,10 @@ import android.widget.ImageView;
 
 import com.yijie.com.kindergartenapp.Constant;
 import com.yijie.com.kindergartenapp.R;
+import com.yijie.com.kindergartenapp.activity.PhotoActivity;
 import com.yijie.com.kindergartenapp.utils.ImageLoaderUtil;
 import com.yijie.com.kindergartenapp.utils.PhotoActivityForHor;
+import com.yijie.com.kindergartenapp.view.RatioImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,29 @@ import java.util.List;
 /**
  * Created by jameson on 8/30/16.
  */
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> implements View.OnClickListener{
     private final Context mContext;
     private final String kinderId;
     private final String imagePath;
     private List<String> mList = new ArrayList<>();
 //    private CardAdapterHelper mCardAdapterHelper = new CardAdapterHelper();
+private CardAdapter.OnItemClickListener mOnItemClickListener = null;
 
+    public void setOnItemClickListener(CardAdapter.OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+    @Override
+    public void onClick(View v) {
+        if (mOnItemClickListener != null) {
+            //注意这里使用getTag方法获取position
+            mOnItemClickListener.onItemClick(v,(int)v.getTag());
+        }
+    }
+
+    //define interface
+    public static interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
     public CardAdapter(Context context, List<String> mList, String kinderId,String imagePath) {
         this.mContext=context;
         this.mList = mList;
@@ -41,7 +59,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_card_item, parent, false);
-//        mCardAdapterHelper.onCreateViewHolder(parent, itemView);
+        itemView.setOnClickListener(this);
         return new ViewHolder(itemView);
     }
 
@@ -54,22 +72,46 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             //加载网络图片
             ImageLoaderUtil.getImageLoader(mContext).displayImage(Constant.certificateUrl+kinderId+"/"+imagePath+"/"+urlString, holder.mImageView, ImageLoaderUtil.getPhotoImageOption());
         }
+        //将position保存在itemView的Tag中，以便点击时进行获取
+        holder.itemView.setTag(position);
+//        holder.mImageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(mContext, PhotoActivityForHor.class);
+//                Rect rect = new Rect();
+//                view.getGlobalVisibleRect(rect);
+//                intent.putExtra("imgUrl",Constant.certificateUrl+kinderId+"/"+imagePath+"/"+urlString);
+//                intent.putExtra("startBounds", rect);
+//                mContext.startActivity(intent);
+//                ((Activity)mContext).overridePendingTransition(0, 0);
 
-        holder.mImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, PhotoActivityForHor.class);
-                Rect rect = new Rect();
-                view.getGlobalVisibleRect(rect);
 
-                intent.putExtra("imgUrl",Constant.certificateUrl+kinderId+"/"+imagePath+"/"+urlString);
-                intent.putExtra("startBounds", rect);
+//
+//                Intent intent = new Intent(mContext, PhotoActivity.class);
+//                String imageArray[] = new String[urlList.size()];
+//                int childCount = getChildCount();
+//                ArrayList<Rect> rects = new ArrayList<>();
+//                for (int k = 0; k < childCount; k++) {
+//
+//                    Rect rect = new Rect();
+//                    View child = getChildAt(k);
+//                    if (child instanceof RatioImageView){
+//                        child.getGlobalVisibleRect(rect);
+//                        rects.add(rect);
+//                    }
+//                    imageArray[k] = urlList.get(k);
+//
+//                }
+//
+//
+//                intent.putExtra("imgUrls", imageArray);
+//                intent.putExtra("index", i);
+//                intent.putExtra("bounds", rects);
+//                mContext. startActivity(intent);
 
-                mContext.startActivity(intent);
 
-                ((Activity)mContext).overridePendingTransition(0, 0);
-            }
-        });
+//            }
+//        });
     }
 
     @Override

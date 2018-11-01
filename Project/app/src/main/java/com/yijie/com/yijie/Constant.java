@@ -5,19 +5,25 @@ package com.yijie.com.yijie;
  */
 
 public class Constant {
- //外网
-//     public static final  String baseUrl="http://47.96.230.114:8083/yiije";
-    //other
-//    public static final  String baseUrl="http://192.168.0.138:8083";
-    //me
 
-    public static final  String baseUrl="http://192.168.0.163:8083";
-// public static final  String baseUrl="http://rm-bp154lt13smxv388yxo.mysql.rds.aliyuncs.com:3306";
-    //图片服务器
-   public static final  String basepicUrl="http://192.168.0.163:8089";
+    //外网地址图片服务器
+//    public static final  String baseUrl="http://116.62.242.223:8083/yijie";
+//    public static final  String  basepicUrl ="http://116.62.242.223:8089";
+    //服务器地址
+//=========other======
+// public static final  String baseUrl="http://192.168.0.138:8083";
+// public static final  String   basepicUrl= "http://192.168.0.138:8089";
+    //=======================
+
+
+    //===============me
+ public static final  String baseUrl="http://192.168.0.163:8083";
+ public static final  String   basepicUrl= "http://192.168.0.163:8089";
+    //================
    //学生图片地址
    //个人图片
    public static final  String  infoUrl=basepicUrl+"/yijie/upload/student/student_user_id_";
+  public static final  String kinderUrl=basepicUrl+"/yijie/upload/kinder/kinder_user_id_";
     //获取验证码接口
     public static final  String getRegistCodeUrl=baseUrl+"/getRegistCode";
     public static final  String sendSmsCode=baseUrl+"/user/sendSmsCode";
@@ -25,7 +31,10 @@ public class Constant {
     public static final  String setPwd=baseUrl+"/user/setPwd";
     //通过手机号获取用户
     public static final  String selectByMoible=baseUrl+"/user/selectByMoible";
-
+    //园所发送审核
+    public static final  String UPDATEKINDERAUDITSTATUS=baseUrl+"/KindergartenDetail/updateKinderAuditStatus";
+    //园所详情查询接口
+    public static final  String KINDERGARTENDETAILBYID=baseUrl+"/KindergartenDetail/select";
     //忘记密码
     public static final  String updatePassword=baseUrl+"/user/updatePassword";
     //验证码登录
@@ -127,4 +136,13 @@ public class Constant {
     public static final  String SELECTSTUHOMEPAGELIST=baseUrl+"/studentResume/selectStuHomePageList";
     //需求详细
     public static final  String SELECTKINDERDEMANDDETAILS=baseUrl+"/kinderResumeLibrary/selectKinderDemandDetails";
+    //考勤签到园所列表
+    public static final  String GETSHOWALLKINDATMAP=baseUrl+"/studentSignIn/getShowAllKindAtMap";
+    //考勤签到通过园所id查询园所详情
+    public static final  String GETKINDERINFOBYKINDERID=baseUrl+"/studentSignIn/getKinderInfoByKinderId";
+
+ //往期合作，正在合作，心愿所列表
+ public static final  String SELECTCOOPERGARDENANDNEWGARDEN=baseUrl+"/kinderResumeLibrary/selectCooperGardenAndNewGarden";
+    //更新接口
+    public static final  String GETVERSIONUPDATE=baseUrl+"/versionUpdate/getVersionUpdate";
 }

@@ -166,7 +166,7 @@ public class ContactModityActivity extends BaseActivity  {
                 ArrayList<String> strings = new ArrayList<>();
                 for (Integer i: map.keySet() ) {
                   if (map.get(i)){
-                      strings.add(list.get(i).getId().toString());
+                      strings.add(list.get(i).getId()+"");
                   }
                 }
                 for (int i = 0; i < strings.size(); i++) {

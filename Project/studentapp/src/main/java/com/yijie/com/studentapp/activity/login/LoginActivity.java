@@ -27,6 +27,7 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yijie.com.studentapp.Constant;
 import com.yijie.com.studentapp.MainActivity;
 import com.yijie.com.studentapp.R;
+import com.yijie.com.studentapp.activity.RegistActivity;
 import com.yijie.com.studentapp.activity.SelectSchoolActivity;
 import com.yijie.com.studentapp.activity.login.modle.LoginCallBack;
 import com.yijie.com.studentapp.activity.login.modle.LoginModel;
@@ -207,9 +208,9 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.btnSubmit, R.id.iv_qq_login, R.id.iv_wx_login, R.id.et_passWord, R.id.et_name,R.id.tv_verviCode})
+    @OnClick({R.id.btnSubmit, R.id.iv_qq_login, R.id.iv_wx_login, R.id.et_passWord, R.id.et_name,R.id.tv_verviCode,R.id.tv_fogetPassWord})
     public void Click(View view) {
-
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.btnSubmit:
                 if (btnSubmit.getText().toString().trim().equals("登陆")){
@@ -355,7 +356,7 @@ public class LoginActivity extends BaseActivity {
                         ShowToastUtils.showToastMsg(this,"请输入验证码");
                         return;
                     }
-                    Intent intent = new Intent();
+
                     intent.putExtra("phoneNumber",etName.getText().toString());
                     intent.putExtra("verifyCode",etPassWord.getText().toString());
                     intent.setClass(LoginActivity.this, PassWordActivity.class);
@@ -389,8 +390,9 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.tv_fogetPassWord:
-
-                //忘记密码
+                //注册
+                intent.setClass(LoginActivity.this, RegistActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.et_name:
@@ -419,7 +421,7 @@ public class LoginActivity extends BaseActivity {
                     HttpUtils getinstance = HttpUtils.getinstance(LoginActivity.this);
                     HashMap<String, String> stringStringHashMap = new HashMap<>();
                     stringStringHashMap.put("cellphone",etName.getText().toString());
-                    getinstance.post(Constant.SENDSMSCODE,stringStringHashMap, new BaseCallback<String>() {
+                    getinstance.post(Constant.SENDSMSCODELOGIN,stringStringHashMap, new BaseCallback<String>() {
                         @Override
                         public void onRequestBefore() {
                             commonDialog.show();
@@ -438,8 +440,10 @@ public class LoginActivity extends BaseActivity {
                                 if (jsonObject.getString("rescode").equals("200")) {
                                    String registCode= jsonObject.getString("data");
                                     etPassWord.setText(registCode);
-
+                                    myCountDownTimer = new MyCountDownTimer(15000, 1000);
+                                    myCountDownTimer.start();
                                 }
+                                ShowToastUtils.showToastMsg(LoginActivity.this,jsonObject.getString("resMessage"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -451,10 +455,7 @@ public class LoginActivity extends BaseActivity {
                         }
 
                     });
-                    myCountDownTimer = new MyCountDownTimer(15000, 1000);
-                    myCountDownTimer.start();
                 }
-
                 break;
         }
     }

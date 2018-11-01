@@ -176,6 +176,7 @@ public class YiJieFragment extends BaseFragment {
           addFootBrow(dataList.get(position).getId()+"",userId,dataList.get(position).getKinderId()+"");
           Intent intent = new Intent();
           intent.putExtra("kinderId",dataList.get(position).getKinderId()+"");
+//            intent.putExtra("kinderId","11");
           intent.putExtra("kinderNeedId",dataList.get(position).getId()+"");
           intent.putExtra("status",dataList.get(position).getStatus()+"");
           intent.setClass(mActivity, KndergardLoadingAcitivity.class);

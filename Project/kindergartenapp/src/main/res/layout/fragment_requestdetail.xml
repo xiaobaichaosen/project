@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
+  >
+<LinearLayout
     android:layout_width="match_parent"
     android:id="@+id/loading"
     android:orientation="vertical"
@@ -63,18 +66,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="特长需求"
+            android:text="特长要求"
             android:textColor="@color/item_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="发布时间"
+            android:text="首次支付月数"
             android:textColor="@color/item_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="修改时间"
+            android:text="招聘状态"
             android:textColor="@color/item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="查看协议"
+            android:textColor="@color/pickerview_timebtn_pre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -144,14 +152,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tv_creattime"
-            android:text="发布时间"
+            android:id="@+id/tv_firstpay"
             android:textColor="@color/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tv_updatatime"
-            android:text="修改时间"
+            android:id="@+id/tv_status"
             android:textColor="@color/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -170,7 +176,7 @@
         android:layout_height="@dimen/base_dimen_90">
 
         <TextView
-            android:text="需付款"
+            android:text="待付款"
             android:layout_alignParentLeft="true"
             android:textColor="@color/item_title"
             android:layout_width="wrap_content"
@@ -185,6 +191,7 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <LinearLayout
+        android:id="@+id/ll_second"
         android:layout_below="@+id/ll_first"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -207,6 +214,61 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/ll_second"
+        android:layout_width="match_parent"
+        android:padding="@dimen/base_dimen_30"
+        android:layout_marginTop="@dimen/base_dimen_20"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="订单编号"
+                android:textColor="@color/item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="支付方式"
+                android:textColor="@color/item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="创建时间"
+                android:textColor="@color/item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_ordernum"
+                android:text="订单编号"
+                android:textColor="@color/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_payway"
+                android:text="在线支付"
+                android:textColor="@color/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="创建时间"
+                android:id="@+id/tv_createtime"
+                android:textColor="@color/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
     <RelativeLayout
          android:orientation="horizontal"
         android:layout_alignParentBottom="true"
@@ -225,4 +287,5 @@
             android:text="取消招聘"
             android:textColor="@color/item_title" />
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>

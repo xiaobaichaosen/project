@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="@dimen/base_dimen_30"
+    android:background="@color/colorPrimary"
+    android:layout_marginTop="@dimen/base_dimen_10"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/base_dimen_100"
+        android:layout_height="@dimen/base_dimen_100" />
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/kender_adress2name"
+        android:singleLine="true"
+        style="@style/layout_ww"
+        android:textColor="#4d4d4d"
+        android:textSize="@dimen/base_dimen_32" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/base_dimen_14"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_40">
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/item_content"
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="@dimen/base_dimen_2"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_height="@dimen/base_dimen_28"
+            android:layout_gravity="center_vertical"
+            android:background="@color/app_background"
+            />
+        <TextView
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:textColor="@color/item_content"
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="@dimen/base_dimen_2"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_height="@dimen/base_dimen_28"
+            android:layout_gravity="center_vertical"
+            android:background="@color/app_background"
+            />
+        <TextView
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:textColor="@color/item_content"
+            android:id="@+id/tv_meals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:id="@+id/tv_num"
+            style="@style/layout_ww"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+      />
+    </LinearLayout>
+
+
+    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+        android:id="@+id/mrb_star"
+        android:layout_marginLeft="@dimen/base_dimen_14"
+        android:progressTint="#f06764"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_alignParentLeft="true"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        style="@style/Widget.MaterialRatingBar.RatingBar.Small" />
+</LinearLayout>
+
+
+</LinearLayout>

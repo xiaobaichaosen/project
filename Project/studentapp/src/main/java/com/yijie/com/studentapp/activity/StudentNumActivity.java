@@ -39,6 +39,8 @@ public class StudentNumActivity extends BaseActivity {
     View viewLine;
     @BindView(R.id.btn_two)
     Button btnTwo;
+    @BindView(R.id.et_studentName)
+    EditText etStudentName;
     private String password;
     private String phonenumber;
     private String schoolId;
@@ -56,7 +58,7 @@ public class StudentNumActivity extends BaseActivity {
         phonenumber = getIntent().getStringExtra("cellphone");
         schoolId = getIntent().getStringExtra("schoolId");
         schoolPracticeId = getIntent().getStringExtra("schoolPracticeId");
-        verifyCode= getIntent().getStringExtra("verifyCode");
+        verifyCode = getIntent().getStringExtra("verifyCode");
         setColor(this, getResources().getColor(R.color.appBarColor)); // 改变状态栏的颜色
         setTranslucent(this); // 改变状态栏变成透明
     }
@@ -82,7 +84,8 @@ public class StudentNumActivity extends BaseActivity {
             mapDate.put("password", password);
             mapDate.put("schoolId", schoolId);
             mapDate.put("schoolPracticeId", schoolPracticeId);
-            mapDate.put("studentName", etStudentnum.getText().toString());
+            mapDate.put("studentName", etStudentName.getText().toString());
+            mapDate.put("stuNumber", etStudentnum.getText().toString());
             mapDate.put("verifyCode", verifyCode);
             map.put("requestData", mapDate.toString());
             instance.post(Constant.REGISTURL, map, new BaseCallback<String>() {

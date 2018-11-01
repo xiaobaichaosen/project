@@ -1,6 +1,7 @@
 package com.yijie.com.studentapp.bean;
 
 
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -29,6 +30,24 @@ public class StudentResume  implements Serializable  {
      * 期望同伴id
      */
     private Integer companionId;
+    private	 String stuHomePageTitle;
+    private     String      stuResumeCountNum;
+
+    public String getStuHomePageTitle() {
+        return stuHomePageTitle;
+    }
+
+    public void setStuHomePageTitle(String stuHomePageTitle) {
+        this.stuHomePageTitle = stuHomePageTitle;
+    }
+
+    public String getStuResumeCountNum() {
+        return stuResumeCountNum;
+    }
+
+    public void setStuResumeCountNum(String stuResumeCountNum) {
+        this.stuResumeCountNum = stuResumeCountNum;
+    }
 
     /**
      * 学生个人信息id
@@ -44,7 +63,28 @@ public class StudentResume  implements Serializable  {
      * 审核人id（培训老师id)
      */
     private Integer auditorId;
+    private String submitTime;
 
+    public String getSubmitTime() {
+        return submitTime;
+    }
+
+    public void setSubmitTime(String submitTime) {
+        this.submitTime = submitTime;
+    }
+
+    public String getExamineTime() {
+        return examineTime;
+    }
+
+    public void setExamineTime(String examineTime) {
+        this.examineTime = examineTime;
+    }
+
+    /**
+     * 学生app：简历审核已通过时间 发现中 简历审核已通过时间
+     */
+    private String examineTime;
     /**
      * 期望工作地点
      */

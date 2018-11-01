@@ -12,16 +12,16 @@ public class StudentEducation implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private int id;
 
     /**
      * 简历id
      */
-    private Integer resumeId;
+    private int resumeId;
     /**
      * 学生用户id
      */
-    private Integer studentUserId;
+    private int studentUserId;
 
     /**
      * 毕业院校
@@ -56,33 +56,33 @@ public class StudentEducation implements Serializable {
     /**
      * 创建人
      */
-    private Integer createBy;
+    private int createBy;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    private String createTime;
 
     /**
      * 更新时间
      */
-    private Date updateTime;
+    private String updateTime;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getResumeId() {
+    public int getResumeId() {
         return resumeId;
     }
 
-    public void setResumeId(Integer resumeId) {
+    public void setResumeId(int resumeId) {
         this.resumeId = resumeId;
     }
 
@@ -134,35 +134,35 @@ public class StudentEducation implements Serializable {
         this.hobby = hobby;
     }
 
-    public Integer getCreateBy() {
+    public int getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Integer createBy) {
+    public void setCreateBy(int createBy) {
         this.createBy = createBy;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
-    public Integer getStudentUserId() {
+    public int getStudentUserId() {
         return studentUserId;
     }
 
-    public void setStudentUserId(Integer studentUserId) {
+    public void setStudentUserId(int studentUserId) {
         this.studentUserId = studentUserId;
     }
 

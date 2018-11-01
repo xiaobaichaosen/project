@@ -7,14 +7,21 @@ import com.yijie.com.kindergartenapp.bean.KindergartenDetail;
  */
 
 public class Constant {
-    //外网
-//    public static final  String baseUrl="http://47.96.230.114:8083";
-    //other
-//    public static final  String baseUrl="http://192.168.0.138:8083";
-    //me
-    public static final  String baseUrl="http://192.168.0.163:8083";
-    //图片服务器
-    public static final  String basepicUrl="http://192.168.0.163:8089";
+
+    //外网地址图片服务器
+//    public static final  String baseUrl="http://116.62.242.223:8083/yijie";
+//    public static final  String  basepicUrl ="http://116.62.242.223:8089";
+    //服务器地址
+//=========other======
+// public static final  String baseUrl="http://192.168.0.138:8083";
+// public static final  String   basepicUrl= "http://192.168.0.138:8089";
+    //=======================
+
+
+    //===============me
+ public static final  String baseUrl="http://192.168.0.163:8083";
+ public static final  String   basepicUrl= "http://192.168.0.163:8089";
+    //================
     //图片获取地址
     public static final  String certificateUrl=basepicUrl+"/yijie/upload/kinder/kinder_user_id_";
     //学生图片地址
@@ -23,6 +30,9 @@ public class Constant {
     public static final  String LOGINURL=baseUrl+"/kinderUser/login";
     //获取手机验证码接口
     public static final  String SENDSMSCODE=baseUrl+"/kinderUser/sendSmsCode";
+
+    //更换绑定手机号码
+    public static final  String REPLACECELLPHONE=baseUrl+"/kinderUser/replaceCellphone";
     //获取邮箱验证码接口
     public static final  String SENDEAMIL=baseUrl+"/kinderUser/sendEamil";
     //注册接口
@@ -41,7 +51,8 @@ public class Constant {
     public static final  String KINDERGARTENNEED=baseUrl+"/kindergartenNeed/saveOrUpdate";
     //园所是否可以提需求
     public static final  String ISSENDREQUEST=baseUrl+"/kindergartenNeed/isSendRequest";
-
+    //园所发送审核
+    public static final  String UPDATEKINDERAUDITSTATUS=baseUrl+"/KindergartenDetail/updateKinderAuditStatus";
     //项目需求列表
     public static final  String SELECTDEMANDLIST=baseUrl+"/kindergartenNeed/selectDemandList";
     //获取注册时候得所有园所名称
@@ -62,10 +73,11 @@ public class Constant {
     public static final  String RESUMESTATEUPDATE=baseUrl+"/kinderResumeLibrary/resumeStateUpdate";
     //取消招聘
     public static final  String CANCELRECRUIT=baseUrl+"/kindergartenNeed/cancelRecruit";
-
+    //修改密码
+    public static final  String SETPWD=baseUrl+"/kinderUser/setPwd";
 
     //头像上传接口
-    public static final  String headUploadUrl=baseUrl+"/headload";
+    public static final  String headUploadUrl=baseUrl+"/kinder/headPicUpload";
     //荣誉证书上传图片接口
     public static final  String HONORARYCCERTIFICATEUPLOADURL=baseUrl+"/kinder/certificateUpload";
     //营业执照上传图片接口
@@ -77,5 +89,6 @@ public class Constant {
 
     //档案荣誉证书获取图片接口
     public static final  String honoraryCcertificateGetUrl=baseUrl+"/getPhotoList";
-
+    //更新接口
+    public static final  String GETVERSIONUPDATE=baseUrl+"/versionUpdate/getVersionUpdate";
 }

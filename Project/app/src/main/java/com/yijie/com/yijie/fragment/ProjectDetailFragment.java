@@ -409,7 +409,7 @@ public class ProjectDetailFragment extends BaseFragment  {
                         }
                     }
                 })
-                        .setTitle("是否确认接送").show();
+                        .setTitle("是否确认接收").show();
                 break;
             case   R.id.tv_adress:
                 Intent intent1=new Intent();

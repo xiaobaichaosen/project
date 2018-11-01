@@ -137,7 +137,7 @@ public class TwoFragment extends BaseFragment implements OnItemClickListener{
                 break;
             case R.id.btn_two:
 
-                tempActivity.stepView.setStep(3);
+
                 if (dataList.contains(kinderDetail)&&kinderDetail.getKindName().equals(etKinder.getText().toString().trim())){
                     //证明已经注册过，跳转到发送申请页面
 
@@ -156,6 +156,7 @@ public class TwoFragment extends BaseFragment implements OnItemClickListener{
                         onButtonClick.onClick(kindergartenMember);
                     }
                 }
+                tempActivity.stepView.setStep(3);
                 break;
         }
     }

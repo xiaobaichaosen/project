@@ -478,7 +478,8 @@ public class YiJieFragment extends BaseFragment {
                     loadMoreWrapperAdapter.setOnItemClickListener(new LoadMoreYijieAdapter.OnItemClickListener() {
                       @Override
                       public void onItemClick(View view, int position) {
-                          if (null != dataList.get(position).getDemandNum()) {
+                          //TODO 不知道对不对
+                          if (0 != dataList.get(position).getDemandNum()) {
                               Intent intent = new Intent();
                               intent.putExtra("id", dataList.get(position).getId());
                               intent.putExtra("projectName", dataList.get(position).getProjectName());

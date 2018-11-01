@@ -38,7 +38,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
 
     <!-- Optional for location -->
@@ -62,15 +62,22 @@
             android:value="ad1ccd7a7d75df010dea6e2231867f8b" />
         <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
         <service android:name="com.amap.api.location.APSService"></service>
+        /*下载框架要加的服务*/
+        <service android:name="com.cretin.www.cretinautoupdatelibrary.utils.DownloadService"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="yijie.fileProvider"
+            android:authorities="com.yijie.com.studentapp.fileprovider"
+
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/install_file" />
         </provider>
+
+
+
+
         <activity android:name=".activity.SplashActivity">
 
 
@@ -154,6 +161,7 @@
         <activity android:name=".activity.MySampleActivity"/>
         <activity android:name=".activity.WebViewActivity"/>
         <activity android:name=".activity.MySendActivity"/>
+        <activity android:name=".activity.RegistActivity"/>
         <activity android:name=".activity.PushAccessActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"
             />

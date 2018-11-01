@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@color/colorTheme"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp">
+    <TextView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/base_dimen_26"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@mipmap/arrow_back"
+        android:textSize="@dimen/base_dimen_28" />
+
+
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_centerVertical="true"
+        android:id="@+id/ll_gold_search_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="@dimen/base_dimen_10"
+        android:layout_marginRight="@dimen/base_dimen_10"
+        android:background="@drawable/goldmine_search_bg"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <EditText
+            android:layout_gravity="center_vertical"
+            android:id="@+id/tv_gold_search_content"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:drawableLeft="@drawable/goldmine_search_icon"
+            android:background="@null"
+            android:drawablePadding="7dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:hint="搜索"
+            android:textColor="#A5A8AF"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_weight="0"
+        android:id="@+id/tv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base_dimen_20"
+        android:text="搜索"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/base_dimen_28" />
+</LinearLayout>
